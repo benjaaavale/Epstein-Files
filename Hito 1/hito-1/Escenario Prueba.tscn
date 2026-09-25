@@ -1,0 +1,78 @@
+[gd_scene format=3 uid="uid://crxljoivx4gxw"]
+
+[ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="1_nnd0q"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnd0q"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+
+[sub_resource type="Sky" id="Sky_ifrn4"]
+sky_material = SubResource("ProceduralSkyMaterial_nnd0q")
+
+[sub_resource type="Environment" id="Environment_u0cs1"]
+background_mode = 2
+sky = SubResource("Sky_ifrn4")
+glow_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7numd"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_p1u0y"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fcnqv"]
+size = Vector2(10, 10)
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fcnqv"]
+size = Vector3(1, 1, 0)
+
+[sub_resource type="QuadMesh" id="QuadMesh_nnd0q"]
+size = Vector2(0.2, 1)
+
+[node name="Node3D" type="Node3D" unique_id=94739087]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1859697911]
+environment = SubResource("Environment_u0cs1")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1288608321]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+light_color = Color(0.23, 0.23, 0.23, 1)
+shadow_enabled = true
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1065376932]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=1396948637]
+layers = 17
+material_override = SubResource("StandardMaterial3D_7numd")
+material_overlay = SubResource("StandardMaterial3D_p1u0y")
+mesh = SubResource("PlaneMesh_fcnqv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1487702862]
+shape = SubResource("WorldBoundaryShape3D_g4v7s")
+
+[node name="Player" parent="." unique_id=1620218306 instance=ExtResource("1_nnd0q")]
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1934096025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1161069994]
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=690243181]
+shape = SubResource("BoxShape3D_fcnqv")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=780825534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=1672206889]
+mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=750727341]
+shape = SubResource("BoxShape3D_fcnqv")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=144467075]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57108235, 0.5, -1)
+layers = 16
+mesh = SubResource("QuadMesh_nnd0q")
