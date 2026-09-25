@@ -55,3 +55,18 @@ ModificadorColor={
 [rendering]
 
 rendering_device/driver.windows="d3d12"
+
+[shader_globals]
+
+flashlight_pos={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+flashlight_dir={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+is_blue_light_on={
+"type": "bool",
+"value": false
+}
