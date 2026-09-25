@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dab1kspll07sl"]
+
+[ext_resource type="Script" uid="uid://dobue736atb0l" path="res://lantern.gd" id="1_06ei3"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_g4v7s"]
+height = 1.5
+radius = 0.25
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_yf5fn"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.5
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=345237262]
+script = ExtResource("1_06ei3")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=191909590]
+shape = SubResource("CylinderShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=823703355]
+mesh = SubResource("CylinderMesh_yf5fn")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1095355856]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=952034130]
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 25.0

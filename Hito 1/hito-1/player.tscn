@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://c6cxiyc2tfbow"]
+
+[ext_resource type="Script" uid="uid://d3wrf4b6ac7vs" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="PackedScene" uid="uid://bliq4041u3088" path="res://linterna.tscn" id="2_i3pqv"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+
+[node name="Player" type="CharacterBody3D" unique_id=1620218306]
+script = ExtResource("1_onrkg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2105085689]
+shape = SubResource("CapsuleShape3D_g4v7s")
+
+[node name="Head" type="Node3D" parent="." unique_id=2028121058]
+
+[node name="Camera3D" type="Camera3D" parent="Head" unique_id=296463645]
+
+[node name="Linterna" parent="Head/Camera3D" unique_id=23888094 instance=ExtResource("2_i3pqv")]

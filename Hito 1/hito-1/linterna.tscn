@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bliq4041u3088"]
+
+[ext_resource type="Script" uid="uid://culqyc27yenax" path="res://linterna.gd" id="1_ukdtb"]
+
+[node name="Linterna" type="Node3D" unique_id=23888094]
+script = ExtResource("1_ukdtb")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=366484361]
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 25.0
