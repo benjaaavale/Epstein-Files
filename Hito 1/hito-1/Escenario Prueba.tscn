@@ -4,6 +4,7 @@
 [ext_resource type="Shader" uid="uid://ige06nnl65va" path="res://Escenario Prueba.gdshader" id="1_u0cs1"]
 [ext_resource type="Shader" uid="uid://b5crorpl4heyb" path="res://ParedFalsa.gdshader" id="2_ifrn4"]
 [ext_resource type="Shader" uid="uid://v7nuvywx785c" path="res://CSGFalso.gdshader" id="4_bfu8o"]
+[ext_resource type="PackedScene" uid="uid://bu56r88c3pmrf" path="res://pause_menu.tscn" id="5_5dgmt"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnd0q"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -112,3 +113,5 @@ surface_material_override/0 = SubResource("ShaderMaterial_d0u6y")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432, 0.4965495, -1)
 size = Vector3(0.723, 1, 0.001)
 material = SubResource("ShaderMaterial_bfu8o")
+
+[node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("5_5dgmt")]
