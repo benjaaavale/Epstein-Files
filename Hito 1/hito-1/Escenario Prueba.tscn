@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="1_nnd0q"]
 [ext_resource type="Shader" uid="uid://ige06nnl65va" path="res://Escenario Prueba.gdshader" id="1_u0cs1"]
 [ext_resource type="Shader" uid="uid://b5crorpl4heyb" path="res://ParedFalsa.gdshader" id="2_ifrn4"]
+[ext_resource type="Shader" uid="uid://v7nuvywx785c" path="res://CSGFalso.gdshader" id="4_bfu8o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnd0q"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -34,12 +35,29 @@ size = Vector3(1, 1, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cb3b"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wjxht"]
-subsurf_scatter_enabled = true
+[sub_resource type="QuadMesh" id="QuadMesh_yf5fn"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdyae"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d0u6y"]
 render_priority = 0
 shader = ExtResource("2_ifrn4")
+shader_parameter/wall_color = Color(1, 1, 1, 1)
+shader_parameter/cone_angle_degrees = 15.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfu8o"]
+render_priority = 0
+shader = ExtResource("4_bfu8o")
+shader_parameter/cone_angle_degrees = 15.0
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture_size = Vector2i(0, 0)
+shader_parameter/point_size = 1.0
+shader_parameter/roughness = 1.0
+shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
+shader_parameter/specular = 0.5
+shader_parameter/metallic = 0.0
+shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/uv2_scale = Vector3(1, 1, 1)
+shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [node name="Node3D" type="Node3D" unique_id=94739087]
 
@@ -62,9 +80,10 @@ mesh = SubResource("PlaneMesh_fcnqv")
 shape = SubResource("WorldBoundaryShape3D_g4v7s")
 
 [node name="Player" parent="." unique_id=1620218306 instance=ExtResource("1_nnd0q")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4937303, 0)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1934096025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7284322, 0.5, -1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2" unique_id=1161069994]
 mesh = SubResource("QuadMesh_g4v7s")
@@ -74,17 +93,22 @@ surface_material_override/0 = SubResource("StandardMaterial3D_j02u8")
 shape = SubResource("BoxShape3D_fcnqv")
 
 [node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=780825534]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.5, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.47156787, 0.5, -1)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D3" unique_id=1672206889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.60441685, 0, 0)
 mesh = SubResource("QuadMesh_g4v7s")
 surface_material_override/0 = SubResource("StandardMaterial3D_4cb3b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=750727341]
 shape = SubResource("BoxShape3D_fcnqv")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1299572285]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6002987, 0.5, -1.003)
-material_override = SubResource("StandardMaterial3D_wjxht")
-material_overlay = SubResource("ShaderMaterial_vdyae")
-size = Vector3(0.2, 1, 0)
+[node name="Pared falsa" type="MeshInstance3D" parent="." unique_id=816672116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15643215, 0.5, -1)
+mesh = SubResource("QuadMesh_yf5fn")
+surface_material_override/0 = SubResource("ShaderMaterial_d0u6y")
+
+[node name="Prueba Falsa" type="CSGBox3D" parent="." unique_id=1658431745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.432, 0.4965495, -1)
+size = Vector3(0.723, 1, 0.001)
+material = SubResource("ShaderMaterial_bfu8o")
