@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://crxljoivx4gxw"]
 
 [ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="1_nnd0q"]
+[ext_resource type="PackedScene" uid="uid://bu56r88c3pmrf" path="res://pause_menu.tscn" id="3_bfu8o"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnd0q"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -32,6 +33,8 @@ size = Vector3(1, 1, 0)
 size = Vector2(0.2, 1)
 
 [node name="Node3D" type="Node3D" unique_id=94739087]
+
+[node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("3_bfu8o")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1859697911]
 environment = SubResource("Environment_u0cs1")
