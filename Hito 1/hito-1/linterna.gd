@@ -35,6 +35,10 @@ func _process(_delta: float) -> void:
 	# Le decimos al Shader si el jugador tiene puesto el filtro azul (o violeta)
 	var is_blue = (current_channel == Channel.BLUE or current_channel == Channel.VIOLET)
 	RenderingServer.global_shader_parameter_set("is_blue_light_on", is_blue)
+	
+	var is_red = (current_channel == Channel.RED or current_channel == Channel.VIOLET)
+	# Enviamos la señal al Shader del CSGBox3D
+	RenderingServer.global_shader_parameter_set("is_red_light_on", is_red)
 # ----------------------------------------------------------
 
 func _input(event: InputEvent) -> void:

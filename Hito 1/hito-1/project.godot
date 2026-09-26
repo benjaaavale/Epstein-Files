@@ -75,3 +75,7 @@ is_blue_light_on={
 "type": "bool",
 "value": false
 }
+is_red_light_on={
+"type": "bool",
+"value": false
+}
