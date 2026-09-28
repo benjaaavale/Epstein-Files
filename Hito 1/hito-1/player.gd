@@ -3,11 +3,15 @@ extends CharacterBody3D
 @export var mouse_sensitivity: float = 0.003 # Ajusta este valor si se mueve muy rápido o lento
 @export var speed: float = 3.0
 @export var run_speed: float = 5.0
-@export var jump_velocity: float = 4.5
+@export var jump_velocity: float = 3.0
 
 var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 @onready var head: Node3D = $Head
+@onready var interact_ray: RayCast3D = $Head/Camera3D/InteractRay
+@onready var hand: Marker3D = $Head/Camera3D/Hand
+
+var held_item: Item = null
 
 func _ready() -> void:
 	# Atrapa y oculta el mouse dentro de la ventana al iniciar el juego
@@ -25,6 +29,32 @@ func _unhandled_input(event: InputEvent) -> void:
 		
 		# 3. Limitar (Clamp) la rotación vertical para no romperte el cuello hacia atrás
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-80), deg_to_rad(80))
+
+	if event.is_action_pressed("interactuar"):
+		_try_pick_up()
+	elif event.is_action_pressed("soltar"):
+		_drop_item()
+
+func _try_pick_up() -> void:
+	if held_item != null:
+		return
+	var target := interact_ray.get_collider()
+	if target is Item:
+		held_item = target
+		held_item.pick_up()
+		held_item.reparent(hand, false)
+		held_item.transform = Transform3D.IDENTITY
+
+func _drop_item() -> void:
+	if held_item == null:
+		return
+	var item := held_item
+	held_item = null
+	var world_transform := item.global_transform
+	item.reparent(get_parent(), false)
+	item.global_transform = world_transform
+	item.drop()
+	item.linear_velocity = -head.global_transform.basis.z * 2.0
 
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
