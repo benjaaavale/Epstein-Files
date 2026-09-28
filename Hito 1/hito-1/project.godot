@@ -79,3 +79,7 @@ is_red_light_on={
 "type": "bool",
 "value": false
 }
+flashlight_angle={
+"type": "float",
+"value": 30.0
+}

@@ -10,7 +10,7 @@ uniform sampler2D wall_texture : source_color;
 uniform vec4 wall_color : source_color = vec4(1.0);
 
 // Qué tan ancho es el círculo que borra la luz
-uniform float cone_angle_degrees = 15.0; 
+global uniform float flashlight_angle; 
 
 varying vec3 world_pos;
 
@@ -31,7 +31,7 @@ void fragment() {
 		
 		// Calculamos qué tan dentro del foco está este pixel
 		float dot_prod = dot(dir_to_pixel, normalize(flashlight_dir));
-		float angle_limit = cos(radians(cone_angle_degrees));
+		float angle_limit = cos(radians(flashlight_angle));
 		
 		// Si el pixel está dentro del círculo de luz de la linterna...
 		if (dot_prod > angle_limit) {
