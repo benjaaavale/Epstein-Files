@@ -6,7 +6,7 @@ render_mode blend_mix, depth_draw_opaque, cull_back, diffuse_burley, specular_sc
 global uniform vec3 flashlight_pos;
 global uniform vec3 flashlight_dir;
 global uniform bool is_red_light_on; // <-- Escucha al color rojo
-uniform float cone_angle_degrees = 15.0;
+global uniform float flashlight_angle;
 
 uniform vec4 albedo : source_color;
 uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
@@ -49,7 +49,7 @@ void fragment() {
 		
 		vec3 dir_to_pixel = normalize(world_pos - flashlight_pos);
 		float dot_prod = dot(dir_to_pixel, normalize(flashlight_dir));
-		float angle_limit = cos(radians(cone_angle_degrees));
+		float angle_limit = cos(radians(flashlight_angle));
 		
 		if (dot_prod > angle_limit) {
 			discard; 
