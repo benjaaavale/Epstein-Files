@@ -4,11 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="1_nnd0q"]
 [ext_resource type="Shader" uid="uid://b5crorpl4heyb" path="res://ParedFalsa.gdshader" id="2_ifrn4"]
 [ext_resource type="Texture2D" uid="uid://c1uqemkn1kkbv" path="res://assets varios/Wood006_1K-JPG_Color.jpg" id="2_j02u8"]
+[ext_resource type="Shader" uid="uid://cajgh3q3rg2rq" path="res://ParedFalsa(Rojo).gdshader" id="3_vdyae"]
 [ext_resource type="Shader" uid="uid://v7nuvywx785c" path="res://CSGFalso.gdshader" id="4_bfu8o"]
 [ext_resource type="PackedScene" uid="uid://bu56r88c3pmrf" path="res://pause_menu.tscn" id="5_5dgmt"]
 [ext_resource type="PackedScene" path="res://item.tscn" id="6_esq1g"]
-[ext_resource type="Texture2D" uid="uid://hvdtr38hnuxn" path="res://assets varios/caaat2.jpg" id="7_wjxht"]
 [ext_resource type="Texture2D" uid="uid://sacdoht3anmk" path="res://assets varios/caaat.jpg" id="8_2bby0"]
+[ext_resource type="Texture2D" uid="uid://ce1dtdulcl2of" path="res://assets varios/CodigoDemo.jpg" id="8_4cb3b"]
 [ext_resource type="AudioStream" uid="uid://c2rhi1x864bmk" path="res://assets varios/freesoundfx-abandoned-building-sounds-282558.mp3" id="10_4cb3b"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdyae"]
@@ -19,17 +20,18 @@ size = Vector2(10, 10)
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_g4v7s"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j02u8"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_fcnqv"]
 size = Vector3(1, 1, 0)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wgx33"]
-albedo_texture = ExtResource("2_j02u8")
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4cb3b"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4cb3b"]
+render_priority = 0
+shader = ExtResource("3_vdyae")
+shader_parameter/wall_texture = ExtResource("2_j02u8")
+shader_parameter/wall_color = Color(1, 1, 1, 1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_yf5fn"]
 
@@ -38,22 +40,32 @@ render_priority = 0
 shader = ExtResource("2_ifrn4")
 shader_parameter/wall_color = Color(1, 1, 1, 1)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vdyae"]
+render_priority = 0
+shader = ExtResource("2_ifrn4")
+shader_parameter/wall_texture = ExtResource("2_j02u8")
+shader_parameter/wall_color = Color(1, 1, 1, 1)
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfu8o"]
 render_priority = 0
 shader = ExtResource("4_bfu8o")
 shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("2_j02u8")
 shader_parameter/albedo_texture_size = Vector2i(0, 0)
 shader_parameter/point_size = 1.0
 shader_parameter/roughness = 1.0
 shader_parameter/metallic_texture_channel = Vector4(1, 0, 0, 0)
 shader_parameter/specular = 0.5
 shader_parameter/metallic = 0.0
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
+shader_parameter/uv1_scale = Vector3(3, 2, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/uv2_scale = Vector3(1, 1, 1)
 shader_parameter/uv2_offset = Vector3(0, 0, 0)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jke6a"]
+albedo_texture = ExtResource("2_j02u8")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cmxib"]
 albedo_texture = ExtResource("2_j02u8")
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnd0q"]
@@ -84,25 +96,8 @@ mesh = SubResource("PlaneMesh_fcnqv")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.1920929e-07, 0)
 shape = SubResource("WorldBoundaryShape3D_g4v7s")
 
-[node name="StaticBody3D2" type="StaticBody3D" parent="PAREDES" unique_id=1934096025]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7394273, 0.49999988, -1.8120028)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PAREDES/StaticBody3D2" unique_id=1161069994]
-transform = Transform3D(1, 0, 0, 0, 6, 0, 0, 0, 1, 0, 0, 0)
-mesh = SubResource("QuadMesh_g4v7s")
-surface_material_override/0 = SubResource("StandardMaterial3D_j02u8")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="PAREDES/StaticBody3D2" unique_id=690243181]
-shape = SubResource("BoxShape3D_fcnqv")
-
 [node name="StaticBody3D3" type="StaticBody3D" parent="PAREDES" unique_id=780825534]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.46057272, 0.49999988, -1.8120028)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="PAREDES/StaticBody3D3" unique_id=1672206889]
-transform = Transform3D(1.2, 0, 0, 0, 6, 0, 0, 0, 1, 0.9048388, -0.009947717, 0.027818799)
-material_override = SubResource("StandardMaterial3D_wgx33")
-mesh = SubResource("QuadMesh_g4v7s")
-surface_material_override/0 = SubResource("StandardMaterial3D_4cb3b")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PAREDES/StaticBody3D3" unique_id=750727341]
 shape = SubResource("BoxShape3D_fcnqv")
@@ -118,13 +113,20 @@ surface_material_override/0 = SubResource("StandardMaterial3D_4cb3b")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="PAREDES/StaticBody3D5" unique_id=1512827561]
 shape = SubResource("BoxShape3D_fcnqv")
 
+[node name="Pared falsa Roja" type="MeshInstance3D" parent="PAREDES" unique_id=1504318176]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.654741, 0.5, -1.812)
+material_override = SubResource("ShaderMaterial_4cb3b")
+mesh = SubResource("QuadMesh_yf5fn")
+surface_material_override/0 = SubResource("ShaderMaterial_d0u6y")
+
 [node name="Pared falsa" type="MeshInstance3D" parent="PAREDES" unique_id=816672116]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1674273, 0.49999988, -1.8120028)
+material_override = SubResource("ShaderMaterial_vdyae")
 mesh = SubResource("QuadMesh_yf5fn")
 surface_material_override/0 = SubResource("ShaderMaterial_d0u6y")
 
 [node name="Prueba Falsa" type="CSGBox3D" parent="PAREDES" unique_id=1658431745]
-transform = Transform3D(1, 0, 0, 0, 6, 0, 0, 0, 1, 0.42100486, 0.49654937, -1.8120028)
+transform = Transform3D(1, 0, 0, 0, 6, 0, 0, 0, 1, 3.4692583, 0.49654937, -1.8120028)
 size = Vector3(0.723, 1, 0.001)
 material = SubResource("ShaderMaterial_bfu8o")
 
@@ -141,10 +143,10 @@ use_collision = true
 size = Vector3(2.532, 6, 0.01)
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="PAREDES" unique_id=52231062]
-transform = Transform3D(-0.99991554, 0, 0.012997468, 0, 1, 0, -0.012997468, 0, -0.99991554, 2.224808, 0.5237513, -1.8003745)
+transform = Transform3D(-0.99991554, 0, 0.012997468, 0, 1, 0, -0.012997468, 0, -0.99991554, 2.224808, 0.5237513, -1.7781711)
 material_override = SubResource("StandardMaterial3D_jke6a")
 use_collision = true
-size = Vector3(2.492, 6, 0.01)
+size = Vector3(2.592, 6, 0.01)
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="PAREDES" unique_id=1892520893]
 transform = Transform3D(-0.99991554, 0, 0.012997468, 0, 1, 0, -0.012997468, 0, -0.99991554, 0.099178314, 2.4707427, -1.8003745)
@@ -172,7 +174,7 @@ size = Vector3(3.837, 6, 0.01)
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="PAREDES" unique_id=192353546]
 transform = Transform3D(-0.99993443, 0, 0.011450842, 0.011450489, -0.007852875, 0.9999036, 8.9922025e-05, 0.9999692, 0.00785236, -0.022770524, 3.224047, -0.86313033)
-material_override = SubResource("StandardMaterial3D_jke6a")
+material_override = SubResource("StandardMaterial3D_cmxib")
 use_collision = true
 size = Vector3(3.8366394, 5.916687, 0.01)
 
@@ -195,11 +197,12 @@ transform = Transform3D(0.99936056, 0, -0.035755366, 0, 1, 0, 0.035755366, 0, 0.
 [node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("5_5dgmt")]
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=2000763302]
-transform = Transform3D(0.2, 0, 0, 0, 0.2711074, 0, 0, 0, 0.364, -0.16872567, 0.4840685, -1.9895376)
-texture = ExtResource("7_wjxht")
+transform = Transform3D(0.2, 0, 0, 0, 0.2711074, 0, 0, 0, 0.364, -0.366, 0.484, -1.84)
+pixel_size = 0.004
+texture = ExtResource("8_4cb3b")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=76535406]
-transform = Transform3D(0.2, 0, 0, 0, 0.23, 0, 0, 0, 0.364, 0.5586566, 0.38800097, -1.9985429)
+transform = Transform3D(0.2, 0, 0, 0, 0.23, 0, 0, 0, 0.364, 0.592, 0.487, -1.84)
 texture = ExtResource("8_2bby0")
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1841978791]
