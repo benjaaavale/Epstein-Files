@@ -4,9 +4,12 @@
 [ext_resource type="PackedScene" uid="uid://bliq4041u3088" path="res://linterna.tscn" id="2_i3pqv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
+radius = 0.35302734
 
 [node name="Player" type="CharacterBody3D" unique_id=1620218306]
 script = ExtResource("1_onrkg")
+speed = 2.0
+run_speed = 3.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2105085689]
 shape = SubResource("CapsuleShape3D_g4v7s")
@@ -18,8 +21,27 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 
 [node name="Linterna" parent="Head/Camera3D" unique_id=23888094 instance=ExtResource("2_i3pqv")]
 
-[node name="InteractRay" type="RayCast3D" parent="Head/Camera3D"]
+[node name="InteractRay" type="RayCast3D" parent="Head/Camera3D" unique_id=2080085736]
 target_position = Vector3(0, 0, -2.5)
 
-[node name="Hand" type="Marker3D" parent="Head/Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, -0.3, -0.6)
+[node name="Hand" type="Marker3D" parent="Head/Camera3D" unique_id=980475463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18105134, -0.120346785, -0.25878245)
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=515238556]
+
+[node name="CenterContainer" type="CenterContainer" parent="HUD" unique_id=30094164]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="HUD/CenterContainer" unique_id=2074648852]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 28
+text = "+"
+horizontal_alignment = 1
+vertical_alignment = 1
