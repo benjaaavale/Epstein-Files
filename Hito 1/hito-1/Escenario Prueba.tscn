@@ -11,6 +11,8 @@
 [ext_resource type="Texture2D" uid="uid://sacdoht3anmk" path="res://assets varios/caaat.jpg" id="8_2bby0"]
 [ext_resource type="Texture2D" uid="uid://ce1dtdulcl2of" path="res://assets varios/CodigoDemo.jpg" id="8_4cb3b"]
 [ext_resource type="AudioStream" uid="uid://c2rhi1x864bmk" path="res://assets varios/freesoundfx-abandoned-building-sounds-282558.mp3" id="10_4cb3b"]
+[ext_resource type="Shader" uid="uid://baedb1q3vu40r" path="res://luz_revela.gdshader" id="11_revela"]
+[ext_resource type="PackedScene" path="res://door.tscn" id="12_door"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vdyae"]
 albedo_texture = ExtResource("1_2bby0")
@@ -32,6 +34,7 @@ render_priority = 0
 shader = ExtResource("3_vdyae")
 shader_parameter/wall_texture = ExtResource("2_j02u8")
 shader_parameter/wall_color = Color(1, 1, 1, 1)
+shader_parameter/fade_degrees = 6.0
 
 [sub_resource type="QuadMesh" id="QuadMesh_yf5fn"]
 
@@ -39,12 +42,14 @@ shader_parameter/wall_color = Color(1, 1, 1, 1)
 render_priority = 0
 shader = ExtResource("2_ifrn4")
 shader_parameter/wall_color = Color(1, 1, 1, 1)
+shader_parameter/fade_degrees = 6.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vdyae"]
 render_priority = 0
 shader = ExtResource("2_ifrn4")
 shader_parameter/wall_texture = ExtResource("2_j02u8")
 shader_parameter/wall_color = Color(1, 1, 1, 1)
+shader_parameter/fade_degrees = 6.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfu8o"]
 render_priority = 0
@@ -79,6 +84,30 @@ sky_material = SubResource("ProceduralSkyMaterial_nnd0q")
 background_mode = 2
 sky = SubResource("Sky_ifrn4")
 glow_enabled = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuadro1"]
+render_priority = 0
+shader = ExtResource("11_revela")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("8_4cb3b")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cuadro2"]
+render_priority = 0
+shader = ExtResource("11_revela")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("8_2bby0")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
 
 [node name="Node3D" type="Node3D" unique_id=94739087]
 
@@ -198,14 +227,21 @@ transform = Transform3D(0.99936056, 0, -0.035755366, 0, 1, 0, 0.035755366, 0, 0.
 
 [node name="Sprite3D" type="Sprite3D" parent="." unique_id=2000763302]
 transform = Transform3D(0.2, 0, 0, 0, 0.2711074, 0, 0, 0, 0.364, -0.366, 0.484, -1.84)
+material_override = SubResource("ShaderMaterial_cuadro1")
 pixel_size = 0.004
 texture = ExtResource("8_4cb3b")
 
 [node name="Sprite3D2" type="Sprite3D" parent="." unique_id=76535406]
 transform = Transform3D(0.2, 0, 0, 0, 0.23, 0, 0, 0, 0.364, 0.592, 0.487, -1.84)
+material_override = SubResource("ShaderMaterial_cuadro2")
 texture = ExtResource("8_2bby0")
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1841978791]
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=971457817]
 stream = ExtResource("10_4cb3b")
 volume_db = 40.373
 unit_size = 0.1
+autoplay = true
+
+[node name="Puerta" parent="." instance=ExtResource("12_door")]
+position = Vector3(1.84, 0, 0.3)
+rotation = Vector3(0, -1.5707964, 0)

@@ -1,0 +1,130 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://door.gd" id="1_door"]
+[ext_resource type="Shader" path="res://luz_revela.gdshader" id="2_shader"]
+[ext_resource type="Texture2D" path="res://assets varios/Wood006_1K-JPG_Color.jpg" id="3_wood"]
+
+[sub_resource type="ShaderMaterial" id="Mat_madera"]
+resource_local_to_scene = true
+shader = ExtResource("2_shader")
+shader_parameter/albedo_texture = ExtResource("3_wood")
+shader_parameter/light_channel = 2
+
+[sub_resource type="ShaderMaterial" id="Mat_oscuro"]
+resource_local_to_scene = true
+shader = ExtResource("2_shader")
+shader_parameter/albedo = Color(0.55, 0.45, 0.4, 1)
+shader_parameter/albedo_texture = ExtResource("3_wood")
+shader_parameter/light_channel = 2
+
+[sub_resource type="ShaderMaterial" id="Mat_oro"]
+resource_local_to_scene = true
+shader = ExtResource("2_shader")
+shader_parameter/albedo = Color(0.85, 0.65, 0.15, 1)
+shader_parameter/metallic_amount = 0.8
+shader_parameter/roughness_amount = 0.35
+shader_parameter/light_channel = 2
+
+[sub_resource type="ShaderMaterial" id="Mat_negro"]
+resource_local_to_scene = true
+shader = ExtResource("2_shader")
+shader_parameter/albedo = Color(0.03, 0.03, 0.03, 1)
+shader_parameter/light_channel = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door"]
+size = Vector3(0.9, 1.6, 0.1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_manija"]
+radius = 0.035
+height = 0.07
+
+[sub_resource type="BoxMesh" id="HojaMesh"]
+size = Vector3(0.9, 1.6, 0.08)
+
+[sub_resource type="BoxMesh" id="PanelSupMesh"]
+size = Vector3(0.56, 0.5, 0.02)
+
+[sub_resource type="BoxMesh" id="PanelInfMesh"]
+size = Vector3(0.56, 0.5, 0.02)
+
+[sub_resource type="BoxMesh" id="PlacaMesh"]
+size = Vector3(0.07, 0.12, 0.02)
+
+[sub_resource type="BoxMesh" id="OjoMesh"]
+size = Vector3(0.012, 0.03, 0.004)
+
+[sub_resource type="BoxMesh" id="MarcoIzqMesh"]
+size = Vector3(0.06, 1.6600000000000001, 0.12)
+
+[sub_resource type="BoxMesh" id="MarcoDerMesh"]
+size = Vector3(0.06, 1.6600000000000001, 0.12)
+
+[sub_resource type="BoxMesh" id="MarcoSupMesh"]
+size = Vector3(1.02, 0.06, 0.12)
+
+[node name="Door" type="StaticBody3D"]
+script = ExtResource("1_door")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+position = Vector3(0, 0.8, 0)
+shape = SubResource("BoxShape3D_door")
+
+[node name="Pivote" type="Node3D" parent="."]
+position = Vector3(-0.45, 0, 0)
+
+[node name="Hoja" type="MeshInstance3D" parent="Pivote"]
+position = Vector3(0.45, 0.8, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_madera")
+mesh = SubResource("HojaMesh")
+
+[node name="PanelSup" type="MeshInstance3D" parent="Pivote"]
+position = Vector3(0.45, 1.15, 0.045)
+cast_shadow = 0
+material_override = SubResource("Mat_oscuro")
+mesh = SubResource("PanelSupMesh")
+
+[node name="PanelInf" type="MeshInstance3D" parent="Pivote"]
+position = Vector3(0.45, 0.45, 0.045)
+cast_shadow = 0
+material_override = SubResource("Mat_oscuro")
+mesh = SubResource("PanelInfMesh")
+
+[node name="Placa" type="MeshInstance3D" parent="Pivote"]
+position = Vector3(0.79, 0.62, 0.05)
+cast_shadow = 0
+material_override = SubResource("Mat_oro")
+mesh = SubResource("PlacaMesh")
+
+[node name="Ojo" type="MeshInstance3D" parent="Pivote"]
+position = Vector3(0.79, 0.62, 0.0615)
+cast_shadow = 0
+material_override = SubResource("Mat_negro")
+mesh = SubResource("OjoMesh")
+
+[node name="MarcoIzq" type="MeshInstance3D" parent="."]
+position = Vector3(-0.48, 0.8300000000000001, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_oscuro")
+mesh = SubResource("MarcoIzqMesh")
+
+[node name="MarcoDer" type="MeshInstance3D" parent="."]
+position = Vector3(0.48, 0.8300000000000001, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_oscuro")
+mesh = SubResource("MarcoDerMesh")
+
+[node name="MarcoSup" type="MeshInstance3D" parent="."]
+position = Vector3(0, 1.6300000000000001, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_oscuro")
+mesh = SubResource("MarcoSupMesh")
+
+[node name="Manija" type="MeshInstance3D" parent="Pivote"]
+position = Vector3(0.77, 0.8, 0.09)
+cast_shadow = 0
+material_override = SubResource("Mat_oro")
+mesh = SubResource("SphereMesh_manija")
+
+[node name="Cerrojo" type="Marker3D" parent="Pivote"]
+position = Vector3(0.79, 0.62, 0.062)

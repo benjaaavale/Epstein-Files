@@ -1,6 +1,73 @@
 [gd_scene format=3 uid="uid://bliq4041u3088"]
 
 [ext_resource type="Script" uid="uid://culqyc27yenax" path="res://linterna.gd" id="1_ukdtb"]
+[ext_resource type="Texture2D" path="res://linterna_textura.png" id="2_tex"]
+[ext_resource type="Texture2D" path="res://linterna_aluminio.png" id="3_alu"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_plastico"]
+albedo_texture = ExtResource("2_tex")
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="Mat_aluminio"]
+albedo_texture = ExtResource("3_alu")
+metallic = 0.9
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="Mat_goma"]
+albedo_color = Color(0.07, 0.07, 0.08, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="Mat_boton"]
+albedo_color = Color(0.8, 0.1, 0.1, 1)
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="Mat_lente"]
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+emission_enabled = true
+emission = Color(1, 1, 1, 1)
+emission_energy_multiplier = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lente"]
+top_radius = 0.04
+bottom_radius = 0.04
+height = 0.004
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bisel"]
+top_radius = 0.05
+bottom_radius = 0.05
+height = 0.012
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cabeza"]
+top_radius = 0.03
+bottom_radius = 0.046
+height = 0.07
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cuerpo"]
+top_radius = 0.026
+bottom_radius = 0.026
+height = 0.15
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_agarre"]
+top_radius = 0.0275
+bottom_radius = 0.0275
+height = 0.008
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_tapa"]
+top_radius = 0.029
+bottom_radius = 0.029
+height = 0.022
+
+[sub_resource type="TorusMesh" id="TorusMesh_argolla"]
+inner_radius = 0.009
+outer_radius = 0.0125
+
+[sub_resource type="BoxMesh" id="BoxMesh_base"]
+size = Vector3(0.022, 0.008, 0.045)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_boton"]
+top_radius = 0.0085
+bottom_radius = 0.0085
+height = 0.006
 
 [node name="Linterna" type="Node3D" unique_id=23888094]
 script = ExtResource("1_ukdtb")
@@ -9,3 +76,87 @@ script = ExtResource("1_ukdtb")
 shadow_enabled = true
 spot_range = 10.0
 spot_angle = 20.0
+
+[node name="Modelo" type="Node3D" parent="."]
+
+[node name="Lente" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.002)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_lente")
+mesh = SubResource("CylinderMesh_lente")
+
+[node name="Bisel" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.009)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_aluminio")
+mesh = SubResource("CylinderMesh_bisel")
+
+[node name="Cabeza" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.05)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_aluminio")
+mesh = SubResource("CylinderMesh_cabeza")
+
+[node name="Cuerpo" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.16)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_plastico")
+mesh = SubResource("CylinderMesh_cuerpo")
+
+[node name="Agarre1" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.125)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_goma")
+mesh = SubResource("CylinderMesh_agarre")
+
+[node name="Agarre2" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.15)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_goma")
+mesh = SubResource("CylinderMesh_agarre")
+
+[node name="Agarre3" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.175)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_goma")
+mesh = SubResource("CylinderMesh_agarre")
+
+[node name="Agarre4" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.2)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_goma")
+mesh = SubResource("CylinderMesh_agarre")
+
+[node name="TapaTrasera" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.246)
+rotation = Vector3(1.5707964, 0, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_aluminio")
+mesh = SubResource("CylinderMesh_tapa")
+
+[node name="Argolla" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0, 0.268)
+rotation = Vector3(0, 0, 1.5707964)
+cast_shadow = 0
+material_override = SubResource("Mat_goma")
+mesh = SubResource("TorusMesh_argolla")
+
+[node name="BotonBase" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0.028, 0.105)
+cast_shadow = 0
+material_override = SubResource("Mat_goma")
+mesh = SubResource("BoxMesh_base")
+
+[node name="BotonTapa" type="MeshInstance3D" parent="Modelo"]
+position = Vector3(0, 0.034, 0.105)
+cast_shadow = 0
+material_override = SubResource("Mat_boton")
+mesh = SubResource("CylinderMesh_boton")

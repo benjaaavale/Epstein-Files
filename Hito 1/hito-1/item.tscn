@@ -1,12 +1,35 @@
 [gd_scene format=3]
 
 [ext_resource type="Script" path="res://item.gd" id="1_item"]
+[ext_resource type="Shader" path="res://luz_revela.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gold"]
+shader = ExtResource("2_shader")
+shader_parameter/albedo = Color(0.85, 0.65, 0.15, 1)
+shader_parameter/light_channel = 2
+shader_parameter/metallic_amount = 0.8
+shader_parameter/roughness_amount = 0.35
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_item"]
-size = Vector3(0.2, 0.1, 0.05)
+size = Vector3(0.14, 0.04, 0.32)
 
-[sub_resource type="BoxMesh" id="BoxMesh_item"]
-size = Vector3(0.2, 0.1, 0.05)
+[sub_resource type="SphereShape3D" id="SphereShape3D_zone"]
+radius = 0.3
+
+[sub_resource type="TorusMesh" id="TorusMesh_ring"]
+material = SubResource("ShaderMaterial_gold")
+inner_radius = 0.035
+outer_radius = 0.07
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_shaft"]
+material = SubResource("ShaderMaterial_gold")
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.24
+
+[sub_resource type="BoxMesh" id="BoxMesh_tooth"]
+material = SubResource("ShaderMaterial_gold")
+size = Vector3(0.05, 0.015, 0.025)
 
 [node name="Item" type="RigidBody3D"]
 script = ExtResource("1_item")
@@ -15,5 +38,26 @@ item_name = "Llave"
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("BoxShape3D_item")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_item")
+[node name="Ring" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12)
+mesh = SubResource("TorusMesh_ring")
+
+[node name="Shaft" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -0.03)
+mesh = SubResource("CylinderMesh_shaft")
+
+[node name="Tooth1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, -0.115)
+mesh = SubResource("BoxMesh_tooth")
+
+[node name="Tooth2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, -0.145)
+mesh = SubResource("BoxMesh_tooth")
+
+[node name="InteractZone" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractZone"]
+shape = SubResource("SphereShape3D_zone")

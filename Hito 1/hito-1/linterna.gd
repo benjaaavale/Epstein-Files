@@ -2,6 +2,7 @@ extends Node3D
 class_name Linterna
 
 @onready var spot_light_3d: SpotLight3D = $SpotLight3D
+@onready var lente: MeshInstance3D = $Modelo/Lente
 
 enum Channel {WHITE, RED, BLUE, VIOLET}
 var current_channel: Channel = Channel.WHITE
@@ -70,6 +71,7 @@ func set_channel(channel: Channel) -> void:
 		
 	current_channel = channel
 	spot_light_3d.light_color = channel_colors[channel]
+	(lente.material_override as StandardMaterial3D).emission = channel_colors[channel]
 	
 	# Mantenemos las colisiones de luz para los otros puzzles (textos, etc)
 	spot_light_3d.light_cull_mask = channel_masks[channel]
