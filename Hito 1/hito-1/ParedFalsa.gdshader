@@ -1,4 +1,5 @@
 shader_type spatial;
+render_mode depth_prepass_alpha;
 
 // Leemos las variables globales que actualiza tu script
 global uniform vec3 flashlight_pos;
@@ -12,6 +13,8 @@ uniform vec4 wall_color : source_color = vec4(1.0);
 // Qué tan ancho es el círculo que borra la luz
 global uniform float flashlight_angle; 
 
+uniform float fade_degrees = 6.0;
+
 varying vec3 world_pos;
 
 void vertex() {
@@ -24,18 +27,13 @@ void fragment() {
 	vec4 tex = texture(wall_texture, UV);
 	ALBEDO = tex.rgb * wall_color.rgb;
 
-	// 2. Si la luz azul está encendida, hacemos la matemática
+	// 2. Si la luz esta encendida, la pared se desvanece dentro del foco (fade suave)
+	float wall_alpha = 1.0;
 	if (is_blue_light_on) {
-		// Trazamos una línea desde la linterna hasta este pixel exacto de la pared
 		vec3 dir_to_pixel = normalize(world_pos - flashlight_pos);
-		
-		// Calculamos qué tan dentro del foco está este pixel
-		float dot_prod = dot(dir_to_pixel, normalize(flashlight_dir));
-		float angle_limit = cos(radians(flashlight_angle));
-		
-		// Si el pixel está dentro del círculo de luz de la linterna...
-		if (dot_prod > angle_limit) {
-			discard; // ¡Magia! El pixel deja de existir y ves a través de él.
-		}
+		float cos_angle = clamp(dot(dir_to_pixel, normalize(flashlight_dir)), -1.0, 1.0);
+		float angle_deg = degrees(acos(cos_angle));
+		wall_alpha = smoothstep(flashlight_angle - fade_degrees, flashlight_angle, angle_deg);
 	}
+	ALPHA = wall_alpha;
 }
