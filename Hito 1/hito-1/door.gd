@@ -69,7 +69,7 @@ func _paint(spot: SpotLight3D) -> void:
 	var changed := false
 	for i in _texel_positions.size():
 		var v := _texel_positions[i] - origin
-		var c := v.dot(dir) / v.length()
+		var c := v.normalized().dot(dir)
 		if c <= cos_end:
 			continue
 		var value := int(clampf((c - cos_end) / (cos_start - cos_end), 0.0, 1.0) * 255.0)

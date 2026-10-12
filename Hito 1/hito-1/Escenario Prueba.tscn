@@ -96,6 +96,10 @@ shader_parameter/roughness_amount = 0.8
 shader_parameter/fade_degrees = 6.0
 shader_parameter/unshaded_look = true
 shader_parameter/light_channel = 0
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_cuadro2"]
 render_priority = 0
@@ -108,6 +112,10 @@ shader_parameter/roughness_amount = 0.8
 shader_parameter/fade_degrees = 6.0
 shader_parameter/unshaded_look = true
 shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
 
 [node name="Node3D" type="Node3D" unique_id=94739087]
 
@@ -217,7 +225,7 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 light_color = Color(0.23, 0.23, 0.23, 1)
 shadow_enabled = true
 
-[node name="Item" parent="." unique_id=1400393901 instance=ExtResource("6_esq1g")]
+[node name="Llave" parent="." unique_id=1400393901 instance=ExtResource("6_esq1g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2326703, 0.3692652, -0.39699206)
 
 [node name="Player" parent="." unique_id=1620218306 instance=ExtResource("1_nnd0q")]
@@ -242,6 +250,5 @@ volume_db = 40.373
 unit_size = 0.1
 autoplay = true
 
-[node name="Puerta" parent="." instance=ExtResource("12_door")]
-position = Vector3(1.84, 0, 0.3)
-rotation = Vector3(0, -1.5707964, 0)
+[node name="Puerta" parent="." unique_id=206220978 instance=ExtResource("12_door")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.84, 0, 0.3)
