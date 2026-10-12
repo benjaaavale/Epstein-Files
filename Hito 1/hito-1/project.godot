@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Hito_1"
-run/main_scene="res://Escenario Prueba.tscn"
+run/main_scene="uid://d1b3xe03jkqbu"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -122,4 +122,8 @@ is_red_light_on={
 flashlight_angle={
 "type": "float",
 "value": 30.0
+}
+is_violet_light_on={
+"type": "bool",
+"value": false
 }

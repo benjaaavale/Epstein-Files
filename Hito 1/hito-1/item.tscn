@@ -1,20 +1,25 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://iihp4te6xesy"]
 
-[ext_resource type="Script" path="res://item.gd" id="1_item"]
-[ext_resource type="Shader" path="res://luz_revela.gdshader" id="2_shader"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_gold"]
-shader = ExtResource("2_shader")
-shader_parameter/albedo = Color(0.85, 0.65, 0.15, 1)
-shader_parameter/light_channel = 2
-shader_parameter/metallic_amount = 0.8
-shader_parameter/roughness_amount = 0.35
+[ext_resource type="Script" uid="uid://civeyma2thpux" path="res://item.gd" id="1_item"]
+[ext_resource type="Shader" uid="uid://baedb1q3vu40r" path="res://luz_revela.gdshader" id="2_shader"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_item"]
 size = Vector3(0.14, 0.04, 0.32)
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_zone"]
-radius = 0.3
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gold"]
+render_priority = 0
+shader = ExtResource("2_shader")
+shader_parameter/albedo = Color(0.85, 0.65, 0.15, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.8
+shader_parameter/roughness_amount = 0.35
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = false
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
 
 [sub_resource type="TorusMesh" id="TorusMesh_ring"]
 material = SubResource("ShaderMaterial_gold")
@@ -31,33 +36,36 @@ height = 0.24
 material = SubResource("ShaderMaterial_gold")
 size = Vector3(0.05, 0.015, 0.025)
 
-[node name="Item" type="RigidBody3D"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_zone"]
+radius = 0.3
+
+[node name="Item" type="RigidBody3D" unique_id=1707725605]
 script = ExtResource("1_item")
 item_name = "Llave"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=624873694]
 shape = SubResource("BoxShape3D_item")
 
-[node name="Ring" type="MeshInstance3D" parent="."]
+[node name="Ring" type="MeshInstance3D" parent="." unique_id=1316209042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12)
 mesh = SubResource("TorusMesh_ring")
 
-[node name="Shaft" type="MeshInstance3D" parent="."]
+[node name="Shaft" type="MeshInstance3D" parent="." unique_id=1892071600]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -0.03)
 mesh = SubResource("CylinderMesh_shaft")
 
-[node name="Tooth1" type="MeshInstance3D" parent="."]
+[node name="Tooth1" type="MeshInstance3D" parent="." unique_id=1494619838]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, -0.115)
 mesh = SubResource("BoxMesh_tooth")
 
-[node name="Tooth2" type="MeshInstance3D" parent="."]
+[node name="Tooth2" type="MeshInstance3D" parent="." unique_id=17870471]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0, -0.145)
 mesh = SubResource("BoxMesh_tooth")
 
-[node name="InteractZone" type="Area3D" parent="."]
+[node name="InteractZone" type="Area3D" parent="." unique_id=1515816957]
 collision_layer = 4
 collision_mask = 0
 monitoring = false
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractZone"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractZone" unique_id=103415226]
 shape = SubResource("SphereShape3D_zone")

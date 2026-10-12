@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://pip2a13uodn2"]
+
+[ext_resource type="Shader" uid="uid://baedb1q3vu40r" path="res://luz_revela.gdshader" id="1_kdqkq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qwhsl"]
+size = Vector3(0.1, 0.1, 0.1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_il6ov"]
+render_priority = 0
+shader = ExtResource("1_kdqkq")
+shader_parameter/albedo = Color(0.5294118, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = false
+shader_parameter/light_channel = 0
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_knhmd"]
+material = SubResource("ShaderMaterial_il6ov")
+size = Vector3(0.15, 0.1, 1.5)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ilhde"]
+render_priority = 1
+shader = ExtResource("1_kdqkq")
+shader_parameter/albedo = Color(0.5294118, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = false
+shader_parameter/light_channel = 0
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8g17i"]
+material = SubResource("ShaderMaterial_ilhde")
+size = Vector3(0.15, 0.1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x30g0"]
+render_priority = 0
+shader = ExtResource("1_kdqkq")
+shader_parameter/albedo = Color(0.5294118, 0, 0, 1)
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = false
+shader_parameter/light_channel = 0
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_yq6js"]
+material = SubResource("ShaderMaterial_x30g0")
+size = Vector3(0.15, 0.1, 1)
+
+[node name="StaticBody3D" type="StaticBody3D" unique_id=1192176248]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2077006474]
+shape = SubResource("BoxShape3D_qwhsl")
+
+[node name="Base" type="MeshInstance3D" parent="." unique_id=1402681061]
+mesh = SubResource("BoxMesh_knhmd")
+
+[node name="Izq" type="MeshInstance3D" parent="." unique_id=789878774]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, -0.37446415, 0, 0.3440382)
+mesh = SubResource("BoxMesh_8g17i")
+
+[node name="Der" type="MeshInstance3D" parent="." unique_id=2101023391]
+transform = Transform3D(-0.7071067, 0, 0.7071067, 0, 1, 0, -0.7071067, 0, -0.7071067, 0.3736604, 0, 0.34474075)
+mesh = SubResource("BoxMesh_yq6js")
