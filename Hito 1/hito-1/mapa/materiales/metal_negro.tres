@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_piedra.png" id="1_4gtsc"]
+
+[resource]
+resource_name = "metal_negro"
+albedo_color = Color(0.08, 0.08, 0.085, 1)
+albedo_texture = ExtResource("1_4gtsc")
+metallic = 0.7
+roughness = 0.5
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true

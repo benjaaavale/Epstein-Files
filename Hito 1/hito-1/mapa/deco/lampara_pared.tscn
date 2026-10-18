@@ -1,0 +1,71 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://mapa/lampara.gd" id="1_7g6cg"]
+[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="2_uthi7"]
+[ext_resource type="Material" path="res://mapa/materiales/cera.tres" id="3_jqdfm"]
+[ext_resource type="Material" path="res://mapa/materiales/llama.tres" id="4_u3fg8"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_08i68"]
+size = Vector3(0.1, 0.24, 0.025)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4131b"]
+size = Vector3(0.02, 0.02, 0.2)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5euen"]
+top_radius = 0.06
+bottom_radius = 0.035
+height = 0.03
+radial_segments = 10
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7l2vu"]
+top_radius = 0.022
+bottom_radius = 0.024
+height = 0.12
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_cs82b"]
+top_radius = 0.0
+bottom_radius = 0.013
+height = 0.04
+radial_segments = 6
+rings = 1
+
+[node name="LamparaPared" type="Node3D" unique_id=636218267]
+script = ExtResource("1_7g6cg")
+energia = 1.0
+parpadeo = 0.15
+
+[node name="Placa" type="MeshInstance3D" parent="." unique_id=1322551234]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.012)
+material_override = ExtResource("2_uthi7")
+mesh = SubResource("BoxMesh_08i68")
+
+[node name="Brazo" type="MeshInstance3D" parent="." unique_id=284676509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.11)
+material_override = ExtResource("2_uthi7")
+mesh = SubResource("BoxMesh_4131b")
+
+[node name="Plato" type="MeshInstance3D" parent="." unique_id=283300420]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0.21)
+material_override = ExtResource("2_uthi7")
+mesh = SubResource("CylinderMesh_5euen")
+
+[node name="Vela" type="MeshInstance3D" parent="." unique_id=9275285]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.21)
+material_override = ExtResource("3_jqdfm")
+mesh = SubResource("CylinderMesh_7l2vu")
+
+[node name="Foco" type="MeshInstance3D" parent="." unique_id=11727459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0.21)
+material_override = ExtResource("4_u3fg8")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_cs82b")
+
+[node name="Luz" type="OmniLight3D" parent="." unique_id=83014163]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.32)
+light_color = Color(1, 0.64, 0.4, 1)
+light_volumetric_fog_energy = 0.6
+omni_range = 5.5
+omni_attenuation = 1.4

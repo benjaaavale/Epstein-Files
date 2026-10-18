@@ -1,0 +1,98 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="1_n8vvx"]
+[ext_resource type="Material" path="res://mapa/materiales/vidrio_negro.tres" id="2_vb6dm"]
+[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="3_hgnb6"]
+[ext_resource type="Material" path="res://mapa/materiales/esfera_reloj.tres" id="4_w2hwd"]
+[ext_resource type="Material" path="res://mapa/materiales/metal_negro.tres" id="5_ybw36"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ickfp"]
+size = Vector3(0.56, 0.35, 0.36)
+
+[sub_resource type="BoxMesh" id="BoxMesh_8sfoj"]
+size = Vector3(0.44, 1.45, 0.3)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0dxux"]
+size = Vector3(0.26, 0.85, 0.01)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_5f3vj"]
+top_radius = 0.07
+bottom_radius = 0.07
+height = 0.01
+radial_segments = 16
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_q346h"]
+size = Vector3(0.54, 0.5, 0.36)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0prjk"]
+size = Vector3(0.6, 0.08, 0.4)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_uhhv8"]
+top_radius = 0.17
+bottom_radius = 0.17
+height = 0.02
+radial_segments = 24
+rings = 1
+
+[sub_resource type="BoxMesh" id="BoxMesh_ynybt"]
+size = Vector3(0.015, 0.12, 0.005)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cg6j4"]
+size = Vector3(0.012, 0.15, 0.005)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c3mfs"]
+size = Vector3(0.56, 2.38, 0.36)
+
+[node name="Reloj" type="Node3D" unique_id=187484914]
+
+[node name="Base" type="MeshInstance3D" parent="." unique_id=1777943155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.175, 0)
+material_override = ExtResource("1_n8vvx")
+mesh = SubResource("BoxMesh_ickfp")
+
+[node name="Cuerpo" type="MeshInstance3D" parent="." unique_id=560041461]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07, 0)
+material_override = ExtResource("1_n8vvx")
+mesh = SubResource("BoxMesh_8sfoj")
+
+[node name="Ventana" type="MeshInstance3D" parent="." unique_id=1079543607]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0.155)
+material_override = ExtResource("2_vb6dm")
+mesh = SubResource("BoxMesh_0dxux")
+
+[node name="Pendulo" type="MeshInstance3D" parent="." unique_id=1220331310]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.8, 0.14)
+material_override = ExtResource("3_hgnb6")
+mesh = SubResource("CylinderMesh_5f3vj")
+
+[node name="Capucha" type="MeshInstance3D" parent="." unique_id=895945490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.05, 0)
+material_override = ExtResource("1_n8vvx")
+mesh = SubResource("BoxMesh_q346h")
+
+[node name="Remate" type="MeshInstance3D" parent="." unique_id=1347173796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.34, 0)
+material_override = ExtResource("1_n8vvx")
+mesh = SubResource("BoxMesh_0prjk")
+
+[node name="Esfera" type="MeshInstance3D" parent="." unique_id=239540444]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 2.05, 0.18)
+material_override = ExtResource("4_w2hwd")
+mesh = SubResource("CylinderMesh_uhhv8")
+
+[node name="Aguja1" type="MeshInstance3D" parent="." unique_id=1298715521]
+transform = Transform3D(0.9396926, 0.34202012, 0, -0.34202012, 0.9396926, 0, 0, 0, 1, 0.02, 2.09, 0.195)
+material_override = ExtResource("5_ybw36")
+mesh = SubResource("BoxMesh_ynybt")
+
+[node name="Aguja2" type="MeshInstance3D" parent="." unique_id=1330970337]
+transform = Transform3D(-0.34202012, -0.9396926, 0, 0.9396926, -0.34202012, 0, 0, 0, 1, -0.04, 2.03, 0.197)
+material_override = ExtResource("5_ybw36")
+mesh = SubResource("BoxMesh_cg6j4")
+
+[node name="Colision" type="StaticBody3D" parent="." unique_id=349764662]
+
+[node name="@CollisionShape3D@80" type="CollisionShape3D" parent="Colision" unique_id=1026248303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.19, 0)
+shape = SubResource("BoxShape3D_c3mfs")

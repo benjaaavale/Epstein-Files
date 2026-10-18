@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_piedra.png" id="1_yywom"]
+
+[resource]
+resource_name = "papel"
+albedo_color = Color(0.72, 0.68, 0.57, 1)
+albedo_texture = ExtResource("1_yywom")
+roughness = 0.95
+uv1_scale = Vector3(3, 3, 3)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true

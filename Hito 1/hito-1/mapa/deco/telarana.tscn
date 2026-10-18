@@ -1,0 +1,13 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/telarana.tres" id="1_j72a2"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_uyh3u"]
+size = Vector2(1.3, 1.3)
+
+[node name="Telarana" type="Node3D" unique_id=1093791229]
+
+[node name="Tela" type="MeshInstance3D" parent="." unique_id=855023835]
+material_override = ExtResource("1_j72a2")
+cast_shadow = 0
+mesh = SubResource("QuadMesh_uyh3u")

@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_piedra.png" id="1_qv5fd"]
+
+[resource]
+resource_name = "hierro"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.2, 0.2, 0.21, 1)
+albedo_texture = ExtResource("1_qv5fd")
+metallic = 0.6
+roughness = 0.55
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 4.0
+uv1_world_triplanar = true

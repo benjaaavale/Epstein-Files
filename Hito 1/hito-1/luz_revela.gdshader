@@ -5,6 +5,7 @@ global uniform vec3 flashlight_pos;
 global uniform vec3 flashlight_dir;
 global uniform bool is_blue_light_on;
 global uniform bool is_red_light_on;
+global uniform bool is_violet_light_on;
 global uniform float flashlight_angle;
 
 uniform vec4 albedo : source_color = vec4(1.0);
@@ -42,7 +43,7 @@ void fragment() {
 	ROUGHNESS = roughness_amount;
 
 	float reveal = 0.0;
-	bool light_on = is_blue_light_on && is_red_light_on;
+	bool light_on = is_violet_light_on;
 	if (light_channel == 0) {
 		light_on = is_blue_light_on;
 	} else if (light_channel == 1) {

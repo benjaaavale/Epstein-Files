@@ -1,0 +1,13 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/vetas_madera.png" id="1_2t88d"]
+
+[resource]
+resource_name = "moldura"
+albedo_color = Color(0.26, 0.17, 0.11, 1)
+albedo_texture = ExtResource("1_2t88d")
+roughness = 0.7
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true

@@ -1,0 +1,15 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/paneles_madera.png" id="1_epg65"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/madera_normal.png" id="2_swyks"]
+
+[resource]
+resource_name = "zocalo"
+albedo_texture = ExtResource("1_epg65")
+roughness = 0.75
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_swyks")
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true
