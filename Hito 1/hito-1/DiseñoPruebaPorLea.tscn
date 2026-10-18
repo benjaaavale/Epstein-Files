@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://iihp4te6xesy" path="res://item.tscn" id="5_re6ru"]
 [ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="6_do5y3"]
 [ext_resource type="PackedScene" uid="uid://bu56r88c3pmrf" path="res://pause_menu.tscn" id="7_up2q6"]
-[ext_resource type="AudioStream" path="res://assets varios/ambiente_loop.wav" id="8_jlq6d"]
+[ext_resource type="AudioStream" uid="uid://obk73k3jdrtt" path="res://assets varios/ambiente_loop.wav" id="8_jlq6d"]
 [ext_resource type="PackedScene" path="res://door.tscn" id="9_lfp2q"]
 [ext_resource type="PackedScene" uid="uid://pip2a13uodn2" path="res://Flecha.tscn" id="10_xnjp0"]
 [ext_resource type="PackedScene" path="res://mapa/ambientacion.tscn" id="11_amb"]
@@ -228,6 +228,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2326703, 0.3692652, -0.3969
 
 [node name="Player" parent="." unique_id=1620218306 instance=ExtResource("6_do5y3")]
 transform = Transform3D(0.99936056, 0, -0.035755366, 0, 1, 0, 0.035755366, 0, 0.99936056, 0.13289726, 0.8165356, 0)
+run_speed = 4.0
+jump_velocity = 3.5
 
 [node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("7_up2q6")]
 
@@ -246,4 +248,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2684155, 0.369, 8.626296)
 [node name="Flecha" parent="." unique_id=1192176248 instance=ExtResource("10_xnjp0")]
 transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 7.3186607, 1.3687673, 9.8)
 
-[node name="Ambientacion" parent="." instance=ExtResource("11_amb")]
+[node name="Ambientacion" parent="." unique_id=608210324 instance=ExtResource("11_amb")]

@@ -47,6 +47,13 @@ const SIGUIENTE := {
 	Channel.VIOLET: Channel.WHITE,
 }
 
+const ANTERIOR = {
+	Channel.RED: Channel.WHITE,
+	Channel.BLUE: Channel.RED,
+	Channel.WHITE: Channel.BLUE,
+	Channel.VIOLET: Channel.WHITE,
+}
+
 func _ready() -> void:
 	spot_light_3d.spot_angle = ANGULOS[current_channel]
 	spot_light_3d.light_energy = ENERGIAS[current_channel]
@@ -77,11 +84,17 @@ func _process(_delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	# Clic derecho rota las luces; Shift + clic derecho activa/desactiva la morada
-	if event.is_action_pressed("CambioColor"):
+	if event.is_action_pressed("CambioColorR"):
 		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
 			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
 		else:
 			set_channel(SIGUIENTE[current_channel])
+			# Clic izquierdo rota las luces hacia la izquierda; Shift + clic activa/desactiva la morada
+	elif event.is_action_pressed("CambioColorI"):
+		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
+			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
+		else:
+			set_channel(ANTERIOR[current_channel])
 
 func set_channel(channel: Channel) -> void:
 	if current_channel == channel:
