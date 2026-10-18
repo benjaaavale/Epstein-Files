@@ -100,7 +100,7 @@ func _construir() -> void:
 	add_child(_negro)
 
 	_ambiente = AudioStreamPlayer.new()
-	_ambiente.stream = load("res://assets varios/freesoundfx-abandoned-building-sounds-282558.mp3")
+	_ambiente.stream = load("res://assets varios/ambiente_loop.wav")
 	_ambiente.volume_db = -12.0
 	_ambiente.autoplay = true
 	add_child(_ambiente)

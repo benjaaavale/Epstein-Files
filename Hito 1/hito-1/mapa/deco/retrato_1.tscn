@@ -22,33 +22,33 @@ size = Vector3(0.08, 0.8, 0.06)
 [sub_resource type="BoxMesh" id="BoxMesh_0fx0p"]
 size = Vector3(0.08, 0.8, 0.06)
 
-[node name="Retrato1" type="Node3D" unique_id=1068904886]
+[node name="Retrato1" type="Node3D" unique_id=852183646]
 
-[node name="Lienzo" type="MeshInstance3D" parent="." unique_id=1898165070]
+[node name="Lienzo" type="MeshInstance3D" parent="." unique_id=1502833156]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.012)
 material_override = ExtResource("1_oypu5")
 mesh = SubResource("QuadMesh_pbo2p")
 
-[node name="Fondo" type="MeshInstance3D" parent="." unique_id=487980107]
+[node name="Fondo" type="MeshInstance3D" parent="." unique_id=475162509]
 material_override = ExtResource("2_6pa2q")
 mesh = SubResource("BoxMesh_4goa2")
 
-[node name="MarcoSup" type="MeshInstance3D" parent="." unique_id=1505447177]
+[node name="MarcoSup" type="MeshInstance3D" parent="." unique_id=361628120]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0.02)
 material_override = ExtResource("3_crwgp")
 mesh = SubResource("BoxMesh_co2we")
 
-[node name="MarcoInf" type="MeshInstance3D" parent="." unique_id=1365638363]
+[node name="MarcoInf" type="MeshInstance3D" parent="." unique_id=890391167]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0.02)
 material_override = ExtResource("3_crwgp")
 mesh = SubResource("BoxMesh_wuxte")
 
-[node name="MarcoIzq" type="MeshInstance3D" parent="." unique_id=1214594790]
+[node name="MarcoIzq" type="MeshInstance3D" parent="." unique_id=193268962]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, 0.02)
 material_override = ExtResource("3_crwgp")
 mesh = SubResource("BoxMesh_x2arj")
 
-[node name="MarcoDer" type="MeshInstance3D" parent="." unique_id=1217514165]
+[node name="MarcoDer" type="MeshInstance3D" parent="." unique_id=1936276607]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0.02)
 material_override = ExtResource("3_crwgp")
 mesh = SubResource("BoxMesh_0fx0p")

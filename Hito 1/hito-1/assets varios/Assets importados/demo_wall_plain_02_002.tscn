@@ -66,6 +66,8 @@ transform = Transform3D(35, 0, 0, 0, -8.34465e-06, 99.99999, 0, -34.999996, -2.3
 mesh = SubResource("ArrayMesh_7rwk0")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1539262239]
+collision_layer = 0
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=699205849]
 shape = SubResource("ConcavePolygonShape3D_geoby")

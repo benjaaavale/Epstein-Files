@@ -50,6 +50,8 @@ var _jump_buffer := 0.0
 var _step_player: AudioStreamPlayer
 var _land_player: AudioStreamPlayer
 var _step_streams: Array[AudioStream] = []
+var _creak_player: AudioStreamPlayer
+var _creak_streams: Array[AudioStream] = []
 
 func _ready() -> void:
 	# Atrapa y oculta el mouse dentro de la ventana al iniciar el juego
@@ -69,8 +71,13 @@ func _ready() -> void:
 	_land_player = AudioStreamPlayer.new()
 	_land_player.stream = load("res://sonidos/aterrizaje.wav")
 	add_child(_land_player)
-	for i in 4:
+	for i in 6:
 		_step_streams.append(load("res://sonidos/paso_%d.wav" % (i + 1)))
+	_creak_player = AudioStreamPlayer.new()
+	_creak_player.volume_db = -20.0
+	add_child(_creak_player)
+	for i in 3:
+		_creak_streams.append(load("res://sonidos/crujido_%d.wav" % (i + 1)))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if bloqueado:
@@ -267,9 +274,14 @@ func _play_step(hspeed: float) -> void:
 	_step_player.stream = _step_streams[randi() % _step_streams.size()]
 	_step_player.pitch_scale = randf_range(0.92, 1.08)
 	if _crouching:
-		_step_player.volume_db = -22.0
+		_step_player.volume_db = -24.0
 	elif hspeed > speed + 0.2:
-		_step_player.volume_db = -9.0
+		_step_player.volume_db = -12.0
 	else:
-		_step_player.volume_db = -13.0
+		_step_player.volume_db = -16.0
 	_step_player.play()
+	# Las tablas viejas crujen de vez en cuando
+	if not _creak_player.playing and randf() < 0.12:
+		_creak_player.stream = _creak_streams[randi() % _creak_streams.size()]
+		_creak_player.pitch_scale = randf_range(0.85, 1.15)
+		_creak_player.play()

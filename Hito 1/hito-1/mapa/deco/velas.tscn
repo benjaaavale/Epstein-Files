@@ -54,50 +54,54 @@ height = 0.035
 radial_segments = 6
 rings = 1
 
-[node name="Velas" type="Node3D" unique_id=1806979813]
+[node name="Velas" type="Node3D" unique_id=509023667]
 script = ExtResource("1_nq0sp")
 energia = 0.4
 parpadeo = 0.25
 
-[node name="Plato" type="MeshInstance3D" parent="." unique_id=1966536996]
+[node name="Plato" type="MeshInstance3D" parent="." unique_id=1653888337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0.03)
 material_override = ExtResource("2_yyg0k")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_ckamm")
 
-[node name="Vela0" type="MeshInstance3D" parent="." unique_id=428085014]
+[node name="Vela0" type="MeshInstance3D" parent="." unique_id=1999793414]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
 material_override = ExtResource("3_tax0h")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_gy1f4")
 
-[node name="Foco" type="MeshInstance3D" parent="." unique_id=410842173]
+[node name="Foco" type="MeshInstance3D" parent="." unique_id=116081757]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
 material_override = ExtResource("4_x28ke")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_rvke0")
 
-[node name="Vela1" type="MeshInstance3D" parent="." unique_id=309713839]
+[node name="Vela1" type="MeshInstance3D" parent="." unique_id=1815845051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07, 0.07, 0.04)
 material_override = ExtResource("3_tax0h")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_e4ejl")
 
-[node name="Llama1" type="MeshInstance3D" parent="." unique_id=1712530027]
+[node name="Llama1" type="MeshInstance3D" parent="." unique_id=354331699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.07, 0.14, 0.04)
 material_override = ExtResource("4_x28ke")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_ovnn5")
 
-[node name="Vela2" type="MeshInstance3D" parent="." unique_id=1847378047]
+[node name="Vela2" type="MeshInstance3D" parent="." unique_id=111321652]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.055, 0.06)
 material_override = ExtResource("3_tax0h")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_wmwx6")
 
-[node name="Llama2" type="MeshInstance3D" parent="." unique_id=2077534568]
+[node name="Llama2" type="MeshInstance3D" parent="." unique_id=1694101274]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.11, 0.06)
 material_override = ExtResource("4_x28ke")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_cjm2s")
 
-[node name="Luz" type="OmniLight3D" parent="." unique_id=905241949]
+[node name="Luz" type="OmniLight3D" parent="." unique_id=1601037090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 light_color = Color(1, 0.62, 0.36, 1)
 light_energy = 0.4

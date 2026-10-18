@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://iihp4te6xesy" path="res://item.tscn" id="5_re6ru"]
 [ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="6_do5y3"]
 [ext_resource type="PackedScene" uid="uid://bu56r88c3pmrf" path="res://pause_menu.tscn" id="7_up2q6"]
-[ext_resource type="AudioStream" uid="uid://c2rhi1x864bmk" path="res://assets varios/freesoundfx-abandoned-building-sounds-282558.mp3" id="8_jlq6d"]
+[ext_resource type="AudioStream" path="res://assets varios/ambiente_loop.wav" id="8_jlq6d"]
 [ext_resource type="PackedScene" path="res://door.tscn" id="9_lfp2q"]
 [ext_resource type="PackedScene" uid="uid://pip2a13uodn2" path="res://Flecha.tscn" id="10_xnjp0"]
 [ext_resource type="PackedScene" path="res://mapa/ambientacion.tscn" id="11_amb"]

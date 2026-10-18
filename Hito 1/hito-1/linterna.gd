@@ -9,9 +9,9 @@ var current_channel: Channel = Channel.WHITE
 
 var channel_colors: Dictionary = {
 	Channel.WHITE: Color(1, 1, 1),
-	Channel.RED: Color(1, 0.2, 0.2),
-	Channel.BLUE: Color(0.2, 0.4, 1),
-	Channel.VIOLET: Color(0.6, 0.2, 1),
+	Channel.RED: Color(1, 0.06, 0.04),
+	Channel.BLUE: Color(0.08, 0.3, 1),
+	Channel.VIOLET: Color(0.62, 0.08, 1),
 }
 
 # Máscaras de luz (Para que la luz pinte los objetos de la capa correcta)
@@ -22,7 +22,34 @@ var channel_masks: Dictionary = {
 	Channel.VIOLET: 1 + 8     
 }
 
-var combo_unlocked: bool = true 
+var combo_unlocked: bool = true
+
+# La luz blanca alumbra un cono mas ancho que las luces de color
+const ANGULOS := {
+	Channel.WHITE: 32.0,
+	Channel.RED: 20.0,
+	Channel.BLUE: 20.0,
+	Channel.VIOLET: 20.0,
+}
+
+# Las luces de color pierden brillo percibido: se compensan con mas energia
+const ENERGIAS := {
+	Channel.WHITE: 1.0,
+	Channel.RED: 2.6,
+	Channel.BLUE: 2.6,
+	Channel.VIOLET: 2.8,
+}
+
+const SIGUIENTE := {
+	Channel.WHITE: Channel.RED,
+	Channel.RED: Channel.BLUE,
+	Channel.BLUE: Channel.WHITE,
+	Channel.VIOLET: Channel.WHITE,
+}
+
+func _ready() -> void:
+	spot_light_3d.spot_angle = ANGULOS[current_channel]
+	spot_light_3d.light_energy = ENERGIAS[current_channel]
 
 # --- NUEVO: Comunicación constante con el Shader Mágico ---
 func _process(_delta: float) -> void:
@@ -49,24 +76,12 @@ func _process(_delta: float) -> void:
 # ----------------------------------------------------------
 
 func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ColorBlanco"):
-		set_channel(Channel.WHITE)
-		return
-	if event.is_action_pressed("ColorRojo"):
-		procesar_input_color(Channel.RED)
-	elif event.is_action_pressed("ColorAzul"):
-		procesar_input_color(Channel.BLUE)
-
-func procesar_input_color(color_presionado: Channel) -> void:
-	var modificador_activo = Input.is_action_pressed("ModificadorColor")
-	
-	if modificador_activo and combo_unlocked:
-		if (current_channel == Channel.RED and color_presionado == Channel.BLUE) or \
-		   (current_channel == Channel.BLUE and color_presionado == Channel.RED):
-			set_channel(Channel.VIOLET)
-			return
-			
-	set_channel(color_presionado)
+	# Clic derecho rota las luces; Shift + clic derecho activa/desactiva la morada
+	if event.is_action_pressed("CambioColor"):
+		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
+			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
+		else:
+			set_channel(SIGUIENTE[current_channel])
 
 func set_channel(channel: Channel) -> void:
 	if current_channel == channel:
@@ -74,6 +89,9 @@ func set_channel(channel: Channel) -> void:
 		
 	current_channel = channel
 	spot_light_3d.light_color = channel_colors[channel]
+	var t := create_tween().set_parallel(true)
+	t.tween_property(spot_light_3d, "spot_angle", ANGULOS[channel], 0.15)
+	t.tween_property(spot_light_3d, "light_energy", ENERGIAS[channel], 0.15)
 	(lente.material_override as StandardMaterial3D).emission = channel_colors[channel]
 	
 	# Mantenemos las colisiones de luz para los otros puzzles (textos, etc)

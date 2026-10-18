@@ -42,35 +42,35 @@ rings = 1
 height = 0.9
 radius = 0.3
 
-[node name="Barril" type="Node3D" unique_id=507397536]
+[node name="Barril" type="Node3D" unique_id=168905761]
 
-[node name="Cuerpo" type="MeshInstance3D" parent="." unique_id=1077888496]
+[node name="Cuerpo" type="MeshInstance3D" parent="." unique_id=1028784369]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 material_override = ExtResource("1_6nh5e")
 mesh = SubResource("CylinderMesh_almve")
 
-[node name="Panza" type="MeshInstance3D" parent="." unique_id=1457509800]
+[node name="Panza" type="MeshInstance3D" parent="." unique_id=1251995293]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 material_override = ExtResource("1_6nh5e")
 mesh = SubResource("CylinderMesh_atrwc")
 
-[node name="Aro" type="MeshInstance3D" parent="." unique_id=921154172]
+[node name="Aro" type="MeshInstance3D" parent="." unique_id=1614803445]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
 material_override = ExtResource("2_h7fdl")
 mesh = SubResource("CylinderMesh_ml7ax")
 
-[node name="@MeshInstance3D@96" type="MeshInstance3D" parent="." unique_id=1592374100]
+[node name="@MeshInstance3D@96" type="MeshInstance3D" parent="." unique_id=1936223802]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 material_override = ExtResource("2_h7fdl")
 mesh = SubResource("CylinderMesh_laeqo")
 
-[node name="@MeshInstance3D@97" type="MeshInstance3D" parent="." unique_id=244564354]
+[node name="@MeshInstance3D@97" type="MeshInstance3D" parent="." unique_id=324719883]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
 material_override = ExtResource("2_h7fdl")
 mesh = SubResource("CylinderMesh_flvp1")
 
-[node name="Colision" type="StaticBody3D" parent="." unique_id=171665257]
+[node name="Colision" type="StaticBody3D" parent="." unique_id=456519222]
 
-[node name="@CollisionShape3D@98" type="CollisionShape3D" parent="Colision" unique_id=452337145]
+[node name="@CollisionShape3D@98" type="CollisionShape3D" parent="Colision" unique_id=689977518]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
 shape = SubResource("CylinderShape3D_s3y41")

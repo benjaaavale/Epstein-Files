@@ -63,65 +63,65 @@ rings = 1
 [sub_resource type="BoxShape3D" id="BoxShape3D_3a1bg"]
 size = Vector3(0.82, 1, 0.78)
 
-[node name="Sillon" type="Node3D" unique_id=1041216096]
+[node name="Sillon" type="Node3D" unique_id=1897028750]
 
-[node name="Base" type="MeshInstance3D" parent="." unique_id=1929289950]
+[node name="Base" type="MeshInstance3D" parent="." unique_id=2228621]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("BoxMesh_du4ah")
 
-[node name="Asiento" type="MeshInstance3D" parent="." unique_id=1730857909]
+[node name="Asiento" type="MeshInstance3D" parent="." unique_id=1234746593]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0.04)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("BoxMesh_bdjgf")
 
-[node name="Respaldo" type="MeshInstance3D" parent="." unique_id=1848147251]
+[node name="Respaldo" type="MeshInstance3D" parent="." unique_id=302694442]
 transform = Transform3D(1, 0, 0, 0, 0.9945219, 0.104528464, 0, -0.104528464, 0.9945219, 0, 0.75, -0.3)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("BoxMesh_87jgf")
 
-[node name="Brazo" type="MeshInstance3D" parent="." unique_id=1148678417]
+[node name="Brazo" type="MeshInstance3D" parent="." unique_id=324368555]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34, 0.55, 0)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("BoxMesh_lpl8k")
 
-[node name="Voluta" type="MeshInstance3D" parent="." unique_id=881024599]
+[node name="Voluta" type="MeshInstance3D" parent="." unique_id=63660046]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.34, 0.72, 0.31)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("CylinderMesh_oyh27")
 
-[node name="Pata" type="MeshInstance3D" parent="." unique_id=835258681]
+[node name="Pata" type="MeshInstance3D" parent="." unique_id=1345898084]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34, 0.05, -0.32)
 material_override = ExtResource("2_0nqtw")
 mesh = SubResource("CylinderMesh_ucefp")
 
-[node name="@MeshInstance3D@13" type="MeshInstance3D" parent="." unique_id=1300288130]
+[node name="@MeshInstance3D@13" type="MeshInstance3D" parent="." unique_id=2025289454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34, 0.05, 0.32)
 material_override = ExtResource("2_0nqtw")
 mesh = SubResource("CylinderMesh_t2t78")
 
-[node name="@MeshInstance3D@14" type="MeshInstance3D" parent="." unique_id=278830058]
+[node name="@MeshInstance3D@14" type="MeshInstance3D" parent="." unique_id=867319960]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.55, 0)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("BoxMesh_ax8tj")
 
-[node name="@MeshInstance3D@15" type="MeshInstance3D" parent="." unique_id=3137664]
+[node name="@MeshInstance3D@15" type="MeshInstance3D" parent="." unique_id=1183412056]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.34, 0.72, 0.31)
 material_override = ExtResource("1_6exl7")
 mesh = SubResource("CylinderMesh_m1661")
 
-[node name="@MeshInstance3D@16" type="MeshInstance3D" parent="." unique_id=1586388655]
+[node name="@MeshInstance3D@16" type="MeshInstance3D" parent="." unique_id=1945494788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.05, -0.32)
 material_override = ExtResource("2_0nqtw")
 mesh = SubResource("CylinderMesh_ex2hv")
 
-[node name="@MeshInstance3D@17" type="MeshInstance3D" parent="." unique_id=1762604078]
+[node name="@MeshInstance3D@17" type="MeshInstance3D" parent="." unique_id=244557070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.05, 0.32)
 material_override = ExtResource("2_0nqtw")
 mesh = SubResource("CylinderMesh_qfpdy")
 
-[node name="Colision" type="StaticBody3D" parent="." unique_id=1467235036]
+[node name="Colision" type="StaticBody3D" parent="." unique_id=703410157]
 
-[node name="@CollisionShape3D@18" type="CollisionShape3D" parent="Colision" unique_id=995296214]
+[node name="@CollisionShape3D@18" type="CollisionShape3D" parent="Colision" unique_id=1492102371]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 shape = SubResource("BoxShape3D_3a1bg")

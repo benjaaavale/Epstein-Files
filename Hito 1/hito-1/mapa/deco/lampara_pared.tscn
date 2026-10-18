@@ -32,38 +32,42 @@ height = 0.04
 radial_segments = 6
 rings = 1
 
-[node name="LamparaPared" type="Node3D" unique_id=636218267]
+[node name="LamparaPared" type="Node3D" unique_id=719361584]
 script = ExtResource("1_7g6cg")
 energia = 1.0
 parpadeo = 0.15
 
-[node name="Placa" type="MeshInstance3D" parent="." unique_id=1322551234]
+[node name="Placa" type="MeshInstance3D" parent="." unique_id=1565360760]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.012)
 material_override = ExtResource("2_uthi7")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_08i68")
 
-[node name="Brazo" type="MeshInstance3D" parent="." unique_id=284676509]
+[node name="Brazo" type="MeshInstance3D" parent="." unique_id=2100202019]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.05, 0.11)
 material_override = ExtResource("2_uthi7")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_4131b")
 
-[node name="Plato" type="MeshInstance3D" parent="." unique_id=283300420]
+[node name="Plato" type="MeshInstance3D" parent="." unique_id=816579698]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.03, 0.21)
 material_override = ExtResource("2_uthi7")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_5euen")
 
-[node name="Vela" type="MeshInstance3D" parent="." unique_id=9275285]
+[node name="Vela" type="MeshInstance3D" parent="." unique_id=1081672051]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0.21)
 material_override = ExtResource("3_jqdfm")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_7l2vu")
 
-[node name="Foco" type="MeshInstance3D" parent="." unique_id=11727459]
+[node name="Foco" type="MeshInstance3D" parent="." unique_id=2112714927]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0.21)
 material_override = ExtResource("4_u3fg8")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_cs82b")
 
-[node name="Luz" type="OmniLight3D" parent="." unique_id=83014163]
+[node name="Luz" type="OmniLight3D" parent="." unique_id=1502164490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.32)
 light_color = Color(1, 0.64, 0.4, 1)
 light_volumetric_fog_energy = 0.6

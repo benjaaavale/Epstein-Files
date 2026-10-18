@@ -182,7 +182,7 @@ func _construir_accion() -> void:
 
 func _construir_lente() -> void:
 	_lente = Control.new()
-	_colocar(_lente, 0, 1, 0, 1, MARGEN, -MARGEN - 100, MARGEN + 280, -MARGEN)
+	_colocar(_lente, 0, 1, 0, 1, MARGEN, -MARGEN - 116, MARGEN + 280, -MARGEN)
 	_lente.add_child(UIEstilo.label("LENTE", 10, Color(HUESO, 0.45), true))
 	_lente_rueda = RuedaLentes.new()
 	_lente_rueda.fuente = UIEstilo.fuente()
@@ -194,6 +194,9 @@ func _construir_lente() -> void:
 	_lente_nombre = UIEstilo.label("", 17, HUESO, true)
 	_lente_nombre.position = Vector2(0, 72)
 	_lente.add_child(_lente_nombre)
+	var pista := UIEstilo.label("[CLIC DER] CAMBIAR LUZ", 9, Color(HUESO, 0.4), true)
+	pista.position = Vector2(0, 98)
+	_lente.add_child(pista)
 	_raiz.add_child(_lente)
 
 
@@ -265,7 +268,7 @@ func _on_lente_cambiado(canal: int) -> void:
 	_lente_nombre.text = NOMBRES_LENTE[canal]
 	_lente_nombre.add_theme_color_override("font_color", HUESO.lerp(color, 0.55))
 	_ruido.set_shader_parameter("tint", color)
-	var tinte_base := 0.0 if canal == Linterna.Channel.WHITE else 0.12
+	var tinte_base := 0.0 if canal == Linterna.Channel.WHITE else 0.04
 	if primero:
 		_set_tinte(tinte_base)
 		_lente_rueda.queue_redraw()
@@ -278,7 +281,7 @@ func _on_lente_cambiado(canal: int) -> void:
 	_lente_tween.tween_method(_set_pulso, 1.0, 0.0, 0.45).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
 	_lente_nombre.visible_ratio = 0.0
 	_lente_tween.tween_property(_lente_nombre, "visible_ratio", 1.0, 0.3)
-	var destello := 0.12 if canal == Linterna.Channel.WHITE else 0.45
+	var destello := 0.06 if canal == Linterna.Channel.WHITE else 0.18
 	_lente_tween.tween_method(_set_tinte, destello, tinte_base, 0.9).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 
 
@@ -338,7 +341,7 @@ class Mira extends Control:
 class RuedaLentes extends Control:
 	const RADIO := 7.0
 	const HUESO_C := Color(0.84, 0.81, 0.74)
-	const TECLAS := ["1", "2", "3", "SHIFT+3"]
+	const TECLAS := ["", "", "", "SHIFT"]
 	var fuente: Font
 	var colores: Array[Color] = []
 	var activo := 0

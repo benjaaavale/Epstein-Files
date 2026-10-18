@@ -40,69 +40,69 @@ size = Vector3(1.2, 0.15, 0.03)
 [sub_resource type="BoxMesh" id="BoxMesh_mt0vm"]
 size = Vector3(1.2, 0.15, 0.03)
 
-[node name="VentanaTapiada" type="Node3D" unique_id=442415355]
+[node name="VentanaTapiada" type="Node3D" unique_id=1030666818]
 
-[node name="Vidrio" type="MeshInstance3D" parent="." unique_id=258798334]
+[node name="Vidrio" type="MeshInstance3D" parent="." unique_id=611258549]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0.012)
 material_override = ExtResource("1_nxnp5")
 mesh = SubResource("QuadMesh_k5ec8")
 
-[node name="Repisa" type="MeshInstance3D" parent="." unique_id=910044555]
+[node name="Repisa" type="MeshInstance3D" parent="." unique_id=1524383176]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.92, 0.06)
 material_override = ExtResource("2_3wwwk")
 mesh = SubResource("BoxMesh_icbvf")
 
-[node name="Dintel" type="MeshInstance3D" parent="." unique_id=2088795771]
+[node name="Dintel" type="MeshInstance3D" parent="." unique_id=1322201050]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0.04)
 material_override = ExtResource("2_3wwwk")
 mesh = SubResource("BoxMesh_n6t7n")
 
-[node name="Jamba" type="MeshInstance3D" parent="." unique_id=2128303686]
+[node name="Jamba" type="MeshInstance3D" parent="." unique_id=1279009771]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 1.65, 0.04)
 material_override = ExtResource("2_3wwwk")
 mesh = SubResource("BoxMesh_gar4k")
 
-[node name="@MeshInstance3D@99" type="MeshInstance3D" parent="." unique_id=2012605243]
+[node name="@MeshInstance3D@99" type="MeshInstance3D" parent="." unique_id=2038181644]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 1.65, 0.04)
 material_override = ExtResource("2_3wwwk")
 mesh = SubResource("BoxMesh_frmrq")
 
-[node name="Parteluz" type="MeshInstance3D" parent="." unique_id=1715044549]
+[node name="Parteluz" type="MeshInstance3D" parent="." unique_id=594345365]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.65, 0.02)
 material_override = ExtResource("2_3wwwk")
 mesh = SubResource("BoxMesh_6ytap")
 
-[node name="Travesano" type="MeshInstance3D" parent="." unique_id=1677609070]
+[node name="Travesano" type="MeshInstance3D" parent="." unique_id=1123963126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9, 0.02)
 material_override = ExtResource("2_3wwwk")
 mesh = SubResource("BoxMesh_fochs")
 
-[node name="Tabla" type="MeshInstance3D" parent="." unique_id=1848528892]
+[node name="Tabla" type="MeshInstance3D" parent="." unique_id=1376420179]
 transform = Transform3D(0.99254614, -0.12186935, 0, 0.12186935, 0.99254614, 0, 0, 0, 1, 0, 1.25, 0.1)
 material_override = ExtResource("3_s8mff")
 mesh = SubResource("BoxMesh_2rne4")
 
-[node name="@MeshInstance3D@100" type="MeshInstance3D" parent="." unique_id=1693699820]
+[node name="@MeshInstance3D@100" type="MeshInstance3D" parent="." unique_id=1159957826]
 transform = Transform3D(0.9961947, 0.08715574, 0, -0.08715574, 0.9961947, 0, 0, 0, 1, 0, 1.55, 0.1)
 material_override = ExtResource("3_s8mff")
 mesh = SubResource("BoxMesh_7fc3g")
 
-[node name="@MeshInstance3D@101" type="MeshInstance3D" parent="." unique_id=878171002]
+[node name="@MeshInstance3D@101" type="MeshInstance3D" parent="." unique_id=652890382]
 transform = Transform3D(0.98768836, -0.15643448, 0, 0.15643448, 0.98768836, 0, 0, 0, 1, 0, 1.95, 0.1)
 material_override = ExtResource("3_s8mff")
 mesh = SubResource("BoxMesh_6dyyi")
 
-[node name="@MeshInstance3D@102" type="MeshInstance3D" parent="." unique_id=1451481497]
+[node name="@MeshInstance3D@102" type="MeshInstance3D" parent="." unique_id=103862385]
 transform = Transform3D(0.9986295, 0.05233596, 0, -0.05233596, 0.9986295, 0, 0, 0, 1, 0, 2.2, 0.1)
 material_override = ExtResource("3_s8mff")
 mesh = SubResource("BoxMesh_5aoq6")
 
-[node name="@MeshInstance3D@103" type="MeshInstance3D" parent="." unique_id=915139513]
+[node name="@MeshInstance3D@103" type="MeshInstance3D" parent="." unique_id=1247418271]
 transform = Transform3D(0.88294756, 0.46947157, 0, -0.46947157, 0.88294756, 0, 0, 0, 1, 0, 1.4, 0.1)
 material_override = ExtResource("3_s8mff")
 mesh = SubResource("BoxMesh_mt0vm")
 
-[node name="Luz" type="OmniLight3D" parent="." unique_id=1403222214]
+[node name="Luz" type="OmniLight3D" parent="." unique_id=1634486987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0.5)
 light_color = Color(0.45, 0.55, 0.9, 1)
 light_energy = 0.45

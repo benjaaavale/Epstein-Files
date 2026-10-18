@@ -184,162 +184,185 @@ height = 0.035
 radial_segments = 6
 rings = 1
 
-[node name="Candelabro" type="Node3D" unique_id=696625464]
+[node name="Candelabro" type="Node3D" unique_id=1617405853]
 script = ExtResource("1_3wlpm")
 energia = 1.6
 
-[node name="Cadena" type="MeshInstance3D" parent="." unique_id=911656646]
+[node name="Cadena" type="MeshInstance3D" parent="." unique_id=1612375221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
 material_override = ExtResource("2_cli6e")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_56elc")
 
-[node name="Florón" type="MeshInstance3D" parent="." unique_id=1285580000]
+[node name="Florón" type="MeshInstance3D" parent="." unique_id=1131840011]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.025, 0)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_aanol")
 
-[node name="Vastago" type="MeshInstance3D" parent="." unique_id=1585010672]
+[node name="Vastago" type="MeshInstance3D" parent="." unique_id=1235383639]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.85, 0)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_12qhb")
 
-[node name="Bola" type="MeshInstance3D" parent="." unique_id=9566447]
+[node name="Bola" type="MeshInstance3D" parent="." unique_id=323967335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.06, 0)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_olxxq")
 
-[node name="Aro" type="MeshInstance3D" parent="." unique_id=1539174172]
+[node name="Aro" type="MeshInstance3D" parent="." unique_id=945994118]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.98, 0)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("TorusMesh_x4ykh")
 
-[node name="Brazo0" type="MeshInstance3D" parent="." unique_id=1021215808]
+[node name="Brazo0" type="MeshInstance3D" parent="." unique_id=842201047]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.1875, -0.98, 0)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_f8cxl")
 
-[node name="Copa0" type="MeshInstance3D" parent="." unique_id=1514297862]
+[node name="Copa0" type="MeshInstance3D" parent="." unique_id=114239318]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, -0.95000005, 0)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_4p882")
 
-[node name="Vela0" type="MeshInstance3D" parent="." unique_id=1757896818]
+[node name="Vela0" type="MeshInstance3D" parent="." unique_id=107007736]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, -0.88, 0)
 material_override = ExtResource("4_uv68w")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_ce5t7")
 
-[node name="Foco" type="MeshInstance3D" parent="." unique_id=2032365589]
+[node name="Foco" type="MeshInstance3D" parent="." unique_id=1696865335]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, -0.8, 0)
 material_override = ExtResource("5_nc2nd")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_vwjok")
 
-[node name="Brazo1" type="MeshInstance3D" parent="." unique_id=850002910]
+[node name="Brazo1" type="MeshInstance3D" parent="." unique_id=1872668206]
 transform = Transform3D(0.8660254, 0, 0.5, 0, 1, 0, -0.5, 0, 0.8660254, 0.09375, -0.98, 0.16237976)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_78ael")
 
-[node name="Copa1" type="MeshInstance3D" parent="." unique_id=1072764599]
+[node name="Copa1" type="MeshInstance3D" parent="." unique_id=1686753861]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.95000005, 0.3247595)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_2axcr")
 
-[node name="Vela1" type="MeshInstance3D" parent="." unique_id=755334491]
+[node name="Vela1" type="MeshInstance3D" parent="." unique_id=1696960106]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.88, 0.3247595)
 material_override = ExtResource("4_uv68w")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_xmota")
 
-[node name="Llama1" type="MeshInstance3D" parent="." unique_id=426699095]
+[node name="Llama1" type="MeshInstance3D" parent="." unique_id=1376228939]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.8, 0.3247595)
 material_override = ExtResource("5_nc2nd")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_i8ln4")
 
-[node name="Brazo2" type="MeshInstance3D" parent="." unique_id=1793302477]
+[node name="Brazo2" type="MeshInstance3D" parent="." unique_id=638185538]
 transform = Transform3D(0.8660254, 0, -0.5, 0, 1, 0, 0.5, 0, 0.8660254, -0.09375, -0.98, 0.16237976)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_pjsjn")
 
-[node name="Copa2" type="MeshInstance3D" parent="." unique_id=1710183696]
+[node name="Copa2" type="MeshInstance3D" parent="." unique_id=1020508331]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.95000005, 0.3247595)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_w2y5u")
 
-[node name="Vela2" type="MeshInstance3D" parent="." unique_id=1931043207]
+[node name="Vela2" type="MeshInstance3D" parent="." unique_id=683443560]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.88, 0.3247595)
 material_override = ExtResource("4_uv68w")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_exsvp")
 
-[node name="Llama2" type="MeshInstance3D" parent="." unique_id=2108991729]
+[node name="Llama2" type="MeshInstance3D" parent="." unique_id=1749184314]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.8, 0.3247595)
 material_override = ExtResource("5_nc2nd")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_028pr")
 
-[node name="Brazo3" type="MeshInstance3D" parent="." unique_id=482626339]
+[node name="Brazo3" type="MeshInstance3D" parent="." unique_id=1183831183]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.1875, -0.98, 2.2962127e-17)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_j644b")
 
-[node name="Copa3" type="MeshInstance3D" parent="." unique_id=409853310]
+[node name="Copa3" type="MeshInstance3D" parent="." unique_id=50309306]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.95000005, 4.5924254e-17)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_vbvj3")
 
-[node name="Vela3" type="MeshInstance3D" parent="." unique_id=1460396358]
+[node name="Vela3" type="MeshInstance3D" parent="." unique_id=162504710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.88, 4.5924254e-17)
 material_override = ExtResource("4_uv68w")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_10t4d")
 
-[node name="Llama3" type="MeshInstance3D" parent="." unique_id=47455629]
+[node name="Llama3" type="MeshInstance3D" parent="." unique_id=1801577302]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, -0.8, 4.5924254e-17)
 material_override = ExtResource("5_nc2nd")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_kpwnt")
 
-[node name="Brazo4" type="MeshInstance3D" parent="." unique_id=125540689]
+[node name="Brazo4" type="MeshInstance3D" parent="." unique_id=735128830]
 transform = Transform3D(-0.8660254, 0, -0.50000006, 0, 1, 0, 0.50000006, 0, -0.8660254, -0.09375, -0.98, -0.16237976)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_5haeq")
 
-[node name="Copa4" type="MeshInstance3D" parent="." unique_id=290017110]
+[node name="Copa4" type="MeshInstance3D" parent="." unique_id=1461403643]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.95000005, -0.3247595)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_nftoy")
 
-[node name="Vela4" type="MeshInstance3D" parent="." unique_id=1975970573]
+[node name="Vela4" type="MeshInstance3D" parent="." unique_id=1038198233]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.88, -0.3247595)
 material_override = ExtResource("4_uv68w")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_d562s")
 
-[node name="Llama4" type="MeshInstance3D" parent="." unique_id=1191187702]
+[node name="Llama4" type="MeshInstance3D" parent="." unique_id=261249295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1875, -0.8, -0.3247595)
 material_override = ExtResource("5_nc2nd")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_1wdrj")
 
-[node name="Brazo5" type="MeshInstance3D" parent="." unique_id=311960048]
+[node name="Brazo5" type="MeshInstance3D" parent="." unique_id=998441117]
 transform = Transform3D(-0.8660254, 0, 0.49999997, 0, 1, 0, -0.49999997, 0, -0.8660254, 0.09375, -0.98, -0.16237976)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("BoxMesh_hvcf8")
 
-[node name="Copa5" type="MeshInstance3D" parent="." unique_id=768775547]
+[node name="Copa5" type="MeshInstance3D" parent="." unique_id=1880673782]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.95000005, -0.3247595)
 material_override = ExtResource("3_pn2u6")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_nj8yq")
 
-[node name="Vela5" type="MeshInstance3D" parent="." unique_id=1031457789]
+[node name="Vela5" type="MeshInstance3D" parent="." unique_id=1793507654]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.88, -0.3247595)
 material_override = ExtResource("4_uv68w")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_wvh7d")
 
-[node name="Llama5" type="MeshInstance3D" parent="." unique_id=2001854634]
+[node name="Llama5" type="MeshInstance3D" parent="." unique_id=129683713]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1875, -0.8, -0.3247595)
 material_override = ExtResource("5_nc2nd")
 cast_shadow = 0
 mesh = SubResource("CylinderMesh_it3kg")
 
-[node name="Luz" type="OmniLight3D" parent="." unique_id=171124355]
+[node name="Luz" type="OmniLight3D" parent="." unique_id=1807462272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 light_color = Color(1, 0.66, 0.38, 1)
 light_energy = 1.6
