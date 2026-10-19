@@ -1,6 +1,8 @@
 extends CanvasLayer
 class_name Hud
 
+signal documento_cerrado
+
 const HUESO := UIEstilo.HUESO
 const SANGRE := UIEstilo.SANGRE
 const MARGEN := 44.0
@@ -46,6 +48,13 @@ var _aviso_titulo: Label
 var _aviso_rasgo: Rasgo
 var _aviso_tween: Tween
 
+var _subtitulo: Label
+var _cola_dialogo: Array[String] = []
+var _dialogo_activo := false
+
+var _documento: Control
+var _documento_abierto := false
+
 
 func _ready() -> void:
 	_raiz = Control.new()
@@ -59,6 +68,8 @@ func _ready() -> void:
 	_construir_lente()
 	_construir_objeto()
 	_construir_aviso()
+	_construir_subtitulo()
+	_construir_documento()
 
 
 func _process(delta: float) -> void:
@@ -155,8 +166,147 @@ func set_cinematic(activa: bool) -> void:
 	if activa:
 		hide_prompt()
 	var t := create_tween().set_parallel(true)
-	for c: Control in [_mira, _accion, _lente, _objeto]:
-		t.tween_property(c, "modulate:a", 0.0 if activa else 1.0, 0.5)
+	if activa:
+		for c: Control in [_mira, _accion, _lente, _objeto]:
+			t.tween_property(c, "modulate:a", 0.0, 0.5)
+	else:
+		_accion_estado = ""
+		_accion.modulate.a = 0.0
+		t.tween_property(_mira, "modulate:a", 1.0, 0.5)
+		t.tween_property(_lente, "modulate:a", 1.0, 0.5)
+		t.tween_property(_objeto, "modulate:a", 1.0 if _objeto_visible else 0.0, 0.5)
+
+
+# ---------- dialogos y documentos ----------
+
+## Monologo del protagonista en subtitulos. Las lineas se encolan.
+func decir(lineas: Array) -> void:
+	for l in lineas:
+		_cola_dialogo.append(str(l))
+	if not _dialogo_activo:
+		_siguiente_linea()
+
+
+func _siguiente_linea() -> void:
+	if _cola_dialogo.is_empty():
+		_dialogo_activo = false
+		return
+	_dialogo_activo = true
+	var linea: String = _cola_dialogo.pop_front()
+	_subtitulo.text = linea
+	_subtitulo.visible_ratio = 0.0
+	var t := create_tween()
+	t.tween_property(_subtitulo, "modulate:a", 1.0, 0.2)
+	t.parallel().tween_property(_subtitulo, "visible_ratio", 1.0, 0.03 * linea.length())
+	t.tween_interval(1.6 + 0.045 * linea.length())
+	t.tween_property(_subtitulo, "modulate:a", 0.0, 0.4)
+	t.tween_callback(_siguiente_linea)
+
+
+func mostrar_documento(sup: String, titulo: String, cuerpo: String) -> void:
+	var hoja := _documento.get_node("Hoja")
+	(hoja.get_node("Margen/Columna/Sup") as Label).text = sup
+	(hoja.get_node("Margen/Columna/Titulo") as Label).text = titulo
+	(hoja.get_node("Margen/Columna/Cuerpo") as Label).text = cuerpo
+	_documento_abierto = true
+	_documento.visible = true
+	_documento.modulate.a = 0.0
+	hoja.position.y += 20.0
+	var t := create_tween().set_parallel(true)
+	t.tween_property(_documento, "modulate:a", 1.0, 0.25)
+	t.tween_property(hoja, "position:y", hoja.position.y - 20.0, 0.35).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	Ajustes.sonar_hover()
+
+
+func _input(event: InputEvent) -> void:
+	if not _documento_abierto:
+		return
+	var cerrar := event.is_action_pressed("interactuar")
+	if event is InputEventMouseButton and event.pressed and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+		cerrar = true
+	if cerrar:
+		get_viewport().set_input_as_handled()
+		_documento_abierto = false
+		var t := create_tween()
+		t.tween_property(_documento, "modulate:a", 0.0, 0.2)
+		t.tween_callback(func() -> void: _documento.visible = false)
+		documento_cerrado.emit()
+
+
+func _construir_subtitulo() -> void:
+	_subtitulo = UIEstilo.label("", 19, HUESO)
+	_colocar(_subtitulo, 0.15, 1, 0.85, 1, 0, -170, 0, -120)
+	_subtitulo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_subtitulo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_subtitulo.custom_minimum_size.x = 500
+	_subtitulo.add_theme_constant_override("shadow_outline_size", 10)
+	_subtitulo.modulate.a = 0.0
+	_raiz.add_child(_subtitulo)
+
+
+func _construir_documento() -> void:
+	_documento = Control.new()
+	UIEstilo.llenar(_documento)
+	_documento.visible = false
+	var fondo := ColorRect.new()
+	fondo.color = Color(0, 0, 0, 0.78)
+	UIEstilo.llenar(fondo)
+	_documento.add_child(fondo)
+
+	var hoja := PanelContainer.new()
+	hoja.name = "Hoja"
+	_colocar(hoja, 0.5, 0.5, 0.5, 0.5, -330, -270, 330, 250)
+	var estilo := StyleBoxFlat.new()
+	estilo.bg_color = Color(0.78, 0.74, 0.64)
+	estilo.border_color = Color(0.55, 0.5, 0.4)
+	estilo.set_border_width_all(2)
+	estilo.shadow_color = Color(0, 0, 0, 0.6)
+	estilo.shadow_size = 18
+	hoja.add_theme_stylebox_override("panel", estilo)
+	hoja.rotation_degrees = -1.2
+	hoja.pivot_offset = Vector2(330, 260)
+	_documento.add_child(hoja)
+
+	var margen := MarginContainer.new()
+	margen.name = "Margen"
+	for lado in ["left", "right", "top", "bottom"]:
+		margen.add_theme_constant_override("margin_" + lado, 36)
+	hoja.add_child(margen)
+	var col := VBoxContainer.new()
+	col.name = "Columna"
+	col.add_theme_constant_override("separation", 10)
+	margen.add_child(col)
+	var tinta := Color(0.12, 0.1, 0.08)
+	var sup := UIEstilo.label("", 12, Color(0.35, 0.12, 0.1), true)
+	sup.name = "Sup"
+	sup.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	var titulo := UIEstilo.label("", 26, tinta)
+	titulo.name = "Titulo"
+	titulo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	titulo.custom_minimum_size.x = 580
+	titulo.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	var linea := ColorRect.new()
+	linea.color = tinta
+	linea.custom_minimum_size = Vector2(0, 2)
+	var cuerpo := UIEstilo.label("", 15, tinta)
+	cuerpo.name = "Cuerpo"
+	cuerpo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	cuerpo.custom_minimum_size.x = 580
+	cuerpo.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	cuerpo.add_theme_constant_override("line_spacing", 4)
+	col.add_child(sup)
+	col.add_child(titulo)
+	col.add_child(linea)
+	col.add_child(cuerpo)
+
+	var relleno := Control.new()
+	relleno.size_flags_vertical = Control.SIZE_EXPAND_FILL
+	col.add_child(relleno)
+	var pista := UIEstilo.label("[E] CERRAR", 11, Color(0.4, 0.12, 0.1), true)
+	pista.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	pista.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	col.add_child(pista)
+	add_child(_documento)
 
 
 # ---------- construccion ----------

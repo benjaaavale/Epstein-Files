@@ -11,6 +11,8 @@
 [ext_resource type="PackedScene" path="res://door.tscn" id="9_lfp2q"]
 [ext_resource type="PackedScene" uid="uid://pip2a13uodn2" path="res://Flecha.tscn" id="10_xnjp0"]
 [ext_resource type="PackedScene" path="res://mapa/ambientacion.tscn" id="11_amb"]
+[ext_resource type="PackedScene" path="res://mapa/deco/periodico.tscn" id="12_periodico"]
+[ext_resource type="Script" path="res://guion_nivel1.gd" id="13_guion"]
 
 [node name="Node3D" type="Node3D" unique_id=1920783068]
 
@@ -249,3 +251,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2684155, 0.369, 8.626296)
 transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 7.3186607, 1.3687673, 9.8)
 
 [node name="Ambientacion" parent="." unique_id=608210324 instance=ExtResource("11_amb")]
+
+[node name="PuertaInicial" parent="." instance=ExtResource("9_lfp2q")]
+transform = Transform3D(1.333, 0, 0, 0, 1.42, 0, 0, 0, 1, 0.414, 0.05, -2.62)
+secreta = false
+termina_nivel = false
+
+[node name="Periodico" parent="." instance=ExtResource("12_periodico")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.05, 0.902, 2.05)
+
+[node name="Guion" type="Node" parent="."]
+script = ExtResource("13_guion")

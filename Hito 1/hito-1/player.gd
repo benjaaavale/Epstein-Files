@@ -1,5 +1,8 @@
 extends CharacterBody3D
 
+## Avisa al guion del nivel: "puerta_bloqueada", "documento_leido", "objeto_tomado", "puerta_abierta".
+signal evento(nombre: String)
+
 @export var mouse_sensitivity: float = 0.003 # Ajusta este valor si se mueve muy rápido o lento
 @export var speed: float = 3.0
 @export var run_speed: float = 5.0
@@ -64,6 +67,7 @@ func _ready() -> void:
 	_left_hand_base = left_hand.transform
 	_hand_base = hand.transform
 	hud.linterna = linterna
+	hud.documento_cerrado.connect(_on_documento_cerrado)
 	Ajustes.inicio_nivel_ms = Time.get_ticks_msec()
 
 	_step_player = AudioStreamPlayer.new()
@@ -113,6 +117,8 @@ func _update_prompt() -> void:
 			hud.show_prompt("E", "Abrir puerta")
 		else:
 			hud.show_prompt("", "Cerrada con llave", false)
+	elif target is Leible:
+		hud.show_prompt("E", (target as Leible).accion)
 	else:
 		hud.show_prompt("E", "Tomar " + (target as Item).item_name.to_lower())
 
@@ -129,13 +135,17 @@ func _get_target() -> Node:
 		return item if item.is_revealed() else null
 	if hit is Door and (hit as Door).esta_revelada(interact_ray.get_collision_point()):
 		return hit
+	if hit is Leible:
+		return hit
 	return null
 
 func _interact() -> void:
 	var target := _get_target()
 	if target is Door:
+		var puerta := target as Door
 		if held_item == null:
 			hud.toast("Está cerrada con llave")
+			evento.emit("puerta_bloqueada")
 			return
 		var llave := held_item
 		held_item = null
@@ -143,7 +153,17 @@ func _interact() -> void:
 		linterna.set_process_input(false)
 		hud.set_held_item("")
 		hud.set_cinematic(true)
-		(target as Door).abrir(llave)
+		await puerta.abrir(llave)
+		if not puerta.termina_nivel:
+			bloqueado = false
+			linterna.set_process_input(true)
+			hud.set_cinematic(false)
+			evento.emit("puerta_abierta")
+	elif target is Leible:
+		var doc := target as Leible
+		bloqueado = true
+		doc.leido = true
+		hud.mostrar_documento(doc.encabezado, doc.titulo, doc.cuerpo)
 	elif target is Item and held_item == null:
 		held_item = target as Item
 		held_item.pick_up()
@@ -151,6 +171,11 @@ func _interact() -> void:
 		held_item.transform = Transform3D.IDENTITY
 		hud.set_held_item(held_item.item_name)
 		hud.toast(held_item.item_name, "OBJETO OBTENIDO")
+		evento.emit("objeto_tomado")
+
+func _on_documento_cerrado() -> void:
+	bloqueado = false
+	evento.emit("documento_leido")
 
 func _drop_item() -> void:
 	if held_item == null:
