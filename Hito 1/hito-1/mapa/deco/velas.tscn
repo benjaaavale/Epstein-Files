@@ -56,7 +56,7 @@ rings = 1
 
 [node name="Velas" type="Node3D" unique_id=509023667]
 script = ExtResource("1_nq0sp")
-energia = 0.4
+energia = 0.22
 parpadeo = 0.25
 
 [node name="Plato" type="MeshInstance3D" parent="." unique_id=1653888337]
@@ -104,7 +104,7 @@ mesh = SubResource("CylinderMesh_cjm2s")
 [node name="Luz" type="OmniLight3D" parent="." unique_id=1601037090]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 light_color = Color(1, 0.62, 0.36, 1)
-light_energy = 0.4
+light_energy = 0.22
 light_volumetric_fog_energy = 0.6
 omni_range = 2.8
 omni_attenuation = 1.4

@@ -21,9 +21,11 @@ var _apagon := 0.0
 var _color_base := Color.WHITE
 var _emision_color := Color.WHITE
 var _pista_t := 0.0
+var _corte := 0.0
 
 
 func _ready() -> void:
+	add_to_group("lamparas")
 	_luz = get_node(luz_path) as Light3D
 	var foco := get_node_or_null(foco_path) as MeshInstance3D
 	if foco != null and foco.material_override != null:
@@ -52,6 +54,9 @@ func _process(delta: float) -> void:
 			_apagon = randf_range(0.08, 0.9)
 		if _apagon > 0.0:
 			f *= 0.03 if randf() < 0.8 else 0.5
+	if _corte > 0.0:
+		_corte -= delta
+		f *= 0.0 if _corte > 0.25 or randf() < 0.6 else 0.6
 	f = maxf(f, 0.0)
 	if color_pista.a > 0.0:
 		_pista_t += delta
@@ -68,3 +73,8 @@ func _process(delta: float) -> void:
 	_luz.light_energy = energia * f
 	if _foco_mat != null:
 		_foco_mat.emission_energy_multiplier = _emision_base * maxf(f, 0.05)
+
+
+## Corte de luz total (sustos): todas las lamparas se apagan a la vez.
+func apagon(segundos: float) -> void:
+	_corte = segundos

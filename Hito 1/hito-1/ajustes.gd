@@ -8,7 +8,7 @@ const NIVEL_1 := "uid://d1b3xe03jkqbu"
 
 var sensibilidad := 1.0
 var volumen := 0.8
-var pantalla_completa := false
+var pantalla_completa := true
 var inicio_nivel_ms := 0
 
 var _hover: AudioStreamPlayer

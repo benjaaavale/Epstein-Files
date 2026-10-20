@@ -32,7 +32,8 @@ void vertex() {
 }
 
 void fragment() {
-	vec3 base_color = albedo.rgb * texture(albedo_texture, UV * uv_scale).rgb;
+	vec4 tex = texture(albedo_texture, UV * uv_scale);
+	vec3 base_color = albedo.rgb * tex.rgb;
 	if (unshaded_look) {
 		ALBEDO = vec3(0.0);
 		EMISSION = base_color;
@@ -61,5 +62,5 @@ void fragment() {
 		mask_uv.y = 1.0 - mask_uv.y;
 		reveal = max(reveal, texture(reveal_mask, mask_uv).r);
 	}
-	ALPHA = max(reveal, force_visible);
+	ALPHA = max(reveal, force_visible) * albedo.a * tex.a;
 }

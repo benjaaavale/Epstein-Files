@@ -34,7 +34,7 @@ rings = 1
 
 [node name="LamparaPared" type="Node3D" unique_id=719361584]
 script = ExtResource("1_7g6cg")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="Placa" type="MeshInstance3D" parent="." unique_id=1565360760]

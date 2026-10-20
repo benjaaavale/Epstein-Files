@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
-## Avisa al guion del nivel: "puerta_bloqueada", "documento_leido", "objeto_tomado", "puerta_abierta".
+## Avisa al guion del nivel: "puerta_bloqueada", "documento_leido", "objeto_tomado", "puerta_abierta",
+## "llave_falsa", "puerta_sin_energia" y los eventos que emiten los Interactuable.
 signal evento(nombre: String)
 
 @export var mouse_sensitivity: float = 0.003 # Ajusta este valor si se mueve muy rápido o lento
@@ -55,6 +56,8 @@ var _land_player: AudioStreamPlayer
 var _step_streams: Array[AudioStream] = []
 var _creak_player: AudioStreamPlayer
 var _creak_streams: Array[AudioStream] = []
+var _sacudida := 0.0
+var _sacudida_fuerza := 0.0
 
 func _ready() -> void:
 	# Atrapa y oculta el mouse dentro de la ventana al iniciar el juego
@@ -119,6 +122,10 @@ func _update_prompt() -> void:
 			hud.show_prompt("", "Cerrada con llave", false)
 	elif target is Leible:
 		hud.show_prompt("E", (target as Leible).accion)
+	elif target is Interactuable:
+		var obj := target as Interactuable
+		var ok := obj.habilitado()
+		hud.show_prompt("E" if ok else "", obj.accion(), ok)
 	else:
 		hud.show_prompt("E", "Tomar " + (target as Item).item_name.to_lower())
 
@@ -126,6 +133,9 @@ func _get_target() -> Node:
 	if not interact_ray.is_colliding():
 		return null
 	var hit := interact_ray.get_collider()
+	# el objeto pudo borrarse este mismo frame (ej. una pila recien tomada)
+	if hit == null:
+		return null
 	var item: Item = null
 	if hit is Item:
 		item = hit
@@ -136,6 +146,8 @@ func _get_target() -> Node:
 	if hit is Door and (hit as Door).esta_revelada(interact_ray.get_collision_point()):
 		return hit
 	if hit is Leible:
+		return hit
+	if hit is Interactuable and (hit as Interactuable).disponible():
 		return hit
 	return null
 
@@ -148,6 +160,18 @@ func _interact() -> void:
 			evento.emit("puerta_bloqueada")
 			return
 		var llave := held_item
+		if not puerta.acepta(llave):
+			held_item = null
+			hud.set_held_item("")
+			_modo_cinematica(true)
+			await puerta.forzar(llave)
+			_modo_cinematica(false)
+			evento.emit("llave_falsa")
+			return
+		if not puerta.puede_girar():
+			hud.toast("No gira", "ALGO LA TRABA DESDE DENTRO")
+			evento.emit("puerta_sin_energia")
+			return
 		held_item = null
 		bloqueado = true
 		linterna.set_process_input(false)
@@ -159,6 +183,8 @@ func _interact() -> void:
 			linterna.set_process_input(true)
 			hud.set_cinematic(false)
 			evento.emit("puerta_abierta")
+	elif target is Interactuable:
+		(target as Interactuable).interactuar(self)
 	elif target is Leible:
 		var doc := target as Leible
 		bloqueado = true
@@ -172,6 +198,25 @@ func _interact() -> void:
 		hud.set_held_item(held_item.item_name)
 		hud.toast(held_item.item_name, "OBJETO OBTENIDO")
 		evento.emit("objeto_tomado")
+
+## Congela al jugador y oculta el HUD (para animaciones y pantallas como el candado).
+func _modo_cinematica(activa: bool) -> void:
+	bloqueado = activa
+	linterna.set_process_input(not activa)
+	hud.set_cinematic(activa)
+
+
+## Bloquea controles sin ocultar el HUD (pantallas de puzzle).
+func bloquear(activo: bool) -> void:
+	bloqueado = activo
+	linterna.set_process_input(not activo)
+
+
+## Temblor de camara para sustos.
+func sacudir(fuerza: float = 0.04, duracion: float = 0.6) -> void:
+	_sacudida = duracion
+	_sacudida_fuerza = fuerza
+
 
 func _on_documento_cerrado() -> void:
 	bloqueado = false
@@ -280,6 +325,15 @@ func _update_camera(delta: float) -> void:
 		if step != _step_index:
 			_step_index = step
 			_play_step(hspeed)
+
+	if _sacudida > 0.0:
+		_sacudida -= delta
+		var f := _sacudida_fuerza * clampf(_sacudida * 2.0, 0.0, 1.0)
+		camera.h_offset = randf_range(-f, f)
+		camera.v_offset = randf_range(-f, f)
+	elif camera.h_offset != 0.0:
+		camera.h_offset = 0.0
+		camera.v_offset = 0.0
 
 	_land_dip = lerpf(_land_dip, 0.0, clampf(delta * 6.0, 0.0, 1.0))
 	camera.position = camera.position.lerp(bob + Vector3(0.0, -_land_dip, 0.0), clampf(delta * 12.0, 0.0, 1.0))

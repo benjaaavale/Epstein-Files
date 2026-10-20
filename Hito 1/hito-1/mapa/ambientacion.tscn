@@ -31,8 +31,9 @@ background_mode = 1
 background_color = Color(0.01, 0.01, 0.012, 1)
 ambient_light_source = 2
 ambient_light_color = Color(0.36, 0.4, 0.52, 1)
-ambient_light_energy = 0.16
+ambient_light_energy = 0.05
 tonemap_mode = 2
+tonemap_exposure = 0.85
 ssao_enabled = true
 ssao_radius = 1.2
 ssao_intensity = 2.2
@@ -41,7 +42,7 @@ glow_intensity = 0.7
 glow_bloom = 0.05
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.02
-volumetric_fog_albedo = Color(0.45, 0.47, 0.52, 1)
+volumetric_fog_albedo = Color(0.3, 0.32, 0.36, 1)
 volumetric_fog_length = 22.0
 adjustment_enabled = true
 adjustment_contrast = 1.08
@@ -1810,94 +1811,94 @@ mesh = SubResource("BoxMesh_rho8q")
 [node name="CandelabroC" type="Node3D" parent="Luces" unique_id=1617405853 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 3.05, 0.9)
 script = ExtResource("4_wjfvp")
-energia = 1.6
+energia = 0.88
 parpadeo = 0.1
 color_pista = Color(1, 0.06, 0.04, 1)
 
 [node name="ParedC" type="Node3D" parent="Luces" unique_id=719361584 instance=ExtResource("5_x62iq")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.43, 1.85, -1.3)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="CandelabroB1" type="Node3D" parent="Luces" unique_id=2027642798 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 3.05, -6.5)
 script = ExtResource("4_wjfvp")
-energia = 1.6
+energia = 0.88
 averiada = true
 
 [node name="CandelabroB2" type="Node3D" parent="Luces" unique_id=1747361706 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.6, 3.05, -6.4)
 script = ExtResource("4_wjfvp")
-energia = 1.6
+energia = 0.88
 
 [node name="ParedB1" type="Node3D" parent="Luces" unique_id=52941357 instance=ExtResource("5_x62iq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6, 1.85, -9.86)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="ParedB2" type="Node3D" parent="Luces" unique_id=720923892 instance=ExtResource("5_x62iq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 1.85, -9.86)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 averiada = true
 
 [node name="ParedA" type="Node3D" parent="Luces" unique_id=1391176626 instance=ExtResource("5_x62iq")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.64, 1.85, -6.5)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 averiada = true
 
 [node name="CandelabroD1" type="Node3D" parent="Luces" unique_id=559909200 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 3.05, 1)
 script = ExtResource("4_wjfvp")
-energia = 1.6
+energia = 0.88
 parpadeo = 0.18
 
 [node name="CandelabroD2" type="Node3D" parent="Luces" unique_id=145618397 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.6, 3.05, 7.4)
 script = ExtResource("4_wjfvp")
-energia = 1.6
+energia = 0.88
 averiada = true
 color_pista = Color(0.62, 0.1, 1, 1)
 
 [node name="ParedD1" type="Node3D" parent="Luces" unique_id=1292850673 instance=ExtResource("5_x62iq")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.08, 1.85, 1.6)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="ParedD2" type="Node3D" parent="Luces" unique_id=851686231 instance=ExtResource("5_x62iq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -5, 1.85, 9.83)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="CandelabroE1" type="Node3D" parent="Luces" unique_id=753743593 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.4, 3.05, 2.4)
 script = ExtResource("4_wjfvp")
-energia = 1.6
+energia = 0.88
 averiada = true
 
 [node name="CandelabroE2" type="Node3D" parent="Luces" unique_id=94157886 instance=ExtResource("6_b5h5n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 3.05, 7.2)
 script = ExtResource("4_wjfvp")
-energia = 1.2
+energia = 0.66
 color_pista = Color(1, 0.06, 0.04, 1)
 
 [node name="ParedFlecha" type="Node3D" parent="Luces" unique_id=916860852 instance=ExtResource("5_x62iq")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.7, 1.85, 9.83)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="ParedE" type="Node3D" parent="Luces" unique_id=924664756 instance=ExtResource("5_x62iq")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.81, 1.85, 3)
 script = ExtResource("4_wjfvp")
-energia = 1.0
+energia = 0.55
 parpadeo = 0.15
 
 [node name="Muebles" type="Node3D" parent="." unique_id=1471595417]
@@ -1959,7 +1960,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.4
 [node name="Chimenea" type="Node3D" parent="Muebles" unique_id=2038862971 instance=ExtResource("15_rjxhk")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.66, 0.106182575, 4.2)
 script = ExtResource("4_wjfvp")
-energia = 2.4
+energia = 1.56
 parpadeo = 0.35
 
 [node name="Sillon1" type="Node3D" parent="Muebles" unique_id=1897028750 instance=ExtResource("16_4yjic")]
@@ -2009,7 +2010,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 0.10169244, 9.45)
 [node name="VelasC" type="Node3D" parent="Decoracion" unique_id=509023667 instance=ExtResource("11_qj8qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0500001, 0.89954597, 1.2)
 script = ExtResource("4_wjfvp")
-energia = 0.4
+energia = 0.22
 parpadeo = 0.25
 
 [node name="RetratoC" type="Node3D" parent="Decoracion" unique_id=852183646 instance=ExtResource("18_wu0t8")]
@@ -2061,7 +2062,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.85, 0.049999714, -9.87)
 [node name="VelasB" type="Node3D" parent="Decoracion" unique_id=1074543878 instance=ExtResource("11_qj8qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.3, 0.88650113, -6.2000003)
 script = ExtResource("4_wjfvp")
-energia = 0.4
+energia = 0.22
 parpadeo = 0.25
 
 [node name="AlfombraB" type="Decal" parent="Decoracion" unique_id=1363017168]
@@ -2121,13 +2122,13 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.6
 [node name="VelasD" type="Node3D" parent="Decoracion" unique_id=781534157 instance=ExtResource("11_qj8qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.5, 0.92212135, 5.6)
 script = ExtResource("4_wjfvp")
-energia = 0.4
+energia = 0.22
 parpadeo = 0.25
 
 [node name="VelasPuerta" type="Node3D" parent="Decoracion" unique_id=1448199341 instance=ExtResource("11_qj8qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75, 0.09789443, 6.1)
 script = ExtResource("4_wjfvp")
-energia = 0.4
+energia = 0.22
 parpadeo = 0.25
 
 [node name="RastroD1" type="Decal" parent="Decoracion" unique_id=1089028962]
@@ -2185,7 +2186,7 @@ transform = Transform3D(-0.7071068, -0.36380348, 0.60633904, 0, 0.8574929, 0.514
 [node name="VelasE" type="Node3D" parent="Decoracion" unique_id=1492629116 instance=ExtResource("11_qj8qh")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.38, 0.8855954, 1.3)
 script = ExtResource("4_wjfvp")
-energia = 0.4
+energia = 0.22
 parpadeo = 0.25
 
 [node name="VentanaE1" type="Node3D" parent="Decoracion" unique_id=687406359 instance=ExtResource("23_sx15q")]

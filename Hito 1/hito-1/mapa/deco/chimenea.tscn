@@ -84,7 +84,7 @@ size = Vector3(1.95, 1.26, 0.5)
 
 [node name="Chimenea" type="Node3D" unique_id=2038862971]
 script = ExtResource("1_0bg06")
-energia = 2.4
+energia = 1.56
 parpadeo = 0.35
 
 [node name="Hogar" type="MeshInstance3D" parent="." unique_id=1783960939]
@@ -174,7 +174,7 @@ mesh = SubResource("CylinderMesh_a5m6y")
 [node name="Luz" type="OmniLight3D" parent="." unique_id=2059800209]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.65)
 light_color = Color(1, 0.48, 0.18, 1)
-light_energy = 2.4
+light_energy = 1.56
 light_volumetric_fog_energy = 0.6
 shadow_enabled = true
 omni_range = 7.5

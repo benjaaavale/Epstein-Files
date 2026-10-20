@@ -13,11 +13,18 @@ const PAINT_INTERVAL := 0.05
 @export var secreta := true
 ## Si es false, la puerta solo se abre y el juego sigue.
 @export var termina_nivel := true
+## Si no esta vacio, solo la abre una llave con ese mismo "abre".
+@export var llave_id := ""
+## Cerrojo electrico: no gira hasta que un circuito la energiza.
+@export var requiere_energia := false
+
+const LLAVE_ROTA := preload("res://sonidos/llave_rota.wav")
 
 @onready var pivote: Node3D = $Pivote
 @onready var cerrojo: Marker3D = $Pivote/Cerrojo
 
 var opened: bool = false
+var energizada: bool = false
 var linterna: Linterna = null
 var _mask_bytes := PackedByteArray()
 var _mask_texture: ImageTexture
@@ -66,7 +73,7 @@ func _process(delta: float) -> void:
 		linterna = get_tree().current_scene.find_child("Linterna", true, false) as Linterna
 		if linterna == null:
 			return
-	if linterna.current_channel == Linterna.Channel.VIOLET:
+	if linterna.current_channel == Linterna.Channel.VIOLET and linterna.spot_light_3d.visible:
 		_paint(linterna.spot_light_3d)
 
 func _paint(spot: SpotLight3D) -> void:
@@ -97,6 +104,49 @@ func esta_revelada(point: Vector3) -> bool:
 	if x < 0 or x >= MASK_W or y < 0 or y >= MASK_H:
 		return false
 	return _mask_bytes[y * MASK_W + x] > 127
+
+func acepta(llave: Item) -> bool:
+	return llave_id == "" or llave.abre == llave_id
+
+
+func puede_girar() -> bool:
+	return not requiere_energia or energizada
+
+
+## Una llave equivocada entra, no gira y se parte dentro de la cerradura.
+func forzar(llave: Item) -> void:
+	var inicio := llave.global_transform
+	llave.reparent(get_tree().current_scene, true)
+	llave.interact_zone.process_mode = Node.PROCESS_MODE_DISABLED
+	var eje := cerrojo.global_transform.basis.z.normalized()
+	var base_llave := cerrojo.global_transform.basis.orthonormalized()
+	var fuera := cerrojo.global_position + eje * 0.27
+	var dentro := cerrojo.global_position + eje * 0.13
+	var t := create_tween()
+	t.tween_method(func(w: float) -> void:
+		llave.global_transform = Transform3D(
+			inicio.basis.orthonormalized().slerp(base_llave, w),
+			inicio.origin.lerp(fuera, w)),
+		0.0, 1.0, 0.6).set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_IN_OUT)
+	t.tween_property(llave, "global_position", dentro, 0.35)
+	var previo := 0.0
+	for a: float in [0.25, -0.1, 0.35, 0.0]:
+		t.tween_method(_llave_en.bind(llave, eje, base_llave, dentro), previo, a, 0.12)
+		previo = a
+	await t.finished
+	var sonido := AudioStreamPlayer3D.new()
+	sonido.stream = LLAVE_ROTA
+	sonido.volume_db = 4.0
+	add_child(sonido)
+	sonido.global_position = cerrojo.global_position
+	sonido.play()
+	llave.queue_free()
+	await get_tree().create_timer(0.4).timeout
+
+
+func _llave_en(angulo: float, llave: Item, eje: Vector3, base: Basis, pos: Vector3) -> void:
+	llave.global_transform = Transform3D(Basis(eje, angulo) * base, pos)
+
 
 func abrir(llave: Item) -> void:
 	if opened:

@@ -2,6 +2,7 @@ extends CanvasLayer
 class_name Hud
 
 signal documento_cerrado
+signal candado_cerrado(abierto: bool)
 
 const HUESO := UIEstilo.HUESO
 const SANGRE := UIEstilo.SANGRE
@@ -55,6 +56,20 @@ var _dialogo_activo := false
 var _documento: Control
 var _documento_abierto := false
 
+var _bateria: BarraBateria
+
+var _candado: Control
+var _candado_ruedas: Array[Label] = []
+var _candado_marcos: Array[Panel] = []
+var _candado_digitos := PackedInt32Array()
+var _candado_sel := 0
+var _candado_probar: Callable
+var _candado_abierto := false
+var _candado_fila: HBoxContainer
+var _clic: AudioStreamPlayer
+
+var _destello: ColorRect
+
 
 func _ready() -> void:
 	_raiz = Control.new()
@@ -70,6 +85,13 @@ func _ready() -> void:
 	_construir_aviso()
 	_construir_subtitulo()
 	_construir_documento()
+	_construir_candado()
+	_destello = ColorRect.new()
+	_destello.color = Color(0.02, 0, 0)
+	UIEstilo.llenar(_destello)
+	_destello.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_destello.modulate.a = 0.0
+	add_child(_destello)
 
 
 func _process(delta: float) -> void:
@@ -77,6 +99,7 @@ func _process(delta: float) -> void:
 		var canal := int(linterna.current_channel)
 		if canal != _lente_canal:
 			_on_lente_cambiado(canal)
+		_bateria.nivel = linterna.bateria
 		if _lente_rueda.mostrar_morada != linterna.combo_unlocked:
 			_lente_rueda.mostrar_morada = linterna.combo_unlocked
 			_lente_rueda.queue_redraw()
@@ -219,6 +242,9 @@ func mostrar_documento(sup: String, titulo: String, cuerpo: String) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if _candado_abierto:
+		_input_candado(event)
+		return
 	if not _documento_abierto:
 		return
 	var cerrar := event.is_action_pressed("interactuar")
@@ -231,6 +257,199 @@ func _input(event: InputEvent) -> void:
 		t.tween_property(_documento, "modulate:a", 0.0, 0.2)
 		t.tween_callback(func() -> void: _documento.visible = false)
 		documento_cerrado.emit()
+
+
+# ---------- sustos ----------
+
+## Golpe de oscuridad en pantalla (sustos).
+func destello(fuerza: float = 0.85, duracion: float = 1.2) -> void:
+	var t := create_tween()
+	t.tween_property(_destello, "modulate:a", fuerza, 0.05)
+	t.tween_property(_destello, "modulate:a", fuerza * 0.4, 0.08)
+	t.tween_property(_destello, "modulate:a", fuerza, 0.06)
+	t.tween_property(_destello, "modulate:a", 0.0, duracion).set_trans(Tween.TRANS_SINE)
+	_parpadeo()
+
+
+# ---------- candado de combinacion ----------
+
+## Abre la pantalla del candado. "probar" recibe el codigo (String) y devuelve bool.
+## Al cerrar emite candado_cerrado(abierto).
+func abrir_candado(probar: Callable) -> void:
+	_candado_probar = probar
+	_candado_abierto = true
+	_candado_sel = 0
+	for i in _candado_digitos.size():
+		_candado_digitos[i] = 0
+	_refrescar_candado()
+	_candado.visible = true
+	_candado.modulate.a = 0.0
+	create_tween().tween_property(_candado, "modulate:a", 1.0, 0.25)
+	hide_prompt()
+
+
+func _cerrar_candado(abierto: bool) -> void:
+	_candado_abierto = false
+	var t := create_tween()
+	if abierto:
+		t.tween_interval(0.6)
+	t.tween_property(_candado, "modulate:a", 0.0, 0.25)
+	t.tween_callback(func() -> void:
+		_candado.visible = false
+		candado_cerrado.emit(abierto))
+
+
+func _input_candado(event: InputEvent) -> void:
+	var dir := 0
+	var mover := 0
+	if event is InputEventKey and event.pressed:
+		match (event as InputEventKey).physical_keycode:
+			KEY_W, KEY_UP:
+				dir = 1
+			KEY_S, KEY_DOWN:
+				dir = -1
+			KEY_A, KEY_LEFT:
+				mover = -1
+			KEY_D, KEY_RIGHT:
+				mover = 1
+			KEY_ENTER, KEY_KP_ENTER, KEY_E:
+				if not event.is_echo():
+					_probar_candado()
+			KEY_G, KEY_Q:
+				_cerrar_candado(false)
+	elif event is InputEventMouseButton and event.pressed:
+		match (event as InputEventMouseButton).button_index:
+			MOUSE_BUTTON_WHEEL_UP:
+				dir = 1
+			MOUSE_BUTTON_WHEEL_DOWN:
+				dir = -1
+			MOUSE_BUTTON_LEFT:
+				_probar_candado()
+			MOUSE_BUTTON_RIGHT:
+				_cerrar_candado(false)
+	if event is InputEventKey or event is InputEventMouseButton:
+		if not event.is_action("PauseMenu"):
+			get_viewport().set_input_as_handled()
+	if dir != 0:
+		_candado_digitos[_candado_sel] = posmod(_candado_digitos[_candado_sel] + dir, 10)
+		_clic.pitch_scale = randf_range(0.95, 1.1)
+		_clic.play()
+		var rueda := _candado_ruedas[_candado_sel]
+		rueda.position.y = -8.0 * dir
+		create_tween().tween_property(rueda, "position:y", 0.0, 0.12)
+	if mover != 0:
+		_candado_sel = posmod(_candado_sel + mover, _candado_digitos.size())
+	if dir != 0 or mover != 0:
+		_refrescar_candado()
+
+
+func _probar_candado() -> void:
+	if not _candado_abierto:
+		return
+	var codigo := ""
+	for d in _candado_digitos:
+		codigo += str(d)
+	var ok: bool = _candado_probar.call(codigo)
+	if ok:
+		for m in _candado_marcos:
+			(m.get_theme_stylebox("panel") as StyleBoxFlat).border_color = HUESO
+		_cerrar_candado(true)
+	else:
+		Ajustes.sonar_click()
+		var t := create_tween()
+		var base_x := _candado_fila.position.x
+		for x: float in [14.0, -12.0, 8.0, -5.0, 0.0]:
+			t.tween_property(_candado_fila, "position:x", base_x + x, 0.04)
+		for m in _candado_marcos:
+			(m.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = Color(0.3, 0.04, 0.03)
+		t.tween_callback(func() -> void:
+			for m in _candado_marcos:
+				(m.get_theme_stylebox("panel") as StyleBoxFlat).bg_color = Color(0.09, 0.075, 0.06))
+
+
+func _refrescar_candado() -> void:
+	for i in _candado_ruedas.size():
+		var d := _candado_digitos[i]
+		_candado_ruedas[i].text = "%d\n%d\n%d" % [posmod(d + 1, 10), d, posmod(d - 1, 10)]
+		var estilo := _candado_marcos[i].get_theme_stylebox("panel") as StyleBoxFlat
+		estilo.border_color = SANGRE if i == _candado_sel else Color(HUESO, 0.25)
+
+
+func _construir_candado() -> void:
+	_clic = AudioStreamPlayer.new()
+	_clic.stream = load("res://sonidos/clic.wav")
+	_clic.volume_db = -6.0
+	add_child(_clic)
+	_candado = Control.new()
+	UIEstilo.llenar(_candado)
+	_candado.visible = false
+	var fondo := ColorRect.new()
+	fondo.color = Color(0, 0, 0, 0.8)
+	UIEstilo.llenar(fondo)
+	_candado.add_child(fondo)
+
+	var col := VBoxContainer.new()
+	_colocar(col, 0.5, 0.5, 0.5, 0.5, -260, -190, 260, 190)
+	col.alignment = BoxContainer.ALIGNMENT_CENTER
+	col.add_theme_constant_override("separation", 18)
+	_candado.add_child(col)
+	var sup := UIEstilo.label("CANDADO DE COMBINACIÓN", 11, SANGRE, true)
+	sup.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	col.add_child(sup)
+
+	var centro := CenterContainer.new()
+	col.add_child(centro)
+	_candado_fila = HBoxContainer.new()
+	_candado_fila.add_theme_constant_override("separation", 14)
+	centro.add_child(_candado_fila)
+	_candado_digitos.resize(4)
+	for i in 4:
+		var marco := Panel.new()
+		marco.custom_minimum_size = Vector2(76, 150)
+		marco.clip_contents = true
+		var estilo := StyleBoxFlat.new()
+		estilo.bg_color = Color(0.09, 0.075, 0.06)
+		estilo.set_border_width_all(2)
+		estilo.border_color = Color(HUESO, 0.25)
+		estilo.shadow_color = Color(0, 0, 0, 0.6)
+		estilo.shadow_size = 8
+		marco.add_theme_stylebox_override("panel", estilo)
+		var rueda := UIEstilo.label("", 44, HUESO)
+		rueda.size = Vector2(76, 150)
+		rueda.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		rueda.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+		rueda.add_theme_constant_override("line_spacing", -6)
+		marco.add_child(rueda)
+		# los digitos de arriba y abajo quedan en penumbra, como una rueda real
+		var sombra := TextureRect.new()
+		sombra.texture = _gradiente_rueda()
+		sombra.size = Vector2(76, 150)
+		sombra.stretch_mode = TextureRect.STRETCH_SCALE
+		sombra.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		marco.add_child(sombra)
+		_candado_fila.add_child(marco)
+		_candado_marcos.append(marco)
+		_candado_ruedas.append(rueda)
+
+	var pista := UIEstilo.label("[W/S] GIRAR    [A/D] MOVER    [E] PROBAR    [G] SALIR", 10, Color(HUESO, 0.5), true)
+	pista.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	col.add_child(pista)
+	add_child(_candado)
+
+
+func _gradiente_rueda() -> GradientTexture2D:
+	var g := Gradient.new()
+	g.offsets = PackedFloat32Array([0.0, 0.32, 0.5, 0.68, 1.0])
+	g.colors = PackedColorArray([
+		Color(0.09, 0.075, 0.06, 0.97), Color(0.09, 0.075, 0.06, 0.55), Color(0.09, 0.075, 0.06, 0.0),
+		Color(0.09, 0.075, 0.06, 0.55), Color(0.09, 0.075, 0.06, 0.97)])
+	var tex := GradientTexture2D.new()
+	tex.gradient = g
+	tex.fill_from = Vector2(0, 0)
+	tex.fill_to = Vector2(0, 1)
+	tex.width = 8
+	tex.height = 64
+	return tex
 
 
 func _construir_subtitulo() -> void:
@@ -332,7 +551,7 @@ func _construir_accion() -> void:
 
 func _construir_lente() -> void:
 	_lente = Control.new()
-	_colocar(_lente, 0, 1, 0, 1, MARGEN, -MARGEN - 116, MARGEN + 280, -MARGEN)
+	_colocar(_lente, 0, 1, 0, 1, MARGEN, -MARGEN - 136, MARGEN + 280, -MARGEN)
 	_lente.add_child(UIEstilo.label("LENTE", 10, Color(HUESO, 0.45), true))
 	_lente_rueda = RuedaLentes.new()
 	_lente_rueda.fuente = UIEstilo.fuente()
@@ -344,8 +563,14 @@ func _construir_lente() -> void:
 	_lente_nombre = UIEstilo.label("", 17, HUESO, true)
 	_lente_nombre.position = Vector2(0, 72)
 	_lente.add_child(_lente_nombre)
+	_bateria = BarraBateria.new()
+	_bateria.fuente = UIEstilo.fuente()
+	_bateria.position = Vector2(0, 100)
+	_bateria.size = Vector2(240, 14)
+	_bateria.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	_lente.add_child(_bateria)
 	var pista := UIEstilo.label("[CLIC DER] CAMBIAR LUZ", 9, Color(HUESO, 0.4), true)
-	pista.position = Vector2(0, 98)
+	pista.position = Vector2(0, 120)
 	_lente.add_child(pista)
 	_raiz.add_child(_lente)
 
@@ -525,3 +750,37 @@ class RuedaLentes extends Control:
 			var tam := 9 if tecla.length() > 1 else 11
 			var col_tecla := Color(HUESO_C, 0.85 if i == activo else 0.35)
 			draw_string(fuente, Vector2(p.x - 30.0, cy + 31.0), tecla, HORIZONTAL_ALIGNMENT_CENTER, 60.0, tam, col_tecla)
+
+
+class BarraBateria extends Control:
+	const HUESO_C := Color(0.84, 0.81, 0.74)
+	const ROJO := Color(0.75, 0.12, 0.1)
+	const CELDAS := 10
+	var fuente: Font
+	var nivel := 100.0:
+		set(v):
+			if absf(v - nivel) > 0.05:
+				nivel = v
+				queue_redraw()
+	var _t := 0.0
+
+	func _process(delta: float) -> void:
+		_t += delta
+		if nivel < 20.0:
+			queue_redraw()
+
+	func _draw() -> void:
+		var bajo := nivel < 20.0
+		var col := ROJO if bajo else HUESO_C
+		if bajo and fmod(_t, 0.8) < 0.3:
+			col = Color(col, 0.35)
+		draw_string(fuente, Vector2(0, 11), "PILA", HORIZONTAL_ALIGNMENT_LEFT, -1, 9, Color(HUESO_C, 0.45))
+		var x0 := 36.0
+		var ancho := 12.0
+		for i in CELDAS:
+			var r := Rect2(x0 + i * (ancho + 3.0), 3, ancho, 7)
+			var lleno := clampf(nivel / 100.0 * CELDAS - i, 0.0, 1.0)
+			draw_rect(r, Color(col, 0.18), true)
+			if lleno > 0.0:
+				draw_rect(Rect2(r.position, Vector2(r.size.x * lleno, r.size.y)), col, true)
+		draw_string(fuente, Vector2(x0 + CELDAS * (ancho + 3.0) + 6.0, 11), "%d%%" % int(ceil(nivel)), HORIZONTAL_ALIGNMENT_LEFT, -1, 9, Color(col, 0.8))

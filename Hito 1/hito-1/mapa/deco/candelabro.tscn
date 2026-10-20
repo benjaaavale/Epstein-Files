@@ -186,7 +186,7 @@ rings = 1
 
 [node name="Candelabro" type="Node3D" unique_id=1617405853]
 script = ExtResource("1_3wlpm")
-energia = 1.6
+energia = 0.88
 
 [node name="Cadena" type="MeshInstance3D" parent="." unique_id=1612375221]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
@@ -365,7 +365,7 @@ mesh = SubResource("CylinderMesh_it3kg")
 [node name="Luz" type="OmniLight3D" parent="." unique_id=1807462272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.75, 0)
 light_color = Color(1, 0.66, 0.38, 1)
-light_energy = 1.6
+light_energy = 0.88
 light_volumetric_fog_energy = 0.6
 shadow_enabled = true
 omni_range = 8.5
