@@ -12,6 +12,9 @@
 [ext_resource type="PackedScene" path="res://mapa/deco/sillon.tscn" id="9_at8aq"]
 [ext_resource type="PackedScene" path="res://mapa/deco/estanteria.tscn" id="11_dvqag"]
 [ext_resource type="PackedScene" path="res://mapa/deco/velas.tscn" id="12_oxy0g"]
+[ext_resource type="Texture2D" uid="uid://bo3i2guud3ly7" path="res://assets varios/rough_wood_diff_2k.png" id="13_dvqag"]
+[ext_resource type="Texture2D" uid="uid://bigt8nsjv7emj" path="res://assets varios/rough_wood_nor_gl_2k.png" id="14_oxy0g"]
+[ext_resource type="PackedScene" path="res://mapa/deco/candelabro.tscn" id="15_mbg8w"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ax26t"]
 
@@ -45,6 +48,16 @@ adjustment_saturation = 0.75
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2am08"]
 albedo_color = Color(0.5609549, 0.5609549, 0.5609549, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3gba"]
+albedo_color = Color(0.4129357, 0.36230415, 0.1109448, 1)
+albedo_texture = ExtResource("13_dvqag")
+roughness = 0.98
+normal_enabled = true
+normal_scale = 2.98
+normal_texture = ExtResource("14_oxy0g")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
 
 [node name="Node3D" type="Node3D" unique_id=1261775488]
 
@@ -283,9 +296,10 @@ size = Vector3(17.501698, 1, 11.325897)
 [node name="Infraestructura1" type="Node3D" parent="." unique_id=1065421423]
 
 [node name="Piso" type="CSGBox3D" parent="Infraestructura1" unique_id=1769724190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -5.173706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09569335, -0.8982507, -5.6509624)
 use_collision = true
-size = Vector3(30, 1, 17.602783)
+size = Vector3(31.162964, 1, 17.602783)
+material = SubResource("StandardMaterial3D_d3gba")
 
 [node name="Interiores_1" type="Node3D" parent="Infraestructura1" unique_id=221507778]
 
@@ -296,10 +310,10 @@ size = Vector3(0.207, 3.055, 6.062)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Infraestructura1/Interiores_1/CSGBox3D8" unique_id=356468704]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.48880398, 0.016057014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.20214748, 0.016057014)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.3333097, 1.3)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Interiores" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1764229787]
@@ -309,10 +323,10 @@ size = Vector3(0.207, 3.0747788, 24.588257)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Interiores" unique_id=1484621846]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.346008e-05, -0.4411388, -8.672477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.346008e-05, -0.1284846, -8.672477)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.792596, 2.106543)
+size = Vector3(0.323, 2.4179044, 2.106543)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_der" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1396657341]
@@ -341,10 +355,10 @@ size = Vector3(0.207, 3.3263183, 4.739263)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_der/CSGBox3D6" unique_id=680286443]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.33932889, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.21465966, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.009335, 1.3)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_pequeña" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1489364994]
@@ -354,10 +368,10 @@ size = Vector3(0.207, 3.1980762, 2.192)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_pequeña" unique_id=695388476]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.5546642, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.27295482, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.8917171, 1.3)
+size = Vector3(0.323, 2.4551358, 1.3)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_inicial" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1434409737]
@@ -379,10 +393,10 @@ size = Vector3(0.207, 3.2521842, 5.678)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_inicial/CSGBox3D5" unique_id=1760595478]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.511122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034, -0.2, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.4006925, 1.3)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1388313363]
@@ -398,10 +412,10 @@ size = Vector3(0.207, 3.0305665, 31.187012)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Infraestructura1/Paredes_generales" unique_id=168179197]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015334606, -0.48276478, 0.29958197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015334606, -0.17461109, 0.29958197)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.9307796, 2.106543)
+size = Vector3(0.323, 2.547087, 2.106543)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Infraestructura1/Paredes_generales" unique_id=1281572515]
@@ -421,3 +435,11 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.76
 use_collision = true
 size = Vector3(0.207, 3.135779, 17.70868)
 material = SubResource("StandardMaterial3D_2am08")
+
+[node name="AMBIENTACION GENERAL" type="Node3D" parent="." unique_id=1624429756]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.45, 5.183343, -2.3392286)
+
+[node name="CandelabroC" parent="AMBIENTACION GENERAL" unique_id=1617405853 instance=ExtResource("15_mbg8w")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.021139622, 0, 0)
+parpadeo = 0.1
+color_pista = Color(1, 0.06, 0.04, 1)

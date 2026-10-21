@@ -2173,3 +2173,6 @@ transform = Transform3D(0.7071068, -0.36380348, 0.60633904, 0, 0.8574929, 0.5144
 
 [node name="TelaE2" parent="Decoracion" unique_id=2018668916 instance=ExtResource("15_gdiwv")]
 transform = Transform3D(-0.7071068, 0.36380348, -0.60633904, 0, 0.8574929, 0.5144958, 0.7071068, 0.36380348, -0.60633904, 3.1562743, 2.73, -2.3237257)
+
+[node name="RetratoC" parent="." unique_id=937640051 instance=ExtResource("18_wu0t8")]
+transform = Transform3D(-0.9978797, 0.05905915, 0.02735086, 0.058987178, 0.99825287, -0.0034315353, -0.027505739, -0.0018109073, -0.9996201, 1.8058076, 1.8, 4.9699273)

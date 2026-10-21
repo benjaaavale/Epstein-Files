@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cvtd57p0bfxg8"
+path="res://.godot/imported/dragon-studio-scary-scream-401725.mp3-173db8de36f448efcdde48b1c786c5d9.mp3str"
+
+[deps]
+
+source_file="res://assets varios/Assets importados/dragon-studio-scary-scream-401725.mp3"
+dest_files=["res://.godot/imported/dragon-studio-scary-scream-401725.mp3-173db8de36f448efcdde48b1c786c5d9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

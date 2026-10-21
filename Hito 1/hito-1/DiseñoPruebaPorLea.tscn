@@ -25,6 +25,11 @@
 [ext_resource type="PackedScene" path="res://puzzles/alacena.tscn" id="23_alacena"]
 [ext_resource type="PackedScene" path="res://puzzles/tablero.tscn" id="24_tablero"]
 [ext_resource type="Script" uid="uid://byclie1kty61y" path="res://puzzles/cable_violeta.gd" id="25_cable"]
+[ext_resource type="Texture2D" uid="uid://sacdoht3anmk" path="res://assets varios/caaat.jpg" id="26_gy44l"]
+[ext_resource type="Script" uid="uid://couu8ry807xkt" path="res://gatoscript.gd" id="27_f7ehn"]
+[ext_resource type="Texture2D" uid="uid://dvuhsknff13d4" path="res://assets varios/Assets importados/Sin título.jpg" id="28_x0htn"]
+[ext_resource type="Script" uid="uid://cv2l1riekmx4a" path="res://scream.gd" id="29_cxjhc"]
+[ext_resource type="AudioStream" uid="uid://cvtd57p0bfxg8" path="res://assets varios/Assets importados/dragon-studio-scary-scream-401725.mp3" id="30_croep"]
 
 [sub_resource type="ShaderMaterial" id="Mat_codigo"]
 render_priority = 0
@@ -269,7 +274,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.29043546, -0.4345261, -3.16
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5742161, -0.006320834, 5.5879354e-09)
 
 [node name="DEMO_Wall_Doorway_03" parent="." unique_id=1255364248 instance=ExtResource("4_7vxa3")]
-transform = Transform3D(-8.9504107e-07, -20.47615, -4.3711384e-06, 0, -8.9504096e-07, 99.99999, -20.476152, 8.9504096e-07, 1.9106853e-13, 2.4301658, 1.6309249, -2.8106422)
+transform = Transform3D(-8.9504107e-07, -20.47615, -4.3711384e-06, 0, -8.9504096e-07, 99.99999, -20.476152, 8.9504096e-07, 1.9106853e-13, 2.435982, 1.6309249, -2.8121898)
 visible = true
 
 [node name="DEMO_Wall_Doorway_02" parent="DEMO_Wall_Doorway_03" unique_id=113638103 instance=ExtResource("4_7vxa3")]
@@ -306,6 +311,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2684155, 0.369, 8.626296)
 transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 7.3186607, 1.3687673, 9.8)
 
 [node name="Ambientacion" parent="." unique_id=608210324 instance=ExtResource("11_amb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0034418106, 0.026348114, -0.0032229424)
 
 [node name="PuertaInicial" parent="." unique_id=672970021 instance=ExtResource("9_lfp2q")]
 transform = Transform3D(1.333, 0, 0, 0, 1.42, 0, 0, 0, 1, 0.414, 0.05, -2.62)
@@ -406,3 +412,22 @@ puntos = PackedVector3Array(-0.075, 1.7, 9, -0.075, 2.55, 9, -0.075, 2.55, 6.6, 
 [node name="CableLampara" type="Node3D" parent="." unique_id=974160292]
 script = ExtResource("25_cable")
 puntos = PackedVector3Array(-0.075, 1.7, 9.16, -0.075, 2.25, 9.16, -0.075, 2.25, 9.82, -4.75, 2.25, 9.82, -4.9, 1.95, 9.82)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=738917806]
+transform = Transform3D(0.07818592, 0.004422273, -0.0027317244, -0.0072194785, 0.047939844, -0.00055265834, 0.0013614794, 0.00025057537, 0.15394475, 1.7977332, 1.8089888, 4.98053)
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=486776878]
+transform = Transform3D(9.719028e-05, 7.6695933e-10, -0.14999643, -0.01617272, 0.1957939, -1.12579955e-05, 0.14380448, 0.022019621, 0.00010010899, -1.5183498, 1.8089888, -1.1734633)
+texture = ExtResource("26_gy44l")
+script = ExtResource("27_f7ehn")
+
+[node name="Sprite3D2" type="Sprite3D" parent="." unique_id=852978988]
+transform = Transform3D(0.07818592, 0.004422273, -0.0027317244, -0.0072194785, 0.047939844, -0.00055265834, 0.0013614794, 0.00025057537, 0.15394475, 1.7977332, 1.8089888, 4.98053)
+texture = ExtResource("28_x0htn")
+script = ExtResource("29_cxjhc")
+trigger_distance = 2.0
+tiempo_visible = 3.0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite3D2" unique_id=1771397015]
+stream = ExtResource("30_croep")
+volume_db = 24.0
