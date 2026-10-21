@@ -12,7 +12,7 @@ signal evento(nombre: String)
 @export var ground_accel: float = 14.0
 @export var air_accel: float = 4.0
 @export var crouch_height: float = 1.2
-@export var factor_escala: float = 1.5
+@export var factor_escala: float = 1
 
 @export_group("Camara")
 @export var bob_amount: float = 0.035

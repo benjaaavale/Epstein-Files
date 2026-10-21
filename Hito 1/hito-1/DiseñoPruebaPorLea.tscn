@@ -10,7 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://obk73k3jdrtt" path="res://assets varios/ambiente_loop.wav" id="8_jlq6d"]
 [ext_resource type="PackedScene" path="res://door.tscn" id="9_lfp2q"]
 [ext_resource type="PackedScene" uid="uid://pip2a13uodn2" path="res://Flecha.tscn" id="10_xnjp0"]
-[ext_resource type="PackedScene" path="res://mapa/ambientacion.tscn" id="11_amb"]
+[ext_resource type="PackedScene" uid="uid://mkocrmi8key3" path="res://mapa/ambientacion.tscn" id="11_amb"]
 [ext_resource type="PackedScene" path="res://mapa/deco/periodico.tscn" id="12_periodico"]
 [ext_resource type="Script" uid="uid://buvr2nnjkhfbp" path="res://guion_nivel1.gd" id="13_guion"]
 [ext_resource type="Script" uid="uid://cwj6n6t0epifg" path="res://puzzles/rastro.gd" id="14_rastro"]
