@@ -1,0 +1,34 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://leible.gd" id="1_leible"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/periodico.png" id="2_tex"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_periodico"]
+albedo_texture = ExtResource("2_tex")
+roughness = 0.95
+
+[sub_resource type="QuadMesh" id="QuadMesh_periodico"]
+size = Vector2(0.42, 0.3)
+
+[sub_resource type="BoxShape3D" id="BoxShape_periodico"]
+size = Vector3(0.46, 0.05, 0.34)
+
+[node name="Periodico" type="StaticBody3D"]
+script = ExtResource("1_leible")
+accion = "Leer periódico"
+encabezado = "EL ECO DEL VALLE — MARTES 14 DE OCTUBRE"
+titulo = "SEXTA DESAPARICIÓN JUNTO A LA MANSIÓN SHADE"
+cuerpo = "Elena Rivas, de 23 años, fue vista por última vez la noche del viernes caminando hacia la antigua mansión Shade, abandonada desde 1974.
+
+Con ella ya son seis las personas desaparecidas en los alrededores de la propiedad durante este año. La policía revisó el lugar sin encontrar rastros.
+
+Vecinos aseguran haber visto, de madrugada, luces rojas y azules moviéndose detrás de las ventanas tapiadas. \"Es como si alguien buscara algo ahí adentro\", declaró uno de ellos."
+
+[node name="Hoja" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, 0, 0.003, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_periodico")
+mesh = SubResource("QuadMesh_periodico")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape_periodico")

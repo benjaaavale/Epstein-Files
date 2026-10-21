@@ -1,0 +1,17 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/vetas_madera.png" id="1_sv02v"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/madera_normal.png" id="2_bk417"]
+
+[resource]
+resource_name = "madera_mueble"
+albedo_color = Color(0.3, 0.2, 0.13, 1)
+albedo_texture = ExtResource("1_sv02v")
+roughness = 0.75
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_bk417")
+uv1_scale = Vector3(1.2, 1.2, 1.2)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true

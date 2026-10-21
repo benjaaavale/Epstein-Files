@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" path="res://item.tscn" id="6_esq1g"]
 [ext_resource type="Texture2D" uid="uid://sacdoht3anmk" path="res://assets varios/caaat.jpg" id="8_2bby0"]
 [ext_resource type="Texture2D" uid="uid://ce1dtdulcl2of" path="res://assets varios/CodigoDemo.jpg" id="8_4cb3b"]
-[ext_resource type="AudioStream" uid="uid://c2rhi1x864bmk" path="res://assets varios/freesoundfx-abandoned-building-sounds-282558.mp3" id="10_4cb3b"]
+[ext_resource type="AudioStream" path="res://assets varios/ambiente_loop.wav" id="10_4cb3b"]
 [ext_resource type="Shader" uid="uid://baedb1q3vu40r" path="res://luz_revela.gdshader" id="11_revela"]
 [ext_resource type="PackedScene" path="res://door.tscn" id="12_door"]
 

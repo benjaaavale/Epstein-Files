@@ -5,6 +5,7 @@ global uniform vec3 flashlight_pos;
 global uniform vec3 flashlight_dir;
 global uniform bool is_blue_light_on;
 global uniform bool is_red_light_on;
+global uniform bool is_violet_light_on;
 global uniform float flashlight_angle;
 
 uniform vec4 albedo : source_color = vec4(1.0);
@@ -31,7 +32,8 @@ void vertex() {
 }
 
 void fragment() {
-	vec3 base_color = albedo.rgb * texture(albedo_texture, UV * uv_scale).rgb;
+	vec4 tex = texture(albedo_texture, UV * uv_scale);
+	vec3 base_color = albedo.rgb * tex.rgb;
 	if (unshaded_look) {
 		ALBEDO = vec3(0.0);
 		EMISSION = base_color;
@@ -42,7 +44,7 @@ void fragment() {
 	ROUGHNESS = roughness_amount;
 
 	float reveal = 0.0;
-	bool light_on = is_blue_light_on && is_red_light_on;
+	bool light_on = is_violet_light_on;
 	if (light_channel == 0) {
 		light_on = is_blue_light_on;
 	} else if (light_channel == 1) {
@@ -60,5 +62,5 @@ void fragment() {
 		mask_uv.y = 1.0 - mask_uv.y;
 		reveal = max(reveal, texture(reveal_mask, mask_uv).r);
 	}
-	ALPHA = max(reveal, force_visible);
+	ALPHA = max(reveal, force_visible) * albedo.a * tex.a;
 }

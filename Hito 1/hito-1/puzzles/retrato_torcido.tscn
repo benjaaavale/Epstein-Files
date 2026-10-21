@@ -1,0 +1,29 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://puzzles/retrato_torcido.gd" id="1_retrato"]
+[ext_resource type="Shader" path="res://luz_revela.gdshader" id="2_shader"]
+
+[sub_resource type="ShaderMaterial" id="Mat_numeral"]
+shader = ExtResource("2_shader")
+shader_parameter/albedo = Color(1.6, 1.2, 1.2, 1)
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+
+[sub_resource type="QuadMesh" id="Mesh_numeral"]
+size = Vector2(0.36, 0.36)
+
+[sub_resource type="BoxShape3D" id="Shape_retrato"]
+size = Vector3(0.8, 0.9, 0.08)
+
+[node name="RetratoTorcido" type="StaticBody3D"]
+script = ExtResource("1_retrato")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03)
+shape = SubResource("Shape_retrato")
+
+[node name="Numeral" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0.016)
+cast_shadow = 0
+material_override = SubResource("Mat_numeral")
+mesh = SubResource("Mesh_numeral")

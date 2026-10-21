@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/yeso.png" id="1_e0g6u"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/piedra_normal.png" id="2_dfqct"]
+
+[resource]
+resource_name = "yeso_techo"
+albedo_texture = ExtResource("1_e0g6u")
+roughness = 0.95
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_dfqct")
+uv1_scale = Vector3(0.35, 0.35, 0.35)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true

@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/telarana.png" id="1_m3x20"]
+
+[resource]
+transparency = 1
+cull_mode = 2
+albedo_color = Color(0.85, 0.85, 0.85, 0.7)
+albedo_texture = ExtResource("1_m3x20")

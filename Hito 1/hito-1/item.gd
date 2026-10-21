@@ -3,6 +3,8 @@ class_name Item
 
 @export var item_name: String = "Item"
 @export var only_visible_with_red_light: bool = true
+## Identificador de la cerradura que abre ("" = llave comun).
+@export var abre := ""
 
 @onready var interact_zone: Area3D = $InteractZone
 
@@ -27,6 +29,8 @@ func _lit_by_red_light() -> bool:
 	if linterna.current_channel != Linterna.Channel.RED:
 		return false
 	var spot := linterna.spot_light_3d
+	if not spot.visible:
+		return false
 	var light_dir := -spot.global_transform.basis.z
 	var to_item := (global_position - spot.global_position).normalized()
 	return to_item.dot(light_dir) > cos(deg_to_rad(spot.spot_angle - 2.0))

@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/papel_tapiz.png" id="1_pa2cp"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/piedra_normal.png" id="2_kglp8"]
+
+[resource]
+resource_name = "papel_tapiz"
+albedo_texture = ExtResource("1_pa2cp")
+roughness = 0.9
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_kglp8")
+uv1_scale = Vector3(0.55, 0.55, 0.55)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true

@@ -7,33 +7,64 @@
 [ext_resource type="PackedScene" uid="uid://iihp4te6xesy" path="res://item.tscn" id="5_re6ru"]
 [ext_resource type="PackedScene" uid="uid://c6cxiyc2tfbow" path="res://player.tscn" id="6_do5y3"]
 [ext_resource type="PackedScene" uid="uid://bu56r88c3pmrf" path="res://pause_menu.tscn" id="7_up2q6"]
-[ext_resource type="AudioStream" uid="uid://c2rhi1x864bmk" path="res://assets varios/freesoundfx-abandoned-building-sounds-282558.mp3" id="8_jlq6d"]
+[ext_resource type="AudioStream" uid="uid://obk73k3jdrtt" path="res://assets varios/ambiente_loop.wav" id="8_jlq6d"]
 [ext_resource type="PackedScene" path="res://door.tscn" id="9_lfp2q"]
 [ext_resource type="PackedScene" uid="uid://pip2a13uodn2" path="res://Flecha.tscn" id="10_xnjp0"]
+[ext_resource type="PackedScene" path="res://mapa/ambientacion.tscn" id="11_amb"]
+[ext_resource type="PackedScene" path="res://mapa/deco/periodico.tscn" id="12_periodico"]
+[ext_resource type="Script" uid="uid://buvr2nnjkhfbp" path="res://guion_nivel1.gd" id="13_guion"]
+[ext_resource type="Script" uid="uid://cwj6n6t0epifg" path="res://puzzles/rastro.gd" id="14_rastro"]
+[ext_resource type="Shader" uid="uid://baedb1q3vu40r" path="res://luz_revela.gdshader" id="15_shader"]
+[ext_resource type="Texture2D" uid="uid://2kxhncxuwvvl" path="res://mapa/texturas/codigo_uv.png" id="16_codigo"]
+[ext_resource type="Texture2D" uid="uid://k351y01h7abv" path="res://mapa/texturas/mano_sangre.png" id="17_mano"]
+[ext_resource type="PackedScene" path="res://puzzles/cofre.tscn" id="18_cofre"]
+[ext_resource type="PackedScene" path="res://puzzles/nota.tscn" id="19_nota"]
+[ext_resource type="PackedScene" path="res://pila.tscn" id="20_pila"]
+[ext_resource type="Script" uid="uid://dqmanw4p7jjyy" path="res://puzzles/retratos.gd" id="21_retratos"]
+[ext_resource type="PackedScene" path="res://puzzles/retrato_torcido.tscn" id="22_retrato"]
+[ext_resource type="PackedScene" path="res://puzzles/alacena.tscn" id="23_alacena"]
+[ext_resource type="PackedScene" path="res://puzzles/tablero.tscn" id="24_tablero"]
+[ext_resource type="Script" uid="uid://byclie1kty61y" path="res://puzzles/cable_violeta.gd" id="25_cable"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_nnd0q"]
-sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
-ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+[sub_resource type="ShaderMaterial" id="Mat_codigo"]
+render_priority = 0
+shader = ExtResource("15_shader")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("16_codigo")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 0
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="Sky" id="Sky_ifrn4"]
-sky_material = SubResource("ProceduralSkyMaterial_nnd0q")
+[sub_resource type="QuadMesh" id="Mesh_codigo"]
+size = Vector2(1.1, 0.48)
 
-[sub_resource type="Environment" id="Environment_u0cs1"]
-background_mode = 2
-sky = SubResource("Sky_ifrn4")
-glow_enabled = true
+[sub_resource type="ShaderMaterial" id="Mat_mano"]
+render_priority = 0
+shader = ExtResource("15_shader")
+shader_parameter/albedo = Color(1.6, 1.2, 1.2, 1)
+shader_parameter/albedo_texture = ExtResource("17_mano")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="Mesh_mano"]
+size = Vector2(0.24, 0.3)
 
 [node name="Node3D" type="Node3D" unique_id=1920783068]
-
-[node name="Ambiente" type="Node3D" parent="." unique_id=1679845279]
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="Ambiente" unique_id=270075362]
-environment = SubResource("Environment_u0cs1")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Ambiente" unique_id=612986177]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
-light_color = Color(0.23, 0.23, 0.23, 1)
-shadow_enabled = true
 
 [node name="DEMO_Floor_Wood_01" parent="." unique_id=911120372 instance=ExtResource("1_fipnr")]
 
@@ -111,6 +142,7 @@ transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.6843
 
 [node name="DEMO_Wall_Plain_01" parent="." unique_id=1104805852 instance=ExtResource("2_lfp2q")]
 transform = Transform3D(20.05705, 0, 0, 0, -4.7819735e-06, 99.99999, 0, -20.057049, -2.3841858e-05, -9.9111595, 1.5926309, 6.104145)
+visible = true
 
 [node name="DEMO_Wall_Plain_02" parent="DEMO_Wall_Plain_01" unique_id=585796979 instance=ExtResource("2_lfp2q")]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0.19943115, 9.313226e-09)
@@ -201,6 +233,7 @@ transform = Transform3D(-4.37114e-08, -1.0000001, 0, 1.0000001, -4.371142e-08, 0
 
 [node name="DEMO_Wall_Plain_02_002" parent="." unique_id=1789316359 instance=ExtResource("3_xnjp0")]
 transform = Transform3D(35, 0, 0, 0, -8.34465e-06, 99.99999, 0, -34.999996, -2.3841858e-05, -10.003969, 1.5682166, -10.253906)
+visible = true
 
 [node name="DEMO_Wall_Plain_02_003" parent="DEMO_Wall_Plain_02_002" unique_id=256144069 instance=ExtResource("3_xnjp0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0042392015, -0.5777495, -4.4703484e-08)
@@ -237,6 +270,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5742161, -0.006320834, 5.58
 
 [node name="DEMO_Wall_Doorway_03" parent="." unique_id=1255364248 instance=ExtResource("4_7vxa3")]
 transform = Transform3D(-8.9504107e-07, -20.47615, -4.3711384e-06, 0, -8.9504096e-07, 99.99999, -20.476152, 8.9504096e-07, 1.9106853e-13, 2.4301658, 1.6309249, -2.8106422)
+visible = true
 
 [node name="DEMO_Wall_Doorway_02" parent="DEMO_Wall_Doorway_03" unique_id=113638103 instance=ExtResource("4_7vxa3")]
 transform = Transform3D(1, 0, -8.4703295e-22, 0, 1.0000001, 1.4210855e-14, 0, 1.7101419e-23, 1, -1.4901161e-08, -0.3882775, -1.8626451e-09)
@@ -246,12 +280,11 @@ transform = Transform3D(-4.3711395e-08, -1.0000001, -2.5410988e-21, 1.0000001, -
 
 [node name="Item" parent="." unique_id=1663038550 instance=ExtResource("5_re6ru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2326703, 0.3692652, -0.39699206)
-item_name = "Item"
 
 [node name="Player" parent="." unique_id=1620218306 instance=ExtResource("6_do5y3")]
 transform = Transform3D(0.99936056, 0, -0.035755366, 0, 1, 0, 0.035755366, 0, 0.99936056, 0.13289726, 0.8165356, 0)
-mouse_sensitivity = null
-jump_velocity = null
+run_speed = 4.0
+jump_velocity = 3.5
 
 [node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("7_up2q6")]
 
@@ -263,10 +296,113 @@ autoplay = true
 
 [node name="Puerta" parent="." unique_id=1663224814 instance=ExtResource("9_lfp2q")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.111868024, 0, 7.255923)
+llave_id = "salida"
+requiere_energia = true
 
 [node name="Llave" parent="." unique_id=45762579 instance=ExtResource("5_re6ru")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.2684155, 0.369, 8.626296)
-item_name = "Item"
 
 [node name="Flecha" parent="." unique_id=1192176248 instance=ExtResource("10_xnjp0")]
-transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 7.3186607, 1.3687673, 9.924562)
+transform = Transform3D(0.6, 0, 0, 0, -2.6226834e-08, -0.6, 0, 0.6, -2.6226834e-08, 7.3186607, 1.3687673, 9.8)
+
+[node name="Ambientacion" parent="." unique_id=608210324 instance=ExtResource("11_amb")]
+
+[node name="PuertaInicial" parent="." unique_id=672970021 instance=ExtResource("9_lfp2q")]
+transform = Transform3D(1.333, 0, 0, 0, 1.42, 0, 0, 0, 1, 0.414, 0.05, -2.62)
+secreta = false
+termina_nivel = false
+
+[node name="Periodico" parent="." unique_id=1861991763 instance=ExtResource("12_periodico")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.05, 0.902, 2.05)
+
+[node name="Guion" type="Node" parent="." unique_id=749846152]
+script = ExtResource("13_guion")
+
+[node name="Rastro" type="Node3D" parent="." unique_id=1299760627]
+script = ExtResource("14_rastro")
+puntos = PackedVector3Array(0.4, 0.05, -3.4, -1, 0.05, -4.6, -3, 0.05, -5.7, -4.8, 0.05, -7.4, -5.81, 0.05, -7.9, -7.2, 0.05, -7.6, -7.9, 0.05, -6.2, -7.9, 0.05, -3.8, -7.3, 0.05, -2, -5.8, 0.05, -1.4, -4.3, 0.05, -2.1)
+
+[node name="CodigoUV" type="MeshInstance3D" parent="." unique_id=2048073143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.6, -2.535)
+material_override = SubResource("Mat_codigo")
+cast_shadow = 0
+mesh = SubResource("Mesh_codigo")
+
+[node name="ManoSangre" type="MeshInstance3D" parent="." unique_id=709518871]
+transform = Transform3D(0.9659258, -0.25881904, 0, 0.25881904, 0.9659258, 0, 0, 0, 1, -3.15, 1.2, -2.533)
+material_override = SubResource("Mat_mano")
+cast_shadow = 0
+mesh = SubResource("Mesh_mano")
+
+[node name="Cofre" parent="." unique_id=1228514970 instance=ExtResource("18_cofre")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -7, 0.05, 9.42)
+
+[node name="Nota" parent="Cofre" unique_id=1701332798 instance=ExtResource("19_nota")]
+transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.9659258, -0.1, 0.035, 0)
+
+[node name="PilaCofre" parent="Cofre" unique_id=515459574 instance=ExtResource("20_pila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.03, 0.05)
+
+[node name="PilaB" parent="." unique_id=562225516 instance=ExtResource("20_pila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.95, 0.887, -6.55)
+
+[node name="PilaA" parent="." unique_id=1501360275 instance=ExtResource("20_pila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.1, -5)
+
+[node name="PilaD" parent="." unique_id=1183779026 instance=ExtResource("20_pila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.15, 0.922, 5.35)
+oculta = true
+
+[node name="PilaE" parent="." unique_id=769928184 instance=ExtResource("20_pila")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.6, 0.05, -0.6)
+oculta = true
+
+[node name="Retratos" type="Node3D" parent="." unique_id=13495237]
+script = ExtResource("21_retratos")
+premio = NodePath("../Alacena")
+
+[node name="Retrato1" parent="Retratos" unique_id=827393840 instance=ExtResource("22_retrato")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.935, 1.75, 1.55)
+numero = 3
+
+[node name="Retrato2" parent="Retratos" unique_id=1583877940 instance=ExtResource("22_retrato")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.935, 1.75, 0.4)
+inclinacion = -11.0
+pintura = 2
+
+[node name="Retrato3" parent="Retratos" unique_id=161618867 instance=ExtResource("22_retrato")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.935, 1.75, -0.75)
+numero = 4
+inclinacion = 7.0
+
+[node name="Retrato4" parent="Retratos" unique_id=850817447 instance=ExtResource("22_retrato")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.935, 1.75, -1.9)
+numero = 2
+inclinacion = -8.0
+pintura = 2
+
+[node name="Alacena" parent="." unique_id=1126825137 instance=ExtResource("23_alacena")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 2.935, 1.15, 3.3)
+contenido = NodePath("../LlaveReal")
+
+[node name="LlaveReal" parent="." unique_id=107278521 instance=ExtResource("5_re6ru")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.065, 1.205, 3.3)
+item_name = "Llave antigua"
+only_visible_with_red_light = false
+abre = "salida"
+
+[node name="Tablero" parent="." unique_id=1020707172 instance=ExtResource("24_tablero")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.06, 1.45, 9)
+puerta = NodePath("../Puerta")
+
+[node name="CableTecho" type="Node3D" parent="." unique_id=1681440560]
+script = ExtResource("25_cable")
+puntos = PackedVector3Array(-0.075, 1.7, 8.84, -0.075, 3, 8.84, -4.6, 3, 7.4)
+
+[node name="CablePuerta" type="Node3D" parent="." unique_id=398298896]
+script = ExtResource("25_cable")
+puntos = PackedVector3Array(-0.075, 1.7, 9, -0.075, 2.55, 9, -0.075, 2.55, 6.6, -0.075, 0.62, 6.6, -0.075, 0.62, 6.74)
+
+[node name="CableLampara" type="Node3D" parent="." unique_id=974160292]
+script = ExtResource("25_cable")
+puntos = PackedVector3Array(-0.075, 1.7, 9.16, -0.075, 2.25, 9.16, -0.075, 2.25, 9.82, -4.75, 2.25, 9.82, -4.9, 1.95, 9.82)

@@ -1,0 +1,96 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://puzzles/alacena.gd" id="1_alacena"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_vieja.tres" id="2_madera"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_sombra.tres" id="3_sombra"]
+[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="4_laton"]
+
+[sub_resource type="BoxMesh" id="Mesh_horizontal"]
+size = Vector3(0.48, 0.03, 0.26)
+
+[sub_resource type="BoxMesh" id="Mesh_lado"]
+size = Vector3(0.03, 0.4, 0.26)
+
+[sub_resource type="BoxMesh" id="Mesh_fondo"]
+size = Vector3(0.44, 0.36, 0.01)
+
+[sub_resource type="BoxMesh" id="Mesh_puerta"]
+size = Vector3(0.48, 0.42, 0.025)
+
+[sub_resource type="SphereMesh" id="Mesh_pomo"]
+radius = 0.016
+height = 0.032
+
+[sub_resource type="BoxShape3D" id="Shape_horizontal"]
+size = Vector3(0.48, 0.03, 0.26)
+
+[sub_resource type="BoxShape3D" id="Shape_lado"]
+size = Vector3(0.03, 0.4, 0.26)
+
+[sub_resource type="BoxShape3D" id="Shape_puerta"]
+size = Vector3(0.48, 0.42, 0.025)
+
+[node name="Alacena" type="Node3D"]
+script = ExtResource("1_alacena")
+
+[node name="Caja" type="StaticBody3D" parent="."]
+
+[node name="Piso" type="CollisionShape3D" parent="Caja"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0.13)
+shape = SubResource("Shape_horizontal")
+
+[node name="Techo" type="CollisionShape3D" parent="Caja"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385, 0.13)
+shape = SubResource("Shape_horizontal")
+
+[node name="Izq" type="CollisionShape3D" parent="Caja"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 0.2, 0.13)
+shape = SubResource("Shape_lado")
+
+[node name="Der" type="CollisionShape3D" parent="Caja"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0.2, 0.13)
+shape = SubResource("Shape_lado")
+
+[node name="Piso" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.015, 0.13)
+material_override = ExtResource("2_madera")
+mesh = SubResource("Mesh_horizontal")
+
+[node name="Techo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.385, 0.13)
+material_override = ExtResource("2_madera")
+mesh = SubResource("Mesh_horizontal")
+
+[node name="Izq" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.225, 0.2, 0.13)
+material_override = ExtResource("2_madera")
+mesh = SubResource("Mesh_lado")
+
+[node name="Der" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.225, 0.2, 0.13)
+material_override = ExtResource("2_madera")
+mesh = SubResource("Mesh_lado")
+
+[node name="Fondo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.006)
+material_override = ExtResource("3_sombra")
+mesh = SubResource("Mesh_fondo")
+
+[node name="Bisagra" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24, 0, 0.273)
+
+[node name="Puerta" type="MeshInstance3D" parent="Bisagra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, 0.2, 0)
+material_override = ExtResource("2_madera")
+mesh = SubResource("Mesh_puerta")
+
+[node name="Pomo" type="MeshInstance3D" parent="Bisagra"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.2, 0.025)
+material_override = ExtResource("4_laton")
+mesh = SubResource("Mesh_pomo")
+
+[node name="Tapa" type="StaticBody3D" parent="Bisagra"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Bisagra/Tapa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, 0.2, 0)
+shape = SubResource("Shape_puerta")

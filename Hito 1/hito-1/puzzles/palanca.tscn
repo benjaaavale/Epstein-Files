@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://puzzles/palanca.gd" id="1_palanca"]
+[ext_resource type="Material" path="res://mapa/materiales/hierro.tres" id="2_hierro"]
+[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="3_laton"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_pomo"]
+albedo_color = Color(0.35, 0.05, 0.04, 1)
+roughness = 0.5
+
+[sub_resource type="BoxMesh" id="Mesh_base"]
+size = Vector3(0.07, 0.12, 0.035)
+
+[sub_resource type="CylinderMesh" id="Mesh_brazo"]
+top_radius = 0.009
+bottom_radius = 0.009
+height = 0.13
+radial_segments = 8
+rings = 1
+
+[sub_resource type="SphereMesh" id="Mesh_pomo"]
+radius = 0.02
+height = 0.04
+radial_segments = 12
+rings = 6
+
+[sub_resource type="BoxShape3D" id="Shape_palanca"]
+size = Vector3(0.12, 0.3, 0.16)
+
+[node name="Palanca" type="StaticBody3D"]
+script = ExtResource("1_palanca")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.06)
+shape = SubResource("Shape_palanca")
+
+[node name="Base" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0175)
+material_override = ExtResource("2_hierro")
+mesh = SubResource("Mesh_base")
+
+[node name="Brazo" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.04)
+
+[node name="Vara" type="MeshInstance3D" parent="Brazo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+material_override = ExtResource("3_laton")
+mesh = SubResource("Mesh_brazo")
+
+[node name="Pomo" type="MeshInstance3D" parent="Brazo"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135, 0)
+material_override = SubResource("Mat_pomo")
+mesh = SubResource("Mesh_pomo")

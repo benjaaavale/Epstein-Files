@@ -2,9 +2,11 @@
 
 [ext_resource type="Script" uid="uid://d3wrf4b6ac7vs" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="PackedScene" uid="uid://bliq4041u3088" path="res://linterna.tscn" id="2_i3pqv"]
+[ext_resource type="PackedScene" path="res://hud.tscn" id="3_hud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g4v7s"]
 radius = 0.35302734
+height = 1.6660156
 
 [node name="Player" type="CharacterBody3D" unique_id=1620218306]
 script = ExtResource("1_onrkg")
@@ -12,9 +14,11 @@ speed = 2.0
 run_speed = 3.5
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2105085689]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16699219, 0)
 shape = SubResource("CapsuleShape3D_g4v7s")
 
 [node name="Head" type="Node3D" parent="." unique_id=2028121058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21123564, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Head" unique_id=296463645]
 
@@ -31,41 +35,4 @@ collide_with_areas = true
 [node name="Hand" type="Marker3D" parent="Head/Camera3D" unique_id=980475463]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18105134, -0.120346785, -0.25878245)
 
-[node name="HUD" type="CanvasLayer" parent="." unique_id=515238556]
-
-[node name="CenterContainer" type="CenterContainer" parent="HUD" unique_id=30094164]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="HUD/CenterContainer" unique_id=2074648852]
-layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 28
-text = "+"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="PromptLabel" type="Label" parent="HUD" unique_id=966228411]
-visible = false
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 30.0
-offset_right = 100.0
-offset_bottom = 60.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 22
-text = "Tomar [E]"
-horizontal_alignment = 1
-vertical_alignment = 1
+[node name="HUD" parent="." unique_id=823752480 instance=ExtResource("3_hud")]

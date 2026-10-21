@@ -1,0 +1,38 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://leible.gd" id="1_leible"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/nota.png" id="2_tex"]
+
+[sub_resource type="StandardMaterial3D" id="Mat_nota"]
+albedo_texture = ExtResource("2_tex")
+roughness = 0.95
+
+[sub_resource type="QuadMesh" id="Mesh_nota"]
+size = Vector2(0.18, 0.24)
+
+[sub_resource type="BoxShape3D" id="Shape_nota"]
+size = Vector3(0.22, 0.05, 0.28)
+
+[node name="Nota" type="StaticBody3D"]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_leible")
+accion = "Leer nota"
+encabezado = "PÁGINA ARRANCADA DE UN DIARIO"
+titulo = "Ellos todavía me miran"
+cuerpo = "Colgué sus cuatro retratos en la sala del este, uno junto al otro, aunque no se fueron en ese orden.
+
+Cada noche se tuercen. Cada noche los enderezo en el orden en que se fueron, o no me dejan dormir. Con la luz roja todavía se lee quién fue primero.
+
+Guardé la llave de la salida donde ellos la cuidan. La que dejé a la vista es para los que no saben mirar.
+
+Y no toques el tablero sin seguir los cables. Esta casa castiga a los que adivinan."
+
+[node name="Hoja" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.003, 0)
+cast_shadow = 0
+material_override = SubResource("Mat_nota")
+mesh = SubResource("Mesh_nota")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("Shape_nota")
