@@ -12,6 +12,14 @@
 [ext_resource type="PackedScene" path="res://mapa/deco/sillon.tscn" id="9_at8aq"]
 [ext_resource type="PackedScene" path="res://mapa/deco/estanteria.tscn" id="11_dvqag"]
 [ext_resource type="PackedScene" path="res://mapa/deco/velas.tscn" id="12_oxy0g"]
+[ext_resource type="PackedScene" path="res://mapa/deco/caja.tscn" id="13_bxf66"]
+[ext_resource type="Texture2D" uid="uid://bo3i2guud3ly7" path="res://assets varios/rough_wood_diff_2k.png" id="13_dvqag"]
+[ext_resource type="Texture2D" uid="uid://bigt8nsjv7emj" path="res://assets varios/rough_wood_nor_gl_2k.png" id="14_oxy0g"]
+[ext_resource type="PackedScene" path="res://mapa/deco/candelabro.tscn" id="15_mbg8w"]
+[ext_resource type="PackedScene" path="res://door.tscn" id="16_0km02"]
+[ext_resource type="PackedScene" path="res://mapa/deco/periodico.tscn" id="16_am2ja"]
+[ext_resource type="PackedScene" uid="uid://iihp4te6xesy" path="res://item.tscn" id="17_g8vr4"]
+[ext_resource type="Script" uid="uid://buvr2nnjkhfbp" path="res://guion_nivel1.gd" id="18_eti0j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ax26t"]
 
@@ -46,22 +54,44 @@ adjustment_saturation = 0.75
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2am08"]
 albedo_color = Color(0.5609549, 0.5609549, 0.5609549, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8vr4"]
+albedo_color = Color(0.4117647, 0.36078432, 0.10980392, 1)
+albedo_texture = ExtResource("13_dvqag")
+roughness = 0.98
+normal_enabled = true
+normal_scale = 2.98
+normal_texture = ExtResource("14_oxy0g")
+uv1_scale = Vector3(1.8, 1.8, 1.8)
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3gba"]
+albedo_color = Color(0.4129357, 0.36230415, 0.1109448, 1)
+albedo_texture = ExtResource("13_dvqag")
+roughness = 0.98
+normal_enabled = true
+normal_scale = 2.98
+normal_texture = ExtResource("14_oxy0g")
+uv1_scale = Vector3(2, 2, 2)
+uv1_triplanar = true
+
 [node name="Node3D" type="Node3D" unique_id=1261775488]
 
 [node name="Player" parent="." unique_id=1620218306 instance=ExtResource("1_cvel0")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.934477, 0.61290205, -2.679888)
+jump_velocity = 4.0
+air_accel = 3.1
 
 [node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("2_2am08")]
 
 [node name="Escalera_imperial" type="CSGCombiner3D" parent="." unique_id=1975053558]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36895752, -6.9635196)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.36895752, -7.1208725)
 material_override = SubResource("StandardMaterial3D_ax26t")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Escalera_imperial" unique_id=138691273]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36895752, 6.953055)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Escalera_imperial/StaticBody3D" unique_id=1662298787]
-transform = Transform3D(4, 0, 0, 0, 0.83414644, -2.7577145, 0, 0.5515429, 4.170732, -0.06542969, 0.6529964, -5.5906663)
+transform = Transform3D(4, 0, 0, 0, 0.8226909, -2.8424437, 0, 0.5684887, 4.1134543, -0.06542969, 0.7273505, -5.594353)
 shape = SubResource("BoxShape3D_3gngh")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="Escalera_imperial/StaticBody3D" unique_id=1823291606]
@@ -127,6 +157,1215 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3092713, 0.10736084, 1.792
 operation = 2
 size = Vector3(1.6766357, 1.2147217, 3.2750244)
 
+[node name="Pilares_escalera_R" type="CSGCombiner3D" parent="." unique_id=1303316807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1340935, 0.21629429, -3.8560772)
+use_collision = true
+
+[node name="pilar1_r" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=1945965321]
+radius = 0.14
+height = 1.0
+sides = 10
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1230092781]
+transform = Transform3D(0.1, 0, 0, 0, -2.6492972, -0.08338859, 0, 4.002652, -0.055193692, 0.001213789, 2.992281, -4.088711)
+mode = 1
+spin_degrees = 180.0
+spin_sides = 64
+
+[node name="Pilar_n" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=303667609]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, -0.25522795, -0.3558159)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n" unique_id=1396154989]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n/CSGBox3D" unique_id=2044957298]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n" unique_id=523330763]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n/CSGBox3D2" unique_id=1651510818]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar_r" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=1617218069]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39100003, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="pilar_r2" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=1190869175]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44099998, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="pilar_r3" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=692101960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="pilar_r6" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=134909899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="Pilar_n4" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=19722190]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 0.32049072, -1.3106651)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n4" unique_id=1957149046]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n4/CSGBox3D" unique_id=146398560]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n4" unique_id=2082856407]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n4/CSGBox3D2" unique_id=407071956]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar2_r" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=866378638]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5934331, -4.0109186)
+radius = 0.14
+height = 1.0
+sides = 10
+
+[node name="pilar_r" type="CSGCylinder3D" parent="Pilares_escalera_R/pilar2_r" unique_id=546607729]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="pilar_r2" type="CSGCylinder3D" parent="Pilares_escalera_R/pilar2_r" unique_id=1824944634]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="pilar_r3" type="CSGCylinder3D" parent="Pilares_escalera_R/pilar2_r" unique_id=539662789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="pilar_r4" type="CSGCylinder3D" parent="Pilares_escalera_R/pilar2_r" unique_id=1114222013]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45399207, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="pilar_r5" type="CSGCylinder3D" parent="Pilares_escalera_R/pilar2_r" unique_id=114973826]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="pilar_r6" type="CSGCylinder3D" parent="Pilares_escalera_R/pilar2_r" unique_id=1293958396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="Pilar_n12" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1870868451]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 1.9399927, -3.6837492)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n12" unique_id=1787489153]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n12/CSGBox3D" unique_id=252787882]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n12" unique_id=1888672905]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n12/CSGBox3D2" unique_id=1694669529]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n11" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=496741041]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 1.7340446, -3.3982306)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n11" unique_id=594565626]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n11/CSGBox3D" unique_id=47867298]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n11" unique_id=1138179348]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n11/CSGBox3D2" unique_id=1184594620]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n10" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=287898390]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 1.5374575, -3.0893087)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n10" unique_id=749159809]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n10/CSGBox3D" unique_id=616344421]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n10" unique_id=867391791]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n10/CSGBox3D2" unique_id=880760130]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n9" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1142375208]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 1.3338495, -2.7897472)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n9" unique_id=1604249692]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n9/CSGBox3D" unique_id=1724332853]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n9" unique_id=1868044851]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n9/CSGBox3D2" unique_id=809921315]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n8" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1939671078]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 1.132582, -2.4948673)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n8" unique_id=1382070397]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n8/CSGBox3D" unique_id=258483516]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n8" unique_id=29645528]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n8/CSGBox3D2" unique_id=410204174]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n7" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=633382230]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 0.9266337, -2.1929655)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n7" unique_id=387606941]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n7/CSGBox3D" unique_id=433366850]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n7" unique_id=176543269]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n7/CSGBox3D2" unique_id=815184524]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n6" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1666306321]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 0.72770643, -1.8957453)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n6" unique_id=1404360529]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n6/CSGBox3D" unique_id=502167189]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n6" unique_id=994292658]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n6/CSGBox3D2" unique_id=606064822]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n5" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1248188723]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 0.5358002, -1.5938435)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n5" unique_id=861864932]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n5/CSGBox3D" unique_id=1109588759]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n5" unique_id=461325564]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n5/CSGBox3D2" unique_id=1783250298]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n3" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=1029248839]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, 0.14028615, -1.0415287)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n3" unique_id=1073609289]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n3/CSGBox3D" unique_id=2092912750]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n3" unique_id=1442677554]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n3/CSGBox3D2" unique_id=180719366]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n2" type="CSGPolygon3D" parent="Pilares_escalera_R" unique_id=787791085]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.010864e-05, -0.058641076, -0.7302666)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n2" unique_id=961319424]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n2/CSGBox3D" unique_id=993494415]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n2" unique_id=1280959924]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_R/Pilar_n2/CSGBox3D2" unique_id=844185056]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar_r5" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=585418939]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="pilar_r4" type="CSGCylinder3D" parent="Pilares_escalera_R" unique_id=1432986817]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45399207, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="Pilares_escalera_L" type="CSGCombiner3D" parent="." unique_id=1994511589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2791681, 0.21629429, -3.8560772)
+use_collision = true
+
+[node name="Pilar_n24" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=549426781]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, -0.2552518, -0.3557949)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n24" unique_id=878550774]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n24/CSGBox3D" unique_id=814371962]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n24" unique_id=1011734473]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n24/CSGBox3D2" unique_id=1121073998]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar2_l" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=1546980369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0001680851, 2.593748, -4.0107956)
+radius = 0.14
+height = 1.0
+sides = 10
+
+[node name="pilar_r" type="CSGCylinder3D" parent="Pilares_escalera_L/pilar2_l" unique_id=581682479]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.391, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="pilar_r2" type="CSGCylinder3D" parent="Pilares_escalera_L/pilar2_l" unique_id=1505777469]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.441, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="pilar_r3" type="CSGCylinder3D" parent="Pilares_escalera_L/pilar2_l" unique_id=231093847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="pilar_r4" type="CSGCylinder3D" parent="Pilares_escalera_L/pilar2_l" unique_id=1690160829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45399207, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="pilar_r5" type="CSGCylinder3D" parent="Pilares_escalera_L/pilar2_l" unique_id=2133761068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="pilar_r6" type="CSGCylinder3D" parent="Pilares_escalera_L/pilar2_l" unique_id=1346451081]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="pilar_r" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=1685112329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.39100003, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="Pilar_n23" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1786787924]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, -0.0582518, -0.72979546)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n23" unique_id=1655273316]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n23/CSGBox3D" unique_id=2006507467]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n23" unique_id=1479573477]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n23/CSGBox3D2" unique_id=1233525845]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar_r2" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=1454273047]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44099998, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="Pilar_n22" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=128275280]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 0.1407482, -1.0417957)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n22" unique_id=1557286040]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n22/CSGBox3D" unique_id=70117281]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n22" unique_id=60765645]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n22/CSGBox3D2" unique_id=38849367]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar_r3" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=656639806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.491, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="Pilar_n20" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=538736339]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.007168174, 0.53574824, -1.5937958)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n20" unique_id=1805393243]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n20/CSGBox3D" unique_id=748075362]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n20" unique_id=740568707]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n20/CSGBox3D2" unique_id=752756919]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n19" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1632384602]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 0.72774816, -1.8957958)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n19" unique_id=300627641]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n19/CSGBox3D" unique_id=1142336015]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n19" unique_id=778574691]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n19/CSGBox3D2" unique_id=1037727911]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1226683888]
+transform = Transform3D(0.1, 0, 0, 0, -2.6492972, -0.08338859, 0, 4.002652, -0.055193692, 0.011129379, 2.992281, -4.088711)
+mode = 1
+spin_degrees = 180.0
+spin_sides = 64
+
+[node name="Pilar_n13" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1456988468]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 1.9397483, -3.683795)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n13" unique_id=1264762744]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n13/CSGBox3D" unique_id=650919889]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n13" unique_id=766666331]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n13/CSGBox3D2" unique_id=449549890]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n14" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=949057684]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 1.7337482, -3.3977957)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n14" unique_id=278256067]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n14/CSGBox3D" unique_id=1200278045]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n14" unique_id=1236725276]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n14/CSGBox3D2" unique_id=2131277162]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n15" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1934411962]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 1.5377481, -3.089795)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n15" unique_id=1581107863]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n15/CSGBox3D" unique_id=356842178]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n15" unique_id=1595041325]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n15/CSGBox3D2" unique_id=143318285]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n17" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1058121467]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.006168127, 1.1327482, -2.4947948)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n17" unique_id=1608026849]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n17/CSGBox3D" unique_id=946166673]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n17" unique_id=1857544233]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n17/CSGBox3D2" unique_id=589232495]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n16" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1536493179]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 1.3337482, -2.789795)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n16" unique_id=412105134]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n16/CSGBox3D" unique_id=669108603]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n16" unique_id=1037725710]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n16/CSGBox3D2" unique_id=246958446]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n18" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1413886526]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 0.92674816, -2.1927948)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n18" unique_id=1614333044]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n18/CSGBox3D" unique_id=1115934444]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n18" unique_id=1878736614]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n18/CSGBox3D2" unique_id=1214200145]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar_r6" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=100547985]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.35, 0)
+radius = 0.15
+height = 0.05
+sides = 10
+
+[node name="pilar_r5" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=824402809]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.4, 0)
+radius = 0.17
+height = 0.05
+sides = 10
+
+[node name="Pilar_n21" type="CSGPolygon3D" parent="Pilares_escalera_L" unique_id=1734174285]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 0.009168148, 0.3207482, -1.3107948)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n21" unique_id=354607069]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n21/CSGBox3D" unique_id=163007076]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n21" unique_id=292168722]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Pilares_escalera_L/Pilar_n21/CSGBox3D2" unique_id=365484726]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="pilar_r4" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=1254785417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.45399207, 0)
+radius = 0.19
+height = 0.05
+sides = 10
+
+[node name="pilar1_l" type="CSGCylinder3D" parent="Pilares_escalera_L" unique_id=1142385502]
+radius = 0.14
+height = 1.0
+sides = 10
+
+[node name="Barandales" type="CSGCombiner3D" parent="." unique_id=1346551701]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+use_collision = true
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="Barandales" unique_id=488991674]
+transform = Transform3D(-4.371139e-09, -6.6, 4.371139e-09, 0, -2.8849516e-07, -0.1, 0.1, -2.8849516e-07, 1.9106854e-16, -1.3378572, 2.9902675, -7.912811)
+mode = 1
+spin_degrees = 180.0
+spin_sides = 64
+
+[node name="Pilar_n13" type="CSGPolygon3D" parent="Barandales" unique_id=1594637547]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 1.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n13" unique_id=834533382]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n13/CSGBox3D" unique_id=1359899062]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n13" unique_id=479086309]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n13/CSGBox3D2" unique_id=842482773]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n29" type="CSGPolygon3D" parent="Barandales" unique_id=450224895]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -1.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n29" unique_id=1873699545]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n29/CSGBox3D" unique_id=930146101]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n29" unique_id=2003588511]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n29/CSGBox3D2" unique_id=1435533629]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n30" type="CSGPolygon3D" parent="Barandales" unique_id=92523731]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -2.2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n30" unique_id=1194843409]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n30/CSGBox3D" unique_id=689196725]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n30" unique_id=1471651379]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n30/CSGBox3D2" unique_id=71908766]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n31" type="CSGPolygon3D" parent="Barandales" unique_id=715783353]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -2.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n31" unique_id=2052717198]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n31/CSGBox3D" unique_id=1314539097]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n31" unique_id=71466705]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n31/CSGBox3D2" unique_id=437300807]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n32" type="CSGPolygon3D" parent="Barandales" unique_id=2111169790]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -3.2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n32" unique_id=224779342]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n32/CSGBox3D" unique_id=1268735049]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n32" unique_id=248240470]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n32/CSGBox3D2" unique_id=1426247895]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n33" type="CSGPolygon3D" parent="Barandales" unique_id=723832266]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -3.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n33" unique_id=935209183]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n33/CSGBox3D" unique_id=264858270]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n33" unique_id=2041629295]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n33/CSGBox3D2" unique_id=1959197517]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n34" type="CSGPolygon3D" parent="Barandales" unique_id=647402964]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -4.2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n34" unique_id=1895490519]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n34/CSGBox3D" unique_id=1878902210]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n34" unique_id=760546213]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n34/CSGBox3D2" unique_id=1202093398]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n35" type="CSGPolygon3D" parent="Barandales" unique_id=1730213939]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -4.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n35" unique_id=1835142081]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n35/CSGBox3D" unique_id=126072154]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n35" unique_id=1580984709]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n35/CSGBox3D2" unique_id=1412745181]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n36" type="CSGPolygon3D" parent="Barandales" unique_id=1965884166]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -5.2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n36" unique_id=607467539]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n36/CSGBox3D" unique_id=1100741720]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n36" unique_id=978790150]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n36/CSGBox3D2" unique_id=795454477]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n37" type="CSGPolygon3D" parent="Barandales" unique_id=942337459]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -5.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n37" unique_id=1578414167]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n37/CSGBox3D" unique_id=1512629246]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n37" unique_id=1076142681]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n37/CSGBox3D2" unique_id=457600175]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n38" type="CSGPolygon3D" parent="Barandales" unique_id=2051401880]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -6.2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n38" unique_id=1367804641]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n38/CSGBox3D" unique_id=1259016206]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n38" unique_id=993437918]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n38/CSGBox3D2" unique_id=614497936]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n39" type="CSGPolygon3D" parent="Barandales" unique_id=1582439705]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -6.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n39" unique_id=1259890031]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n39/CSGBox3D" unique_id=1365828883]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n39" unique_id=1411720821]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n39/CSGBox3D2" unique_id=1760935483]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n40" type="CSGPolygon3D" parent="Barandales" unique_id=229468948]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -7.2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n40" unique_id=162998630]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n40/CSGBox3D" unique_id=641716632]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n40" unique_id=1972370886]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n40/CSGBox3D2" unique_id=359075536]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n41" type="CSGPolygon3D" parent="Barandales" unique_id=1559460725]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, -7.7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n41" unique_id=867359719]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n41/CSGBox3D" unique_id=1252838808]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n41" unique_id=1626748757]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n41/CSGBox3D2" unique_id=1598626957]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n14" type="CSGPolygon3D" parent="Barandales" unique_id=680211814]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 2, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n14" unique_id=868728887]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n14/CSGBox3D" unique_id=1652262134]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n14" unique_id=966241935]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n14/CSGBox3D2" unique_id=192270103]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n15" type="CSGPolygon3D" parent="Barandales" unique_id=1073622277]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 2.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n15" unique_id=1891009133]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n15/CSGBox3D" unique_id=327208270]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n15" unique_id=1275412278]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n15/CSGBox3D2" unique_id=1374864726]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n16" type="CSGPolygon3D" parent="Barandales" unique_id=1064603687]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 3, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n16" unique_id=1598412247]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n16/CSGBox3D" unique_id=1315600292]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n16" unique_id=696653340]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n16/CSGBox3D2" unique_id=1869683096]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n17" type="CSGPolygon3D" parent="Barandales" unique_id=1962060961]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 3.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n17" unique_id=1999457585]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n17/CSGBox3D" unique_id=2102756382]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n17" unique_id=1495019072]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n17/CSGBox3D2" unique_id=996638681]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n18" type="CSGPolygon3D" parent="Barandales" unique_id=111957457]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 4, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n18" unique_id=1294351848]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n18/CSGBox3D" unique_id=1790280561]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n18" unique_id=719117615]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n18/CSGBox3D2" unique_id=710727068]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n19" type="CSGPolygon3D" parent="Barandales" unique_id=630015686]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 4.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n19" unique_id=778392621]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n19/CSGBox3D" unique_id=896382940]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n19" unique_id=690191216]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n19/CSGBox3D2" unique_id=438488635]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n20" type="CSGPolygon3D" parent="Barandales" unique_id=950937422]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n20" unique_id=40864332]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n20/CSGBox3D" unique_id=537698819]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n20" unique_id=297363468]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n20/CSGBox3D2" unique_id=248084076]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n21" type="CSGPolygon3D" parent="Barandales" unique_id=397665109]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 5.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n21" unique_id=1053298624]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n21/CSGBox3D" unique_id=1907784397]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n21" unique_id=891985752]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n21/CSGBox3D2" unique_id=712555678]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n24" type="CSGPolygon3D" parent="Barandales" unique_id=2116938742]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 7, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n24" unique_id=1012618485]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n24/CSGBox3D" unique_id=426321023]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n24" unique_id=595922340]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n24/CSGBox3D2" unique_id=480689565]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="Barandales" unique_id=1873740348]
+transform = Transform3D(-4.371139e-09, -8.1, 4.371139e-09, 0, -3.5406225e-07, -0.1, 0.1, -3.5406225e-07, 1.9106854e-16, 9.288147, 2.990268, -7.9128103)
+mode = 1
+spin_degrees = 180.0
+spin_sides = 64
+
+[node name="Pilar_n28" type="CSGPolygon3D" parent="Barandales" unique_id=1074283086]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 9, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n28" unique_id=1473286896]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n28/CSGBox3D" unique_id=2027019355]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n28" unique_id=1850764415]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n28/CSGBox3D2" unique_id=21362943]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n27" type="CSGPolygon3D" parent="Barandales" unique_id=1431945914]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n27" unique_id=1955796552]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n27/CSGBox3D" unique_id=1479311790]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n27" unique_id=534023513]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n27/CSGBox3D2" unique_id=103551491]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n26" type="CSGPolygon3D" parent="Barandales" unique_id=112393572]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 8, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n26" unique_id=1675301549]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n26/CSGBox3D" unique_id=1759606371]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n26" unique_id=1536004093]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n26/CSGBox3D2" unique_id=1362213215]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n25" type="CSGPolygon3D" parent="Barandales" unique_id=40873258]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 7.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n25" unique_id=381547146]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n25/CSGBox3D" unique_id=608614765]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n25" unique_id=1039129220]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n25/CSGBox3D2" unique_id=1012803065]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n23" type="CSGPolygon3D" parent="Barandales" unique_id=1616470367]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 6.5, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n23" unique_id=1298959685]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n23/CSGBox3D" unique_id=1124068619]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n23" unique_id=1168375831]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n23/CSGBox3D2" unique_id=2082373159]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="Pilar_n22" type="CSGPolygon3D" parent="Barandales" unique_id=1975000322]
+transform = Transform3D(0.06, 0, 0, 0, 0.8, 0, 0, 0, 0.06, 6, 2.156, -7.902)
+polygon = PackedVector2Array(0, 0, 0, 0.5, 0, 0.7, 0, 1, 1, 1, 0.93188477, 0.8168202, 0.80096436, 0.5976965, 0.89157104, 0.32540303, 0.95114136, 0.087524235, 0.8736572, -0.0011541247)
+mode = 1
+spin_degrees = 360.0
+spin_sides = 64
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Barandales/Pilar_n22" unique_id=1195841878]
+transform = Transform3D(2.3, 0, 0, 0, 0.08, 0, 0, 0, 2.3, 0, 0.98773, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n22/CSGBox3D" unique_id=1882244130]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n22" unique_id=875628316]
+transform = Transform3D(2.3, 0, 0, 0, -0.08, 2.0107238e-07, 0, -6.993822e-09, -2.3, 0, 0.0031259358, -4.3998982e-09)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Barandales/Pilar_n22/CSGBox3D2" unique_id=2003668397]
+transform = Transform3D(0.8695652, 0, 0, 0, 1, 0, 0, 0, 0.8695652, 0, -0.69718647, 0)
+
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1244462101]
 stream = ExtResource("3_8paen")
 volume_db = 40.373
@@ -145,7 +1384,7 @@ transform = Transform3D(-3.580627e-08, 0.92731726, 0.37427628, 1, 2.3819991e-08,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.647496, -0.5075007, -4.883026)
 
 [node name="VentanaB" parent="Decoraciones" unique_id=1030666818 instance=ExtResource("5_2b8qf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4.285603, -0.71446854, 3.3826122)
+transform = Transform3D(-1.9, 0, -2.8689203e-07, 0, 1.9, 0, 2.8689203e-07, 0, -1.9, -4.003, -0.6, 3.383)
 
 [node name="VentanaB5" parent="Decoraciones" unique_id=680730536 instance=ExtResource("5_2b8qf")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.883221, -0.71446854, -2.568254)
@@ -157,7 +1396,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -14.
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.979791, -0.71446854, -11.410432)
 
 [node name="VentanaB2" parent="Decoraciones" unique_id=902894656 instance=ExtResource("5_2b8qf")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.426784, -0.71446854, 3.3826113)
+transform = Transform3D(-1.9, 0, -2.8689203e-07, 0, 1.9, 0, 2.8689203e-07, 0, -1.9, 5.492, -0.6, 3.383)
 
 [node name="VentanaB3" parent="Decoraciones" unique_id=746165829 instance=ExtResource("5_2b8qf")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -11.813339, -0.71446854, 3.3826127)
@@ -201,16 +1440,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9923978, -0.5070312, -13.59
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.9923978, -0.5070312, -7.5501404)
 
 [node name="VelasB" parent="Decoraciones" unique_id=509023667 instance=ExtResource("12_oxy0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.300887, -0.49679965, -1.5238209)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.300887, -0.42508334, -1.5238209)
 
 [node name="VelasB2" parent="Decoraciones" unique_id=62853121 instance=ExtResource("12_oxy0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.147933, -0.49679965, -4.947344)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.078133, -0.42978305, -5.1710987)
 
 [node name="VelasB3" parent="Decoraciones" unique_id=2017800501 instance=ExtResource("12_oxy0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.914535, -0.49679965, -5.06209)
+transform = Transform3D(0.31848243, 0, -0.9479288, 0, 1, 0, 0.9479288, 0, 0.31848243, -10.909834, -0.4258768, -5.0480986)
 
 [node name="VelasB4" parent="Decoraciones" unique_id=1737900892 instance=ExtResource("12_oxy0g")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.483138, 0.29848844, -5.06209)
+
+[node name="CajaB1" parent="Decoraciones" unique_id=740607470 instance=ExtResource("13_bxf66")]
+transform = Transform3D(0.99026805, 0, 0.1391731, 0, 1, 0, -0.1391731, 0, 0.99026805, -10.228455, -0.4028089, -4.929227)
+
+[node name="CajaB2" parent="Decoraciones" unique_id=1896520557 instance=ExtResource("13_bxf66")]
+transform = Transform3D(0.73803544, 0, 0.67476195, 0, 1, 0, -0.67476195, 0, 0.73803544, -9.231447, -0.4028089, -4.8296075)
+
+[node name="CajaB3" parent="Decoraciones" unique_id=48169808 instance=ExtResource("13_bxf66")]
+transform = Transform3D(0.73803544, 0, 0.67476195, 0, 1, 0, -0.67476195, 0, 0.73803544, -13.695677, -0.4028089, -0.7481065)
 
 [node name="Infraestructura2" type="Node3D" parent="." unique_id=1072502362]
 
@@ -229,10 +1477,10 @@ size = Vector3(0.207, 3.055, 6.062)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Infraestructura2/Interiores_piso2/CSGBox3D9" unique_id=1887448776]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.48880398, 0.016057014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.16812527, 0.016057014)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.455, 1.3)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Infraestructura2/Interiores_piso2" unique_id=1812820002]
@@ -245,6 +1493,13 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4914918, 3.8183303, 3.5190053)
 use_collision = true
 size = Vector3(0.207, 3.0305665, 31.187012)
+material = SubResource("StandardMaterial3D_2am08")
+
+[node name="CSGBox3D11" type="CSGBox3D" parent="Infraestructura2/Paredes_generales_piso2" unique_id=2076685381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.027586937, -1.4084067, 0.33184525)
+operation = 2
+use_collision = true
+size = Vector3(0.323, 0.7393931, 2.0420165)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Infraestructura2/Paredes_generales_piso2" unique_id=273797454]
@@ -274,18 +1529,20 @@ size = Vector3(30, 0.17492676, 17.602783)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2736835, -5.173706)
 use_collision = true
 size = Vector3(30, 0.17492676, 17.602783)
+material = SubResource("StandardMaterial3D_g8vr4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Infraestructura2/Piso2" unique_id=274745085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75585747, 0.009033203, 3.0215302)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.75585747, 0.009033203, 3.1287766)
 operation = 2
-size = Vector3(17.501698, 1, 11.325897)
+size = Vector3(17.501698, 1, 11.54039)
 
 [node name="Infraestructura1" type="Node3D" parent="." unique_id=1065421423]
 
 [node name="Piso" type="CSGBox3D" parent="Infraestructura1" unique_id=1769724190]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -5.173706)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09569335, -0.8982507, -5.407249)
 use_collision = true
-size = Vector3(30, 1, 17.602783)
+size = Vector3(31.162964, 1, 18.09021)
+material = SubResource("StandardMaterial3D_d3gba")
 
 [node name="Interiores_1" type="Node3D" parent="Infraestructura1" unique_id=221507778]
 
@@ -296,10 +1553,10 @@ size = Vector3(0.207, 3.055, 6.062)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Infraestructura1/Interiores_1/CSGBox3D8" unique_id=356468704]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.48880398, 0.016057014)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.20214748, 0.016057014)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Interiores" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1764229787]
@@ -309,16 +1566,23 @@ size = Vector3(0.207, 3.0747788, 24.588257)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Interiores" unique_id=1484621846]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.346008e-05, -0.4411388, -8.672477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.346008e-05, -0.1284846, -8.672477)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.792596, 2.106543)
+size = Vector3(0.323, 2.418, 2.5)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_der" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1396657341]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.424101, 0.82541335, -2.8214517)
 use_collision = true
 size = Vector3(0.207, 3.098291, 12.508911)
+material = SubResource("StandardMaterial3D_2am08")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_der" unique_id=730843880]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0.027589828, -0.14024067, 0.52225685)
+operation = 2
+use_collision = true
+size = Vector3(0.323, 2.418, 2.5)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_der" unique_id=1094011647]
@@ -331,7 +1595,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.17209584, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.8902522, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_der" unique_id=1576278853]
@@ -341,10 +1605,10 @@ size = Vector3(0.207, 3.3263183, 4.739263)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_der/CSGBox3D6" unique_id=680286443]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.33932889, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.21465966, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_pequeña" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1489364994]
@@ -354,10 +1618,10 @@ size = Vector3(0.207, 3.1980762, 2.192)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_pequeña" unique_id=695388476]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.5546642, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.27295482, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.8917171, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_inicial" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1434409737]
@@ -379,10 +1643,10 @@ size = Vector3(0.207, 3.2521842, 5.678)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_inicial/CSGBox3D5" unique_id=1760595478]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.511122, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034, -0.2, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.7599967, 1.3)
+size = Vector3(0.323, 2.401, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1388313363]
@@ -398,10 +1662,10 @@ size = Vector3(0.207, 3.0305665, 31.187012)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D10" type="CSGBox3D" parent="Infraestructura1/Paredes_generales" unique_id=168179197]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015334606, -0.48276478, 0.29958197)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.015334606, 0.07112408, 0.32826743)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.9307796, 2.106543)
+size = Vector3(0.323, 3.038557, 2.0491722)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Infraestructura1/Paredes_generales" unique_id=1281572515]
@@ -421,3 +1685,40 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 8.76
 use_collision = true
 size = Vector3(0.207, 3.135779, 17.70868)
 material = SubResource("StandardMaterial3D_2am08")
+
+[node name="AMBIENTACION GENERAL" type="Node3D" parent="." unique_id=1624429756]
+transform = Transform3D(0.8, 0, 0, 0, 0.8, 0, 0, 0, 0.8, 0.45, 5.183343, -2.3392286)
+
+[node name="CandelabroC" parent="AMBIENTACION GENERAL" unique_id=1617405853 instance=ExtResource("15_mbg8w")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -0.021139622, 0, 0)
+parpadeo = 0.1
+color_pista = Color(1, 0.06, 0.04, 1)
+
+[node name="Elementos_piso1" type="Node3D" parent="." unique_id=242225800]
+
+[node name="Periodico" parent="Elementos_piso1" unique_id=959528535 instance=ExtResource("16_am2ja")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.062643, 0.30255258, -5.082306)
+encabezado = "VALDIVIA — MARTES 14 DE OCTUBRE"
+titulo = "EL ENIGMA EBNER: SEIS DESAPARECIDOS SIN RASTRO"
+cuerpo = "Vista por última vez en la gélida noche del viernes cruzando los portones oxidados de la propiedad, Elena Rivas (23) es ya la sexta persona desaparecida este año cerca de la infame mansión Ebner, abandonada desde 1994.
+
+Aunque la policía inspeccionó la finca sin éxito, el terror local crece al caer la noche.
+
+Vecinos aterrados aseguran ver extraños destellos rojos y azules filtrándose de madrugada por las ventanas tapadas. «Esa luz no es normal, es como si buscaran algo oculto allí dentro», relató un testigo."
+
+[node name="Puerta" parent="Elementos_piso1" unique_id=316727176 instance=ExtResource("16_0km02")]
+transform = Transform3D(-2, 0, 3.019916e-07, 0, 2, 0, -3.019916e-07, 0, -2, 0.8080822, -0.4213693, 3.4951441)
+secreta = false
+llave_id = "salida"
+requiere_energia = true
+
+[node name="Item" parent="Elementos_piso1" unique_id=499124648 instance=ExtResource("17_g8vr4")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.548378, 0.3162991, -4.670032)
+
+[node name="PuertaInicial" parent="Elementos_piso1" unique_id=910849463 instance=ExtResource("16_0km02")]
+transform = Transform3D(-6.119594e-08, 0, -1.4, 0, 1.35, 0, 1.4, 0, -6.119594e-08, -8.057649, -0.3739814, -2.7895594)
+secreta = false
+termina_nivel = false
+
+[node name="Guion" type="Node" parent="." unique_id=1601820228]
+script = ExtResource("18_eti0j")

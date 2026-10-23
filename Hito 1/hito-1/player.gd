@@ -12,6 +12,7 @@ signal evento(nombre: String)
 @export var ground_accel: float = 14.0
 @export var air_accel: float = 4.0
 @export var crouch_height: float = 1.2
+@export var factor_escala: float = 1
 
 @export_group("Camara")
 @export var bob_amount: float = 0.035
@@ -63,6 +64,13 @@ func _ready() -> void:
 	# Atrapa y oculta el mouse dentro de la ventana al iniciar el juego
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	_capsule = collision.shape.duplicate() as CapsuleShape3D
+	# --- NUEVO CÓDIGO PARA ESCALAR ---
+	_capsule.height *= factor_escala
+	_capsule.radius *= factor_escala
+	head.position.y *= factor_escala
+	crouch_height *= factor_escala
+	# ---------------------------------
+	
 	collision.shape = _capsule
 	_stand_height = _capsule.height
 	_head_base_y = head.position.y
