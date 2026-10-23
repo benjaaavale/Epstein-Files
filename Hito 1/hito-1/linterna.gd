@@ -22,6 +22,10 @@ var channel_masks: Dictionary = {
 	Channel.VIOLET: 1 + 8     
 }
 
+## Colores disponibles. En false, el color no aparece en el HUD ni se puede elegir.
+## combo_unlocked es la luz morada. Se pueden cambiar desde otro script (linterna.rojo_unlocked = false).
+var rojo_unlocked: bool = true
+var azul_unlocked: bool = true
 var combo_unlocked: bool = true
 
 ## Bateria: las luces de color la gastan, la blanca no (y la recupera un poco).
@@ -102,17 +106,33 @@ func _process(delta: float) -> void:
 
 func _input(event: InputEvent) -> void:
 	# Clic derecho rota las luces; Shift + clic derecho activa/desactiva la morada
-	if event.is_action_pressed("CambioColorR"):
-		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
+	# Clic izquierdo rota hacia la izquierda; Shift + clic activa/desactiva la morada
+	var derecha: bool = event.is_action_pressed("CambioColorR")
+	if not derecha and not event.is_action_pressed("CambioColorI"):
+		return
+	if Input.is_action_pressed("ModificadorColor"):
+		if combo_unlocked:
 			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
-		else:
-			set_channel(SIGUIENTE[current_channel])
-			# Clic izquierdo rota las luces hacia la izquierda; Shift + clic activa/desactiva la morada
-	elif event.is_action_pressed("CambioColorI"):
-		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
-			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
-		else:
-			set_channel(ANTERIOR[current_channel])
+		return
+	var tabla: Dictionary = SIGUIENTE if derecha else ANTERIOR
+	var canal: Channel = tabla[current_channel]
+	# salta los colores bloqueados
+	for i in 4:
+		if disponible(canal):
+			break
+		canal = tabla[canal]
+	set_channel(canal)
+
+
+func disponible(canal: Channel) -> bool:
+	match canal:
+		Channel.RED:
+			return rojo_unlocked
+		Channel.BLUE:
+			return azul_unlocked
+		Channel.VIOLET:
+			return combo_unlocked
+	return true
 
 func set_channel(channel: Channel) -> void:
 	if current_channel == channel:
@@ -136,6 +156,9 @@ func set_channel(channel: Channel) -> void:
 
 
 func _actualizar_bateria(delta: float) -> void:
+	# si bloquean el color que esta en uso, vuelve a la luz blanca
+	if not disponible(current_channel):
+		set_channel(Channel.WHITE)
 	var gasto: float = GASTO[current_channel]
 	if gasto > 0.0:
 		bateria = maxf(bateria - gasto * delta, 0.0)

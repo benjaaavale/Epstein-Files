@@ -100,8 +100,9 @@ func _process(delta: float) -> void:
 		if canal != _lente_canal:
 			_on_lente_cambiado(canal)
 		_bateria.nivel = linterna.bateria
-		if _lente_rueda.mostrar_morada != linterna.combo_unlocked:
-			_lente_rueda.mostrar_morada = linterna.combo_unlocked
+		var visibles: Array[bool] = [true, linterna.rojo_unlocked, linterna.azul_unlocked, linterna.combo_unlocked]
+		if _lente_rueda.visibles != visibles:
+			_lente_rueda.visibles = visibles
 			_lente_rueda.queue_redraw()
 	if _cinematica:
 		return
@@ -721,18 +722,24 @@ class RuedaLentes extends Control:
 	var colores: Array[Color] = []
 	var activo := 0
 	var pulso := 0.0
-	var mostrar_morada := true
+	# blanco, rojo, azul, morado: cuales se dibujan (los ocultos no dejan hueco)
+	var visibles: Array[bool] = [true, true, true, true]
 
 	func _x(i: int) -> float:
-		return 12.0 + i * 38.0 + (26.0 if i == 3 else 0.0)
+		var lugar := 0
+		for j in i:
+			if visibles[j]:
+				lugar += 1
+		return 12.0 + lugar * 38.0 + (26.0 if i == 3 else 0.0)
 
 	func _draw() -> void:
 		var cy := 14.0
-		var cantidad := 4 if mostrar_morada else 3
-		if mostrar_morada:
-			var sx := (_x(2) + _x(3)) * 0.5
+		if visibles[3]:
+			var sx := _x(3) - 19.0
 			draw_line(Vector2(sx, cy - 8.0), Vector2(sx, cy + 8.0), Color(HUESO_C, 0.15), 1.0, true)
-		for i in cantidad:
+		for i in 4:
+			if not visibles[i]:
+				continue
 			var p := Vector2(_x(i), cy)
 			var col: Color = colores[i]
 			if i == activo:
