@@ -22,7 +22,7 @@ var channel_masks: Dictionary = {
 	Channel.VIOLET: 1 + 8     
 }
 
-var combo_unlocked: bool = true
+var combo_unlocked: bool = false
 
 ## Bateria: las luces de color la gastan, la blanca no (y la recupera un poco).
 signal bateria_agotada
@@ -55,19 +55,22 @@ const ENERGIAS := {
 	Channel.VIOLET: 2.8,
 }
 
-const SIGUIENTE := {
-	Channel.WHITE: Channel.RED,
-	Channel.RED: Channel.BLUE,
-	Channel.BLUE: Channel.WHITE,
-	Channel.VIOLET: Channel.WHITE,
-}
 
-const ANTERIOR = {
-	Channel.RED: Channel.WHITE,
-	Channel.BLUE: Channel.RED,
-	Channel.WHITE: Channel.BLUE,
-	Channel.VIOLET: Channel.WHITE,
-}
+
+var colores_disponibles: Array[Channel] = [Channel.WHITE] # Inicia solo con el blanco
+
+func desbloquear_rojo() -> void:
+	if not colores_disponibles.has(Channel.RED):
+		colores_disponibles.append(Channel.RED)
+		colores_disponibles.sort() # Ordena para mantener el ciclo: Blanco -> Rojo -> Azul
+
+func desbloquear_azul() -> void:
+	if not colores_disponibles.has(Channel.BLUE):
+		colores_disponibles.append(Channel.BLUE)
+		colores_disponibles.sort()
+
+func desbloquear_violeta() -> void:
+	combo_unlocked = true
 
 func _ready() -> void:
 	spot_light_3d.spot_angle = ANGULOS[current_channel]
@@ -101,18 +104,31 @@ func _process(delta: float) -> void:
 # ----------------------------------------------------------
 
 func _input(event: InputEvent) -> void:
-	# Clic derecho rota las luces; Shift + clic derecho activa/desactiva la morada
 	if event.is_action_pressed("CambioColorR"):
 		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
 			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
 		else:
-			set_channel(SIGUIENTE[current_channel])
-			# Clic izquierdo rota las luces hacia la izquierda; Shift + clic activa/desactiva la morada
+			set_channel(_obtener_canal(1)) # 1 significa avanzar
+			
 	elif event.is_action_pressed("CambioColorI"):
 		if Input.is_action_pressed("ModificadorColor") and combo_unlocked:
 			set_channel(Channel.WHITE if current_channel == Channel.VIOLET else Channel.VIOLET)
 		else:
-			set_channel(ANTERIOR[current_channel])
+			set_channel(_obtener_canal(-1)) # -1 significa retroceder
+
+# Esta función calcula qué color sigue dependiendo de los que ya recogiste
+func _obtener_canal(direccion: int) -> Channel:
+	var index := colores_disponibles.find(current_channel)
+	
+	# Si estamos en luz violeta y rotamos normal, volvemos a la blanca (0)
+	if index == -1: 
+		index = 0
+		
+	var nuevo_index := (index + direccion) % colores_disponibles.size()
+	if nuevo_index < 0:
+		nuevo_index += colores_disponibles.size()
+		
+	return colores_disponibles[nuevo_index]
 
 func set_channel(channel: Channel) -> void:
 	if current_channel == channel:

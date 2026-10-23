@@ -30,6 +30,7 @@
 [ext_resource type="Texture2D" uid="uid://dvuhsknff13d4" path="res://assets varios/Assets importados/Sin título.jpg" id="28_x0htn"]
 [ext_resource type="Script" uid="uid://cv2l1riekmx4a" path="res://scream.gd" id="29_cxjhc"]
 [ext_resource type="AudioStream" uid="uid://cvtd57p0bfxg8" path="res://assets varios/Assets importados/dragon-studio-scary-scream-401725.mp3" id="30_croep"]
+[ext_resource type="PackedScene" uid="uid://fpdharxb0cfx" path="res://filtro_linterna.tscn" id="31_cxjhc"]
 
 [sub_resource type="ShaderMaterial" id="Mat_codigo"]
 render_priority = 0
@@ -68,6 +69,12 @@ shader_parameter/mask_size = Vector2(1, 1)
 
 [sub_resource type="QuadMesh" id="Mesh_mano"]
 size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxjhc"]
+albedo_color = Color(0.03529412, 0, 0.7019608, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_croep"]
+material = SubResource("StandardMaterial3D_cxjhc")
 
 [node name="Node3D" type="Node3D" unique_id=1920783068]
 
@@ -431,3 +438,15 @@ tiempo_visible = 3.0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Sprite3D2" unique_id=1771397015]
 stream = ExtResource("30_croep")
 volume_db = 24.0
+
+[node name="FiltroRojo" parent="." unique_id=1025154767 instance=ExtResource("31_cxjhc")]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, -1.282557, 0.97589403, 1.5821422)
+
+[node name="FiltroAzul" parent="." unique_id=1355725785 instance=ExtResource("31_cxjhc")]
+transform = Transform3D(0.05, 0, 0, 0, -2.1855695e-09, -0.05, 0, 0.05, -2.1855695e-09, 3.1342335, 1.2857628, 3.2786477)
+color_a_desbloquear = 1
+
+[node name="MeshInstance3D" parent="FiltroAzul" index="0" unique_id=2069405055]
+mesh = SubResource("CapsuleMesh_croep")
+
+[editable path="FiltroAzul"]
