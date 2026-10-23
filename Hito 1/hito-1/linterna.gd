@@ -22,11 +22,48 @@ var channel_masks: Dictionary = {
 	Channel.VIOLET: 1 + 8     
 }
 
+const SIGUIENTE := {
+	Channel.WHITE: Channel.RED,
+	Channel.RED: Channel.BLUE,
+	Channel.BLUE: Channel.WHITE,
+	Channel.VIOLET: Channel.WHITE,
+}
+
+const ANTERIOR = {
+	Channel.RED: Channel.WHITE,
+	Channel.BLUE: Channel.RED,
+	Channel.WHITE: Channel.BLUE,
+	Channel.VIOLET: Channel.WHITE,
+}
+
 ## Colores disponibles. En false, el color no aparece en el HUD ni se puede elegir.
-## combo_unlocked es la luz morada. Se pueden cambiar desde otro script (linterna.rojo_unlocked = false).
-var rojo_unlocked: bool = true
-var azul_unlocked: bool = true
-var combo_unlocked: bool = true
+## Arrancan bloqueados: solo hay luz blanca hasta recoger los filtros (FiltroLinterna).
+## combo_unlocked es la luz morada. Tambien se pueden cambiar a mano (linterna.rojo_unlocked = true).
+var rojo_unlocked: bool = false
+var azul_unlocked: bool = false
+var combo_unlocked: bool = false
+
+## Lista de colores del ciclo (blanco, rojo, azul), segun lo desbloqueado.
+var colores_disponibles: Array[Channel]:
+	get:
+		var lista: Array[Channel] = [Channel.WHITE]
+		if rojo_unlocked:
+			lista.append(Channel.RED)
+		if azul_unlocked:
+			lista.append(Channel.BLUE)
+		return lista
+
+
+func desbloquear_rojo() -> void:
+	rojo_unlocked = true
+
+
+func desbloquear_azul() -> void:
+	azul_unlocked = true
+
+
+func desbloquear_violeta() -> void:
+	combo_unlocked = true
 
 ## Bateria: las luces de color la gastan, la blanca no (y la recupera un poco).
 signal bateria_agotada
@@ -59,19 +96,22 @@ const ENERGIAS := {
 	Channel.VIOLET: 2.8,
 }
 
-const SIGUIENTE := {
-	Channel.WHITE: Channel.RED,
-	Channel.RED: Channel.BLUE,
-	Channel.BLUE: Channel.WHITE,
-	Channel.VIOLET: Channel.WHITE,
-}
 
-const ANTERIOR = {
-	Channel.RED: Channel.WHITE,
-	Channel.BLUE: Channel.RED,
-	Channel.WHITE: Channel.BLUE,
-	Channel.VIOLET: Channel.WHITE,
-}
+
+var colores_disponibles: Array[Channel] = [Channel.WHITE] # Inicia solo con el blanco
+
+func desbloquear_rojo() -> void:
+	if not colores_disponibles.has(Channel.RED):
+		colores_disponibles.append(Channel.RED)
+		colores_disponibles.sort() # Ordena para mantener el ciclo: Blanco -> Rojo -> Azul
+
+func desbloquear_azul() -> void:
+	if not colores_disponibles.has(Channel.BLUE):
+		colores_disponibles.append(Channel.BLUE)
+		colores_disponibles.sort()
+
+func desbloquear_violeta() -> void:
+	combo_unlocked = true
 
 func _ready() -> void:
 	spot_light_3d.spot_angle = ANGULOS[current_channel]

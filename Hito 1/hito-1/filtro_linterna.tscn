@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://fpdharxb0cfx"]
+
+[ext_resource type="Script" uid="uid://ca1wqn8nvmfch" path="res://filtro_linterna.gd" id="1_ey64w"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y8pn2"]
+albedo_color = Color(0.5294118, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cxjhc"]
+material = SubResource("StandardMaterial3D_y8pn2")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_croep"]
+
+[node name="FiltroLinterna" type="StaticBody3D" unique_id=1025154767]
+transform = Transform3D(0.1, 0, 0, 0, -4.371139e-09, -0.1, 0, 0.1, -4.371139e-09, 0, 0, 0)
+script = ExtResource("1_ey64w")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2069405055]
+mesh = SubResource("CapsuleMesh_cxjhc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=252934868]
+shape = SubResource("CapsuleShape3D_croep")
