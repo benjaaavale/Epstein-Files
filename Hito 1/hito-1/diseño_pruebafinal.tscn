@@ -280,6 +280,7 @@ material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Techo" type="CSGBox3D" parent="Infraestructura2" unique_id=1037861608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2744117, -5.173706)
+visible = false
 use_collision = true
 size = Vector3(30, 0.17492676, 17.602783)
 
@@ -313,7 +314,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.018610477, -0.20214748, 0.016057014)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 2.3333097, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Interiores" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1764229787]
@@ -326,7 +327,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.346008e-05, -0.1284846, -8.672477)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 2.4179044, 2.106543)
+size = Vector3(0.323, 2.418, 2.5)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_der" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1396657341]
@@ -345,7 +346,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.17209584, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 1.8902522, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="Infraestructura1/Interiores_1/Habitacion_der" unique_id=1576278853]
@@ -358,7 +359,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.21465966, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 2.009335, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_pequeña" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1489364994]
@@ -371,7 +372,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034297943, -0.27295482, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 2.4551358, 1.3)
+size = Vector3(0.323, 2.455, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Habitacion_inicial" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1434409737]
@@ -396,7 +397,7 @@ material = SubResource("StandardMaterial3D_2am08")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.034, -0.2, 0)
 operation = 2
 use_collision = true
-size = Vector3(0.323, 2.4006925, 1.3)
+size = Vector3(0.323, 2.401, 1.45)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Infraestructura1/Interiores_1" unique_id=1388313363]
