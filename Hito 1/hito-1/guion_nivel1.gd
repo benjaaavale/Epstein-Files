@@ -99,7 +99,7 @@ func _on_evento(nombre: String) -> void:
 			if _nota != null and _nota.leido:
 				_decir_una_vez("nota", ["Cuatro retratos en la sala del este...", "Y la llave que dejó a la vista es una trampa."])
 			else:
-				_decir_una_vez("noticia", ["La mansión Shade... Estoy dentro de la casa de la noticia."])
+				_decir_una_vez("noticia", ["La mansión Ebner... Estoy dentro de la casa de la noticia."])
 		"objeto_tomado":
 			var en_mano: Item = _player.held_item
 			if en_mano != null and en_mano.abre != "":
