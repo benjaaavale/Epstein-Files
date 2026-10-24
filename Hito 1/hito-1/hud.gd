@@ -99,12 +99,22 @@ func _process(delta: float) -> void:
 		var canal := int(linterna.current_channel)
 		if canal != _lente_canal:
 			_on_lente_cambiado(canal)
+			
 		_bateria.nivel = linterna.bateria
+		
+		# --- ESTA ES LA PARTE CLAVE QUE ACTUALIZA LA LISTA ---
+		if _lente_rueda.disponibles.size() != linterna.colores_disponibles.size():
+			_lente_rueda.disponibles = linterna.colores_disponibles.duplicate()
+			_lente_rueda.queue_redraw() # Obliga a redibujar si recogiste un filtro nuevo
+		# -----------------------------------------------------
+			
 		if _lente_rueda.mostrar_morada != linterna.combo_unlocked:
 			_lente_rueda.mostrar_morada = linterna.combo_unlocked
 			_lente_rueda.queue_redraw()
+			
 	if _cinematica:
 		return
+		
 	_lente_inactivo += delta
 	var alfa := 1.0 if _lente_inactivo < SEGUNDOS_INACTIVO else 0.5
 	_lente.modulate.a = move_toward(_lente.modulate.a, alfa, delta * 1.2)
@@ -722,6 +732,9 @@ class RuedaLentes extends Control:
 	var activo := 0
 	var pulso := 0.0
 	var mostrar_morada := true
+	
+	# ¡ESTA ES LA LÍNEA QUE FALTABA!
+	var disponibles: Array = [] 
 
 	func _x(i: int) -> float:
 		return 12.0 + i * 38.0 + (26.0 if i == 3 else 0.0)
@@ -732,9 +745,25 @@ class RuedaLentes extends Control:
 		if mostrar_morada:
 			var sx := (_x(2) + _x(3)) * 0.5
 			draw_line(Vector2(sx, cy - 8.0), Vector2(sx, cy + 8.0), Color(HUESO_C, 0.15), 1.0, true)
+		
 		for i in cantidad:
+			# Revisamos si está desbloqueado antes de dibujar
+			var esta_desbloqueado := false
+			
+			if i == 3: # El 3 es el índice del Morado (Shift)
+				esta_desbloqueado = mostrar_morada
+			else:
+				for c in disponibles:
+					if int(c) == i:
+						esta_desbloqueado = true
+						break
+						
+			if not esta_desbloqueado:
+				continue # Se salta este color y no dibuja absolutamente nada
+
 			var p := Vector2(_x(i), cy)
 			var col: Color = colores[i]
+			
 			if i == activo:
 				draw_circle(p, RADIO + 6.0 + pulso * 8.0, Color(col, 0.08 + 0.15 * pulso), true, -1.0, true)
 				draw_circle(p, RADIO * (1.0 + 0.3 * pulso), col, true, -1.0, true)
@@ -746,6 +775,7 @@ class RuedaLentes extends Control:
 						draw_line(e, e - Vector2(0.0, sy * 3.0), Color(HUESO_C, 0.8), 1.0, true)
 			else:
 				draw_arc(p, RADIO - 1.0, 0.0, TAU, 28, Color(col, 0.5), 1.3, true)
+				
 			var tecla: String = TECLAS[i]
 			var tam := 9 if tecla.length() > 1 else 11
 			var col_tecla := Color(HUESO_C, 0.85 if i == activo else 0.35)
