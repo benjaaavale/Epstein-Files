@@ -99,13 +99,16 @@ func _process(delta: float) -> void:
 		var canal := int(linterna.current_channel)
 		if canal != _lente_canal:
 			_on_lente_cambiado(canal)
+			
 		_bateria.nivel = linterna.bateria
 		var visibles: Array[bool] = [true, linterna.rojo_unlocked, linterna.azul_unlocked, linterna.combo_unlocked]
 		if _lente_rueda.visibles != visibles:
 			_lente_rueda.visibles = visibles
 			_lente_rueda.queue_redraw()
+			
 	if _cinematica:
 		return
+		
 	_lente_inactivo += delta
 	var alfa := 1.0 if _lente_inactivo < SEGUNDOS_INACTIVO else 0.5
 	_lente.modulate.a = move_toward(_lente.modulate.a, alfa, delta * 1.2)
@@ -742,6 +745,7 @@ class RuedaLentes extends Control:
 				continue
 			var p := Vector2(_x(i), cy)
 			var col: Color = colores[i]
+			
 			if i == activo:
 				draw_circle(p, RADIO + 6.0 + pulso * 8.0, Color(col, 0.08 + 0.15 * pulso), true, -1.0, true)
 				draw_circle(p, RADIO * (1.0 + 0.3 * pulso), col, true, -1.0, true)
@@ -753,6 +757,7 @@ class RuedaLentes extends Control:
 						draw_line(e, e - Vector2(0.0, sy * 3.0), Color(HUESO_C, 0.8), 1.0, true)
 			else:
 				draw_arc(p, RADIO - 1.0, 0.0, TAU, 28, Color(col, 0.5), 1.3, true)
+				
 			var tecla: String = TECLAS[i]
 			var tam := 9 if tecla.length() > 1 else 11
 			var col_tecla := Color(HUESO_C, 0.85 if i == activo else 0.35)
