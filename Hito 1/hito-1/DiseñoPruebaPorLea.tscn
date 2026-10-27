@@ -88,82 +88,106 @@ material = SubResource("StandardMaterial3D_croep")
 
 [node name="DEMO_Floor_Wood_02" parent="DEMO_Floor_Wood_01" unique_id=1324018238 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.040000003, 0, 0)
+visible = false
 
 [node name="DEMO_Floor_Wood_03" parent="DEMO_Floor_Wood_01" unique_id=423232061 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.040000003, -0.040000007, -1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_04" parent="DEMO_Floor_Wood_01" unique_id=126509853 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0, -0.040000007, -1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_05" parent="DEMO_Floor_Wood_01" unique_id=1949078289 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.040000003, -0.040000007, -1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_06" parent="DEMO_Floor_Wood_01" unique_id=1936468501 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.040000003, 0, 0)
+visible = false
 
 [node name="DEMO_Floor_Wood_07" parent="DEMO_Floor_Wood_01" unique_id=1327270238 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.080000006, 0, 0)
+visible = false
 
 [node name="DEMO_Floor_Wood_08" parent="DEMO_Floor_Wood_01" unique_id=731136619 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.080000006, -0.040000007, -1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_09" parent="DEMO_Floor_Wood_01" unique_id=1040484940 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.080000006, -0.08000001, -3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_10" parent="DEMO_Floor_Wood_01" unique_id=1596566756 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.040000003, -0.08000001, -3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_11" parent="DEMO_Floor_Wood_01" unique_id=1849894448 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0, -0.08000001, -3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_12" parent="DEMO_Floor_Wood_01" unique_id=1243985256 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.040000003, -0.08000001, -3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_13" parent="DEMO_Floor_Wood_01" unique_id=223943467 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.080000006, -0.08000001, -3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_14" parent="DEMO_Floor_Wood_01" unique_id=834766836 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.080000006, -0.040000007, -1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_15" parent="DEMO_Floor_Wood_01" unique_id=1919671019 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.080000006, 0, 0)
+visible = false
 
 [node name="DEMO_Floor_Wood_16" parent="DEMO_Floor_Wood_01" unique_id=1979219391 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.080000006, 0.040000007, 1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_17" parent="DEMO_Floor_Wood_01" unique_id=1652634957 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.080000006, 0.08000001, 3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_18" parent="DEMO_Floor_Wood_01" unique_id=384073164 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.040000003, 0.08000001, 3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_19" parent="DEMO_Floor_Wood_01" unique_id=246877454 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0.040000003, 0.040000007, 1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_20" parent="DEMO_Floor_Wood_01" unique_id=1471698315 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0, 0.040000007, 1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_21" parent="DEMO_Floor_Wood_01" unique_id=47526077 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, 0, 0.08000001, 3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_22" parent="DEMO_Floor_Wood_01" unique_id=236954237 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.040000003, 0.08000001, 3.8146982e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_23" parent="DEMO_Floor_Wood_01" unique_id=1010795380 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.040000003, 0.040000007, 1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_24" parent="DEMO_Floor_Wood_01" unique_id=818770348 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.080000006, 0.040000007, 1.9073491e-08)
+visible = false
 
 [node name="DEMO_Floor_Wood_25" parent="DEMO_Floor_Wood_01" unique_id=178023302 instance=ExtResource("1_fipnr")]
 transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, -1.4210855e-14, 0, 5.684342e-14, 1.0000001, -0.080000006, 0.08000001, 3.8146982e-08)
+visible = false
 
 [node name="DEMO_Wall_Plain_01" parent="." unique_id=1104805852 instance=ExtResource("2_lfp2q")]
 transform = Transform3D(20.05705, 0, 0, 0, -4.7819735e-06, 99.99999, 0, -20.057049, -2.3841858e-05, -9.9111595, 1.5926309, 6.104145)
 visible = true
 
 [node name="DEMO_Wall_Plain_02" parent="DEMO_Wall_Plain_01" unique_id=585796979 instance=ExtResource("2_lfp2q")]
-transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000002, 0, 0.19943115, 9.313226e-09)
+transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000004, 0.0032292604, 0.19943118, 9.313226e-09)
 
 [node name="DEMO_Wall_Plain_03" parent="DEMO_Wall_Plain_01" unique_id=460183743 instance=ExtResource("2_lfp2q")]
 transform = Transform3D(1, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000004, 0, 0.39886233, 1.8626451e-08)

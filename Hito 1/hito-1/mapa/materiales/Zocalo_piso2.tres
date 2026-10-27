@@ -1,0 +1,16 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cmi70abeok7l0"]
+
+[ext_resource type="Texture2D" uid="uid://dsfcgrwj1135m" path="res://mapa/texturas/paneles_madera.png" id="1_kc5ou"]
+[ext_resource type="Texture2D" uid="uid://bltdx28l6e3mm" path="res://mapa/texturas/madera_normal.png" id="2_bnocj"]
+
+[resource]
+resource_name = "zocalo2"
+albedo_texture = ExtResource("1_kc5ou")
+roughness = 0.75
+normal_enabled = true
+normal_scale = 0.5
+normal_texture = ExtResource("2_bnocj")
+uv1_offset = Vector3(0, 0.6, 0)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
+uv1_world_triplanar = true
