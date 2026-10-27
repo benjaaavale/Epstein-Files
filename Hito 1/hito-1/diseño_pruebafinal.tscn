@@ -1691,6 +1691,7 @@ material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Techo" type="CSGBox3D" parent="Infraestructura2" unique_id=1037861608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2744117, -5.173706)
+visible = false
 material_override = SubResource("StandardMaterial3D_1v7kk")
 use_collision = true
 size = Vector3(30, 0.17492676, 17.602783)
