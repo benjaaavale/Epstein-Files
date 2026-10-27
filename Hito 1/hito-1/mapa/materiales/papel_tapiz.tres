@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://ky5hd5hbwqc5"]
 
-[ext_resource type="Texture2D" path="res://mapa/texturas/papel_tapiz.png" id="1_pa2cp"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/piedra_normal.png" id="2_kglp8"]
+[ext_resource type="Texture2D" uid="uid://df7dxu8kb57e2" path="res://mapa/texturas/papel_tapiz.png" id="1_pa2cp"]
+[ext_resource type="Texture2D" uid="uid://pnhy3mqfxep1" path="res://mapa/texturas/piedra_normal.png" id="2_kglp8"]
 
 [resource]
 resource_name = "papel_tapiz"

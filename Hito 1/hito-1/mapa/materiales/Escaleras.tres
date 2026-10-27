@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://br3cspxfanw13"]
+
+[ext_resource type="Texture2D" uid="uid://c15s1ki4iovgi" path="res://assets varios/Planks037A_1K-JPG_Color.jpg" id="1_gkir3"]
+[ext_resource type="Texture2D" uid="uid://bigt8nsjv7emj" path="res://assets varios/rough_wood_nor_gl_2k.png" id="2_3ym85"]
+
+[resource]
+albedo_color = Color(0.4117647, 0.36078432, 0.10980392, 1)
+albedo_texture = ExtResource("1_gkir3")
+normal_enabled = true
+normal_scale = 2.98
+normal_texture = ExtResource("2_3ym85")
+uv1_scale = Vector3(3, 3, 3)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 6.0
