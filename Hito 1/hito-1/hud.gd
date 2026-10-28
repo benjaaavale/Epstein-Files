@@ -70,6 +70,15 @@ var _clic: AudioStreamPlayer
 
 var _destello: ColorRect
 
+#Cosas del inventario
+var _inventario_fila: HBoxContainer
+var _inv_fondos: Array[ColorRect] = []
+var _inv_iconos: Array[TextureRect] = []
+var _inv_nombres: Array[Label] = []
+var _inv_tweens: Array[Tween] = [null, null, null, null]
+var _aviso_lleno: Label
+var _aviso_lleno_tween: Tween
+
 
 func _ready() -> void:
 	_raiz = Control.new()
@@ -86,6 +95,8 @@ func _ready() -> void:
 	_construir_subtitulo()
 	_construir_documento()
 	_construir_candado()
+	_construir_inventario()
+	_construir_aviso_lleno()
 	_destello = ColorRect.new()
 	_destello.color = Color(0.02, 0, 0)
 	UIEstilo.llenar(_destello)
@@ -200,7 +211,7 @@ func set_cinematic(activa: bool) -> void:
 		hide_prompt()
 	var t := create_tween().set_parallel(true)
 	if activa:
-		for c: Control in [_mira, _accion, _lente, _objeto]:
+		for c: Control in [_mira, _accion, _lente, _objeto, _inventario_fila]:
 			t.tween_property(c, "modulate:a", 0.0, 0.5)
 	else:
 		_accion_estado = ""
@@ -208,6 +219,7 @@ func set_cinematic(activa: bool) -> void:
 		t.tween_property(_mira, "modulate:a", 1.0, 0.5)
 		t.tween_property(_lente, "modulate:a", 1.0, 0.5)
 		t.tween_property(_objeto, "modulate:a", 1.0 if _objeto_visible else 0.0, 0.5)
+		t.tween_property(_inventario_fila, "modulate:a", 1.0, 0.5)
 
 
 # ---------- dialogos y documentos ----------
@@ -628,6 +640,105 @@ func _construir_aviso() -> void:
 	_aviso.add_child(_aviso_rasgo)
 	_aviso.modulate.a = 0.0
 	_raiz.add_child(_aviso)
+
+
+func _construir_inventario() -> void:
+	_inventario_fila = HBoxContainer.new()
+	# Ampliamos los offsets laterales (-180 a 180) para dar espacio a la nueva separación
+	_colocar(_inventario_fila, 0.5, 1.0, 0.5, 1.0, -180, -76, 180, -20)
+	_inventario_fila.alignment = BoxContainer.ALIGNMENT_CENTER
+	_inventario_fila.add_theme_constant_override("separation", 24) # Aumentamos el espaciado
+
+	for i in 4:
+		var wrapper := Control.new()
+		wrapper.custom_minimum_size = Vector2(56, 56)
+		wrapper.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+		
+		var fondo := ColorRect.new()
+		fondo.size = Vector2(56, 56) 
+		fondo.color = Color(0.15, 0.15, 0.15, 0.5)
+		fondo.pivot_offset = Vector2(28, 28)
+		
+		# Invertimos los signos (+ para pares, - para impares) y bajamos a 8 grados
+		fondo.rotation_degrees = 8.0 if i % 2 == 0 else -8.0
+		
+		wrapper.add_child(fondo)
+
+		var icono := TextureRect.new()
+		icono.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+		icono.offset_left = 6
+		icono.offset_top = 6
+		icono.offset_right = -6
+		icono.offset_bottom = -6
+		icono.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icono.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+		fondo.add_child(icono)
+		
+		# --- NUEVO: El texto que aparece arriba del slot ---
+		var nombre := UIEstilo.label("", 10, HUESO, true)
+		nombre.custom_minimum_size = Vector2(100, 15)
+		nombre.position = Vector2(-22, -22) # Lo centra arriba del cuadro de 56x56
+		nombre.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		nombre.modulate.a = 0.0 # Oculto por defecto
+		wrapper.add_child(nombre)
+		_inv_nombres.append(nombre)
+
+		_inventario_fila.add_child(wrapper)
+		_inv_fondos.append(fondo)
+		_inv_iconos.append(icono)
+
+	_raiz.add_child(_inventario_fila)
+
+func _construir_aviso_lleno() -> void:
+	_aviso_lleno = UIEstilo.label("INVENTARIO LLENO", 16, SANGRE, true)
+	_colocar(_aviso_lleno, 0.5, 0.0, 0.5, 0.0, -150, 40, 150, 70)
+	_aviso_lleno.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_aviso_lleno.modulate.a = 0.0
+	_raiz.add_child(_aviso_lleno)
+
+func mostrar_inventario_lleno() -> void:
+	if _aviso_lleno_tween:
+		_aviso_lleno_tween.kill()
+	_aviso_lleno_tween = create_tween()
+	_aviso_lleno.modulate.a = 1.0
+	_aviso_lleno_tween.tween_interval(1.5)
+	_aviso_lleno_tween.tween_property(_aviso_lleno, "modulate:a", 0.0, 0.5)
+
+func mostrar_nombre_slot(indice: int, texto: String) -> void:
+	# 1. Apagar forzosamente los nombres de los otros slots
+	for i in 4:
+		if i != indice:
+			if _inv_tweens[i]:
+				_inv_tweens[i].kill()
+			_inv_nombres[i].modulate.a = 0.0
+
+	# 2. Mostrar el texto del slot actual (si tiene nombre)
+	if texto == "":
+		return
+		
+	var lbl := _inv_nombres[indice]
+	lbl.text = texto.to_upper()
+	
+	if _inv_tweens[indice]:
+		_inv_tweens[indice].kill()
+		
+	_inv_tweens[indice] = create_tween()
+	lbl.modulate.a = 1.0
+	_inv_tweens[indice].tween_interval(1.5) 
+	_inv_tweens[indice].tween_property(lbl, "modulate:a", 0.0, 0.5)
+
+func actualizar_icono_inventario(indice: int, textura: Texture2D) -> void:
+	_inv_iconos[indice].texture = textura
+
+func limpiar_icono_inventario(indice: int) -> void:
+	_inv_iconos[indice].texture = null
+
+func resaltar_slot(indice_activo: int) -> void:
+	for i in 4:
+		if i == indice_activo:
+			_inv_fondos[i].color = Color(0.6, 0.6, 0.6, 0.7) # Seleccionado
+		else:
+			_inv_fondos[i].color = Color(0.15, 0.15, 0.15, 0.5) # Inactivo
 
 
 # ---------- helpers ----------

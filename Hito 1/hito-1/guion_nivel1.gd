@@ -101,7 +101,7 @@ func _on_evento(nombre: String) -> void:
 			else:
 				_decir_una_vez("noticia", ["La mansión Ebner... Estoy dentro de la casa de la noticia."])
 		"objeto_tomado":
-			var en_mano: Item = _player.held_item
+			var en_mano: Item = _player.inventario[_player.slot_activo]
 			if en_mano != null and en_mano.abre != "":
 				_decir_una_vez("llave_real", ["Esta llave es distinta. Pesada... antigua."])
 			else:

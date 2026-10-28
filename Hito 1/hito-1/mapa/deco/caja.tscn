@@ -1,7 +1,12 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cm1guulfb78mp"]
 
+[ext_resource type="Script" uid="uid://civeyma2thpux" path="res://item.gd" id="1_c743a"]
 [ext_resource type="Material" path="res://mapa/materiales/madera_vieja.tres" id="1_qy7w1"]
+[ext_resource type="Texture2D" uid="uid://deccv8vj2itp6" path="res://assets varios/box.png" id="2_1t8yy"]
 [ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="2_bnmlj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u40gf"]
+size = Vector3(0.7, 0.7, 0.7)
 
 [sub_resource type="BoxMesh" id="BoxMesh_c743a"]
 size = Vector3(0.66, 0.66, 0.66)
@@ -36,16 +41,31 @@ size = Vector3(0.07, 0.07, 0.7)
 [sub_resource type="BoxMesh" id="BoxMesh_1ts6m"]
 size = Vector3(0.07, 0.7, 0.07)
 
-[sub_resource type="BoxMesh" id="BoxMesh_pe6lp"]
-size = Vector3(0.7, 0.07, 0.07)
-
 [sub_resource type="BoxMesh" id="BoxMesh_g6aun"]
 size = Vector3(0.07, 0.07, 0.7)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_u40gf"]
+[sub_resource type="BoxMesh" id="BoxMesh_pe6lp"]
+size = Vector3(0.7, 0.07, 0.07)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c743a"]
 size = Vector3(0.7, 0.7, 0.7)
 
-[node name="Caja" type="Node3D" unique_id=740607470]
+[node name="Caja" type="RigidBody3D" unique_id=1451628915]
+axis_lock_angular_x = true
+axis_lock_angular_y = true
+axis_lock_angular_z = true
+mass = 50.0
+script = ExtResource("1_c743a")
+item_name = "Caja"
+nombre_visible = "Caja"
+only_visible_with_red_light = false
+icono = ExtResource("2_1t8yy")
+escala_en_mano = Vector3(0.2, 0.2, 0.2)
+posicion_en_mano = Vector3(0, -0.105, 0)
+
+[node name="@CollisionShape3D@95" type="CollisionShape3D" parent="." unique_id=1403426793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_u40gf")
 
 [node name="Cuerpo" type="MeshInstance3D" parent="." unique_id=280018587]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.33, 0)
@@ -102,18 +122,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.35, 0.32)
 material_override = ExtResource("2_bnmlj")
 mesh = SubResource("BoxMesh_1ts6m")
 
-[node name="@MeshInstance3D@93" type="MeshInstance3D" parent="." unique_id=1849227449]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0.32)
-material_override = ExtResource("2_bnmlj")
-mesh = SubResource("BoxMesh_pe6lp")
-
 [node name="@MeshInstance3D@94" type="MeshInstance3D" parent="." unique_id=600827772]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.67, 0)
 material_override = ExtResource("2_bnmlj")
 mesh = SubResource("BoxMesh_g6aun")
 
-[node name="Colision" type="StaticBody3D" parent="." unique_id=1957455300]
+[node name="@MeshInstance3D@93" type="MeshInstance3D" parent="." unique_id=1849227449]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.67, 0.32)
+material_override = ExtResource("2_bnmlj")
+mesh = SubResource("BoxMesh_pe6lp")
 
-[node name="@CollisionShape3D@95" type="CollisionShape3D" parent="Colision" unique_id=1403426793]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
-shape = SubResource("BoxShape3D_u40gf")
+[node name="InteractZone" type="Area3D" parent="." unique_id=1112650418]
+collision_layer = 4
+
+[node name="_CollisionShape3D_95" type="CollisionShape3D" parent="InteractZone" unique_id=1416956445]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0, 0.35, 0)
+shape = SubResource("BoxShape3D_c743a")
+
+[node name="Caja" type="Node3D" parent="." unique_id=740607470]
