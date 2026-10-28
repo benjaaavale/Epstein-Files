@@ -10,6 +10,7 @@ height = 1.6660156
 
 [node name="Player" type="CharacterBody3D" unique_id=1620218306]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+platform_on_leave = 2
 script = ExtResource("1_onrkg")
 speed = 2.0
 run_speed = 3.5
@@ -35,6 +36,6 @@ collision_mask = 5
 collide_with_areas = true
 
 [node name="Hand" type="Marker3D" parent="Head/Camera3D" unique_id=980475463]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18105134, -0.120346785, -0.25878245)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.181, -0.12, -0.259)
 
 [node name="HUD" parent="." unique_id=823752480 instance=ExtResource("3_hud")]

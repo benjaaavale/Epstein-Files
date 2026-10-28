@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" path="res://mapa/deco/sillon.tscn" id="9_at8aq"]
 [ext_resource type="PackedScene" path="res://mapa/deco/estanteria.tscn" id="11_dvqag"]
 [ext_resource type="PackedScene" path="res://mapa/deco/velas.tscn" id="12_oxy0g"]
-[ext_resource type="PackedScene" path="res://mapa/deco/caja.tscn" id="13_bxf66"]
+[ext_resource type="PackedScene" uid="uid://cm1guulfb78mp" path="res://mapa/deco/caja.tscn" id="13_bxf66"]
 [ext_resource type="Texture2D" uid="uid://bo3i2guud3ly7" path="res://assets varios/rough_wood_diff_2k.png" id="13_dvqag"]
 [ext_resource type="Texture2D" uid="uid://df7dxu8kb57e2" path="res://mapa/texturas/papel_tapiz.png" id="14_3k0nc"]
 [ext_resource type="Texture2D" uid="uid://bigt8nsjv7emj" path="res://assets varios/rough_wood_nor_gl_2k.png" id="14_oxy0g"]
@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://fpdharxb0cfx" path="res://filtro_linterna.tscn" id="20_x43ht"]
 [ext_resource type="Material" uid="uid://bm7hgfdxxwpbx" path="res://mapa/materiales/zocalo.tres" id="24_3k0nc"]
 [ext_resource type="Material" path="res://mapa/materiales/moldura.tres" id="25_umku1"]
+[ext_resource type="Texture2D" uid="uid://tgm5q1ld8dx0" path="res://assets varios/key.png" id="27_vb1ut"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3gngh"]
 size = Vector3(0.68896484, 0.53100586, 1.0585632)
@@ -1547,7 +1548,7 @@ environment = SubResource("Environment_ax26t")
 [node name="Decoraciones" type="Node3D" parent="." unique_id=300312585]
 
 [node name="SillaCaidaC" parent="Decoraciones" unique_id=188008801 instance=ExtResource("4_q6oka")]
-transform = Transform3D(-3.580627e-08, 0.92731726, 0.37427628, 1, 2.3819991e-08, 3.6650977e-08, 2.5071826e-08, 0.37427628, -0.92731726, -14.443223, -0.27651295, -4.743408)
+transform = Transform3D(-3.580627e-08, 0.92731726, 0.37427628, 1, 2.3819991e-08, 3.6650977e-08, 2.5071826e-08, 0.37427628, -0.92731726, -14.443223, -0.15944752, -4.743408)
 
 [node name="MesaC" parent="Decoraciones" unique_id=1852471207 instance=ExtResource("4_bvt80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.647496, -0.5075007, -4.883026)
@@ -1630,6 +1631,7 @@ transform = Transform3D(0.73803544, 0, 0.67476195, 0, 1, 0, -0.67476195, 0, 0.73
 transform = Transform3D(0.73803544, 0, 0.67476195, 0, 1, 0, -0.67476195, 0, 0.73803544, -13.695677, -0.4028089, -0.7481065)
 
 [node name="Infraestructura2" type="Node3D" parent="." unique_id=1072502362]
+visible = false
 
 [node name="Interiores_piso2" type="Node3D" parent="Infraestructura2" unique_id=372144364]
 
@@ -1691,7 +1693,6 @@ material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Techo" type="CSGBox3D" parent="Infraestructura2" unique_id=1037861608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2744117, -5.173706)
-visible = false
 material_override = SubResource("StandardMaterial3D_1v7kk")
 use_collision = true
 size = Vector3(30, 0.17492676, 17.602783)
@@ -2394,6 +2395,7 @@ requiere_energia = true
 
 [node name="Item" parent="Elementos_piso1" unique_id=499124648 instance=ExtResource("17_g8vr4")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -12.548378, 0.3162991, -4.670032)
+icono = ExtResource("27_vb1ut")
 
 [node name="PuertaInicial" parent="Elementos_piso1" unique_id=910849463 instance=ExtResource("16_0km02")]
 transform = Transform3D(-6.119594e-08, 0, -1.4, 0, 1.35, 0, 1.4, 0, -6.119594e-08, -8.057649, -0.3739814, -2.7895594)

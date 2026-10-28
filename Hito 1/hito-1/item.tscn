@@ -42,6 +42,7 @@ radius = 0.3
 [node name="Item" type="RigidBody3D" unique_id=1707725605]
 script = ExtResource("1_item")
 item_name = "Llave"
+nombre_visible = "Llave"
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=624873694]
 shape = SubResource("BoxShape3D_item")

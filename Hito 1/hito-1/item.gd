@@ -2,9 +2,14 @@ extends RigidBody3D
 class_name Item
 
 @export var item_name: String = "Item"
+@export var nombre_visible: String = "Objeto"
 @export var only_visible_with_red_light: bool = true
 ## Identificador de la cerradura que abre ("" = llave comun).
 @export var abre := ""
+@export var icono: Texture2D
+@export var escala_en_mano := Vector3(1, 1, 1)
+@export var posicion_en_mano := Vector3(0, 0, 0)
+@export var rotacion_en_mano := Vector3(0, 0, 0) # En grados
 
 @onready var interact_zone: Area3D = $InteractZone
 

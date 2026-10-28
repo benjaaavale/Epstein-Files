@@ -34,7 +34,8 @@ var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var hud: Hud = $HUD
 @onready var collision: CollisionShape3D = $CollisionShape3D
 
-var held_item: Item = null
+var inventario: Array[Item] = [null, null, null, null]
+var slot_activo: int = 0
 var bloqueado: bool = false
 
 var _capsule: CapsuleShape3D
@@ -93,25 +94,44 @@ func _ready() -> void:
 	add_child(_creak_player)
 	for i in 3:
 		_creak_streams.append(load("res://sonidos/crujido_%d.wav" % (i + 1)))
+	hud.resaltar_slot(0)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if bloqueado:
 		return
-	# Solo rotamos si el mouse está capturado y detectamos movimiento
 	if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		# 1. Rotar el cuerpo entero en el eje Y (Mirar a izquierda/derecha)
 		rotate_y(-event.relative.x * mouse_sensitivity * Ajustes.sensibilidad)
-		# 2. Rotar SOLO la cabeza en el eje X (Mirar arriba/abajo)
 		head.rotate_x(-event.relative.y * mouse_sensitivity * Ajustes.sensibilidad)
-		# 3. Limitar (Clamp) la rotación vertical para no romperte el cuello hacia atrás
 		head.rotation.x = clamp(head.rotation.x, deg_to_rad(-80), deg_to_rad(80))
-		# Las manos se quedan un poco atrás del movimiento del mouse
 		_sway = (_sway + Vector2(event.relative.x, event.relative.y) * sway_amount).limit_length(0.06)
 
 	if event.is_action_pressed("interactuar"):
 		_interact()
 	elif event.is_action_pressed("soltar"):
 		_drop_item()
+	elif event.is_action_pressed("slot_1"): _cambiar_slot(0)
+	elif event.is_action_pressed("slot_2"): _cambiar_slot(1)
+	elif event.is_action_pressed("slot_3"): _cambiar_slot(2)
+	elif event.is_action_pressed("slot_4"): _cambiar_slot(3)
+
+func _cambiar_slot(indice: int) -> void:
+	slot_activo = indice
+	hud.resaltar_slot(indice)
+	_actualizar_visibilidad_mano()
+	var item = inventario[indice]
+	if item != null:
+		hud.mostrar_nombre_slot(indice, item.nombre_visible)
+
+func _actualizar_visibilidad_mano() -> void:
+	for i in inventario.size():
+		if inventario[i] != null:
+			inventario[i].visible = (i == slot_activo)
+
+	var item_actual = inventario[slot_activo]
+	if item_actual != null:
+		hud.set_held_item(item_actual.item_name)
+	else:
+		hud.set_held_item("")
 
 func _process(delta: float) -> void:
 	_update_prompt()
@@ -119,12 +139,17 @@ func _process(delta: float) -> void:
 
 # ---------- interaccion ----------
 
+func _is_inventory_full() -> bool:
+	return not (null in inventario)
+
 func _update_prompt() -> void:
 	var target := _get_target()
-	if bloqueado or target == null or (target is Item and held_item != null):
+	var item_en_mano = inventario[slot_activo]
+
+	if bloqueado or target == null:
 		hud.hide_prompt()
 	elif target is Door:
-		if held_item != null:
+		if item_en_mano != null:
 			hud.show_prompt("E", "Abrir puerta")
 		else:
 			hud.show_prompt("", "Cerrada con llave", false)
@@ -134,8 +159,11 @@ func _update_prompt() -> void:
 		var obj := target as Interactuable
 		var ok := obj.habilitado()
 		hud.show_prompt("E" if ok else "", obj.accion(), ok)
-	else:
-		hud.show_prompt("E", "Tomar " + (target as Item).item_name.to_lower())
+	elif target is Item:
+		if _is_inventory_full():
+			hud.show_prompt("", "Inventario lleno", false)
+		else:
+			hud.show_prompt("E", "Tomar " + (target as Item).item_name.to_lower())
 
 func _get_target() -> Node:
 	if not interact_ray.is_colliding():
@@ -163,14 +191,15 @@ func _interact() -> void:
 	var target := _get_target()
 	if target is Door:
 		var puerta := target as Door
-		if held_item == null:
+		var llave := inventario[slot_activo]
+		if llave == null:
 			hud.toast("Está cerrada con llave")
 			evento.emit("puerta_bloqueada")
 			return
-		var llave := held_item
 		if not puerta.acepta(llave):
-			held_item = null
-			hud.set_held_item("")
+			inventario[slot_activo] = null
+			hud.limpiar_icono_inventario(slot_activo)
+			_actualizar_visibilidad_mano()
 			_modo_cinematica(true)
 			await puerta.forzar(llave)
 			_modo_cinematica(false)
@@ -180,10 +209,11 @@ func _interact() -> void:
 			hud.toast("No gira", "ALGO LA TRABA DESDE DENTRO")
 			evento.emit("puerta_sin_energia")
 			return
-		held_item = null
+		inventario[slot_activo] = null
+		hud.limpiar_icono_inventario(slot_activo)
 		bloqueado = true
 		linterna.set_process_input(false)
-		hud.set_held_item("")
+		_actualizar_visibilidad_mano()
 		hud.set_cinematic(true)
 		await puerta.abrir(llave)
 		if not puerta.termina_nivel:
@@ -198,14 +228,28 @@ func _interact() -> void:
 		bloqueado = true
 		doc.leido = true
 		hud.mostrar_documento(doc.encabezado, doc.titulo, doc.cuerpo)
-	elif target is Item and held_item == null:
-		held_item = target as Item
-		held_item.pick_up()
-		held_item.reparent(hand, false)
-		held_item.transform = Transform3D.IDENTITY
-		hud.set_held_item(held_item.item_name)
-		hud.toast(held_item.item_name, "OBJETO OBTENIDO")
-		evento.emit("objeto_tomado")
+	elif target is Item:
+		if _is_inventory_full():
+			hud.mostrar_inventario_lleno()
+		else:
+			var empty_slot = inventario.find(null)
+			if empty_slot != -1:
+				var nuevo_item = target as Item
+				nuevo_item.pick_up()
+				inventario[empty_slot] = nuevo_item
+				nuevo_item.reparent(hand, false)
+				nuevo_item.transform = Transform3D.IDENTITY
+				nuevo_item.position = nuevo_item.posicion_en_mano
+				nuevo_item.rotation_degrees = nuevo_item.rotacion_en_mano
+				nuevo_item.scale = nuevo_item.escala_en_mano
+				hud.actualizar_icono_inventario(empty_slot, nuevo_item.icono)
+				
+				# Mostramos el nombre temporal en el HUD
+				hud.mostrar_nombre_slot(empty_slot, nuevo_item.nombre_visible)
+				
+				_actualizar_visibilidad_mano()
+				hud.toast(nuevo_item.item_name, "OBJETO OBTENIDO")
+				evento.emit("objeto_tomado")
 
 ## Congela al jugador y oculta el HUD (para animaciones y pantallas como el candado).
 func _modo_cinematica(activa: bool) -> void:
@@ -231,22 +275,28 @@ func _on_documento_cerrado() -> void:
 	evento.emit("documento_leido")
 
 func _drop_item() -> void:
-	if held_item == null:
+	var item: Item = inventario[slot_activo]
+	if item == null:
 		return
-	var item := held_item
-	held_item = null
-	hud.set_held_item("")
+
+	inventario[slot_activo] = null
+	hud.limpiar_icono_inventario(slot_activo)
+	_actualizar_visibilidad_mano()
+
 	var forward := -head.global_transform.basis.z
 	var spawn := hand.global_position + forward * 0.6
 	var query := PhysicsRayQueryParameters3D.create(head.global_position, spawn, 1, [get_rid()])
 	var hit := get_world_3d().direct_space_state.intersect_ray(query)
 	if not hit.is_empty():
 		spawn = hit.position - forward * 0.1
-	var basis_actual := item.global_transform.basis
+	var basis_actual: Basis = item.global_transform.basis.orthonormalized()
 	item.reparent(get_parent(), false)
 	item.global_transform = Transform3D(basis_actual, spawn)
+	item.rotation.x = 0.0
+	item.rotation.z = 0.0
 	item.add_collision_exception_with(self)
 	item.drop()
+	item.visible = true
 	item.linear_velocity = forward * 2.5 + Vector3.UP * 2.0
 	item.angular_velocity = Vector3(randf_range(-3.0, 3.0), randf_range(-3.0, 3.0), randf_range(-3.0, 3.0))
 
