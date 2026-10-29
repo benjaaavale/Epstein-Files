@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/retrato_diddy_1.jpg" id="1_diddy"]
+
+[resource]
+resource_name = "retrato_diddy_1"
+albedo_texture = ExtResource("1_diddy")
+roughness = 0.8

@@ -1,0 +1,54 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/retrato_diddy_2.tres" id="1_oypu5"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="2_6pa2q"]
+[ext_resource type="Material" path="res://mapa/materiales/marco_dorado.tres" id="3_crwgp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_pbo2p"]
+size = Vector2(0.6, 0.8)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4goa2"]
+size = Vector3(0.62, 0.82, 0.02)
+
+[sub_resource type="BoxMesh" id="BoxMesh_co2we"]
+size = Vector3(0.78, 0.08, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wuxte"]
+size = Vector3(0.78, 0.08, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_x2arj"]
+size = Vector3(0.08, 0.8, 0.06)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0fx0p"]
+size = Vector3(0.08, 0.8, 0.06)
+
+[node name="RetratoDiddy2" type="Node3D"]
+
+[node name="Lienzo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.012)
+material_override = ExtResource("1_oypu5")
+mesh = SubResource("QuadMesh_pbo2p")
+
+[node name="Fondo" type="MeshInstance3D" parent="."]
+material_override = ExtResource("2_6pa2q")
+mesh = SubResource("BoxMesh_4goa2")
+
+[node name="MarcoSup" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44, 0.02)
+material_override = ExtResource("3_crwgp")
+mesh = SubResource("BoxMesh_co2we")
+
+[node name="MarcoInf" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.44, 0.02)
+material_override = ExtResource("3_crwgp")
+mesh = SubResource("BoxMesh_wuxte")
+
+[node name="MarcoIzq" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 0, 0.02)
+material_override = ExtResource("3_crwgp")
+mesh = SubResource("BoxMesh_x2arj")
+
+[node name="MarcoDer" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35, 0, 0.02)
+material_override = ExtResource("3_crwgp")
+mesh = SubResource("BoxMesh_0fx0p")

@@ -24,6 +24,8 @@
 [ext_resource type="Texture2D" uid="uid://bxphjctwnyu5a" path="res://mapa/texturas/alfombra.png" id="19_v8lwk"]
 [ext_resource type="PackedScene" path="res://mapa/deco/ventana_tapiada.tscn" id="23_sx15q"]
 [ext_resource type="PackedScene" path="res://mapa/deco/retrato_2.tscn" id="24_m8i5i"]
+[ext_resource type="PackedScene" path="res://mapa/deco/retrato_diddy_1.tscn" id="25_diddy1"]
+[ext_resource type="PackedScene" path="res://mapa/deco/retrato_diddy_2.tscn" id="26_diddy2"]
 
 [sub_resource type="Environment" id="Environment_n7q3w"]
 background_mode = 1
@@ -2176,3 +2178,9 @@ transform = Transform3D(-0.7071068, 0.36380348, -0.60633904, 0, 0.8574929, 0.514
 
 [node name="RetratoC" parent="." unique_id=937640051 instance=ExtResource("18_wu0t8")]
 transform = Transform3D(-0.9978797, 0.05905915, 0.02735086, 0.058987178, 0.99825287, -0.0034315353, -0.027505739, -0.0018109073, -0.9996201, 1.8058076, 1.8, 4.9699273)
+
+[node name="EasterEggDiddy1" parent="Decoracion" instance=ExtResource("25_diddy1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.85, -9.86)
+
+[node name="EasterEggDiddy2" parent="Decoracion" instance=ExtResource("26_diddy2")]
+transform = Transform3D(0.9961947, -0.08715574, 0, 0.08715574, 0.9961947, 0, 0, 0, 1, 8.8, 1.85, -9.86)
