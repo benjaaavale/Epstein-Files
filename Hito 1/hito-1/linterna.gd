@@ -98,21 +98,6 @@ const ENERGIAS := {
 
 
 
-var colores_disponibles: Array[Channel] = [Channel.WHITE] # Inicia solo con el blanco
-
-func desbloquear_rojo() -> void:
-	if not colores_disponibles.has(Channel.RED):
-		colores_disponibles.append(Channel.RED)
-		colores_disponibles.sort() # Ordena para mantener el ciclo: Blanco -> Rojo -> Azul
-
-func desbloquear_azul() -> void:
-	if not colores_disponibles.has(Channel.BLUE):
-		colores_disponibles.append(Channel.BLUE)
-		colores_disponibles.sort()
-
-func desbloquear_violeta() -> void:
-	combo_unlocked = true
-
 func _ready() -> void:
 	spot_light_3d.spot_angle = ANGULOS[current_channel]
 	spot_light_3d.light_energy = ENERGIAS[current_channel]
