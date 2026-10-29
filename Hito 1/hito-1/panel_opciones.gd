@@ -8,6 +8,7 @@ var _sensibilidad_valor: Label
 var _volumen: HSlider
 var _volumen_valor: Label
 var _pantalla: MenuBoton
+var _calidad: MenuBoton
 var _titulo: TituloTerror
 
 
@@ -45,6 +46,9 @@ func _ready() -> void:
 	_pantalla = MenuBoton.new("", 20)
 	_pantalla.pressed.connect(_on_pantalla)
 	col.add_child(_pantalla)
+	_calidad = MenuBoton.new("", 20)
+	_calidad.pressed.connect(_on_calidad)
+	col.add_child(_calidad)
 	var volver := MenuBoton.new("VOLVER", 20)
 	volver.pressed.connect(cerrar)
 	col.add_child(volver)
@@ -113,7 +117,14 @@ func _on_pantalla() -> void:
 	_actualizar_textos()
 
 
+func _on_calidad() -> void:
+	Ajustes.calidad = 1 - Ajustes.calidad
+	Ajustes.aplicar_calidad()
+	_actualizar_textos()
+
+
 func _actualizar_textos() -> void:
 	_sensibilidad_valor.text = "%.2fx" % Ajustes.sensibilidad
 	_volumen_valor.text = "%d%%" % roundi(Ajustes.volumen * 100.0)
 	_pantalla.text = "PANTALLA COMPLETA: " + ("SÍ" if Ajustes.pantalla_completa else "NO")
+	_calidad.text = "GRÁFICOS: " + ("BAJOS" if Ajustes.calidad == 1 else "ALTOS")
