@@ -1,8 +1,18 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="ShaderMaterial" format=3]
 
-[ext_resource type="Texture2D" path="res://mapa/texturas/retrato_diddy_1.jpg" id="1_diddy"]
+[ext_resource type="Shader" path="res://luz_revela.gdshader" id="1_revela"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/retrato_diddy_1.jpg" id="2_diddy"]
 
 [resource]
 resource_name = "retrato_diddy_1"
-albedo_texture = ExtResource("1_diddy")
-roughness = 0.8
+render_priority = 0
+shader = ExtResource("1_revela")
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/albedo_texture = ExtResource("2_diddy")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
