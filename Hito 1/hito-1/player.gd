@@ -294,7 +294,7 @@ func _drop_item() -> void:
 	item.global_transform = Transform3D(basis_actual, spawn)
 	item.rotation.x = 0.0
 	item.rotation.z = 0.0
-	item.add_collision_exception_with(self)
+	item.remove_collision_exception_with(self)
 	item.drop()
 	item.visible = true
 	item.linear_velocity = forward * 2.5 + Vector3.UP * 2.0

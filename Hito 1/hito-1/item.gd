@@ -16,7 +16,15 @@ class_name Item
 var held: bool = false
 var linterna: Linterna = null
 
+# --- NUEVO: Variables para recordar las colisiones originales ---
+var _capa_original: int
+var _mascara_original: int
+
 func _ready() -> void:
+	# Guardamos la configuración del Inspector apenas carga el nivel
+	_capa_original = collision_layer
+	_mascara_original = collision_mask
+	
 	_set_forced_visible(not only_visible_with_red_light)
 
 func _set_forced_visible(forced: bool) -> void:
@@ -52,6 +60,9 @@ func drop() -> void:
 	held = false
 	_set_forced_visible(not only_visible_with_red_light)
 	freeze = false
-	collision_layer = 1
-	collision_mask = 1
+	
+	# --- NUEVO: Restauramos las colisiones originales guardadas ---
+	collision_layer = _capa_original
+	collision_mask = _mascara_original
+	
 	interact_zone.collision_layer = 4

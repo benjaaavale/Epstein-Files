@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://tjhobmfgyvok"]
 
-[ext_resource type="Script" path="res://mapa/lampara.gd" id="1_3wlpm"]
+[ext_resource type="Script" uid="uid://c8gcqmqdgy7kf" path="res://mapa/lampara.gd" id="1_3wlpm"]
 [ext_resource type="Material" path="res://mapa/materiales/metal_negro.tres" id="2_cli6e"]
 [ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="3_pn2u6"]
 [ext_resource type="Material" path="res://mapa/materiales/cera.tres" id="4_uv68w"]

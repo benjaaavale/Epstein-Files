@@ -1,7 +1,7 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bfr8ngl8utf6l"]
 
-[ext_resource type="Texture2D" path="res://mapa/texturas/yeso.png" id="1_e0g6u"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/piedra_normal.png" id="2_dfqct"]
+[ext_resource type="Texture2D" uid="uid://c4oxb2cxfjmxn" path="res://mapa/texturas/yeso.png" id="1_e0g6u"]
+[ext_resource type="Texture2D" uid="uid://pnhy3mqfxep1" path="res://mapa/texturas/piedra_normal.png" id="2_dfqct"]
 
 [resource]
 resource_name = "yeso_techo"

@@ -4,7 +4,7 @@ extends Node
 
 const RUTA := "user://ajustes.cfg"
 const MENU_PRINCIPAL := "res://menu_principal.tscn"
-const NIVEL_1 := "uid://d1b3xe03jkqbu"
+const NIVEL_1 := "uid://8tamf0tmleyu"
 
 var sensibilidad := 1.0
 var volumen := 0.8
