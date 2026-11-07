@@ -1,0 +1,11 @@
+[gd_resource type="StandardMaterial3D" format=3]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_piedra.png" id="1_r"]
+
+[resource]
+resource_name = "espejo"
+albedo_color = Color(0.32, 0.34, 0.36, 1)
+albedo_texture = ExtResource("1_r")
+metallic = 1.0
+roughness = 0.12
+uv1_scale = Vector3(0.6, 0.6, 0.6)

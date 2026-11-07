@@ -1,0 +1,63 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/tela_sabana.tres" id="m0"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(1.4, 0.06, 0.9)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(1.42, 0.7, 0.02)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(1.42, 0.7, 0.02)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.02, 0.6, 0.9)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.02, 0.6, 0.9)
+
+[sub_resource type="SphereMesh" id="mesh5"]
+radius = 0.18
+height = 0.3
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(1.45, 0.82, 0.95)
+
+[node name="Tapado_mesa" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.76, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997564, -0.0697565, 0, 0.0697565, 0.997564, 0, 0.42, 0.45)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 0.42, -0.45)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.99863, 0.052336, 0, -0.052336, 0.99863, 0, 0, 0, 1, 0.7, 0.47, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.99863, -0.052336, 0, 0.052336, 0.99863, 0, 0, 0, 1, -0.7, 0.47, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh4")
+
+[node name="Bulto" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.86, 0.1)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh5")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.41, 0)
+shape = SubResource("shape0")

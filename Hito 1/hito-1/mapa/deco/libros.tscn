@@ -1,0 +1,63 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/libro_0.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/libro_1.tres" id="m1"]
+[ext_resource type="Material" path="res://mapa/materiales/libro_2.tres" id="m2"]
+[ext_resource type="Material" path="res://mapa/materiales/libro_3.tres" id="m3"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(0.19952772085777223, 0.050969833011887136, 0.27446542261552026)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.20303502119121491, 0.05188335868317653, 0.2988104908495549)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.19215876277284039, 0.05271422788695748, 0.2693377860285483)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.2258420752221907, 0.05293712598638439, 0.2925286687098533)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.22639161634259938, 0.04783109631315055, 0.2673723198780848)
+
+[sub_resource type="BoxMesh" id="mesh5"]
+size = Vector3(0.23313217643797396, 0.04422295012258933, 0.24364016565583319)
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(0.28, 0.3005585920041454, 0.3)
+
+[node name="Libros" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.980771, 0, 0.195161, 0, 1, 0, -0.195161, 0, 0.980771, 0.00100786, 0.0254849, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999081, 0, -0.0428577, 0, 1, 0, 0.0428577, 0, 0.999081, -0.0152774, 0.0769115, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.996124, 0, 0.0879638, 0, 1, 0, -0.0879638, 0, 0.996124, -0.0184317, 0.12921, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.994776, 0, 0.102078, 0, 1, 0, -0.102078, 0, 0.994776, -0.0074501, 0.182036, 0)
+material_override = ExtResource("m3")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.973016, 0, 0.230736, 0, 1, 0, -0.230736, 0, 0.973016, 0.0135987, 0.23242, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997034, 0, 0.0769603, 0, 1, 0, -0.0769603, 0, 0.997034, 0.00805968, 0.278447, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh5")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.150279, 0)
+shape = SubResource("shape0")

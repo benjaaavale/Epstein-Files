@@ -1,0 +1,119 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/hollin.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/piel_muneca.tres" id="m1"]
+[ext_resource type="Material" path="res://mapa/materiales/tela_roja.tres" id="m2"]
+
+[sub_resource type="SphereMesh" id="mesh0"]
+radius = 0.075
+height = 0.15
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.16, 0.2, 0.1)
+
+[sub_resource type="CylinderMesh" id="mesh2"]
+top_radius = 0.09
+bottom_radius = 0.12
+height = 0.12
+radial_segments = 12
+rings = 1
+
+[sub_resource type="CapsuleMesh" id="mesh3"]
+radius = 0.02
+height = 0.16
+radial_segments = 16
+rings = 4
+
+[sub_resource type="CapsuleMesh" id="mesh4"]
+radius = 0.02
+height = 0.16
+radial_segments = 16
+rings = 4
+
+[sub_resource type="CapsuleMesh" id="mesh5"]
+radius = 0.018
+height = 0.14
+radial_segments = 16
+rings = 4
+
+[sub_resource type="CapsuleMesh" id="mesh6"]
+radius = 0.018
+height = 0.14
+radial_segments = 16
+rings = 4
+
+[sub_resource type="SphereMesh" id="mesh7"]
+radius = 0.012
+height = 0.024
+radial_segments = 16
+rings = 8
+
+[sub_resource type="SphereMesh" id="mesh8"]
+radius = 0.012
+height = 0.024
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxMesh" id="mesh9"]
+size = Vector3(0.17, 0.1, 0.06)
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(0.2, 0.45, 0.2)
+
+[node name="Muneca" type="StaticBody3D"]
+
+[node name="Cabeza" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh0")
+
+[node name="Vestido" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.05, 0.04, 0.09)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.984808, 0.173648, 0, 0, 0, -1, -0.173648, 0.984808, 0, 0.05, 0.04, 0.09)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 1, -0.1, 0.2, 0.02)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh5")
+
+[node name="P6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0, 1, 0.1, 0.2, 0.02)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh6")
+
+[node name="P7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0.37, 0.066)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh7")
+
+[node name="P8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.37, 0.066)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh8")
+
+[node name="Pelo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0.42, -0.03)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh9")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, 0)
+shape = SubResource("shape0")

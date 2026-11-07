@@ -66,9 +66,15 @@ var _candado_sel := 0
 var _candado_probar: Callable
 var _candado_abierto := false
 var _candado_fila: HBoxContainer
+var _candado_mouse_previo := Input.MOUSE_MODE_CAPTURED
 var _clic: AudioStreamPlayer
 
 var _destello: ColorRect
+
+var _objetivo: VBoxContainer
+var _objetivo_texto: Label
+var _objetivo_tween: Tween
+var _pista_lente: Label
 
 #Cosas del inventario
 var _inventario_fila: HBoxContainer
@@ -97,6 +103,7 @@ func _ready() -> void:
 	_construir_candado()
 	_construir_inventario()
 	_construir_aviso_lleno()
+	_construir_objetivo()
 	_destello = ColorRect.new()
 	_destello.color = Color(0.02, 0, 0)
 	UIEstilo.llenar(_destello)
@@ -116,6 +123,12 @@ func _process(delta: float) -> void:
 		if _lente_rueda.visibles != visibles:
 			_lente_rueda.visibles = visibles
 			_lente_rueda.queue_redraw()
+			if not linterna.rojo_unlocked and not linterna.azul_unlocked:
+				_pista_lente.text = "SOLO LUZ BLANCA"
+			elif linterna.combo_unlocked:
+				_pista_lente.text = "[CLIC] CAMBIAR LUZ    [SHIFT+CLIC] MORADA"
+			else:
+				_pista_lente.text = "[CLIC] CAMBIAR LUZ"
 			
 	if _cinematica:
 		return
@@ -205,7 +218,7 @@ func set_cinematic(activa: bool) -> void:
 		hide_prompt()
 	var t := create_tween().set_parallel(true)
 	if activa:
-		for c: Control in [_mira, _accion, _lente, _objeto, _inventario_fila]:
+		for c: Control in [_mira, _accion, _lente, _objeto, _inventario_fila, _objetivo]:
 			t.tween_property(c, "modulate:a", 0.0, 0.5)
 	else:
 		_accion_estado = ""
@@ -214,6 +227,35 @@ func set_cinematic(activa: bool) -> void:
 		t.tween_property(_lente, "modulate:a", 1.0, 0.5)
 		t.tween_property(_objeto, "modulate:a", 1.0 if _objeto_visible else 0.0, 0.5)
 		t.tween_property(_inventario_fila, "modulate:a", 1.0, 0.5)
+		if _objetivo_texto.text != "":
+			t.tween_property(_objetivo, "modulate:a", 0.45, 0.5)
+
+
+## Muestra el objetivo actual arriba a la izquierda (se destaca un momento y queda tenue).
+func objetivo(texto: String) -> void:
+	if _objetivo_texto.text == texto.to_upper():
+		return
+	_objetivo_texto.text = texto.to_upper()
+	_objetivo_texto.visible_ratio = 0.0
+	if _objetivo_tween:
+		_objetivo_tween.kill()
+	_objetivo_tween = create_tween()
+	_objetivo_tween.tween_property(_objetivo, "modulate:a", 1.0, 0.3)
+	_objetivo_tween.parallel().tween_property(_objetivo_texto, "visible_ratio", 1.0, 0.025 * texto.length())
+	_objetivo_tween.tween_interval(5.0)
+	_objetivo_tween.tween_property(_objetivo, "modulate:a", 0.45, 1.5)
+
+
+func _construir_objetivo() -> void:
+	_objetivo = VBoxContainer.new()
+	_colocar(_objetivo, 0, 0, 0, 0, MARGEN, MARGEN - 8, MARGEN + 520, MARGEN + 60)
+	_objetivo.add_theme_constant_override("separation", 2)
+	_objetivo.add_child(UIEstilo.label("OBJETIVO", 10, Color(SANGRE, 0.9), true))
+	_objetivo_texto = UIEstilo.label("", 14, HUESO, true)
+	_objetivo_texto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_objetivo.add_child(_objetivo_texto)
+	_objetivo.modulate.a = 0.0
+	_raiz.add_child(_objetivo)
 
 
 # ---------- dialogos y documentos ----------
@@ -302,10 +344,13 @@ func abrir_candado(probar: Callable) -> void:
 	_candado.modulate.a = 0.0
 	create_tween().tween_property(_candado, "modulate:a", 1.0, 0.25)
 	hide_prompt()
+	_candado_mouse_previo = Input.get_mouse_mode()
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 
 func _cerrar_candado(abierto: bool) -> void:
 	_candado_abierto = false
+	Input.set_mouse_mode(_candado_mouse_previo)
 	var t := create_tween()
 	if abierto:
 		t.tween_interval(0.6)
@@ -319,44 +364,71 @@ func _input_candado(event: InputEvent) -> void:
 	var dir := 0
 	var mover := 0
 	if event is InputEventKey and event.pressed:
-		match (event as InputEventKey).physical_keycode:
-			KEY_W, KEY_UP:
-				dir = 1
-			KEY_S, KEY_DOWN:
-				dir = -1
-			KEY_A, KEY_LEFT:
-				mover = -1
-			KEY_D, KEY_RIGHT:
-				mover = 1
-			KEY_ENTER, KEY_KP_ENTER, KEY_E:
-				if not event.is_echo():
-					_probar_candado()
-			KEY_G, KEY_Q:
-				_cerrar_candado(false)
+		var k := (event as InputEventKey).physical_keycode
+		if (k >= KEY_0 and k <= KEY_9) or (k >= KEY_KP_0 and k <= KEY_KP_9):
+			# escribir el numero directo: pone el digito y pasa a la siguiente rueda
+			_candado_digitos[_candado_sel] = (k - KEY_KP_0) if k >= KEY_KP_0 else (k - KEY_0)
+			_sonar_rueda(_candado_sel, 1)
+			mover = 1
+		else:
+			match k:
+				KEY_UP, KEY_W:
+					dir = 1
+				KEY_DOWN, KEY_S:
+					dir = -1
+				KEY_LEFT, KEY_A:
+					mover = -1
+				KEY_RIGHT, KEY_D:
+					mover = 1
+				KEY_ENTER, KEY_KP_ENTER, KEY_E, KEY_SPACE:
+					if not event.is_echo():
+						_probar_candado()
+				KEY_G, KEY_Q, KEY_BACKSPACE:
+					_cerrar_candado(false)
+		if not event.is_action("PauseMenu"):
+			get_viewport().set_input_as_handled()
 	elif event is InputEventMouseButton and event.pressed:
 		match (event as InputEventMouseButton).button_index:
 			MOUSE_BUTTON_WHEEL_UP:
 				dir = 1
+				get_viewport().set_input_as_handled()
 			MOUSE_BUTTON_WHEEL_DOWN:
 				dir = -1
-			MOUSE_BUTTON_LEFT:
-				_probar_candado()
+				get_viewport().set_input_as_handled()
 			MOUSE_BUTTON_RIGHT:
 				_cerrar_candado(false)
-	if event is InputEventKey or event is InputEventMouseButton:
-		if not event.is_action("PauseMenu"):
-			get_viewport().set_input_as_handled()
+				get_viewport().set_input_as_handled()
 	if dir != 0:
-		_candado_digitos[_candado_sel] = posmod(_candado_digitos[_candado_sel] + dir, 10)
-		_clic.pitch_scale = randf_range(0.95, 1.1)
-		_clic.play()
-		var rueda := _candado_ruedas[_candado_sel]
-		rueda.position.y = -8.0 * dir
-		create_tween().tween_property(rueda, "position:y", 0.0, 0.12)
+		_girar_rueda(_candado_sel, dir)
 	if mover != 0:
 		_candado_sel = posmod(_candado_sel + mover, _candado_digitos.size())
 	if dir != 0 or mover != 0:
 		_refrescar_candado()
+
+
+func _girar_rueda(i: int, dir: int) -> void:
+	_candado_digitos[i] = posmod(_candado_digitos[i] + dir, 10)
+	_sonar_rueda(i, dir)
+
+
+func _sonar_rueda(i: int, dir: int) -> void:
+	_clic.pitch_scale = randf_range(0.95, 1.1)
+	_clic.play()
+	var rueda := _candado_ruedas[i]
+	rueda.position.y = -8.0 * dir
+	create_tween().tween_property(rueda, "position:y", 0.0, 0.12)
+
+
+## Clic sobre una rueda: la mitad de arriba sube el numero, la de abajo lo baja.
+func _clic_rueda(event: InputEvent, i: int) -> void:
+	if not _candado_abierto:
+		return
+	if event is InputEventMouseButton and event.pressed and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+		_candado_sel = i
+		var arriba := (event as InputEventMouseButton).position.y < _candado_marcos[i].size.y * 0.5
+		_girar_rueda(i, 1 if arriba else -1)
+		_refrescar_candado()
+		get_viewport().set_input_as_handled()
 
 
 func _probar_candado() -> void:
@@ -405,7 +477,7 @@ func _construir_candado() -> void:
 	_candado.add_child(fondo)
 
 	var col := VBoxContainer.new()
-	_colocar(col, 0.5, 0.5, 0.5, 0.5, -260, -190, 260, 190)
+	_colocar(col, 0.5, 0.5, 0.5, 0.5, -320, -240, 320, 240)
 	col.alignment = BoxContainer.ALIGNMENT_CENTER
 	col.add_theme_constant_override("separation", 18)
 	_candado.add_child(col)
@@ -420,8 +492,17 @@ func _construir_candado() -> void:
 	centro.add_child(_candado_fila)
 	_candado_digitos.resize(4)
 	for i in 4:
+		var columna := VBoxContainer.new()
+		columna.add_theme_constant_override("separation", 4)
+		columna.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		var flecha_arriba := UIEstilo.label("▲", 14, Color(HUESO, 0.45))
+		flecha_arriba.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		columna.add_child(flecha_arriba)
 		var marco := Panel.new()
 		marco.custom_minimum_size = Vector2(76, 150)
+		marco.mouse_filter = Control.MOUSE_FILTER_STOP
+		marco.mouse_default_cursor_shape = Control.CURSOR_POINTING_HAND
+		marco.gui_input.connect(_clic_rueda.bind(i))
 		marco.clip_contents = true
 		var estilo := StyleBoxFlat.new()
 		estilo.bg_color = Color(0.09, 0.075, 0.06)
@@ -443,11 +524,27 @@ func _construir_candado() -> void:
 		sombra.stretch_mode = TextureRect.STRETCH_SCALE
 		sombra.mouse_filter = Control.MOUSE_FILTER_IGNORE
 		marco.add_child(sombra)
-		_candado_fila.add_child(marco)
+		columna.add_child(marco)
+		var flecha_abajo := UIEstilo.label("▼", 14, Color(HUESO, 0.45))
+		flecha_abajo.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		columna.add_child(flecha_abajo)
+		_candado_fila.add_child(columna)
 		_candado_marcos.append(marco)
 		_candado_ruedas.append(rueda)
 
-	var pista := UIEstilo.label("[W/S] GIRAR    [A/D] MOVER    [E] PROBAR    [G] SALIR", 10, Color(HUESO, 0.5), true)
+	var botones := HBoxContainer.new()
+	botones.alignment = BoxContainer.ALIGNMENT_CENTER
+	botones.add_theme_constant_override("separation", 40)
+	var probar := MenuBoton.new("PROBAR", 20)
+	probar.pressed.connect(_probar_candado)
+	var salir := MenuBoton.new("SALIR", 20)
+	salir.pressed.connect(func() -> void:
+		if _candado_abierto:
+			_cerrar_candado(false))
+	botones.add_child(probar)
+	botones.add_child(salir)
+	col.add_child(botones)
+	var pista := UIEstilo.label("[↑ ↓] GIRAR    [← →] CAMBIAR RUEDA    [0-9] ESCRIBIR    [E] PROBAR    [G] SALIR", 10, Color(HUESO, 0.5), true)
 	pista.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	col.add_child(pista)
 	add_child(_candado)
@@ -585,9 +682,9 @@ func _construir_lente() -> void:
 	_bateria.size = Vector2(240, 14)
 	_bateria.mouse_filter = Control.MOUSE_FILTER_IGNORE
 	_lente.add_child(_bateria)
-	var pista := UIEstilo.label("[CLIC DER] CAMBIAR LUZ", 9, Color(HUESO, 0.4), true)
-	pista.position = Vector2(0, 120)
-	_lente.add_child(pista)
+	_pista_lente = UIEstilo.label("[CLIC DER] CAMBIAR LUZ", 9, Color(HUESO, 0.4), true)
+	_pista_lente.position = Vector2(0, 120)
+	_lente.add_child(_pista_lente)
 	_raiz.add_child(_lente)
 
 

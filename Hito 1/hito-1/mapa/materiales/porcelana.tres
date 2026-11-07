@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3]
+
+[ext_resource type="Shader" path="res://mapa/superficie_sucia.gdshader" id="s_sucia"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/marmol.png" id="t_base"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_ruido.png" id="t_ruido"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_chorreos.png" id="t_chorreo"]
+
+[resource]
+resource_name = "porcelana"
+shader = ExtResource("s_sucia")
+shader_parameter/tinte = Color(0.75, 0.73, 0.68, 1)
+shader_parameter/textura = ExtResource("t_base")
+shader_parameter/normal_fuerza = 0.0
+shader_parameter/rugosidad = 0.3
+shader_parameter/escala_uv = Vector3(2.0, 2.0, 2.0)
+shader_parameter/mugre_ruido = ExtResource("t_ruido")
+shader_parameter/mugre_chorreos = ExtResource("t_chorreo")
+shader_parameter/mugre = 0.7
+shader_parameter/grietas = 0.0
+shader_parameter/humedad_altura = 0.0
+shader_parameter/desaturar = 0.25

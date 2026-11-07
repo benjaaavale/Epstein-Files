@@ -1,0 +1,77 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/papel.tres" id="m0"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh5"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh6"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh7"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[sub_resource type="BoxMesh" id="mesh8"]
+size = Vector3(0.21, 0.002, 0.29)
+
+[node name="Papeles" type="Node3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.239864, 0, 0.970806, 0, 1, 0, -0.970806, 0, -0.239864, 0.15292, 0.002, 0.358167)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.989311, 0, 0.145822, 0, 1, 0, -0.145822, 0, 0.989311, -0.123983, 0.0035, 0.381004)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.899055, 0, 0.437836, 0, 1, 0, -0.437836, 0, 0.899055, 0.430162, 0.005, -0.168313)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.837745, 0, 0.546062, 0, 1, 0, -0.546062, 0, -0.837745, -0.458649, 0.0065, -0.153215)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.422688, 0, 0.906275, 0, 1, 0, -0.906275, 0, -0.422688, -0.383128, 0.008, 0.0652801)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.980608, 0, 0.195981, 0, 1, 0, -0.195981, 0, 0.980608, -0.153123, 0.0095, 0.0381956)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh5")
+
+[node name="P6" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.536887, 0, 0.843654, 0, 1, 0, -0.843654, 0, -0.536887, -0.528479, 0.011, -0.235233)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh6")
+
+[node name="P7" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.265575, 0, 0.96409, 0, 1, 0, -0.96409, 0, -0.265575, -0.0868892, 0.0125, -0.148682)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh7")
+
+[node name="P8" type="MeshInstance3D" parent="."]
+transform = Transform3D(-0.798513, 0, 0.601978, 0, 1, 0, -0.601978, 0, -0.798513, -0.0561787, 0.014, -0.160186)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh8")

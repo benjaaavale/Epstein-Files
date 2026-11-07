@@ -1,0 +1,63 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/tela_sabana.tres" id="m0"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(1.0, 0.55, 0.85)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(1.05, 0.6, 0.25)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.22, 0.35, 0.85)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.22, 0.35, 0.85)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(1.15, 0.04, 0.9)
+
+[sub_resource type="SphereMesh" id="mesh5"]
+radius = 0.5
+height = 0.2
+radial_segments = 16
+rings = 8
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(1.1, 1.0, 0.9)
+
+[node name="Tapado_sillon" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, 0, 0.75, -0.32)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997564, -0.0697565, 0, 0.0697565, 0.997564, 0, 0, 0, 1, -0.47, 0.62, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.997564, 0.0697565, 0, -0.0697565, 0.997564, 0, 0, 0, 1, 0.47, 0.62, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.03, 0.05)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0.05)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh5")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("shape0")
