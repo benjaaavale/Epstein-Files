@@ -44,6 +44,9 @@
 [ext_resource type="AudioStream" uid="uid://cvtd57p0bfxg8" path="res://assets varios/Assets importados/dragon-studio-scary-scream-401725.mp3" id="36_wri13"]
 [ext_resource type="PackedScene" path="res://pila.tscn" id="36_xcs2e"]
 [ext_resource type="Shader" uid="uid://cav1jnm37687l" path="res://mapa/deco/luz_revela_pasos_secretos.gdshader" id="41_002e6"]
+[ext_resource type="Shader" path="res://mapa/superficie_sucia.gdshader" id="50_sucia"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_ruido.png" id="51_ruido"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_chorreos.png" id="52_chorreo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3gngh"]
 size = Vector3(0.68896484, 0.53100586, 1.0585632)
@@ -79,59 +82,84 @@ size = Vector3(0.21999931, 0.22000003, 21.400002)
 [sub_resource type="BoxMesh" id="BoxMesh_0klgc"]
 size = Vector3(0.21999931, 0.22000003, 21.400002)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2am08"]
+[sub_resource type="ShaderMaterial" id="StandardMaterial3D_2am08"]
+render_priority = 0
 resource_name = "papel_tapiz"
-albedo_texture = ExtResource("14_3k0nc")
-roughness = 0.9
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = ExtResource("15_umku1")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 6.0
-uv1_world_triplanar = true
-uv2_scale = Vector3(0.5, 0.5, 0.5)
-uv2_triplanar = true
-uv2_triplanar_sharpness = 6.0
-uv2_world_triplanar = true
+shader = ExtResource("50_sucia")
+shader_parameter/tinte = Color(1, 1, 1, 1)
+shader_parameter/textura = ExtResource("14_3k0nc")
+shader_parameter/textura_normal = ExtResource("18_uavjm")
+shader_parameter/normal_fuerza = 0.5
+shader_parameter/rugosidad = 0.9
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(0.5, 0.5, 0.5)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/grietas = 0.55
+shader_parameter/humedad_altura = 0.6
+shader_parameter/desaturar = 0.25
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_002e6"]
+[sub_resource type="ShaderMaterial" id="StandardMaterial3D_002e6"]
+render_priority = 0
 resource_name = "papel_tapiz"
-albedo_texture = ExtResource("14_3k0nc")
-roughness = 0.9
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = ExtResource("15_umku1")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 6.0
-uv1_world_triplanar = true
-uv2_scale = Vector3(0.5, 0.5, 0.5)
-uv2_triplanar = true
-uv2_triplanar_sharpness = 6.0
-uv2_world_triplanar = true
+shader = ExtResource("50_sucia")
+shader_parameter/tinte = Color(1, 1, 1, 1)
+shader_parameter/textura = ExtResource("14_3k0nc")
+shader_parameter/textura_normal = ExtResource("18_uavjm")
+shader_parameter/normal_fuerza = 0.5
+shader_parameter/rugosidad = 0.9
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(0.5, 0.5, 0.5)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/grietas = 0.55
+shader_parameter/humedad_altura = 0.6
+shader_parameter/desaturar = 0.25
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1v7kk"]
+[sub_resource type="ShaderMaterial" id="StandardMaterial3D_1v7kk"]
+render_priority = 0
 resource_name = "Techo"
-albedo_texture = ExtResource("17_ct7ju")
-roughness = 0.95
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = ExtResource("18_uavjm")
-uv1_scale = Vector3(0.3, 0.3, 0.3)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 6.0
-uv1_world_triplanar = true
+shader = ExtResource("50_sucia")
+shader_parameter/tinte = Color(1, 1, 1, 1)
+shader_parameter/textura = ExtResource("17_ct7ju")
+shader_parameter/textura_normal = ExtResource("18_uavjm")
+shader_parameter/normal_fuerza = 0.5
+shader_parameter/rugosidad = 0.95
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(0.3, 0.3, 0.3)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.15
+shader_parameter/descascarado = 0.0
+shader_parameter/grietas = 0.85
+shader_parameter/humedad_altura = 0.0
+shader_parameter/desaturar = 0.3
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g8vr4"]
-albedo_color = Color(0.4117647, 0.36078432, 0.10980392, 1)
-albedo_texture = ExtResource("13_dvqag")
-roughness = 0.98
-normal_enabled = true
-normal_scale = 2.98
-normal_texture = ExtResource("14_oxy0g")
-uv1_scale = Vector3(1.8, 1.8, 1.8)
-uv1_triplanar = true
+[sub_resource type="ShaderMaterial" id="StandardMaterial3D_g8vr4"]
+render_priority = 0
+shader = ExtResource("50_sucia")
+shader_parameter/tinte = Color(0.4117647, 0.36078432, 0.10980392, 1)
+shader_parameter/textura = ExtResource("13_dvqag")
+shader_parameter/textura_normal = ExtResource("14_oxy0g")
+shader_parameter/normal_fuerza = 1.2
+shader_parameter/rugosidad = 0.98
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(1.8, 1.8, 1.8)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.0
+shader_parameter/grietas = 0.15
+shader_parameter/humedad_altura = 0.0
+shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_wvxq7"]
 size = Vector3(17.608292, 0.99700475, 0.26890868)
@@ -193,15 +221,24 @@ size = Vector3(36.122337, 0.07999992, 0.3250488)
 [sub_resource type="BoxMesh" id="BoxMesh_myqk5"]
 size = Vector3(1.1207178, 0.072856426, 0.318705)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_d3gba"]
-albedo_color = Color(0.4129357, 0.36230415, 0.1109448, 1)
-albedo_texture = ExtResource("13_dvqag")
-roughness = 0.98
-normal_enabled = true
-normal_scale = 2.98
-normal_texture = ExtResource("14_oxy0g")
-uv1_scale = Vector3(2, 2, 2)
-uv1_triplanar = true
+[sub_resource type="ShaderMaterial" id="StandardMaterial3D_d3gba"]
+render_priority = 0
+shader = ExtResource("50_sucia")
+shader_parameter/tinte = Color(0.4129357, 0.36230415, 0.1109448, 1)
+shader_parameter/textura = ExtResource("13_dvqag")
+shader_parameter/textura_normal = ExtResource("14_oxy0g")
+shader_parameter/normal_fuerza = 1.2
+shader_parameter/rugosidad = 0.98
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(2, 2, 2)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.0
+shader_parameter/grietas = 0.15
+shader_parameter/humedad_altura = 0.0
+shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_umku1"]
 size = Vector3(3.222196, 0.99700475, 0.26890868)
@@ -299,108 +336,9 @@ size = Vector3(14.770409, 0.07999992, 0.3250488)
 [sub_resource type="BoxMesh" id="BoxMesh_owue4"]
 size = Vector3(14.175682, 0.07999992, 0.3250488)
 
-[sub_resource type="Shader" id="Shader_002e6"]
-code = "shader_type spatial;
-render_mode depth_prepass_alpha, cull_disabled;
-
-// --- VARIABLES LINTERNA ---
-global uniform vec3 flashlight_pos;
-global uniform vec3 flashlight_dir;
-global uniform bool is_blue_light_on;
-global uniform bool is_red_light_on;
-global uniform bool is_violet_light_on;
-global uniform float flashlight_angle;
-
-uniform float fade_degrees = 6.0;
-uniform int light_channel = 0; // 0 = azul, 1 = roja, 2 = morada
-uniform sampler2D reveal_mask : hint_default_black, filter_linear;
-uniform bool use_reveal_mask = false;
-uniform mat4 world_to_mask;
-uniform vec2 mask_min = vec2(-0.5, 0.0);
-uniform vec2 mask_size = vec2(1.0, 1.0);
-instance uniform float force_visible = 0.0;
-
-// --- CONFIGURACIONES DE MATERIAL (Tus fotos) ---
-uniform vec4 albedo : source_color = vec4(1.0);
-uniform sampler2D texture_albedo : source_color, filter_linear_mipmap, repeat_enable;
-uniform float roughness : hint_range(0.0, 1.0) = 0.9;
-uniform float metallic : hint_range(0.0, 1.0) = 0.0;
-
-// Normal Map
-uniform sampler2D texture_normal : hint_normal, filter_linear_mipmap, repeat_enable;
-uniform float normal_scale : hint_range(-16.0, 16.0) = 0.5;
-
-// Triplanar y UVs
-varying vec3 uv1_triplanar_pos;
-uniform vec3 uv1_scale = vec3(1.0, 1.0, 1.0);
-uniform vec3 uv1_offset = vec3(0.0, 0.0, 0.0);
-varying vec3 uv1_power_normal;
-uniform float triplanar_sharpness = 6.0;
-varying vec3 world_pos;
-
-void vertex() {
-	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
-	
-	// Cálculo Triplanar (Mundo)
-	vec3 normal = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
-	uv1_power_normal = pow(abs(normal), vec3(triplanar_sharpness));
-	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
-	uv1_triplanar_pos = world_pos * uv1_scale + uv1_offset;
-	uv1_triplanar_pos *= vec3(1.0, -1.0, 1.0);
-}
-
-vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos) {
-	vec4 samp = vec4(0.0);
-	samp += texture(p_sampler, p_triplanar_pos.xy) * p_weights.z;
-	samp += texture(p_sampler, p_triplanar_pos.xz) * p_weights.y;
-	samp += texture(p_sampler, p_triplanar_pos.zy * vec2(-1.0,1.0)) * p_weights.x;
-	return samp;
-}
-
-void fragment() {
-	// Base
-	vec4 albedo_tex = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	ROUGHNESS = roughness;
-	METALLIC = metallic;
-	
-	// Normal Map
-	vec4 normal_tex = triplanar_texture(texture_normal, uv1_power_normal, uv1_triplanar_pos);
-	NORMAL_MAP = normal_tex.rgb;
-	NORMAL_MAP_DEPTH = normal_scale;
-
-	// Linterna y Borrado
-	float light_intensity = 0.0;
-	bool light_on = is_violet_light_on;
-	if (light_channel == 0) { light_on = is_blue_light_on; }
-	else if (light_channel == 1) { light_on = is_red_light_on; }
-	
-	if (light_on) {
-		vec3 dir_to_pixel = normalize(world_pos - flashlight_pos);
-		float cos_angle = clamp(dot(dir_to_pixel, normalize(flashlight_dir)), -1.0, 1.0);
-		float angle_deg = degrees(acos(cos_angle));
-		light_intensity = 1.0 - smoothstep(flashlight_angle - fade_degrees, flashlight_angle, angle_deg);
-	}
-	
-	float opacity = 1.0; 
-	
-	if (use_reveal_mask) {
-		vec3 local_pos = (world_to_mask * vec4(world_pos, 1.0)).xyz;
-		vec2 mask_uv = (local_pos.xy - mask_min) / mask_size;
-		mask_uv.y = 1.0 - mask_uv.y;
-		float mask_val = texture(reveal_mask, mask_uv).r;
-		
-		opacity = min(mask_val, 1.0 - light_intensity);
-	} else {
-		opacity = 1.0 - light_intensity;
-	}
-	
-	ALPHA = max(opacity, force_visible) * albedo.a * albedo_tex.a;
-}"
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5icc"]
 render_priority = 0
-shader = SubResource("Shader_002e6")
+shader = ExtResource("41_002e6")
 shader_parameter/fade_degrees = 6.0
 shader_parameter/light_channel = 2
 shader_parameter/use_reveal_mask = false
@@ -411,11 +349,18 @@ shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/texture_albedo = ExtResource("14_3k0nc")
 shader_parameter/roughness = 0.9
 shader_parameter/metallic = 0.0
-shader_parameter/texture_normal = ExtResource("15_umku1")
+shader_parameter/texture_normal = ExtResource("18_uavjm")
 shader_parameter/normal_scale = 0.5
 shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/grietas = 0.55
+shader_parameter/humedad_altura = 0.6
+shader_parameter/desaturar = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002e6"]
 render_priority = 0
@@ -435,6 +380,12 @@ shader_parameter/normal_scale = 0.5
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0.37, 0)
 shader_parameter/triplanar_sharpness = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 0.9
+shader_parameter/grietas = 0.25
+shader_parameter/humedad_altura = 0.55
+shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_1gakt"]
 size = Vector3(1.4351877, 0.99700475, 0.26890868)
@@ -456,6 +407,12 @@ shader_parameter/normal_scale = 0.5
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 0.7
+shader_parameter/grietas = 0.0
+shader_parameter/humedad_altura = 0.0
+shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ek4k"]
 size = Vector3(1.3033488, 0.07999992, 0.3250488)
@@ -486,9 +443,18 @@ shader_parameter/albedo = Color(1, 1, 1, 1)
 shader_parameter/roughness = 0.9
 shader_parameter/metallic = 0.0
 shader_parameter/normal_scale = 0.5
-shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 6.0
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/grietas = 0.55
+shader_parameter/humedad_altura = 0.6
+shader_parameter/desaturar = 0.25
+shader_parameter/texture_albedo = ExtResource("14_3k0nc")
+shader_parameter/texture_normal = ExtResource("18_uavjm")
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
 
 [node name="Node3D" type="Node3D" unique_id=1261775488]
 
@@ -1966,10 +1932,10 @@ size = Vector3(0.207, 3.3263183, 17.645205)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Infraestructura2/Interiores_piso2/CSGBox3D7" unique_id=688564138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.10350633, 6.616649)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0107, -5.858)
 operation = 2
 use_collision = true
-size = Vector3(0.207, 2.4450872, 1.8174096)
+size = Vector3(0.45, 2.5, 1.6)
 material = SubResource("StandardMaterial3D_002e6")
 
 [node name="Paredes_generales_piso2" type="CSGBox3D" parent="Infraestructura2" unique_id=513622414]
@@ -2876,9 +2842,10 @@ transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.965
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.03, 0.05)
 
 [node name="CSGBox3D9" type="CSGBox3D" parent="Elementos_piso2" unique_id=1719116566]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.424661, 3.6642346, 1.5749612)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.424661, 3.575, -10.9)
 instance_shader_parameters/force_visible = 1.0
-size = Vector3(0.207, 2.4450872, 1.8174096)
+use_collision = true
+size = Vector3(0.207, 2.55, 1.64)
 material = SubResource("ShaderMaterial_wri13")
 script = ExtResource("18_virw0")
 

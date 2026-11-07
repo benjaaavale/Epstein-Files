@@ -1,6 +1,8 @@
 shader_type spatial;
 render_mode depth_prepass_alpha, cull_disabled;
 
+#include "res://mapa/mugre.gdshaderinc"
+
 // --- VARIABLES LINTERNA ---
 global uniform vec3 flashlight_pos;
 global uniform vec3 flashlight_dir;
@@ -35,12 +37,14 @@ uniform vec3 uv1_offset = vec3(0.0, 0.0, 0.0);
 varying vec3 uv1_power_normal;
 uniform float triplanar_sharpness = 6.0;
 varying vec3 world_pos;
+varying vec3 world_normal;
 
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	
 	// Cálculo Triplanar (Mundo)
 	vec3 normal = normalize((MODEL_MATRIX * vec4(NORMAL, 0.0)).xyz);
+	world_normal = normal;
 	uv1_power_normal = pow(abs(normal), vec3(triplanar_sharpness));
 	uv1_power_normal /= dot(uv1_power_normal, vec3(1.0));
 	uv1_triplanar_pos = world_pos * uv1_scale + uv1_offset;
@@ -58,8 +62,9 @@ vec4 triplanar_texture(sampler2D p_sampler, vec3 p_weights, vec3 p_triplanar_pos
 void fragment() {
 	// Base
 	vec4 albedo_tex = triplanar_texture(texture_albedo, uv1_power_normal, uv1_triplanar_pos);
-	ALBEDO = albedo.rgb * albedo_tex.rgb;
-	ROUGHNESS = roughness;
+	float rough = roughness;
+	ALBEDO = ensuciar(albedo.rgb * albedo_tex.rgb, rough, world_pos, normalize(world_normal));
+	ROUGHNESS = rough;
 	METALLIC = metallic;
 	
 	// Normal Map

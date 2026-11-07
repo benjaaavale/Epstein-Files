@@ -1,16 +1,26 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://ky5hd5hbwqc5"]
+[gd_resource type="ShaderMaterial" load_steps=5 format=3 uid="uid://ky5hd5hbwqc5"]
 
 [ext_resource type="Texture2D" uid="uid://df7dxu8kb57e2" path="res://mapa/texturas/papel_tapiz.png" id="1_pa2cp"]
 [ext_resource type="Texture2D" uid="uid://pnhy3mqfxep1" path="res://mapa/texturas/piedra_normal.png" id="2_kglp8"]
+[ext_resource type="Shader" path="res://mapa/superficie_sucia.gdshader" id="s_sucia"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_ruido.png" id="t_ruido"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_chorreos.png" id="t_chorreo"]
 
 [resource]
 resource_name = "papel_tapiz"
-albedo_texture = ExtResource("1_pa2cp")
-roughness = 0.9
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = ExtResource("2_kglp8")
-uv1_scale = Vector3(0.55, 0.55, 0.55)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 6.0
-uv1_world_triplanar = true
+shader = ExtResource("s_sucia")
+shader_parameter/tinte = Color(1, 1, 1, 1)
+shader_parameter/textura = ExtResource("1_pa2cp")
+shader_parameter/textura_normal = ExtResource("2_kglp8")
+shader_parameter/normal_fuerza = 0.5
+shader_parameter/rugosidad = 0.9
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(0.55, 0.55, 0.55)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("t_ruido")
+shader_parameter/mugre_chorreos = ExtResource("t_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/grietas = 0.55
+shader_parameter/humedad_altura = 0.6
+shader_parameter/desaturar = 0.25

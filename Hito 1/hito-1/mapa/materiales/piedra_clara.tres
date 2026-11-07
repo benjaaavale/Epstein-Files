@@ -1,18 +1,26 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3]
 
 [ext_resource type="Texture2D" path="res://mapa/texturas/mugre_piedra.png" id="1_puca3"]
 [ext_resource type="Texture2D" path="res://mapa/texturas/piedra_normal.png" id="2_bg2lw"]
+[ext_resource type="Shader" path="res://mapa/superficie_sucia.gdshader" id="s_sucia"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_ruido.png" id="t_ruido"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_chorreos.png" id="t_chorreo"]
 
 [resource]
 resource_name = "piedra_clara"
-vertex_color_use_as_albedo = true
-albedo_color = Color(0.47, 0.47, 0.44, 1)
-albedo_texture = ExtResource("1_puca3")
-roughness = 0.92
-normal_enabled = true
-normal_scale = 0.7
-normal_texture = ExtResource("2_bg2lw")
-uv1_scale = Vector3(0.45, 0.45, 0.45)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 4.0
-uv1_world_triplanar = true
+shader = ExtResource("s_sucia")
+shader_parameter/tinte = Color(0.47, 0.47, 0.44, 1)
+shader_parameter/textura = ExtResource("1_puca3")
+shader_parameter/textura_normal = ExtResource("2_bg2lw")
+shader_parameter/normal_fuerza = 0.7
+shader_parameter/rugosidad = 0.92
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(0.45, 0.45, 0.45)
+shader_parameter/nitidez = 4.0
+shader_parameter/mugre_ruido = ExtResource("t_ruido")
+shader_parameter/mugre_chorreos = ExtResource("t_chorreo")
+shader_parameter/mugre = 0.8
+shader_parameter/descascarado = 0.0
+shader_parameter/grietas = 0.4
+shader_parameter/humedad_altura = 0.5
+shader_parameter/desaturar = 0.2

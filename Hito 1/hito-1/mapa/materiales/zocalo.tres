@@ -1,16 +1,26 @@
-[gd_resource type="StandardMaterial3D" format=3 uid="uid://bm7hgfdxxwpbx"]
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://bm7hgfdxxwpbx"]
 
 [ext_resource type="Texture2D" uid="uid://dsfcgrwj1135m" path="res://mapa/texturas/paneles_madera.png" id="1_epg65"]
 [ext_resource type="Texture2D" uid="uid://bltdx28l6e3mm" path="res://mapa/texturas/madera_normal.png" id="2_swyks"]
+[ext_resource type="Shader" path="res://mapa/superficie_sucia.gdshader" id="s_sucia"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_ruido.png" id="t_ruido"]
+[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_chorreos.png" id="t_chorreo"]
 
 [resource]
 resource_name = "zocalo"
-albedo_texture = ExtResource("1_epg65")
-roughness = 0.75
-normal_enabled = true
-normal_scale = 0.5
-normal_texture = ExtResource("2_swyks")
-uv1_offset = Vector3(0, 0.37, 0)
-uv1_triplanar = true
-uv1_triplanar_sharpness = 6.0
-uv1_world_triplanar = true
+shader = ExtResource("s_sucia")
+shader_parameter/tinte = Color(1, 1, 1, 1)
+shader_parameter/textura = ExtResource("1_epg65")
+shader_parameter/textura_normal = ExtResource("2_swyks")
+shader_parameter/normal_fuerza = 0.5
+shader_parameter/rugosidad = 0.75
+shader_parameter/metalico = 0.0
+shader_parameter/desfase_uv = Vector3(0, 0.37, 0)
+shader_parameter/nitidez = 6.0
+shader_parameter/mugre_ruido = ExtResource("t_ruido")
+shader_parameter/mugre_chorreos = ExtResource("t_chorreo")
+shader_parameter/mugre = 0.9
+shader_parameter/descascarado = 0.0
+shader_parameter/grietas = 0.25
+shader_parameter/humedad_altura = 0.55
+shader_parameter/desaturar = 0.2
