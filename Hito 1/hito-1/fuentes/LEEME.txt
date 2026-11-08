@@ -1,0 +1,5 @@
+Fuentes del juego (libres para usar e incluir en el juego):
+- Eater-Regular.ttf (titulos) - SIL Open Font License 1.1 (Eater-OFL.txt)
+- SpecialElite-Regular.ttf (interfaz, maquina de escribir) - Apache 2.0 (SpecialElite-LICENSE-Apache2.txt)
+- IMFellEnglish-Regular.ttf (documentos y diario) - SIL Open Font License 1.1 (IMFellEnglish-OFL.txt)
+Obtenidas de Google Fonts via fontsource.

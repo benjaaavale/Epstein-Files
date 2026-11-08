@@ -87,6 +87,7 @@ mesh = SubResource("Mesh_puerta")
 [node name="Pomo" type="MeshInstance3D" parent="Bisagra"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.2, 0.025)
 material_override = ExtResource("4_laton")
+cast_shadow = 0
 mesh = SubResource("Mesh_pomo")
 
 [node name="Tapa" type="StaticBody3D" parent="Bisagra"]

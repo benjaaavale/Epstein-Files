@@ -37,7 +37,13 @@ var _player: Node
 var _contenido: VBoxContainer
 var _titulo_a: TituloTerror
 var _titulo_b: TituloTerror
-var _botones: Array[MenuBoton] = []
+var _botones: Array[Control] = []
+var _ruido: ColorRect
+var _evidencia: Control
+var _lema: Label
+var _presencia: Presencia
+var _proximo_susto := 22.0
+var _latido: AudioStreamPlayer
 var _negro: ColorRect
 var _opciones: PanelOpciones
 var _ayuda: Control
@@ -86,6 +92,21 @@ func _preparar_escena() -> void:
 	_foco.light_color = Color(1.0, 0.93, 0.82)
 	_foco.shadow_enabled = true
 	_camara.add_child(_foco)
+	# "Ella", arriba de la escalera: se deja ver un instante de vez en cuando
+	_presencia = Presencia.new()
+	get_parent().add_child(_presencia)
+	_presencia.global_position = Vector3(0.2, 2.35, -8.4)
+	# latido de fondo, muy bajo
+	_latido = AudioStreamPlayer.new()
+	var lat := load("res://sonidos/latido.wav") as AudioStreamWAV
+	if lat != null:
+		lat = lat.duplicate() as AudioStreamWAV
+		lat.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		lat.loop_end = int(lat.get_length() * lat.mix_rate)
+		_latido.stream = lat
+	_latido.volume_db = -20.0
+	add_child(_latido)
+	_latido.play()
 	_ir_a_plano(0)
 
 
@@ -114,10 +135,32 @@ func _process(delta: float) -> void:
 	var s := Time.get_ticks_msec() * 0.001
 	_foco.rotation = Vector3(sin(s * 0.37) * 0.22 + sin(s * 2.3) * 0.01, sin(s * 0.29 + 1.0) * 0.4, 0.0)
 	_foco.light_energy = 3.5 * (0.92 + 0.08 * sin(s * 13.0) * sin(s * 7.1))
+	# pulso rojo al ritmo del latido
+	if _ruido != null:
+		var pulso := pow(maxf(sin(s * TAU / 1.1), 0.0), 8.0)
+		(_ruido.material as ShaderMaterial).set_shader_parameter("tint_amount", 0.05 * pulso)
+	_proximo_susto -= delta
+	if _proximo_susto <= 0.0 and not _saliendo:
+		_proximo_susto = randf_range(25.0, 45.0)
+		_susto_menu()
 	# fundidos entre planos
 	if _negro != null and not _saliendo:
 		var borde := minf(_t, 1.0 - _t)
 		_negro.modulate.a = maxf(_negro.modulate.a - delta * 0.8, 0.0) if borde > 0.04 else clampf(1.0 - borde / 0.04, 0.0, 1.0)
+
+
+## Un parpadeo de luz y "Ella" aparece arriba de la escalera, apenas un instante.
+func _susto_menu() -> void:
+	if _presencia == null or _plano > 1:
+		return
+	_presencia.aparecer(0.35)
+	_titulo_b.glitch(0.4)
+	var t := create_tween()
+	t.tween_property(_foco, "light_energy", 0.0, 0.05)
+	t.tween_interval(0.12)
+	t.tween_property(_foco, "light_energy", 6.0, 0.04)
+	t.tween_interval(0.1)
+	t.tween_property(_foco, "light_energy", 3.5, 0.3)
 
 
 func _construir() -> void:
@@ -129,8 +172,8 @@ func _construir() -> void:
 	# oscurece el lado izquierdo para que el texto se lea sobre la casa
 	var sombra := TextureRect.new()
 	var g := Gradient.new()
-	g.offsets = PackedFloat32Array([0.0, 0.45, 0.75])
-	g.colors = PackedColorArray([Color(0, 0, 0, 0.92), Color(0, 0, 0, 0.6), Color(0, 0, 0, 0.0)])
+	g.offsets = PackedFloat32Array([0.0, 0.42, 0.7])
+	g.colors = PackedColorArray([Color(0.02, 0, 0, 0.95), Color(0.02, 0, 0, 0.7), Color(0, 0, 0, 0.0)])
 	var gt := GradientTexture2D.new()
 	gt.gradient = g
 	gt.width = 256
@@ -140,44 +183,54 @@ func _construir() -> void:
 	sombra.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	UIEstilo.llenar(sombra)
 	raiz.add_child(sombra)
-	raiz.add_child(UIEstilo.capa_ruido({"vignette_amount": 0.85, "grain_amount": 0.07, "flicker_amount": 0.06}))
+	_ruido = UIEstilo.capa_ruido({"vignette_amount": 0.95, "grain_amount": 0.09, "flicker_amount": 0.08,
+		"tint": Color(0.6, 0.02, 0.02), "tint_amount": 0.0})
+	raiz.add_child(_ruido)
 
-	_contenido = UIEstilo.columna_izquierda(600.0, 560.0)
-	_contenido.offset_top -= 40.0
-	_contenido.offset_bottom -= 40.0
+	_evidencia = _construir_evidencia()
+	raiz.add_child(_evidencia)
+
+	# la columna ocupa el alto de la pantalla y centra su contenido: cabe tambien en 720p
+	_contenido = UIEstilo.columna_izquierda(640.0, 600.0)
+	_contenido.anchor_top = 0.06
+	_contenido.anchor_bottom = 0.86
+	_contenido.offset_top = 0.0
+	_contenido.offset_bottom = 0.0
+	_contenido.alignment = BoxContainer.ALIGNMENT_CENTER
+	_contenido.add_theme_constant_override("separation", 4)
 	raiz.add_child(_contenido)
-	_contenido.add_child(UIEstilo.label("— EXPEDIENTE N° 0417 · SEIS DESAPARECIDOS", 11, UIEstilo.SANGRE, true))
-	_titulo_a = TituloTerror.new("SHADE", 92)
-	_titulo_b = TituloTerror.new("MANSION", 92)
+	_contenido.add_child(UIEstilo.label("EXPEDIENTE N° 0417  ·  SEIS DESAPARECIDOS  ·  CASO ABIERTO", 12, UIEstilo.SANGRE, true))
+	_contenido.add_child(UIEstilo.espacio(4))
+	_titulo_a = TituloTerror.new("SHADE", 96)
+	_titulo_b = TituloTerror.new("MANSION", 96)
 	_titulo_b.frecuencia_glitch = 0.2
+	_titulo_b.goteo = true
 	_contenido.add_child(_titulo_a)
 	_contenido.add_child(_titulo_b)
-	_contenido.add_child(UIEstilo.label("La luz revela lo que la casa esconde.", 17, Color(UIEstilo.HUESO, 0.65)))
-	_contenido.add_child(UIEstilo.label("MANSIÓN EBNER · VALDIVIA", 10, Color(UIEstilo.HUESO, 0.35), true))
-	_contenido.add_child(Rasgo.new(380.0))
-	_contenido.add_child(UIEstilo.espacio(22))
+	_contenido.add_child(UIEstilo.espacio(8))
+	_lema = UIEstilo.label("La luz revela lo que la casa esconde.", 19, Color(UIEstilo.HUESO, 0.75))
+	_lema.visible_ratio = 0.0
+	_contenido.add_child(_lema)
+	_contenido.add_child(UIEstilo.label("MANSIÓN EBNER  ·  VALDIVIA  ·  ABANDONADA DESDE 1994", 11, Color(UIEstilo.HUESO, 0.38), true))
+	_contenido.add_child(UIEstilo.espacio(18))
 
-	_boton("ENTRAR", _on_jugar)
-	_boton("CÓMO JUGAR", _abrir_ayuda)
-	_boton("OPCIONES", func() -> void: _opciones.abrir())
-	_boton("SALIR", func() -> void: get_tree().quit())
+	_boton("I.", "ENTRAR", _on_jugar)
+	_boton("II.", "CÓMO JUGAR", _abrir_ayuda)
+	_boton("III.", "OPCIONES", func() -> void: _opciones.abrir())
+	_boton("IV.", "SALIR", func() -> void: get_tree().quit())
 
-	var estudio := UIEstilo.label("DIDDY GAMES", 10, Color(UIEstilo.HUESO, 0.4), true)
+	var aviso := UIEstilo.label("JUEGA A OSCURAS Y CON AUDÍFONOS", 11, Color(UIEstilo.HUESO, 0.35), true)
+	aviso.anchor_left = 0.09
+	aviso.anchor_top = 1.0
+	aviso.anchor_bottom = 1.0
+	aviso.offset_top = -64.0
+	raiz.add_child(aviso)
+	var estudio := UIEstilo.label("DIDDY GAMES  ·  CC5408", 10, Color(UIEstilo.HUESO, 0.3), true)
 	estudio.anchor_left = 0.09
 	estudio.anchor_top = 1.0
 	estudio.anchor_bottom = 1.0
 	estudio.offset_top = -40.0
 	raiz.add_child(estudio)
-	var curso := UIEstilo.label("CC5408", 10, Color(UIEstilo.HUESO, 0.4), true)
-	curso.anchor_left = 1.0
-	curso.anchor_right = 1.0
-	curso.anchor_top = 1.0
-	curso.anchor_bottom = 1.0
-	curso.offset_left = -300.0
-	curso.offset_right = -48.0
-	curso.offset_top = -40.0
-	curso.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
-	raiz.add_child(curso)
 
 	_ayuda = _construir_ayuda()
 	raiz.add_child(_ayuda)
@@ -188,6 +241,95 @@ func _construir() -> void:
 	_negro.color = Color.BLACK
 	UIEstilo.llenar(_negro)
 	add_child(_negro)
+
+
+## Lado derecho: la polaroid de Elena Rivas y un recorte de diario, clavados con cinta.
+func _construir_evidencia() -> Control:
+	var caja := Control.new()
+	caja.anchor_left = 1.0
+	caja.anchor_right = 1.0
+	caja.anchor_top = 0.5
+	caja.anchor_bottom = 0.5
+	caja.offset_left = -470.0
+	caja.offset_right = -60.0
+	caja.offset_top = -270.0
+	caja.offset_bottom = 230.0
+	caja.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	# recorte de diario
+	var recorte := PanelContainer.new()
+	var est := StyleBoxFlat.new()
+	est.bg_color = Color(0.62, 0.58, 0.48)
+	est.shadow_color = Color(0, 0, 0, 0.7)
+	est.shadow_size = 14
+	est.content_margin_left = 18
+	est.content_margin_right = 18
+	est.content_margin_top = 14
+	est.content_margin_bottom = 14
+	recorte.add_theme_stylebox_override("panel", est)
+	recorte.position = Vector2(0, 318)
+	recorte.custom_minimum_size = Vector2(330, 0)
+	recorte.rotation_degrees = -4.0
+	recorte.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var col := VBoxContainer.new()
+	col.add_theme_constant_override("separation", 4)
+	var tinta := Color(0.1, 0.08, 0.06)
+	var sup := UIEstilo.label("EL DIARIO DE VALDIVIA · 14 DE OCTUBRE", 9, Color(0.3, 0.1, 0.08), true)
+	sup.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	col.add_child(sup)
+	var titular := UIEstilo.label("SEXTA DESAPARICIÓN CERCA DE LA MANSIÓN EBNER", 20, tinta)
+	titular.add_theme_font_override("font", UIEstilo.fuente_documento())
+	titular.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	titular.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	titular.custom_minimum_size.x = 294
+	col.add_child(titular)
+	var bajada := UIEstilo.label("Vecinos aseguran ver luces rojas y azules tras las ventanas tapiadas.", 12, Color(tinta, 0.8))
+	bajada.add_theme_font_override("font", UIEstilo.fuente_documento())
+	bajada.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	bajada.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	bajada.custom_minimum_size.x = 294
+	col.add_child(bajada)
+	recorte.add_child(col)
+	caja.add_child(recorte)
+
+	# polaroid
+	var polaroid := Panel.new()
+	var marco := StyleBoxFlat.new()
+	marco.bg_color = Color(0.82, 0.79, 0.72)
+	marco.shadow_color = Color(0, 0, 0, 0.75)
+	marco.shadow_size = 16
+	polaroid.add_theme_stylebox_override("panel", marco)
+	polaroid.position = Vector2(150, 0)
+	polaroid.size = Vector2(220, 272)
+	polaroid.pivot_offset = Vector2(110, 0)
+	polaroid.rotation_degrees = 5.0
+	polaroid.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var foto := TextureRect.new()
+	# solo la foto (sin el nombre impreso): abajo queda el borde blanco para escribir
+	var recorte_foto := AtlasTexture.new()
+	recorte_foto.atlas = load("res://mapa/texturas/foto_desaparecido_1.png")
+	recorte_foto.region = Rect2(20, 20, 216, 220)
+	foto.texture = recorte_foto
+	foto.position = Vector2(12, 12)
+	foto.size = Vector2(196, 200)
+	foto.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	foto.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_COVERED
+	foto.modulate = Color(0.85, 0.8, 0.75)
+	polaroid.add_child(foto)
+	var cinta := ColorRect.new()
+	cinta.color = Color(0.85, 0.82, 0.65, 0.55)
+	cinta.size = Vector2(90, 26)
+	cinta.position = Vector2(65, -12)
+	cinta.rotation_degrees = -6.0
+	polaroid.add_child(cinta)
+	var nota := UIEstilo.label("¿LA VISTE?", 26, Color(0.55, 0.04, 0.03))
+	nota.add_theme_font_override("font", UIEstilo.fuente_documento())
+	nota.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
+	nota.position = Vector2(28, 220)
+	nota.rotation_degrees = -7.0
+	polaroid.add_child(nota)
+	caja.add_child(polaroid)
+	return caja
 
 
 func _construir_ayuda() -> Control:
@@ -245,12 +387,21 @@ func _input(event: InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 
-func _boton(texto: String, accion: Callable) -> void:
-	var b := MenuBoton.new(texto, 28)
+func _boton(numero: String, texto: String, accion: Callable) -> void:
+	var fila := HBoxContainer.new()
+	fila.add_theme_constant_override("separation", 14)
+	fila.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	var n := UIEstilo.label(numero, 14, Color(UIEstilo.SANGRE, 0.8), true)
+	n.custom_minimum_size.x = 44
+	n.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	n.size_flags_vertical = Control.SIZE_SHRINK_CENTER
+	fila.add_child(n)
+	var b := MenuBoton.new(texto, 26)
 	b.pressed.connect(accion)
-	b.modulate.a = 0.0
-	_botones.append(b)
-	_contenido.add_child(b)
+	fila.add_child(b)
+	fila.modulate.a = 0.0
+	_botones.append(fila)
+	_contenido.add_child(fila)
 
 
 func _animar_entrada() -> void:
@@ -259,7 +410,9 @@ func _animar_entrada() -> void:
 	var t := create_tween()
 	t.tween_property(_negro, "modulate:a", 0.0, 2.5).set_trans(Tween.TRANS_SINE)
 	t.tween_property(_contenido, "modulate:a", 1.0, 0.8)
+	t.parallel().tween_property(_evidencia, "modulate:a", 1.0, 1.6).from(0.0)
 	t.tween_callback(_titulo_a.glitch.bind(0.35))
+	t.tween_property(_lema, "visible_ratio", 1.0, 1.4)
 	for b in _botones:
 		t.tween_property(b, "modulate:a", 1.0, 0.22)
 
@@ -275,6 +428,8 @@ func _on_jugar() -> void:
 	activo = false
 	if is_instance_valid(_camara):
 		_camara.queue_free()
+	if is_instance_valid(_presencia):
+		_presencia.queue_free()
 	if _player != null:
 		_player.process_mode = Node.PROCESS_MODE_INHERIT
 		var hud := _player.get_node_or_null("HUD") as CanvasLayer

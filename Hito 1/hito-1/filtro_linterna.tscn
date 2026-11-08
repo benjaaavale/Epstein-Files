@@ -1,98 +1,84 @@
 [gd_scene format=3 uid="uid://fpdharxb0cfx"]
 
 [ext_resource type="Script" uid="uid://ca1wqn8nvmfch" path="res://filtro_linterna.gd" id="1_ey64w"]
-[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="2_laton"]
-[ext_resource type="Material" path="res://mapa/materiales/metal_negro.tres" id="3_negro"]
+[ext_resource type="Texture2D" uid="uid://djevsauuka7f0" path="res://linterna_aluminio.png" id="2_alu"]
 
-[sub_resource type="TorusMesh" id="Mesh_aro"]
-inner_radius = 0.068
-outer_radius = 0.084
-rings = 48
-ring_segments = 10
+[sub_resource type="StandardMaterial3D" id="Mat_aluminio"]
+albedo_color = Color(0.78, 0.78, 0.8, 1)
+albedo_texture = ExtResource("2_alu")
+metallic = 0.9
+roughness = 0.32
 
-[sub_resource type="TorusMesh" id="Mesh_aro_interior"]
-inner_radius = 0.064
-outer_radius = 0.07
-rings = 48
-ring_segments = 6
+[sub_resource type="StandardMaterial3D" id="Mat_goma"]
+albedo_color = Color(0.05, 0.05, 0.055, 1)
+roughness = 0.8
+
+[sub_resource type="CylinderMesh" id="Mesh_aro"]
+top_radius = 0.086
+bottom_radius = 0.088
+height = 0.022
+radial_segments = 40
+rings = 1
+
+[sub_resource type="CylinderMesh" id="Mesh_goma"]
+top_radius = 0.074
+bottom_radius = 0.074
+height = 0.024
+radial_segments = 40
+rings = 1
 
 [sub_resource type="StandardMaterial3D" id="Mat_vidrio"]
 resource_local_to_scene = true
 transparency = 1
 cull_mode = 2
-albedo_color = Color(1, 0.08, 0.05, 0.38)
-metallic = 0.2
-roughness = 0.04
+albedo_color = Color(1, 0.08, 0.05, 0.32)
+metallic = 0.3
+roughness = 0.03
 emission_enabled = true
 emission = Color(1, 0.08, 0.05, 1)
-emission_energy_multiplier = 0.3
+emission_energy_multiplier = 0.15
 rim_enabled = true
-rim = 0.6
+rim = 0.7
 rim_tint = 0.8
 
 [sub_resource type="CylinderMesh" id="Mesh_vidrio"]
-top_radius = 0.069
-bottom_radius = 0.069
-height = 0.006
-radial_segments = 48
+top_radius = 0.066
+bottom_radius = 0.066
+height = 0.026
+radial_segments = 40
 rings = 1
 
 [sub_resource type="StandardMaterial3D" id="Mat_reflejo"]
 transparency = 1
 shading_mode = 0
-albedo_color = Color(1, 1, 1, 0.18)
+albedo_color = Color(1, 1, 1, 0.22)
 
 [sub_resource type="CylinderMesh" id="Mesh_reflejo"]
-top_radius = 0.02
-bottom_radius = 0.02
+top_radius = 0.018
+bottom_radius = 0.018
 height = 0.001
 radial_segments = 16
 rings = 1
 
-[sub_resource type="BoxMesh" id="Mesh_clip"]
-size = Vector3(0.03, 0.012, 0.022)
-
-[sub_resource type="CylinderMesh" id="Mesh_base"]
-top_radius = 0.045
-bottom_radius = 0.06
-height = 0.02
-radial_segments = 16
-rings = 1
-
-[sub_resource type="CylinderMesh" id="Mesh_vastago"]
-top_radius = 0.008
-bottom_radius = 0.008
-height = 0.03
-radial_segments = 8
-rings = 1
-
 [sub_resource type="BoxShape3D" id="Shape_filtro"]
-size = Vector3(0.22, 0.24, 0.1)
+size = Vector3(0.24, 0.08, 0.24)
 
 [node name="FiltroLinterna" type="StaticBody3D"]
 collision_layer = 5
 script = ExtResource("1_ey64w")
 
-[node name="Base" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
-material_override = ExtResource("2_laton")
-mesh = SubResource("Mesh_base")
-
-[node name="Vastago" type="MeshInstance3D" parent="Base"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
-material_override = ExtResource("2_laton")
-mesh = SubResource("Mesh_vastago")
-
 [node name="Lente" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.118, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.011, 0)
 
 [node name="Aro" type="MeshInstance3D" parent="Lente"]
-material_override = ExtResource("2_laton")
+material_override = SubResource("Mat_aluminio")
+cast_shadow = 0
 mesh = SubResource("Mesh_aro")
 
-[node name="AroInterior" type="MeshInstance3D" parent="Lente"]
-material_override = ExtResource("3_negro")
-mesh = SubResource("Mesh_aro_interior")
+[node name="Goma" type="MeshInstance3D" parent="Lente"]
+material_override = SubResource("Mat_goma")
+cast_shadow = 0
+mesh = SubResource("Mesh_goma")
 
 [node name="Vidrio" type="MeshInstance3D" parent="Lente"]
 material_override = SubResource("Mat_vidrio")
@@ -100,22 +86,17 @@ cast_shadow = 0
 mesh = SubResource("Mesh_vidrio")
 
 [node name="Reflejo" type="MeshInstance3D" parent="Lente"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0.0042, -0.025)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.022, 0.0135, -0.022)
 material_override = SubResource("Mat_reflejo")
 cast_shadow = 0
 mesh = SubResource("Mesh_reflejo")
 
-[node name="Clip" type="MeshInstance3D" parent="Lente"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.088)
-material_override = ExtResource("3_negro")
-mesh = SubResource("Mesh_clip")
-
 [node name="Brillo" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0.12)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
 light_color = Color(1, 0.08, 0.05, 1)
 light_energy = 0.35
 omni_range = 0.9
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
 shape = SubResource("Shape_filtro")

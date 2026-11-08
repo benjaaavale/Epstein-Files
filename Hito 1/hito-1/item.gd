@@ -28,6 +28,10 @@ func _ready() -> void:
 	_mascara_original = collision_mask
 	
 	_set_forced_visible(not only_visible_with_red_light)
+	# quietos donde se colocaron: si arrancan con fisica, una llave sobre una caja sale volando.
+	# La fisica se activa recien cuando el jugador los suelta (drop).
+	freeze_mode = RigidBody3D.FREEZE_MODE_STATIC
+	freeze = true
 
 func _set_forced_visible(forced: bool) -> void:
 	for child in find_children("*", "GeometryInstance3D", true, false):

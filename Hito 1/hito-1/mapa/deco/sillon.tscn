@@ -88,16 +88,19 @@ mesh = SubResource("BoxMesh_lpl8k")
 [node name="Voluta" type="MeshInstance3D" parent="." unique_id=63660046]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -0.34, 0.72, 0.31)
 material_override = ExtResource("1_6exl7")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_oyh27")
 
 [node name="Pata" type="MeshInstance3D" parent="." unique_id=1345898084]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34, 0.05, -0.32)
 material_override = ExtResource("2_0nqtw")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_ucefp")
 
 [node name="@MeshInstance3D@13" type="MeshInstance3D" parent="." unique_id=2025289454]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34, 0.05, 0.32)
 material_override = ExtResource("2_0nqtw")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_t2t78")
 
 [node name="@MeshInstance3D@14" type="MeshInstance3D" parent="." unique_id=867319960]
@@ -108,16 +111,19 @@ mesh = SubResource("BoxMesh_ax8tj")
 [node name="@MeshInstance3D@15" type="MeshInstance3D" parent="." unique_id=1183412056]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0.34, 0.72, 0.31)
 material_override = ExtResource("1_6exl7")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_m1661")
 
 [node name="@MeshInstance3D@16" type="MeshInstance3D" parent="." unique_id=1945494788]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.05, -0.32)
 material_override = ExtResource("2_0nqtw")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_ex2hv")
 
 [node name="@MeshInstance3D@17" type="MeshInstance3D" parent="." unique_id=244557070]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.34, 0.05, 0.32)
 material_override = ExtResource("2_0nqtw")
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_qfpdy")
 
 [node name="Colision" type="StaticBody3D" parent="." unique_id=703410157]

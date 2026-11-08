@@ -88,6 +88,12 @@
 [ext_resource type="PackedScene" path="res://mapa/deco/altar.tscn" id="g39"]
 [ext_resource type="Texture2D" path="res://mapa/texturas/circulo_ritual.png" id="g40"]
 [ext_resource type="Script" path="res://mapa/presencia.gd" id="g41"]
+[ext_resource type="Script" path="res://sustos/muneca_musical.gd" id="s1_muneca"]
+[ext_resource type="Script" path="res://sustos/pila_trampa.gd" id="s2_pila"]
+[ext_resource type="Script" path="res://sustos/ropero_maldito.gd" id="s3_ropero"]
+
+[sub_resource type="BoxShape3D" id="Shape_ropero"]
+size = Vector3(1.3, 2.0, 0.12)
 
 [sub_resource type="BoxMesh" id="Mesh_cerrojo"]
 size = Vector3(0.22, 0.3, 0.08)
@@ -3123,7 +3129,7 @@ transform = Transform3D(-1.5, 0, 0, 0, 1.5, 0, 0, 0, -1.5, 6.6, 0.75, -8.02)
 contenido = NodePath("../FiltroAzul")
 
 [node name="FiltroAzul" parent="Elementos_piso1" instance=ExtResource("20_x43ht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0.82, -8.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0.80, -8.2)
 color_a_desbloquear = 1
 
 [node name="TapadoSalon1" parent="Decorado" instance=ExtResource("g20")]
@@ -3182,6 +3188,7 @@ transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.9, 0.43
 
 [node name="PilaComedor" parent="Decorado" instance=ExtResource("36_xcs2e")]
 transform = Transform3D(-0.0246316, 0, 0.999697, 0, 1, 0, -0.999697, 0, -0.0246316, 13.55, 0.44, -11.75)
+script = ExtResource("s2_pila")
 
 [node name="CuadroComedor" parent="Decorado" instance=ExtResource("g18")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 1.5, -13.81)
@@ -3460,3 +3467,21 @@ transform = Transform3D(0.848528, 0, -0.848528, 0, 1.2, 0, 0.848528, 0, 0.848528
 
 [node name="TelaSellado2" parent="Decorado" instance=ExtResource("g6")]
 transform = Transform3D(-0.848528, 0, 0.848528, 0, 1.2, 0, -0.848528, 0, -0.848528, 9.8, 5, 3.15)
+
+[node name="MunecaMusical" type="Node3D" parent="Decorado"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.35, -0.4, -13.1)
+script = ExtResource("s1_muneca")
+muneca_path = NodePath("../MunecaSalon")
+
+[node name="PresenciaRopero" type="Node3D" parent="Decorado"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2.35, -6)
+script = ExtResource("g41")
+
+[node name="PuertaRopero" type="StaticBody3D" parent="Decorado"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -8.74, 3.45, -6.2)
+script = ExtResource("s3_ropero")
+puerta_path = NodePath("../Ropero/PuertaIzq")
+presencia_path = NodePath("../PresenciaRopero")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorado/PuertaRopero"]
+shape = SubResource("Shape_ropero")

@@ -28,9 +28,22 @@ var _t := 0.0
 
 
 func _ready() -> void:
+	# estrias del aro (como el cabezal de la linterna)
+	var estria := (lente.get_node("Aro") as MeshInstance3D)
+	for i in 24:
+		var e := MeshInstance3D.new()
+		var b := BoxMesh.new()
+		b.size = Vector3(0.004, 0.018, 0.006)
+		e.mesh = b
+		e.material_override = estria.material_override
+		e.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+		var a := TAU * i / 24.0
+		e.position = Vector3(cos(a), 0.0, sin(a)) * 0.0885
+		e.rotation.y = -a
+		lente.add_child(e)
 	var c: Color = COLORES[color_a_desbloquear]
 	var mat := (vidrio.material_override as StandardMaterial3D).duplicate() as StandardMaterial3D
-	mat.albedo_color = Color(c, 0.55)
+	mat.albedo_color = Color(c, 0.32)
 	mat.emission = c
 	vidrio.material_override = mat
 	brillo.light_color = c
@@ -67,10 +80,6 @@ func interactuar(player: Node) -> void:
 			player.linterna.desbloquear_violeta()
 			player.hud.toast("Filtro violeta", "SHIFT + CLIC: LUZ MORADA")
 	player.evento.emit("filtro_" + NOMBRES[color_a_desbloquear])
-	# el soporte vacio queda donde estaba
-	var base := get_node_or_null("Base") as Node3D
-	if base != null:
-		base.reparent(get_parent(), true)
 	# el lente vuela hacia la linterna y se encoge
 	var destino: Vector3 = player.linterna.global_position
 	var t := create_tween().set_parallel(true)

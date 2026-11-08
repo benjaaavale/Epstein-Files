@@ -78,11 +78,13 @@ mesh = SubResource("mesh4")
 [node name="P5" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06, 1.1, 0.36)
 material_override = ExtResource("m2")
+cast_shadow = 0
 mesh = SubResource("mesh5")
 
 [node name="P6" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.1, 0.62)
 material_override = ExtResource("m2")
+cast_shadow = 0
 mesh = SubResource("mesh6")
 
 [node name="Vestido" type="MeshInstance3D" parent="."]

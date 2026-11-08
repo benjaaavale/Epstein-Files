@@ -24,8 +24,35 @@ Extra: con luz morada, la pared oeste del hall esconde el cuarto de los seis des
 
 - `guion_mansion.gd`: objetivos en pantalla, monólogos por lugar o luz, sustos. `guion_nivel1.gd` queda para la escena chica.
 - `mapa/superficie_sucia.gdshader` + `mapa/mugre.gdshaderinc`: suciedad procedural (humedad, chorreos, manchas de techo, moho, grietas, papel despegado). Se regula con `mugre`, `descascarado`, `grietas` y `humedad_altura` en cada material.
-- `filtro_linterna.tscn`: los filtros ahora son lentes redondos en un soporte.
-- `hud.gd`: candado con flechas / números / clic, línea de objetivo, ayuda de luces.
+- `filtro_linterna.tscn`: los filtros son lentes redondos planos, con aro de aluminio como la linterna y vidrio de color.
+- `hud.gd`: candado con flechas / números / clic, objetivo arriba a la derecha, ayuda de luces.
+- `fuentes/`: Eater (títulos), Special Elite (interfaz) e IM Fell English (documentos), con sus licencias libres.
+- `menu_mansion.gd`: menú tipo expediente sobre la mansión (polaroid, recorte de diario, latido, "Ella" en la escalera).
 - `muros_secretos.gd`: la máscara se dibuja sobre la cara de la pared; al borrar ~45 % se desvanece y deja pasar.
 - `mapa/escrito.gd`: algo pintado que solo se ve con un color de luz (pistas y frases).
 - `mapa/deco/`: cama, ropero, mesa de comedor, muebles tapados, cuadros, espejo, muñeca, altar, banca, cuna, perchero, papeles, libros.
+
+## Sustos y trampas
+
+| Dónde | Qué pasa |
+|-------|----------|
+| Hall, al salir del primer cuarto | Pasos pesados cruzan el segundo piso. |
+| Puerta principal | Tres golpes desde afuera. |
+| Hall, con la luz azul ya obtenida | El candelabro grande se cae. |
+| Salón | Una caja de música suena sola; si te acercas, se corta y la muñeca gira la cabeza hacia ti. |
+| Comedor | Una silla se arrastra sola. La pila de la mesa es una **trampa**: chispazo, apagón y -35 % de batería. |
+| Rellano | Una tabla cede bajo los pies y la muñeca de la banca se cae. |
+| Dormitorio | Golpes dentro del ropero; al abrirlo, una respiración... y "Ella" aparece detrás del jugador. |
+| Cuarto sellado | Latido que se acelera cerca del altar; al tomar la llave, apagón y "Ella". Al revelar la pared, un portazo abajo. |
+| Llave dorada del hall | Trampa: se parte en la cerradura. |
+
+Los sonidos nuevos están en `sonidos/` (sintetizados para el juego) y los scripts en `sustos/`.
+
+## Rendimiento
+
+- Solo las 3 luces más cercanas a la cámara proyectan sombra (1 en calidad baja), en modo paraboloide doble; las luces lejanas se apagan solas. Está en `ajustes.gd`.
+- El 3D se dibuja a lo sumo a 1920 px de ancho; en pantallas Retina o 4K se escala con FSR.
+- Calidad por defecto **MEDIA** (sin SSAO, que es lo más caro). ALTA lo activa.
+- El shader de mugre lee una sola proyección (7 texturas por píxel en vez de ~22).
+- Las piezas chicas no proyectan sombra y no se dibujan a más de 24 m.
+- Ojo: no activar `occlusion_culling`; en las pruebas hizo caer Godot al renderizar.

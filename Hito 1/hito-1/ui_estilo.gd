@@ -6,23 +6,46 @@ const SANGRE := Color(0.62, 0.09, 0.08)
 const SOMBRA := Color(0.0, 0.0, 0.0, 0.8)
 const RUIDO := preload("res://ui_ruido.gdshader")
 
-static var _fuente: SystemFont
+## Interfaz: maquina de escribir gastada (expediente). Titulos: letras afiladas de terror.
+## Documentos: tipografia de libro antiguo. La fuente del sistema queda de respaldo
+## para simbolos que no traen (flechas, triangulos).
+const FUENTE_TEXTO := preload("res://fuentes/SpecialElite-Regular.ttf")
+const FUENTE_TITULO := preload("res://fuentes/Eater-Regular.ttf")
+const FUENTE_DOCUMENTO := preload("res://fuentes/IMFellEnglish-Regular.ttf")
+
+static var _fuente: Font
+static var _respaldo: SystemFont
 static var _espaciada: FontVariation
+
+
+static func _con_respaldo(f: FontFile) -> FontFile:
+	if _respaldo == null:
+		_respaldo = SystemFont.new()
+		_respaldo.font_names = PackedStringArray(["American Typewriter", "Courier New", "DejaVu Sans", "monospace"])
+	if f.fallbacks.is_empty():
+		f.fallbacks = [_respaldo]
+	return f
 
 
 static func fuente() -> Font:
 	if _fuente == null:
-		_fuente = SystemFont.new()
-		_fuente.font_names = PackedStringArray(["American Typewriter", "Courier Prime", "Courier New", "monospace"])
+		_fuente = _con_respaldo(FUENTE_TEXTO)
 	return _fuente
+
+
+static func fuente_titulo() -> Font:
+	return _con_respaldo(FUENTE_TITULO)
+
+
+static func fuente_documento() -> Font:
+	return _con_respaldo(FUENTE_DOCUMENTO)
 
 
 static func fuente_espaciada() -> Font:
 	if _espaciada == null:
 		_espaciada = FontVariation.new()
 		_espaciada.base_font = fuente()
-		_espaciada.spacing_glyph = 3
-		_espaciada.variation_embolden = 0.2
+		_espaciada.spacing_glyph = 2
 	return _espaciada
 
 

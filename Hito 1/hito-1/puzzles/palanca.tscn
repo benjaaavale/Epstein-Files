@@ -45,9 +45,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.04)
 [node name="Vara" type="MeshInstance3D" parent="Brazo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
 material_override = ExtResource("3_laton")
+cast_shadow = 0
 mesh = SubResource("Mesh_brazo")
 
 [node name="Pomo" type="MeshInstance3D" parent="Brazo"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135, 0)
 material_override = SubResource("Mat_pomo")
+cast_shadow = 0
 mesh = SubResource("Mesh_pomo")

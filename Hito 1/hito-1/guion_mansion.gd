@@ -23,6 +23,14 @@ const INTRO := [
 
 const GOLPE := preload("res://sonidos/golpe.wav")
 const SUSURRO := preload("res://sonidos/susurro.wav")
+const PASOS_ARRIBA := preload("res://sonidos/pasos_arriba.wav")
+const GOLPES_PUERTA := preload("res://sonidos/golpes_puerta.wav")
+const CANDELABRO_CAE := preload("res://sonidos/candelabro_cae.wav")
+const ARRASTRE := preload("res://sonidos/arrastre.wav")
+const TABLA := preload("res://sonidos/tabla_rota.wav")
+const PORTAZO := preload("res://sonidos/portazo.wav")
+const LATIDO := preload("res://sonidos/latido.wav")
+const STINGER := preload("res://sonidos/stinger.wav")
 
 @export var player_path: NodePath = ^"../Player"
 @export var mostrar_intro := true
@@ -44,6 +52,10 @@ const ESCALERA_ARRIBA := Vector3(0.0, 2.4, -9.0)
 const COFRE := Vector3(-14.2, 2.6, -4.0)
 const ALTAR := Vector3(12.3, 3.0, 2.2)
 const SALON := Vector3(2.0, 0.6, -11.0)
+const HALL_CENTRO := Vector3(0.43, -0.4, -2.34)
+const COMEDOR := Vector3(12.3, 0.6, -11.0)
+const TABLA_FLOJA := Vector3(3.0, 3.36, -10.4)
+const SELLADO := Vector3(12.3, 3.36, -5.0)
 
 var _player
 var _hud: Hud
@@ -64,6 +76,7 @@ var _cofre := false
 var _llave_real := false
 var _energia := false
 var _muro_este := false
+var _latido: AudioStreamPlayer
 
 
 func _ready() -> void:
@@ -137,6 +150,7 @@ func _process(delta: float) -> void:
 		_decir_una_vez("primer_color", ["Esta luz... muestra cosas que antes no estaban."])
 	if _linterna.bateria < 20.0:
 		_decir_una_vez("bateria_baja", ["La linterna se está debilitando. Los colores gastan la batería."])
+	_sustos(pos)
 	if Interactuable.iluminado(_linterna, RASTRO, Linterna.Channel.RED, 7.0):
 		_decir_una_vez("pisadas", ["Pisadas... con sangre.", "Alguien caminó descalzo por aquí. Voy a seguirlas."])
 	if Interactuable.iluminado(_linterna, LLAVE_CAJA, Linterna.Channel.RED, 5.0):
@@ -210,6 +224,15 @@ func _on_evento(nombre: String) -> void:
 			if not _salio:
 				_salio = true
 				_decir_una_vez("salida", ["Salí del cuarto. Esta casa es enorme..."])
+		"pila_trampa":
+			_decir_una_vez("pila_trampa", ["¡Ah! Estaba podrida...", "No todo lo que brilla en esta casa ayuda."])
+		"muneca":
+			_decir_una_vez("muneca", ["...La música se cortó.", "¿Esa muñeca me está mirando?"])
+		"ropero_golpes":
+			_decir_una_vez("ropero_golpes", ["Golpes... desde adentro del ropero."])
+		"ropero_abierto":
+			await get_tree().create_timer(2.6).timeout
+			_decir_una_vez("ropero_abierto", ["Estaba... detrás de mí.", "No mires atrás. No mires atrás."])
 		"pila_tomada":
 			_decir_una_vez("pila", ["Pilas. Las voy a necesitar."])
 		"candado_error":
@@ -239,9 +262,124 @@ func _on_evento(nombre: String) -> void:
 			if pos.distance_to(MURO_ESTE) < 6.0:
 				_muro_este = true
 				_decir_una_vez("muro_este", ["La pared... desapareció.", "Hay un cuarto sellado detrás."])
+				_portazo_lejano()
 			else:
 				_decir_una_vez("muro_secreto", ["Un cuarto escondido...", "Sus fotos. Los seis desaparecidos."])
 	_actualizar_objetivo()
+
+
+# ---------- sustos ----------
+
+func _sustos(pos: Vector3) -> void:
+	# pasos pesados cruzando el segundo piso, justo al salir del primer cuarto
+	if _salio and pos.x > -7.5 and pos.y < 2.0:
+		if _una_vez("pasos_arriba"):
+			_sonido_movil(PASOS_ARRIBA, Vector3(-6.0, 3.6, -11.0), Vector3(6.0, 3.6, -11.0), 3.8, 4.0)
+			_hud.decir.call_deferred(["...¿Hay alguien arriba?"])
+	# tres golpes desde afuera de la puerta principal
+	if _salio and pos.distance_to(PUERTA_PRINCIPAL) < 3.5 and _una_vez("golpes_puerta"):
+		_sonido_en(GOLPES_PUERTA, PUERTA_PRINCIPAL + Vector3(0, 0.6, 1.4), 6.0)
+		_player.sacudir(0.015, 0.4)
+		await get_tree().create_timer(2.4).timeout
+		_hud.decir(["¿Quién anda afuera? ¡Ayuda!", "...Nadie contesta."])
+	# el candelabro grande del hall se viene abajo (de vuelta con la luz azul)
+	if _linterna.azul_unlocked and pos.y < 2.0:
+		var dh := Vector2(pos.x - HALL_CENTRO.x, pos.z - HALL_CENTRO.z).length()
+		if dh < 4.5 and dh > 1.8 and _una_vez("candelabro"):
+			_cae_candelabro()
+	# una silla del comedor se arrastra sola
+	if pos.distance_to(COMEDOR) < 3.4 and _una_vez("silla"):
+		var silla := get_node_or_null(^"../Decorado/SillaComedor0") as Node3D
+		if silla != null:
+			_sonido_en(ARRASTRE, silla.global_position, 4.0)
+			var t := create_tween().set_parallel(true)
+			t.tween_property(silla, "position", silla.position + Vector3(0.1, 0, -0.55), 1.1).set_trans(Tween.TRANS_SINE)
+			t.tween_property(silla, "rotation_degrees:y", silla.rotation_degrees.y + 28.0, 1.1)
+			_hud.decir(["Esa silla... se movió sola."])
+	# una tabla floja del rellano cede bajo los pies
+	if pos.distance_to(TABLA_FLOJA) < 1.6 and _una_vez("tabla"):
+		_sonido_en(TABLA, pos + Vector3(0, -1.0, 0), 6.0)
+		_player.sacudir(0.06, 0.5)
+		_hud.destello(0.5, 0.6)
+		var muneca := get_node_or_null(^"../Decorado/MunecaRellano") as Node3D
+		if muneca != null:
+			create_tween().tween_property(muneca, "rotation_degrees:x", 80.0, 0.35).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+		_hud.decir(["¡El piso cruje!", "Cuidado... esta casa se está cayendo a pedazos."])
+	# latido en el cuarto sellado
+	var en_sellado := _muro_este and pos.x > 9.6 and pos.y > 2.0 and not _llave_real
+	if en_sellado and _latido == null:
+		_latido = AudioStreamPlayer.new()
+		var lat := LATIDO.duplicate() as AudioStreamWAV
+		lat.loop_mode = AudioStreamWAV.LOOP_FORWARD
+		lat.loop_end = int(lat.get_length() * lat.mix_rate)
+		_latido.stream = lat
+		_latido.volume_db = -14.0
+		add_child(_latido)
+		_latido.play()
+	elif _latido != null:
+		if en_sellado:
+			_latido.volume_db = lerpf(-4.0, -16.0, clampf(pos.distance_to(ALTAR) / 12.0, 0.0, 1.0))
+			_latido.pitch_scale = lerpf(1.35, 1.0, clampf(pos.distance_to(ALTAR) / 12.0, 0.0, 1.0))
+		else:
+			_latido.queue_free()
+			_latido = null
+
+
+func _una_vez(clave: String) -> bool:
+	if _dicho.has("_s_" + clave):
+		return false
+	_dicho["_s_" + clave] = true
+	return true
+
+
+func _cae_candelabro() -> void:
+	var c := get_node_or_null(^"../AMBIENTACION GENERAL/CandelabroC") as Node3D
+	if c == null:
+		return
+	_player.sacudir(0.01, 0.6)
+	# primero cruje la cadena
+	_sonido_en(TABLA, c.global_position, 0.0)
+	await get_tree().create_timer(0.7).timeout
+	# el aro (1.12 m bajo el origen, escalado) queda apoyado en el piso
+	var piso := -0.4 + 1.12 * c.global_transform.basis.get_scale().y
+	var t := create_tween()
+	t.tween_property(c, "global_position:y", piso, 0.55).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	t.parallel().tween_property(c, "rotation_degrees:z", 18.0, 0.55)
+	await t.finished
+	_sonido_en(CANDELABRO_CAE, c.global_position, 8.0)
+	_player.sacudir(0.08, 0.9)
+	_hud.destello(0.7, 1.0)
+	get_tree().call_group("lamparas", "apagon", 1.5)
+	if c.get("averiada") != null:
+		c.set("averiada", true)
+	await get_tree().create_timer(1.2).timeout
+	_hud.decir(["¡Casi me aplasta!", "...¿Lo soltaron o se cayó solo?"])
+
+
+func _sonido_en(stream: AudioStream, pos: Vector3, db: float) -> void:
+	var p := AudioStreamPlayer3D.new()
+	p.stream = stream
+	p.volume_db = db
+	p.unit_size = 4.0
+	p.max_distance = 40.0
+	get_parent().add_child(p)
+	p.global_position = pos
+	p.play()
+	p.finished.connect(p.queue_free)
+
+
+## Un sonido que se desplaza (pasos que cruzan el piso de arriba).
+func _sonido_movil(stream: AudioStream, desde: Vector3, hasta: Vector3, segundos: float, db: float) -> void:
+	var p := AudioStreamPlayer3D.new()
+	p.stream = stream
+	p.volume_db = db
+	p.unit_size = 5.0
+	p.max_distance = 40.0
+	get_parent().add_child(p)
+	p.global_position = desde
+	p.play()
+	create_tween().tween_property(p, "global_position", hasta, segundos)
+	p.finished.connect(p.queue_free)
 
 
 ## Al tomar la llave antigua: las velas se apagan y "Ella" aparece al fondo.
@@ -251,11 +389,20 @@ func _susto_presencia() -> void:
 	get_tree().call_group("lamparas", "apagon", 3.5)
 	_linterna.apagon(1.4)
 	_sonido(GOLPE, 0.0)
+	_sonido(STINGER, -2.0)
 	_player.sacudir(0.04, 0.6)
 	if _presencia != null and _presencia.has_method("aparecer"):
 		_presencia.aparecer(4.0)
 	await get_tree().create_timer(1.6).timeout
 	_decir_una_vez("ella", ["¿Quién está ahí?", "...Tengo que salir. Ahora."])
+
+
+func _portazo_lejano() -> void:
+	await get_tree().create_timer(3.0).timeout
+	_sonido_en(PORTAZO, Vector3(0.8, 0.8, 2.5), 8.0)
+	_player.sacudir(0.03, 0.5)
+	await get_tree().create_timer(1.0).timeout
+	_hud.decir(["Un portazo, abajo...", "Ya no estoy solo en la casa. Nunca lo estuve."])
 
 
 ## La llave dorada se parte: apagon, golpe y un susurro.

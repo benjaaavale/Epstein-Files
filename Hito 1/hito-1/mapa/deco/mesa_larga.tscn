@@ -175,76 +175,91 @@ mesh = SubResource("mesh6")
 [node name="P7" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.21762, 0.83, -0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh7")
 
 [node name="P8" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.89, -0.24)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh8")
 
 [node name="P9" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.18491, 0.83, 0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh9")
 
 [node name="P10" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 0.89, 0.24)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh10")
 
 [node name="P11" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.396412, 0.83, -0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh11")
 
 [node name="P12" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.25, 0.89, -0.24)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh12")
 
 [node name="P13" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4442, 0.83, 0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh13")
 
 [node name="P14" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.35375, 0.83, -0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh14")
 
 [node name="P15" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.89, -0.24)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh15")
 
 [node name="P16" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.356986, 0.83, 0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh16")
 
 [node name="P17" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.89, 0.24)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh17")
 
 [node name="P18" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.19245, 0.83, -0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh18")
 
 [node name="P19" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.16238, 0.83, 0.32)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh19")
 
 [node name="P20" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 0.89, 0.24)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh20")
 
 [node name="CopaCaida" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, -0.5, 0, 0, 0, -1, 0.5, 0.866025, 0, 0.7, 0.84, 0.1)
 material_override = ExtResource("m4")
+cast_shadow = 0
 mesh = SubResource("mesh21")
 
 [node name="Col0" type="CollisionShape3D" parent="."]

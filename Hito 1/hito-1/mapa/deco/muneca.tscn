@@ -67,6 +67,7 @@ size = Vector3(0.2, 0.45, 0.2)
 [node name="Cabeza" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.36, 0)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh0")
 
 [node name="Vestido" type="MeshInstance3D" parent="."]
@@ -77,36 +78,43 @@ mesh = SubResource("mesh1")
 [node name="P2" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0)
 material_override = ExtResource("m2")
+cast_shadow = 0
 mesh = SubResource("mesh2")
 
 [node name="P3" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, -0.05, 0.04, 0.09)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh3")
 
 [node name="P4" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.984808, 0.173648, 0, 0, 0, -1, -0.173648, 0.984808, 0, 0.05, 0.04, 0.09)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh4")
 
 [node name="P5" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.939693, -0.34202, 0, 0.34202, 0.939693, 0, 0, 0, 1, -0.1, 0.2, 0.02)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh5")
 
 [node name="P6" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.819152, 0.573576, 0, -0.573576, 0.819152, 0, 0, 0, 1, 0.1, 0.2, 0.02)
 material_override = ExtResource("m1")
+cast_shadow = 0
 mesh = SubResource("mesh6")
 
 [node name="P7" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.025, 0.37, 0.066)
 material_override = ExtResource("m0")
+cast_shadow = 0
 mesh = SubResource("mesh7")
 
 [node name="P8" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.025, 0.37, 0.066)
 material_override = ExtResource("m0")
+cast_shadow = 0
 mesh = SubResource("mesh8")
 
 [node name="Pelo" type="MeshInstance3D" parent="."]

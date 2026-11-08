@@ -113,6 +113,8 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
+	# con el candado o un documento abierto, los subtitulos no se montan encima
+	_subtitulo.visible = not (_candado_abierto or _documento_abierto)
 	if linterna != null:
 		var canal := int(linterna.current_channel)
 		if canal != _lente_canal:
@@ -233,9 +235,9 @@ func set_cinematic(activa: bool) -> void:
 
 ## Muestra el objetivo actual arriba a la izquierda (se destaca un momento y queda tenue).
 func objetivo(texto: String) -> void:
-	if _objetivo_texto.text == texto.to_upper():
+	if _objetivo_texto.text == texto:
 		return
-	_objetivo_texto.text = texto.to_upper()
+	_objetivo_texto.text = texto
 	_objetivo_texto.visible_ratio = 0.0
 	if _objetivo_tween:
 		_objetivo_tween.kill()
@@ -247,11 +249,15 @@ func objetivo(texto: String) -> void:
 
 
 func _construir_objetivo() -> void:
+	# arriba a la derecha: no se cruza con los avisos (arriba al centro) ni con la linterna
 	_objetivo = VBoxContainer.new()
-	_colocar(_objetivo, 0, 0, 0, 0, MARGEN, MARGEN - 8, MARGEN + 520, MARGEN + 60)
-	_objetivo.add_theme_constant_override("separation", 2)
-	_objetivo.add_child(UIEstilo.label("OBJETIVO", 10, Color(SANGRE, 0.9), true))
-	_objetivo_texto = UIEstilo.label("", 14, HUESO, true)
+	_colocar(_objetivo, 1, 0, 1, 0, -MARGEN - 400, MARGEN - 10, -MARGEN, MARGEN + 90)
+	_objetivo.add_theme_constant_override("separation", 3)
+	var cab := UIEstilo.label("OBJETIVO", 10, Color(SANGRE, 0.9), true)
+	cab.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_objetivo.add_child(cab)
+	_objetivo_texto = UIEstilo.label("", 15, HUESO)
+	_objetivo_texto.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
 	_objetivo_texto.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	_objetivo.add_child(_objetivo_texto)
 	_objetivo.modulate.a = 0.0
@@ -612,7 +618,8 @@ func _construir_documento() -> void:
 	var sup := UIEstilo.label("", 12, Color(0.35, 0.12, 0.1), true)
 	sup.name = "Sup"
 	sup.add_theme_color_override("font_shadow_color", Color(0, 0, 0, 0))
-	var titulo := UIEstilo.label("", 26, tinta)
+	var titulo := UIEstilo.label("", 30, tinta)
+	titulo.add_theme_font_override("font", UIEstilo.fuente_documento())
 	titulo.name = "Titulo"
 	titulo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	titulo.custom_minimum_size.x = 580
@@ -620,7 +627,8 @@ func _construir_documento() -> void:
 	var linea := ColorRect.new()
 	linea.color = tinta
 	linea.custom_minimum_size = Vector2(0, 2)
-	var cuerpo := UIEstilo.label("", 15, tinta)
+	var cuerpo := UIEstilo.label("", 19, tinta)
+	cuerpo.add_theme_font_override("font", UIEstilo.fuente_documento())
 	cuerpo.name = "Cuerpo"
 	cuerpo.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	cuerpo.custom_minimum_size.x = 580

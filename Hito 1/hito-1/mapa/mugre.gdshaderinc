@@ -18,10 +18,16 @@ uniform float desaturar : hint_range(0.0, 1.0) = 0.2;
 uniform vec2 niveles_piso = vec2(-0.4, 2.35);
 uniform vec2 niveles_techo = vec2(2.25, 5.19);
 
-vec4 mugre_tri(vec3 p, vec3 w) {
-	return texture(mugre_ruido, p.xy) * w.z
-		+ texture(mugre_ruido, p.xz) * w.y
-		+ texture(mugre_ruido, p.zy) * w.x;
+// Coordenadas del plano dominante (las superficies de la casa son cajas alineadas a los ejes):
+// una sola lectura de textura en vez de tres.
+vec2 mugre_plano(vec3 p, vec3 n) {
+	vec3 a = abs(n);
+	if (a.x >= a.y && a.x >= a.z) {
+		return p.zy;
+	} else if (a.y >= a.z) {
+		return p.xz;
+	}
+	return p.xy;
 }
 
 // Devuelve el color sucio y modifica la rugosidad.
@@ -29,12 +35,11 @@ vec3 ensuciar(vec3 c, inout float rough, vec3 wp, vec3 wn) {
 	if (mugre <= 0.001) {
 		return c;
 	}
-	vec3 w = pow(abs(wn), vec3(4.0));
-	w /= dot(w, vec3(1.0));
-	float grande = mugre_tri(wp * 0.11 + vec3(0.37, 0.11, 0.73), w).r;
-	float medio = mugre_tri(wp * 0.33, w).g;
-	float fino = mugre_tri(wp * 1.9, w).b;
-	float grieta = mugre_tri(wp * 0.21 + vec3(0.5), w).a;
+	vec2 pl = mugre_plano(wp, wn);
+	float grande = texture(mugre_ruido, pl * 0.11 + vec2(0.37, 0.73)).r;
+	float medio = texture(mugre_ruido, pl * 0.33).g;
+	float fino = texture(mugre_ruido, pl * 1.9).b;
+	float grieta = texture(mugre_ruido, pl * 0.21 + vec2(0.5)).a;
 
 	bool arriba = wp.y > niveles_piso.y - 0.15;
 	float h = wp.y - (arriba ? niveles_piso.y : niveles_piso.x);

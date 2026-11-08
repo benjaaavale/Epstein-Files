@@ -118,7 +118,9 @@ func _on_pantalla() -> void:
 
 
 func _on_calidad() -> void:
-	Ajustes.calidad = 1 - Ajustes.calidad
+	# alta -> media -> baja -> alta
+	var orden := [Ajustes.ALTA, Ajustes.MEDIA, Ajustes.BAJA]
+	Ajustes.calidad = orden[(orden.find(Ajustes.calidad) + 1) % orden.size()]
 	Ajustes.aplicar_calidad()
 	_actualizar_textos()
 
@@ -127,4 +129,5 @@ func _actualizar_textos() -> void:
 	_sensibilidad_valor.text = "%.2fx" % Ajustes.sensibilidad
 	_volumen_valor.text = "%d%%" % roundi(Ajustes.volumen * 100.0)
 	_pantalla.text = "PANTALLA COMPLETA: " + ("SÍ" if Ajustes.pantalla_completa else "NO")
-	_calidad.text = "GRÁFICOS: " + ("BAJOS" if Ajustes.calidad == 1 else "ALTOS")
+	var nombres := {Ajustes.ALTA: "ALTOS", Ajustes.MEDIA: "MEDIOS", Ajustes.BAJA: "BAJOS"}
+	_calidad.text = "GRÁFICOS: " + nombres[Ajustes.calidad]

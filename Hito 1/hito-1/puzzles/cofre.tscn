@@ -145,4 +145,5 @@ mesh = SubResource("Mesh_candado")
 [node name="Arco" type="MeshInstance3D" parent="Candado"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0.04, 0)
 material_override = ExtResource("3_hierro")
+cast_shadow = 0
 mesh = SubResource("Mesh_arco")

@@ -50,10 +50,12 @@ shape = SubResource("BoxShape3D_item")
 
 [node name="Ring" type="MeshInstance3D" parent="." unique_id=1316209042]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.12)
+cast_shadow = 0
 mesh = SubResource("TorusMesh_ring")
 
 [node name="Shaft" type="MeshInstance3D" parent="." unique_id=1892071600]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, -0.03)
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_shaft")
 
 [node name="Tooth1" type="MeshInstance3D" parent="." unique_id=1494619838]

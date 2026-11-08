@@ -49,6 +49,7 @@ mesh = SubResource("mesh2")
 [node name="Sombrero" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.84, 0)
 material_override = ExtResource("m0")
+cast_shadow = 0
 mesh = SubResource("mesh3")
 
 [node name="Col0" type="CollisionShape3D" parent="."]
