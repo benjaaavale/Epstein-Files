@@ -1,0 +1,53 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/tela_roja.tres" id="m1"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_sombra.tres" id="m2"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(1.6, 0.9, 0.7)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(1.66, 0.02, 0.76)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(1.66, 0.6, 0.01)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.5, 0.6, 0.3)
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(1.65, 0.95, 0.75)
+
+[sub_resource type="BoxShape3D" id="shape1"]
+size = Vector3(0.5, 0.6, 0.3)
+
+[node name="Altar" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh1")
+
+[node name="Faldon" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, 0.38)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh2")
+
+[node name="Atril" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.18)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh3")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.47, 0)
+shape = SubResource("shape0")
+
+[node name="Col1" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -0.18)
+shape = SubResource("shape1")

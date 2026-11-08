@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_sombra.tres" id="m1"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(1.6, 0.06, 0.42)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(1.6, 0.4, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.06, 0.46, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.06, 0.46, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.06, 0.46, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh5"]
+size = Vector3(0.06, 0.46, 0.06)
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(1.6, 0.5, 0.45)
+
+[node name="Banca" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.46, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.990268, 0.139173, 0, -0.139173, 0.990268, 0, 0.72, -0.2)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.23, -0.17)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7, 0.23, 0.17)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.23, -0.17)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7, 0.23, 0.17)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh5")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+shape = SubResource("shape0")

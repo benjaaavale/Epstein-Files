@@ -6,6 +6,8 @@ class_name Item
 @export var only_visible_with_red_light: bool = true
 ## Identificador de la cerradura que abre ("" = llave comun).
 @export var abre := ""
+## Solo las llaves se pueden usar en puertas (una caja no entra en la cerradura).
+@export var es_llave := false
 @export var icono: Texture2D
 @export var escala_en_mano := Vector3(1, 1, 1)
 @export var posicion_en_mano := Vector3(0, 0, 0)

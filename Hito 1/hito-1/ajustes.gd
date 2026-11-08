@@ -3,8 +3,10 @@ extends Node
 ## Autoload: ajustes guardados, cambio de escenas y sonidos de interfaz.
 
 const RUTA := "user://ajustes.cfg"
-const MENU_PRINCIPAL := "res://menu_principal.tscn"
-const NIVEL_1 := "uid://8tamf0tmleyu"
+## La mansion es la escena principal: su menu (MenuMansion) aparece encima al cargarla.
+const MANSION := "res://diseño_pruebafinal.tscn"
+const MENU_PRINCIPAL := MANSION
+const NIVEL_1 := MANSION
 
 var sensibilidad := 1.0
 var volumen := 0.8
@@ -12,6 +14,8 @@ var pantalla_completa := true
 ## 0 = alta (como esta hecho el juego), 1 = baja (para PCs lentos)
 var calidad := 0
 var inicio_nivel_ms := 0
+## true = la proxima carga de la mansion entra directo al juego (al reiniciar el nivel).
+var saltar_menu := false
 
 var _hover: AudioStreamPlayer
 var _click: AudioStreamPlayer
@@ -111,9 +115,11 @@ func guardar() -> void:
 
 func ir_a(ruta: String) -> void:
 	get_tree().paused = false
+	saltar_menu = false
 	get_tree().change_scene_to_file(ruta)
 
 
 func reiniciar_nivel() -> void:
 	get_tree().paused = false
+	saltar_menu = true
 	get_tree().reload_current_scene()

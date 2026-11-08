@@ -1,93 +1,111 @@
 extends CSGBox3D
 class_name MuroSecreto
 
+## Pared falsa: la luz morada la va borrando donde apunta (como raspar pintura).
+## Cuando se borra lo suficiente, se desvanece entera y deja pasar.
+## La mascara se dibuja sobre la cara grande de la caja, sea cual sea su eje delgado.
+
+signal revelado
+
 const FADE_DEGREES := 6.0
 const PAINT_INTERVAL := 0.05
-const MASK_W := 96
-const MASK_H := 128
-const MASK_MIN := Vector2(-1.0, -1.0) # Puedes ajustar esto según el tamaño de tu CSGBox
-const MASK_SIZE := Vector2(2.0, 2.0)  # Puedes ajustar esto según el tamaño de tu CSGBox
+const MASK_W := 64
+const MASK_H := 64
+## Fraccion borrada a partir de la cual el muro desaparece del todo.
+const UMBRAL := 0.45
 
 @export var secreta := true
+## Evento que recibe el guion al abrirse (vacio = ninguno).
+@export var evento := "muro_revelado"
 
 var linterna: Linterna = null
+var abierto := false
 var _mask_bytes := PackedByteArray()
 var _mask_texture: ImageTexture
 var _texel_positions := PackedVector3Array()
 var _paint_timer: float = 0.0
+var _mask_min := Vector2.ZERO
+var _mask_size := Vector2.ONE
+
 
 func _ready() -> void:
 	if not secreta:
-		set_instance_shader_parameter("force_visible", 1.0)
-		for g in find_children("*", "GeometryInstance3D", true, false):
-			(g as GeometryInstance3D).set_instance_shader_parameter("force_visible", 1.0)
+		_forzar_visible(1.0)
 		return
-		
-	# Apagamos la visibilidad forzada (por si la usaste para ver en el editor)
-	set_instance_shader_parameter("force_visible", 0.0)
-	for g in find_children("*", "GeometryInstance3D", true, false):
-		(g as GeometryInstance3D).set_instance_shader_parameter("force_visible", 0.0)
-		
+	_forzar_visible(0.0)
+
+	# ejes de la cara: los dos lados mas grandes de la caja
+	var delgado := 0
+	if size.y < size[delgado]:
+		delgado = 1
+	if size.z < size[delgado]:
+		delgado = 2
+	var eje_u := 2 if delgado == 0 else 0
+	var eje_v := 1 if delgado != 1 else 2
+	_mask_min = Vector2(-size[eje_u], -size[eje_v]) * 0.5
+	_mask_size = Vector2(size[eje_u], size[eje_v])
+
 	_mask_bytes.resize(MASK_W * MASK_H)
-	_mask_bytes.fill(255) # INVERSIÓN: Llenamos de 255 (blanco) para que inicie sólida
+	_mask_bytes.fill(255)
 	_mask_texture = ImageTexture.create_from_image(Image.create_from_data(MASK_W, MASK_H, false, Image.FORMAT_R8, _mask_bytes))
 	_texel_positions.resize(MASK_W * MASK_H)
-	
 	for y in MASK_H:
 		for x in MASK_W:
-			var local := Vector3(
-				MASK_MIN.x + (x + 0.5) / MASK_W * MASK_SIZE.x,
-				MASK_MIN.y + (1.0 - (y + 0.5) / MASK_H) * MASK_SIZE.y,
-				0.045)
+			var local := Vector3.ZERO
+			local[eje_u] = _mask_min.x + (x + 0.5) / MASK_W * _mask_size.x
+			local[eje_v] = _mask_min.y + (1.0 - (y + 0.5) / MASK_H) * _mask_size.y
 			_texel_positions[y * MASK_W + x] = to_global(local)
-			
-	var world_to_mask := Projection(global_transform.affine_inverse())
-	
+
+	# el shader lee local.xy: se reordenan los ejes para que xy sean los de la cara
+	var cols := [Vector3.ZERO, Vector3.ZERO, Vector3.ZERO]
+	cols[eje_u] = Vector3(1, 0, 0)
+	cols[eje_v] = Vector3(0, 1, 0)
+	cols[delgado] = Vector3(0, 0, 1)
+	var permuta := Transform3D(Basis(cols[0], cols[1], cols[2]), Vector3.ZERO)
+	var world_to_mask := Projection(permuta * global_transform.affine_inverse())
 	for mat in _materiales():
 		mat.set_shader_parameter("reveal_mask", _mask_texture)
 		mat.set_shader_parameter("use_reveal_mask", true)
 		mat.set_shader_parameter("world_to_mask", world_to_mask)
-		mat.set_shader_parameter("mask_min", MASK_MIN)
-		mat.set_shader_parameter("mask_size", MASK_SIZE)
+		mat.set_shader_parameter("mask_min", _mask_min)
+		mat.set_shader_parameter("mask_size", _mask_size)
+
+
+func _forzar_visible(v: float) -> void:
+	set_instance_shader_parameter("force_visible", v)
+	for g in find_children("*", "GeometryInstance3D", true, false):
+		(g as GeometryInstance3D).set_instance_shader_parameter("force_visible", v)
+
 
 func _materiales() -> Array[ShaderMaterial]:
 	var out: Array[ShaderMaterial] = []
-	if material != null and material is ShaderMaterial:
+	if material is ShaderMaterial:
 		out.append(material)
-		
 	for g in find_children("*", "GeometryInstance3D", true, false):
 		var geom := g as GeometryInstance3D
-		
-		# Busca en el override general que acabamos de asignar
-		if geom.material_override != null and geom.material_override is ShaderMaterial:
-			if not out.has(geom.material_override):
-				out.append(geom.material_override as ShaderMaterial)
-				
-		# Busca en los surfaces por si acaso
-		var surf_mat = geom.get_surface_override_material(0)
-		if surf_mat != null and surf_mat is ShaderMaterial:
-			if not out.has(surf_mat):
-				out.append(surf_mat as ShaderMaterial)
-				
+		if geom.material_override is ShaderMaterial and not out.has(geom.material_override):
+			out.append(geom.material_override as ShaderMaterial)
+		if geom is MeshInstance3D:
+			var surf := (geom as MeshInstance3D).get_surface_override_material(0)
+			if surf is ShaderMaterial and not out.has(surf):
+				out.append(surf as ShaderMaterial)
 	return out
 
+
 func _process(delta: float) -> void:
-	if not secreta:
+	if not secreta or abierto:
 		return
 	_paint_timer += delta
 	if _paint_timer < PAINT_INTERVAL:
 		return
 	_paint_timer = 0.0
-	
-	# La pared busca la linterna en el mundo por su cuenta
 	if linterna == null:
 		linterna = get_tree().current_scene.find_child("Linterna", true, false) as Linterna
 		if linterna == null:
 			return
-			
-	# Si la luz violeta está encendida, se activa el borrado
 	if linterna.current_channel == Linterna.Channel.VIOLET and linterna.spot_light_3d.visible:
 		_paint(linterna.spot_light_3d)
+
 
 func _paint(spot: SpotLight3D) -> void:
 	var origin := spot.global_position
@@ -96,31 +114,42 @@ func _paint(spot: SpotLight3D) -> void:
 	var cos_end := cos(deg_to_rad(angle))
 	var cos_start := cos(deg_to_rad(angle - FADE_DEGREES))
 	var changed := false
-	
+	var borrados := 0
 	for i in _texel_positions.size():
 		var v := _texel_positions[i] - origin
-		var c := v.normalized().dot(dir)
-		if c <= cos_end:
-			continue
-			
-		var light_intensity := int(clampf((c - cos_end) / (cos_start - cos_end), 0.0, 1.0) * 255.0)
-		var inverted_value := 255 - light_intensity
-		
-		if inverted_value < _mask_bytes[i]:
-			_mask_bytes[i] = inverted_value
-			changed = true
-			
+		if v.length() < 7.0:
+			var c := v.normalized().dot(dir)
+			if c > cos_end:
+				var luz := int(clampf((c - cos_end) / (cos_start - cos_end), 0.0, 1.0) * 255.0)
+				var valor := 255 - luz
+				if valor < _mask_bytes[i]:
+					_mask_bytes[i] = valor
+					changed = true
+		if _mask_bytes[i] < 128:
+			borrados += 1
 	if changed:
 		_mask_texture.update(Image.create_from_data(MASK_W, MASK_H, false, Image.FORMAT_R8, _mask_bytes))
-		
-		# --- NUEVO: Lógica para desactivar la colisión física ---
-		if use_collision:
-			var pixeles_borrados = 0
-			# Contamos cuántos píxeles están casi invisibles (valor menor a 128)
-			for byte in _mask_bytes:
-				if byte < 128: 
-					pixeles_borrados += 1
-			
-			# Si más del 30% de la pared ha sido borrada, apagamos la colisión
-			if pixeles_borrados > (_mask_bytes.size() * 0.3):
-				use_collision = false
+	if borrados > _mask_bytes.size() * UMBRAL:
+		_abrir()
+
+
+## Termina de borrar el muro, apaga su colision y avisa.
+func _abrir() -> void:
+	abierto = true
+	use_collision = false
+	var t := create_tween()
+	t.tween_method(_desvanecer, 0.0, 1.0, 0.8)
+	if evento != "":
+		var player := get_tree().current_scene.find_child("Player", true, false)
+		if player != null and player.has_signal("evento"):
+			player.evento.emit(evento)
+	revelado.emit()
+
+
+func _desvanecer(k: float) -> void:
+	var limite := int(255.0 * (1.0 - k))
+	for i in _mask_bytes.size():
+		_mask_bytes[i] = mini(_mask_bytes[i], limite)
+	_mask_texture.update(Image.create_from_data(MASK_W, MASK_H, false, Image.FORMAT_R8, _mask_bytes))
+	if k >= 1.0:
+		visible = false

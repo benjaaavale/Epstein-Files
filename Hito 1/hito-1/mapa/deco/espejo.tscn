@@ -1,0 +1,95 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/espejo.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/hollin.tres" id="m1"]
+[ext_resource type="Material" path="res://mapa/materiales/marco_dorado.tres" id="m2"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="m3"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(0.75, 1.5, 0.02)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.86, 0.07, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.86, 0.07, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.07, 1.6, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.07, 1.6, 0.06)
+
+[sub_resource type="BoxMesh" id="mesh5"]
+size = Vector3(0.06, 0.3, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh6"]
+size = Vector3(0.06, 0.3, 0.4)
+
+[sub_resource type="BoxMesh" id="mesh7"]
+size = Vector3(0.5, 0.008, 0.004)
+
+[sub_resource type="BoxMesh" id="mesh8"]
+size = Vector3(0.45, 0.008, 0.004)
+
+[sub_resource type="BoxMesh" id="mesh9"]
+size = Vector3(0.3, 0.008, 0.004)
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(0.9, 1.9, 0.4)
+
+[node name="Espejo" type="StaticBody3D"]
+
+[node name="Vidrio" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.28, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42, 1.05, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 1.05, 0)
+material_override = ExtResource("m2")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.42, 0.15, 0)
+material_override = ExtResource("m3")
+mesh = SubResource("mesh5")
+
+[node name="P6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.42, 0.15, 0)
+material_override = ExtResource("m3")
+mesh = SubResource("mesh6")
+
+[node name="Grieta1" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.848048, -0.529919, 0, 0.529919, 0.848048, 0, 0, 0, 1, 0.05, 1.2, 0.012)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh7")
+
+[node name="P8" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.642788, 0.766044, 0, -0.766044, 0.642788, 0, 0, 0, 1, 0, 1.1, 0.012)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh8")
+
+[node name="P9" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.258819, -0.965926, 0, 0.965926, 0.258819, 0, 0, 0, 1, 0.1, 0.95, 0.012)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh9")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
+shape = SubResource("shape0")

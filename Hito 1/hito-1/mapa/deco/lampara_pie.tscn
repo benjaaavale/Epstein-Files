@@ -1,0 +1,49 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/tela_sabana.tres" id="m1"]
+
+[sub_resource type="CylinderMesh" id="mesh0"]
+top_radius = 0.15
+bottom_radius = 0.18
+height = 0.04
+radial_segments = 16
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh1"]
+top_radius = 0.015
+bottom_radius = 0.015
+height = 1.55
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh2"]
+top_radius = 0.12
+bottom_radius = 0.25
+height = 0.3
+radial_segments = 12
+rings = 1
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(0.3, 1.7, 0.3)
+
+[node name="Lampara_pie" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="Pantalla" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.987688, -0.156434, 0, 0.156434, 0.987688, 0, 0, 0, 1, 0.02, 1.62, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh2")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("shape0")

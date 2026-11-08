@@ -1,0 +1,60 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/marco_dorado.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_sombra.tres" id="m1"]
+
+[ext_resource type="Texture2D" path="res://mapa/texturas/cuadro_sombra.png" id="tex"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(0.82, 0.07, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.82, 0.07, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.07, 0.95, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.07, 0.95, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.7, 0.95, 0.01)
+
+[sub_resource type="StandardMaterial3D" id="Mat_lienzo"]
+albedo_texture = ExtResource("tex")
+roughness = 0.6
+
+[sub_resource type="QuadMesh" id="Mesh_lienzo"]
+size = Vector2(0.7, 0.95)
+
+[node name="Cuadro_sombra" type="Node3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.02)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.02)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0, 0.02)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0, 0.02)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh4")
+
+[node name="Lienzo" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.026)
+material_override = SubResource("Mat_lienzo")
+mesh = SubResource("Mesh_lienzo")

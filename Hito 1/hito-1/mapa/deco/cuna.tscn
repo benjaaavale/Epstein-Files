@@ -1,0 +1,341 @@
+[gd_scene format=3]
+
+[ext_resource type="Material" path="res://mapa/materiales/tela_colchon.tres" id="m0"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_mueble.tres" id="m1"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(1.0, 0.05, 0.55)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.95, 0.1, 0.5)
+
+[sub_resource type="CylinderMesh" id="mesh2"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh3"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh4"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh5"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh6"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh7"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh8"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh9"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh10"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh11"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh12"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh13"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh14"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh15"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh16"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh17"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh18"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh19"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh20"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh21"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh22"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="CylinderMesh" id="mesh23"]
+top_radius = 0.012
+bottom_radius = 0.012
+height = 0.5
+radial_segments = 6
+rings = 1
+
+[sub_resource type="BoxMesh" id="mesh24"]
+size = Vector3(1.0, 0.04, 0.04)
+
+[sub_resource type="BoxMesh" id="mesh25"]
+size = Vector3(1.0, 0.04, 0.04)
+
+[sub_resource type="BoxMesh" id="mesh26"]
+size = Vector3(0.05, 0.87, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh27"]
+size = Vector3(0.05, 0.87, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh28"]
+size = Vector3(0.05, 0.87, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh29"]
+size = Vector3(0.05, 0.87, 0.05)
+
+[sub_resource type="BoxShape3D" id="shape0"]
+size = Vector3(1.05, 0.9, 0.6)
+
+[node name="Cuna" type="StaticBody3D"]
+
+[node name="P0" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35, 0)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, 0)
+material_override = ExtResource("m0")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.45, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh4")
+
+[node name="P5" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.36, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh5")
+
+[node name="P6" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh6")
+
+[node name="P7" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.27, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh7")
+
+[node name="P8" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh8")
+
+[node name="P9" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh9")
+
+[node name="P10" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh10")
+
+[node name="P11" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh11")
+
+[node name="P12" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh12")
+
+[node name="P13" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh13")
+
+[node name="P14" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh14")
+
+[node name="P15" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh15")
+
+[node name="P16" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh16")
+
+[node name="P17" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh17")
+
+[node name="P18" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh18")
+
+[node name="P19" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh19")
+
+[node name="P20" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh20")
+
+[node name="P21" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.36, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh21")
+
+[node name="P22" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.6, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh22")
+
+[node name="P23" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.45, 0.6, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh23")
+
+[node name="P24" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh24")
+
+[node name="P25" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh25")
+
+[node name="P26" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.43, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh26")
+
+[node name="P27" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.43, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh27")
+
+[node name="P28" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.43, -0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh28")
+
+[node name="P29" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.43, 0.27)
+material_override = ExtResource("m1")
+mesh = SubResource("mesh29")
+
+[node name="Col0" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45, 0)
+shape = SubResource("shape0")

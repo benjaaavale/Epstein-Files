@@ -13,6 +13,8 @@ signal evento(nombre: String)
 @export var air_accel: float = 4.0
 @export var crouch_height: float = 1.2
 @export var factor_escala: float = 1
+## Distancia (en metros reales) a la que se alcanzan los objetos con E.
+@export var alcance: float = 2.4
 
 @export_group("Camara")
 @export var bob_amount: float = 0.035
@@ -95,6 +97,9 @@ func _ready() -> void:
 	for i in 3:
 		_creak_streams.append(load("res://sonidos/crujido_%d.wav" % (i + 1)))
 	hud.resaltar_slot(0)
+	# el rayo cuelga de la camara (que esta escalada): se corrige para que mida "alcance" metros
+	var escala_rayo := interact_ray.global_transform.basis.get_scale().z
+	interact_ray.target_position = Vector3(0, 0, -alcance / maxf(escala_rayo, 0.001))
 
 func _unhandled_input(event: InputEvent) -> void:
 	if bloqueado:
@@ -144,13 +149,13 @@ func _is_inventory_full() -> bool:
 
 func _update_prompt() -> void:
 	var target := _get_target()
-	var item_en_mano = inventario[slot_activo]
 
 	if bloqueado or target == null:
 		hud.hide_prompt()
 	elif target is Door:
-		if item_en_mano != null:
-			hud.show_prompt("E", "Abrir puerta")
+		var llave := _llave_para(target as Door)
+		if llave != null:
+			hud.show_prompt("E", "Usar " + llave.nombre_visible.to_lower())
 		else:
 			hud.show_prompt("", "Cerrada con llave", false)
 	elif target is Leible:
@@ -191,14 +196,16 @@ func _interact() -> void:
 	var target := _get_target()
 	if target is Door:
 		var puerta := target as Door
-		var llave := inventario[slot_activo]
+		var llave := _llave_para(puerta)
 		if llave == null:
 			hud.toast("Está cerrada con llave")
 			evento.emit("puerta_bloqueada")
 			return
+		var slot_llave := inventario.find(llave)
 		if not puerta.acepta(llave):
-			inventario[slot_activo] = null
-			hud.limpiar_icono_inventario(slot_activo)
+			inventario[slot_llave] = null
+			hud.limpiar_icono_inventario(slot_llave)
+			llave.visible = true
 			_actualizar_visibilidad_mano()
 			_modo_cinematica(true)
 			await puerta.forzar(llave)
@@ -209,8 +216,9 @@ func _interact() -> void:
 			hud.toast("No gira", "ALGO LA TRABA DESDE DENTRO")
 			evento.emit("puerta_sin_energia")
 			return
-		inventario[slot_activo] = null
-		hud.limpiar_icono_inventario(slot_activo)
+		inventario[slot_llave] = null
+		hud.limpiar_icono_inventario(slot_llave)
+		llave.visible = true
 		bloqueado = true
 		linterna.set_process_input(false)
 		_actualizar_visibilidad_mano()
@@ -250,6 +258,22 @@ func _interact() -> void:
 				_actualizar_visibilidad_mano()
 				hud.toast(nuevo_item.item_name, "OBJETO OBTENIDO")
 				evento.emit("objeto_tomado")
+
+## Llave que se usaria en esta puerta: la de la mano si es llave; si no, la que la abre
+## y, en ultimo caso, cualquier llave del inventario (puede ser una trampa).
+func _llave_para(puerta: Door) -> Item:
+	var en_mano: Item = inventario[slot_activo]
+	if en_mano != null and en_mano.es_llave:
+		return en_mano
+	var cualquiera: Item = null
+	for it in inventario:
+		if it != null and it.es_llave:
+			if puerta.acepta(it):
+				return it
+			if cualquiera == null:
+				cualquiera = it
+	return cualquiera
+
 
 ## Congela al jugador y oculta el HUD (para animaciones y pantallas como el candado).
 func _modo_cinematica(activa: bool) -> void:

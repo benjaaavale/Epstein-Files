@@ -25,7 +25,7 @@ radial_segments = 12
 rings = 6
 
 [sub_resource type="BoxShape3D" id="Shape_palanca"]
-size = Vector3(0.12, 0.3, 0.16)
+size = Vector3(0.14, 0.34, 0.2)
 
 [node name="Palanca" type="StaticBody3D"]
 script = ExtResource("1_palanca")
