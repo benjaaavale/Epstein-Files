@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://b24nd3e0a5mnl"]
+
+[ext_resource type="Material" path="res://mapa/materiales/marco_dorado.tres" id="1_hl6pn"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_sombra.tres" id="2_4ivak"]
+[ext_resource type="Texture2D" uid="uid://cqq1trq6ijk6e" path="res://assets varios/PINTURA1_JUEGO.jpg" id="3_hl6pn"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(0.82, 0.07, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.82, 0.07, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.07, 0.95, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.07, 0.95, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.7, 0.95, 0.01)
+
+[node name="Cuadro_decorativo1" type="Node3D" unique_id=777205064]
+
+[node name="P0" type="MeshInstance3D" parent="." unique_id=2042129080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.02)
+material_override = ExtResource("1_hl6pn")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="." unique_id=1466263878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.02)
+material_override = ExtResource("1_hl6pn")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="." unique_id=1371638655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0, 0.02)
+material_override = ExtResource("1_hl6pn")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="." unique_id=399387109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0, 0.02)
+material_override = ExtResource("1_hl6pn")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="." unique_id=2089504299]
+material_override = ExtResource("2_4ivak")
+mesh = SubResource("mesh4")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1835585424]
+transform = Transform3D(0.07, 0, 0, 0, 0.055, 0, 0, 0, 0.1, 0, 0, 0.044835806)
+texture = ExtResource("3_hl6pn")

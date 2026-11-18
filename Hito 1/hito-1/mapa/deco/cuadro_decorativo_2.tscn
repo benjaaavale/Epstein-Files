@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bxnk7ty5dpjos"]
+
+[ext_resource type="Material" path="res://mapa/materiales/marco_dorado.tres" id="1_4iwp8"]
+[ext_resource type="Material" path="res://mapa/materiales/madera_sombra.tres" id="2_fgvpn"]
+[ext_resource type="Texture2D" uid="uid://boqerj2aukk8b" path="res://assets varios/PINTURA2_JUEGO.jpg" id="3_4iwp8"]
+
+[sub_resource type="BoxMesh" id="mesh0"]
+size = Vector3(0.82, 0.07, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh1"]
+size = Vector3(0.82, 0.07, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh2"]
+size = Vector3(0.07, 0.95, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh3"]
+size = Vector3(0.07, 0.95, 0.05)
+
+[sub_resource type="BoxMesh" id="mesh4"]
+size = Vector3(0.7, 0.95, 0.01)
+
+[node name="Cuadro_decorativo1" type="Node3D" unique_id=777205064]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="P0" type="MeshInstance3D" parent="." unique_id=2042129080]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0.02)
+material_override = ExtResource("1_4iwp8")
+mesh = SubResource("mesh0")
+
+[node name="P1" type="MeshInstance3D" parent="." unique_id=1466263878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0.02)
+material_override = ExtResource("1_4iwp8")
+mesh = SubResource("mesh1")
+
+[node name="P2" type="MeshInstance3D" parent="." unique_id=1371638655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.375, 0, 0.02)
+material_override = ExtResource("1_4iwp8")
+mesh = SubResource("mesh2")
+
+[node name="P3" type="MeshInstance3D" parent="." unique_id=399387109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.375, 0, 0.02)
+material_override = ExtResource("1_4iwp8")
+mesh = SubResource("mesh3")
+
+[node name="P4" type="MeshInstance3D" parent="." unique_id=2089504299]
+material_override = ExtResource("2_fgvpn")
+mesh = SubResource("mesh4")
+
+[node name="Sprite3D" type="Sprite3D" parent="." unique_id=1835585424]
+transform = Transform3D(-4.196293e-09, 0.065, 0, -0.096, -2.8412401e-09, 0, 0, 0, 0.1, 0, 0, 0.04577464)
+texture = ExtResource("3_4iwp8")

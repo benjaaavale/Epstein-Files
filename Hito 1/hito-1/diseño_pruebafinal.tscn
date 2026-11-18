@@ -23,7 +23,7 @@
 [ext_resource type="PackedScene" path="res://mapa/deco/periodico.tscn" id="16_am2ja"]
 [ext_resource type="Texture2D" uid="uid://c4oxb2cxfjmxn" path="res://mapa/texturas/yeso.png" id="17_ct7ju"]
 [ext_resource type="PackedScene" uid="uid://iihp4te6xesy" path="res://item.tscn" id="17_g8vr4"]
-[ext_resource type="Script" path="res://guion_mansion.gd" id="18_eti0j"]
+[ext_resource type="Script" uid="uid://cgtlmb4xs0fge" path="res://guion_mansion.gd" id="18_eti0j"]
 [ext_resource type="Texture2D" uid="uid://pnhy3mqfxep1" path="res://mapa/texturas/piedra_normal.png" id="18_uavjm"]
 [ext_resource type="Script" uid="uid://4x2amev350wl" path="res://muros_secretos.gd" id="18_virw0"]
 [ext_resource type="Material" uid="uid://cmi70abeok7l0" path="res://mapa/materiales/Zocalo_piso2.tres" id="19_1v7kk"]
@@ -44,21 +44,34 @@
 [ext_resource type="AudioStream" uid="uid://cvtd57p0bfxg8" path="res://assets varios/Assets importados/dragon-studio-scary-scream-401725.mp3" id="36_wri13"]
 [ext_resource type="PackedScene" path="res://pila.tscn" id="36_xcs2e"]
 [ext_resource type="Shader" uid="uid://cav1jnm37687l" path="res://mapa/deco/luz_revela_pasos_secretos.gdshader" id="41_002e6"]
-[ext_resource type="Shader" path="res://mapa/superficie_sucia.gdshader" id="50_sucia"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_ruido.png" id="51_ruido"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_chorreos.png" id="52_chorreo"]
-[ext_resource type="Script" path="res://menu_mansion.gd" id="g1"]
-[ext_resource type="Script" path="res://puzzles/rastro.gd" id="g2"]
-[ext_resource type="Script" path="res://mapa/escrito.gd" id="g3"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/mano_sangre.png" id="g4"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/escrito_sigue_la_luz.png" id="g5"]
+[ext_resource type="PackedScene" uid="uid://b24nd3e0a5mnl" path="res://mapa/deco/cuadros_decorativos.tscn" id="45_f7qk2"]
+[ext_resource type="PackedScene" uid="uid://bxnk7ty5dpjos" path="res://mapa/deco/cuadro_decorativo_2.tscn" id="46_0dnt3"]
+[ext_resource type="Shader" uid="uid://baedb1q3vu40r" path="res://luz_revela.gdshader" id="46_dv7vu"]
+[ext_resource type="PackedScene" uid="uid://b6frnv8nlgaga" path="res://mapa/deco/cuadro_decorativo_3.tscn" id="47_ggwk8"]
+[ext_resource type="Shader" uid="uid://dfoifuc5jlqaq" path="res://mapa/superficie_sucia.gdshader" id="50_sucia"]
+[ext_resource type="Texture2D" uid="uid://crxx06bt2gyh0" path="res://mapa/texturas/mugre_ruido.png" id="51_ruido"]
+[ext_resource type="Texture2D" uid="uid://n5sh4tccsxcf" path="res://mapa/texturas/mugre_chorreos.png" id="52_chorreo"]
+[ext_resource type="Material" path="res://mapa/materiales/cera.tres" id="69_8xr2o"]
+[ext_resource type="Material" path="res://mapa/materiales/llama.tres" id="70_l34ah"]
+[ext_resource type="Texture2D" uid="uid://eqwb3tmbmdjr" path="res://assets varios/simbolo png.png" id="71_7njs1"]
+[ext_resource type="Texture2D" uid="uid://cwsyoe47qvubu" path="res://mapa/texturas/foto_desaparecido_1.png" id="86_pv3a1"]
+[ext_resource type="Texture2D" uid="uid://bsuluk8pgosqn" path="res://mapa/texturas/foto_desaparecido_2.png" id="88_p370k"]
+[ext_resource type="Texture2D" uid="uid://bqig52gnhkl3k" path="res://mapa/texturas/foto_desaparecido_3.png" id="89_f7qk2"]
+[ext_resource type="Texture2D" uid="uid://ber70u2gtv7f0" path="res://mapa/texturas/foto_desaparecido_4.png" id="90_0dnt3"]
+[ext_resource type="Texture2D" uid="uid://df4vqp4tdjkw7" path="res://mapa/texturas/foto_desaparecido_5.png" id="91_ggwk8"]
+[ext_resource type="Texture2D" uid="uid://dx4f0rvk0bk74" path="res://mapa/texturas/foto_desaparecido_6.png" id="92_8xr2o"]
+[ext_resource type="Script" uid="uid://cj7q557plqjax" path="res://menu_mansion.gd" id="g1"]
+[ext_resource type="Script" uid="uid://cwj6n6t0epifg" path="res://puzzles/rastro.gd" id="g2"]
+[ext_resource type="Script" uid="uid://7ln05oqmpv5u" path="res://mapa/escrito.gd" id="g3"]
+[ext_resource type="Texture2D" uid="uid://k351y01h7abv" path="res://mapa/texturas/mano_sangre.png" id="g4"]
+[ext_resource type="Texture2D" uid="uid://pd1uobihdr1i" path="res://mapa/texturas/escrito_sigue_la_luz.png" id="g5"]
 [ext_resource type="PackedScene" path="res://mapa/deco/telarana.tscn" id="g6"]
 [ext_resource type="PackedScene" path="res://mapa/deco/papeles.tscn" id="g7"]
 [ext_resource type="PackedScene" path="res://puzzles/tablero.tscn" id="g8"]
-[ext_resource type="Script" path="res://puzzles/cable_violeta.gd" id="g9"]
+[ext_resource type="Script" uid="uid://byclie1kty61y" path="res://puzzles/cable_violeta.gd" id="g9"]
 [ext_resource type="Material" path="res://mapa/materiales/metal_negro.tres" id="g10"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/escrito_llave.png" id="g11"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/escrito_no_estas_solo.png" id="g12"]
+[ext_resource type="Texture2D" uid="uid://c7y20t7xcyesd" path="res://mapa/texturas/escrito_llave.png" id="g11"]
+[ext_resource type="Texture2D" uid="uid://ctp54v1u0okbw" path="res://mapa/texturas/escrito_no_estas_solo.png" id="g12"]
 [ext_resource type="PackedScene" path="res://mapa/deco/banca.tscn" id="g13"]
 [ext_resource type="PackedScene" path="res://mapa/deco/perchero.tscn" id="g14"]
 [ext_resource type="PackedScene" path="res://mapa/deco/tapado_alto.tscn" id="g15"]
@@ -67,36 +80,30 @@
 [ext_resource type="PackedScene" path="res://mapa/deco/cuadro_paisaje.tscn" id="g18"]
 [ext_resource type="PackedScene" path="res://mapa/deco/muneca.tscn" id="g19"]
 [ext_resource type="PackedScene" path="res://mapa/deco/tapado_sillon.tscn" id="g20"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/sangre_rastro.png" id="g21"]
+[ext_resource type="Texture2D" uid="uid://vgt3ixrqxxbg" path="res://mapa/texturas/sangre_rastro.png" id="g21"]
 [ext_resource type="PackedScene" path="res://mapa/deco/barril.tscn" id="g22"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/escrito_ella_te_ve.png" id="g23"]
+[ext_resource type="Texture2D" uid="uid://cwkmvlnc2hkly" path="res://mapa/texturas/escrito_ella_te_ve.png" id="g23"]
 [ext_resource type="PackedScene" path="res://mapa/deco/libros.tscn" id="g24"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/codigo_0417.png" id="g25"]
-[ext_resource type="Script" path="res://puzzles/retratos.gd" id="g26"]
+[ext_resource type="Texture2D" uid="uid://cmxvjrbpgqim8" path="res://mapa/texturas/codigo_0417.png" id="g25"]
+[ext_resource type="Script" uid="uid://dqmanw4p7jjyy" path="res://puzzles/retratos.gd" id="g26"]
 [ext_resource type="PackedScene" path="res://puzzles/retrato_torcido.tscn" id="g27"]
 [ext_resource type="PackedScene" path="res://puzzles/alacena.tscn" id="g28"]
 [ext_resource type="PackedScene" path="res://mapa/deco/tapado_mesa.tscn" id="g29"]
 [ext_resource type="PackedScene" path="res://mapa/deco/cuadro_mujer.tscn" id="g30"]
 [ext_resource type="PackedScene" path="res://mapa/deco/cuadro_sombra.tscn" id="g31"]
 [ext_resource type="PackedScene" path="res://mapa/deco/mesa_larga.tscn" id="g32"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/sangre_charco.png" id="g33"]
-[ext_resource type="Script" path="res://mapa/foto_desaparecido.gd" id="g34"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/escrito_pared.png" id="g35"]
+[ext_resource type="Texture2D" uid="uid://cfwstst8r7mip" path="res://mapa/texturas/sangre_charco.png" id="g33"]
+[ext_resource type="Script" uid="uid://cvujwiyhrbux2" path="res://mapa/foto_desaparecido.gd" id="g34"]
+[ext_resource type="Texture2D" uid="uid://bn1najmjag84g" path="res://mapa/texturas/escrito_pared.png" id="g35"]
 [ext_resource type="PackedScene" path="res://mapa/deco/cama.tscn" id="g36"]
 [ext_resource type="PackedScene" path="res://mapa/deco/cuna.tscn" id="g37"]
 [ext_resource type="PackedScene" path="res://mapa/deco/ropero.tscn" id="g38"]
 [ext_resource type="PackedScene" path="res://mapa/deco/altar.tscn" id="g39"]
-[ext_resource type="Texture2D" path="res://mapa/texturas/circulo_ritual.png" id="g40"]
-[ext_resource type="Script" path="res://mapa/presencia.gd" id="g41"]
-[ext_resource type="Script" path="res://sustos/muneca_musical.gd" id="s1_muneca"]
-[ext_resource type="Script" path="res://sustos/pila_trampa.gd" id="s2_pila"]
-[ext_resource type="Script" path="res://sustos/ropero_maldito.gd" id="s3_ropero"]
-
-[sub_resource type="BoxShape3D" id="Shape_ropero"]
-size = Vector3(1.3, 2.0, 0.12)
-
-[sub_resource type="BoxMesh" id="Mesh_cerrojo"]
-size = Vector3(0.22, 0.3, 0.08)
+[ext_resource type="Texture2D" uid="uid://big4fmvdarmgh" path="res://mapa/texturas/circulo_ritual.png" id="g40"]
+[ext_resource type="Script" uid="uid://xbxv3rfarr0a" path="res://mapa/presencia.gd" id="g41"]
+[ext_resource type="Script" uid="uid://bf5jriik72ggn" path="res://sustos/muneca_musical.gd" id="s1_muneca"]
+[ext_resource type="Script" uid="uid://c46nvmluakpq2" path="res://sustos/pila_trampa.gd" id="s2_pila"]
+[ext_resource type="Script" uid="uid://tj18xkhfthqo" path="res://sustos/ropero_maldito.gd" id="s3_ropero"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3gngh"]
 size = Vector3(0.68896484, 0.53100586, 1.0585632)
@@ -133,9 +140,19 @@ size = Vector3(0.21999931, 0.22000003, 21.400002)
 size = Vector3(0.21999931, 0.22000003, 21.400002)
 
 [sub_resource type="ShaderMaterial" id="StandardMaterial3D_2am08"]
-render_priority = 0
 resource_name = "papel_tapiz"
+render_priority = 0
 shader = ExtResource("50_sucia")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.6
+shader_parameter/grietas = 0.55
+shader_parameter/desaturar = 0.25
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/tinte = Color(1, 1, 1, 1)
 shader_parameter/textura = ExtResource("14_3k0nc")
 shader_parameter/textura_normal = ExtResource("18_uavjm")
@@ -143,39 +160,23 @@ shader_parameter/normal_fuerza = 0.5
 shader_parameter/rugosidad = 0.9
 shader_parameter/metalico = 0.0
 shader_parameter/escala_uv = Vector3(0.5, 0.5, 0.5)
+shader_parameter/desfase_uv = Vector3(0, 0, 0)
 shader_parameter/nitidez = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.0
-shader_parameter/descascarado = 0.85
-shader_parameter/grietas = 0.55
-shader_parameter/humedad_altura = 0.6
-shader_parameter/desaturar = 0.25
-
-[sub_resource type="ShaderMaterial" id="StandardMaterial3D_002e6"]
-render_priority = 0
-resource_name = "papel_tapiz"
-shader = ExtResource("50_sucia")
-shader_parameter/tinte = Color(1, 1, 1, 1)
-shader_parameter/textura = ExtResource("14_3k0nc")
-shader_parameter/textura_normal = ExtResource("18_uavjm")
-shader_parameter/normal_fuerza = 0.5
-shader_parameter/rugosidad = 0.9
-shader_parameter/metalico = 0.0
-shader_parameter/escala_uv = Vector3(0.5, 0.5, 0.5)
-shader_parameter/nitidez = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.0
-shader_parameter/descascarado = 0.85
-shader_parameter/grietas = 0.55
-shader_parameter/humedad_altura = 0.6
-shader_parameter/desaturar = 0.25
 
 [sub_resource type="ShaderMaterial" id="StandardMaterial3D_1v7kk"]
-render_priority = 0
 resource_name = "Techo"
+render_priority = 0
 shader = ExtResource("50_sucia")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.15
+shader_parameter/descascarado = 0.0
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.0
+shader_parameter/grietas = 0.85
+shader_parameter/desaturar = 0.3
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/tinte = Color(1, 1, 1, 1)
 shader_parameter/textura = ExtResource("17_ct7ju")
 shader_parameter/textura_normal = ExtResource("18_uavjm")
@@ -183,18 +184,22 @@ shader_parameter/normal_fuerza = 0.5
 shader_parameter/rugosidad = 0.95
 shader_parameter/metalico = 0.0
 shader_parameter/escala_uv = Vector3(0.3, 0.3, 0.3)
+shader_parameter/desfase_uv = Vector3(0, 0, 0)
 shader_parameter/nitidez = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.15
-shader_parameter/descascarado = 0.0
-shader_parameter/grietas = 0.85
-shader_parameter/humedad_altura = 0.0
-shader_parameter/desaturar = 0.3
 
 [sub_resource type="ShaderMaterial" id="StandardMaterial3D_g8vr4"]
 render_priority = 0
 shader = ExtResource("50_sucia")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.0
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.0
+shader_parameter/grietas = 0.15
+shader_parameter/desaturar = 0.2
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/tinte = Color(0.4117647, 0.36078432, 0.10980392, 1)
 shader_parameter/textura = ExtResource("13_dvqag")
 shader_parameter/textura_normal = ExtResource("14_oxy0g")
@@ -202,14 +207,8 @@ shader_parameter/normal_fuerza = 1.2
 shader_parameter/rugosidad = 0.98
 shader_parameter/metalico = 0.0
 shader_parameter/escala_uv = Vector3(1.8, 1.8, 1.8)
+shader_parameter/desfase_uv = Vector3(0, 0, 0)
 shader_parameter/nitidez = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.0
-shader_parameter/descascarado = 0.0
-shader_parameter/grietas = 0.15
-shader_parameter/humedad_altura = 0.0
-shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_wvxq7"]
 size = Vector3(17.608292, 0.99700475, 0.26890868)
@@ -274,6 +273,16 @@ size = Vector3(1.1207178, 0.072856426, 0.318705)
 [sub_resource type="ShaderMaterial" id="StandardMaterial3D_d3gba"]
 render_priority = 0
 shader = ExtResource("50_sucia")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.0
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.0
+shader_parameter/grietas = 0.15
+shader_parameter/desaturar = 0.2
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/tinte = Color(0.4129357, 0.36230415, 0.1109448, 1)
 shader_parameter/textura = ExtResource("13_dvqag")
 shader_parameter/textura_normal = ExtResource("14_oxy0g")
@@ -281,14 +290,8 @@ shader_parameter/normal_fuerza = 1.2
 shader_parameter/rugosidad = 0.98
 shader_parameter/metalico = 0.0
 shader_parameter/escala_uv = Vector3(2, 2, 2)
+shader_parameter/desfase_uv = Vector3(0, 0, 0)
 shader_parameter/nitidez = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.0
-shader_parameter/descascarado = 0.0
-shader_parameter/grietas = 0.15
-shader_parameter/humedad_altura = 0.0
-shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_umku1"]
 size = Vector3(3.222196, 0.99700475, 0.26890868)
@@ -389,6 +392,16 @@ size = Vector3(14.175682, 0.07999992, 0.3250488)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_o5icc"]
 render_priority = 0
 shader = ExtResource("41_002e6")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.6
+shader_parameter/grietas = 0.55
+shader_parameter/desaturar = 0.25
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/fade_degrees = 6.0
 shader_parameter/light_channel = 2
 shader_parameter/use_reveal_mask = false
@@ -404,17 +417,20 @@ shader_parameter/normal_scale = 0.5
 shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.0
-shader_parameter/descascarado = 0.85
-shader_parameter/grietas = 0.55
-shader_parameter/humedad_altura = 0.6
-shader_parameter/desaturar = 0.25
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_002e6"]
 render_priority = 0
 shader = ExtResource("41_002e6")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 0.9
+shader_parameter/descascarado = 0.0
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.55
+shader_parameter/grietas = 0.25
+shader_parameter/desaturar = 0.2
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/fade_degrees = 6.0
 shader_parameter/light_channel = 2
 shader_parameter/use_reveal_mask = false
@@ -430,12 +446,6 @@ shader_parameter/normal_scale = 0.5
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0.37, 0)
 shader_parameter/triplanar_sharpness = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 0.9
-shader_parameter/grietas = 0.25
-shader_parameter/humedad_altura = 0.55
-shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_1gakt"]
 size = Vector3(1.4351877, 0.99700475, 0.26890868)
@@ -443,6 +453,16 @@ size = Vector3(1.4351877, 0.99700475, 0.26890868)
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_4herj"]
 render_priority = 0
 shader = ExtResource("41_002e6")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 0.7
+shader_parameter/descascarado = 0.0
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.0
+shader_parameter/grietas = 0.0
+shader_parameter/desaturar = 0.2
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/fade_degrees = 6.0
 shader_parameter/light_channel = 0
 shader_parameter/use_reveal_mask = false
@@ -457,42 +477,285 @@ shader_parameter/normal_scale = 0.5
 shader_parameter/uv1_scale = Vector3(1, 1, 1)
 shader_parameter/uv1_offset = Vector3(0, 0, 0)
 shader_parameter/triplanar_sharpness = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 0.7
-shader_parameter/grietas = 0.0
-shader_parameter/humedad_altura = 0.0
-shader_parameter/desaturar = 0.2
 
 [sub_resource type="BoxMesh" id="BoxMesh_0ek4k"]
 size = Vector3(1.3033488, 0.07999992, 0.3250488)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_wri13"]
-resource_local_to_scene = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xr2o"]
 render_priority = 0
-shader = ExtResource("41_002e6")
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g4")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
 shader_parameter/fade_degrees = 6.0
-shader_parameter/light_channel = 2
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
 shader_parameter/use_reveal_mask = false
 shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
-shader_parameter/albedo = Color(1, 1, 1, 1)
-shader_parameter/roughness = 0.9
-shader_parameter/metallic = 0.0
-shader_parameter/normal_scale = 0.5
-shader_parameter/uv1_offset = Vector3(0, 0, 0)
-shader_parameter/triplanar_sharpness = 6.0
-shader_parameter/mugre_ruido = ExtResource("51_ruido")
-shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
-shader_parameter/mugre = 1.0
-shader_parameter/descascarado = 0.85
-shader_parameter/grietas = 0.55
-shader_parameter/humedad_altura = 0.6
-shader_parameter/desaturar = 0.25
-shader_parameter/texture_albedo = ExtResource("14_3k0nc")
-shader_parameter/texture_normal = ExtResource("18_uavjm")
-shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="QuadMesh" id="QuadMesh_l34ah"]
+size = Vector2(0.36, 0.45)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7njs1"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g5")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_u6nu0"]
+size = Vector2(1.7, 0.33)
+
+[sub_resource type="BoxMesh" id="Mesh_cerrojo"]
+size = Vector3(0.22, 0.3, 0.08)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6xeo"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g11")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xcp8j"]
+size = Vector2(1.4, 0.36)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqwxt"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g12")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_qh1jn"]
+size = Vector2(1.8, 0.35)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k62hi"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g23")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_78jkd"]
+size = Vector2(1.7, 0.36)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8abi"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(0.55, 0.9, 1.9, 1)
+shader_parameter/albedo_texture = ExtResource("g25")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 0
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_ust70"]
+size = Vector2(1.9, 0.95)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkcm1"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g35")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_sg8e2"]
+size = Vector2(1.5, 0.3)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgiv5"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g12")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_btfcc"]
+size = Vector2(1.8, 0.35)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atusi"]
+render_priority = 0
+shader = ExtResource("46_dv7vu")
+shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
+shader_parameter/albedo_texture = ExtResource("g40")
+shader_parameter/uv_scale = Vector2(1, 1)
+shader_parameter/metallic_amount = 0.0
+shader_parameter/roughness_amount = 0.8
+shader_parameter/fade_degrees = 6.0
+shader_parameter/unshaded_look = true
+shader_parameter/light_channel = 1
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_xo52o"]
+size = Vector2(3.1, 3.1)
+orientation = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xcp8j"]
+top_radius = 0.018
+bottom_radius = 0.02
+height = 0.12
+radial_segments = 8
+rings = 1
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_mqwxt"]
+top_radius = 0.0
+bottom_radius = 0.012
+height = 0.035
+radial_segments = 6
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ta7w"]
+albedo_texture = ExtResource("86_pv3a1")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_cd2ke"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi1i4"]
+albedo_texture = ExtResource("88_p370k")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_lgsqm"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_562g4"]
+albedo_texture = ExtResource("89_f7qk2")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_r8myn"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxgf4"]
+albedo_texture = ExtResource("90_0dnt3")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_hckq7"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwbw1"]
+albedo_texture = ExtResource("91_ggwk8")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_hivuw"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unslo"]
+albedo_texture = ExtResource("92_8xr2o")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_5isam"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcjuk"]
+albedo_texture = ExtResource("86_pv3a1")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_2vdut"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhb4w"]
+albedo_texture = ExtResource("88_p370k")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_j0bsx"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t1xl"]
+albedo_texture = ExtResource("89_f7qk2")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_sh3uo"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ybst"]
+albedo_texture = ExtResource("90_0dnt3")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_qrsco"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tdfn"]
+albedo_texture = ExtResource("91_ggwk8")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_f4be3"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1iws"]
+albedo_texture = ExtResource("92_8xr2o")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_ma5d2"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="BoxShape3D" id="Shape_ropero"]
+size = Vector3(1.3, 2, 0.12)
 
 [node name="Node3D" type="Node3D" unique_id=1261775488]
 
@@ -503,7 +766,7 @@ air_accel = 3.1
 
 [node name="PauseMenu" parent="." unique_id=627859521 instance=ExtResource("2_2am08")]
 
-[node name="MenuInicio" type="CanvasLayer" parent="."]
+[node name="MenuInicio" type="CanvasLayer" parent="." unique_id=383715549]
 script = ExtResource("g1")
 
 [node name="Escalera_imperial" type="CSGCombiner3D" parent="." unique_id=1975053558]
@@ -1972,12 +2235,10 @@ use_collision = true
 size = Vector3(0.207, 3.3263183, 17.645205)
 material = SubResource("StandardMaterial3D_2am08")
 
-[node name="CSGBox3D8" type="CSGBox3D" parent="Infraestructura2/Interiores_piso2/CSGBox3D7" unique_id=688564138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0107, -5.858)
+[node name="CSGBox3D" type="CSGBox3D" parent="Infraestructura2/Interiores_piso2/CSGBox3D7" unique_id=1581914142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011817932, 0.029416084, 6.603339)
 operation = 2
-use_collision = true
-size = Vector3(0.45, 2.5, 1.6)
-material = SubResource("StandardMaterial3D_002e6")
+size = Vector3(0.31336975, 2.446043, 1.6985168)
 
 [node name="Paredes_generales_piso2" type="CSGBox3D" parent="Infraestructura2" unique_id=513622414]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4914918, 3.8183303, 3.5190053)
@@ -2208,6 +2469,7 @@ mesh = SubResource("BoxMesh_myqk5")
 
 [node name="Techo1" type="CSGBox3D" parent="Infraestructura1" unique_id=186245455]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, 2.2709856, -5.174)
+visible = false
 use_collision = true
 size = Vector3(30, 0.07, 17.603)
 material = ExtResource("23_uavjm")
@@ -2856,6 +3118,144 @@ tiempo_visible = 3.0
 stream = ExtResource("36_wri13")
 volume_db = 24.0
 
+[node name="Cuadro_decorativo1" parent="Elementos_piso1" unique_id=777205064 instance=ExtResource("45_f7qk2")]
+transform = Transform3D(-1.331, 0, -8.742278e-08, 0, 1.21, 0, 1.16359715e-07, 0, -1, -11.495115, 1.4918528, -0.22260362)
+
+[node name="Cuadro_decorativo2" parent="Elementos_piso1" unique_id=840607380 instance=ExtResource("46_0dnt3")]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, -1.8052825e-07, 4.130005, -13.7811365)
+
+[node name="Cuadro_decorativo3" parent="Elementos_piso1" unique_id=389889862 instance=ExtResource("47_ggwk8")]
+transform = Transform3D(-5.6824803e-08, 0, -1.3, 0, 1.3, 0, 1.3, 0, -5.6824803e-08, 15.021939, 4.3335843, -2.9990597)
+
+[node name="Rastro" type="Node3D" parent="Elementos_piso1" unique_id=1926257862]
+script = ExtResource("g2")
+puntos = PackedVector3Array(-12.3, -0.35, -4.15, -11.2, -0.35, -3, -11.8, -0.35, -1.8, -13.25, -0.35, -1.05)
+
+[node name="ManoSangre" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1885057310]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.86, 1.1, -0.75)
+material_override = SubResource("ShaderMaterial_8xr2o")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_l34ah")
+script = ExtResource("g3")
+textura = ExtResource("g4")
+tamano = Vector2(0.36, 0.45)
+
+[node name="SigueLaLuz" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1876799958]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6, 1.45, -5.4)
+material_override = SubResource("ShaderMaterial_7njs1")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_u6nu0")
+script = ExtResource("g3")
+textura = ExtResource("g5")
+tamano = Vector2(1.7, 0.33)
+
+[node name="Tablero" parent="Elementos_piso1" unique_id=2072093144 instance=ExtResource("g8")]
+transform = Transform3D(-1.6, 0, 0, 0, 1.6, 0, 0, 0, -1.6, 3.1, 1.15, 3.42)
+puerta = NodePath("../Puerta")
+
+[node name="CablePuerta" type="Node3D" parent="Elementos_piso1" unique_id=1323570212]
+script = ExtResource("g9")
+puntos = PackedVector3Array(3.1, 1.55, 3.39, 3.1, 2.6, 3.39, 4, 2.6, 3.39, 4, 3.3, 3.39, 2.1, 3.3, 3.39, 2.1, 1.12, 3.39)
+grosor = 0.026
+
+[node name="CableCortado" type="Node3D" parent="Elementos_piso1" unique_id=1745041103]
+script = ExtResource("g9")
+puntos = PackedVector3Array(3.356, 1.55, 3.39, 3.356, 2.3, 3.39, 2.5, 2.3, 3.39, 2.5, 3.8, 3.39, 4.2, 3.8, 3.39, 4.2, 4.5, 3.39)
+grosor = 0.026
+
+[node name="CableTecho" type="Node3D" parent="Elementos_piso1" unique_id=780284458]
+script = ExtResource("g9")
+puntos = PackedVector3Array(2.844, 1.55, 3.39, 2.844, 2, 3.39, 3.7, 2, 3.39, 3.7, 3.6, 3.39, 2.3, 3.6, 3.39, 2.3, 5.15, 3.39)
+grosor = 0.026
+
+[node name="CerrojoElectrico" type="MeshInstance3D" parent="Elementos_piso1" unique_id=490748622]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 1, 3.37)
+material_override = ExtResource("g10")
+mesh = SubResource("Mesh_cerrojo")
+
+[node name="LlaveDorada" parent="Elementos_piso1" unique_id=1547563287 instance=ExtResource("17_g8vr4")]
+transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -1.45, 0.43, 2.8)
+item_name = "Llave dorada"
+nombre_visible = "Llave dorada"
+only_visible_with_red_light = false
+icono = ExtResource("27_vb1ut")
+
+[node name="LlaveNoBrilla" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1557274618]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -1.45, 1.75, 3.4)
+material_override = SubResource("ShaderMaterial_f6xeo")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_xcp8j")
+script = ExtResource("g3")
+textura = ExtResource("g11")
+tamano = Vector2(1.4, 0.36)
+
+[node name="NoEstasSolo" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1605601708]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7.82, 1.55, -3.6)
+material_override = SubResource("ShaderMaterial_mqwxt")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_qh1jn")
+script = ExtResource("g3")
+textura = ExtResource("g12")
+tamano = Vector2(1.8, 0.35)
+
+[node name="EllaTeVe" type="MeshInstance3D" parent="Elementos_piso1" unique_id=69386335]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -11.5, 1.4, -5.65)
+material_override = SubResource("ShaderMaterial_k62hi")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_78jkd")
+script = ExtResource("g3")
+textura = ExtResource("g23")
+tamano = Vector2(1.7, 0.36)
+
+[node name="Codigo0417" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1933421879]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 1.3, -8.04)
+material_override = SubResource("ShaderMaterial_v8abi")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_ust70")
+script = ExtResource("g3")
+textura = ExtResource("g25")
+canal = 0
+tamano = Vector2(1.9, 0.95)
+color = Color(0.55, 0.9, 1.9, 1)
+
+[node name="Retratos" type="Node3D" parent="Elementos_piso1" unique_id=701985465]
+script = ExtResource("g26")
+premio = NodePath("../Alacena")
+
+[node name="Retrato1" parent="Elementos_piso1/Retratos" unique_id=587930166 instance=ExtResource("g27")]
+transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 0.6, 1.35, -8.04)
+numero = 3
+
+[node name="Retrato2" parent="Elementos_piso1/Retratos" unique_id=389607376 instance=ExtResource("g27")]
+transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 2, 1.35, -8.04)
+inclinacion = -11.0
+pintura = 2
+
+[node name="Retrato3" parent="Elementos_piso1/Retratos" unique_id=465807143 instance=ExtResource("g27")]
+transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 3.4, 1.35, -8.04)
+numero = 4
+inclinacion = 7.0
+
+[node name="Retrato4" parent="Elementos_piso1/Retratos" unique_id=492073053 instance=ExtResource("g27")]
+transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 4.8, 1.35, -8.04)
+numero = 2
+inclinacion = -8.0
+pintura = 2
+
+[node name="Alacena" parent="Elementos_piso1" unique_id=1169066166 instance=ExtResource("g28")]
+transform = Transform3D(-1.5, 0, 0, 0, 1.5, 0, 0, 0, -1.5, 6.6, 0.75, -8.02)
+contenido = NodePath("../FiltroAzul")
+
+[node name="FiltroAzul" parent="Elementos_piso1" unique_id=122946836 instance=ExtResource("20_x43ht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0.8, -8.2)
+color_a_desbloquear = 1
+
 [node name="Guion" type="Node" parent="." unique_id=1601820228]
 script = ExtResource("18_eti0j")
 
@@ -2871,617 +3271,686 @@ transform = Transform3D(0.9659258, 0, 0.25881904, 0, 1, 0, -0.25881904, 0, 0.965
 [node name="PilaCofre" parent="Elementos_piso2/Cofre" unique_id=897182091 instance=ExtResource("36_xcs2e")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, 0.03, 0.12)
 
-[node name="CSGBox3D9" type="CSGBox3D" parent="Elementos_piso2" unique_id=1719116566]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.424661, 3.575, -10.9)
-instance_shader_parameters/force_visible = 1.0
-use_collision = true
-size = Vector3(0.207, 2.55, 1.64)
-material = SubResource("ShaderMaterial_wri13")
-script = ExtResource("18_virw0")
-
-[node name="Decorado" type="Node3D" parent="."]
-
-[node name="Rastro" type="Node3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("g2")
-puntos = PackedVector3Array(-12.3, -0.35, -4.15, -11.2, -0.35, -3.0, -11.8, -0.35, -1.8, -13.25, -0.35, -1.05)
-
-[node name="ManoSangre" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.86, 1.1, -0.75)
-script = ExtResource("g3")
-textura = ExtResource("g4")
-canal = 1
-tamano = Vector2(0.36, 0.45)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="SigueLaLuz" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6, 1.45, -5.4)
-script = ExtResource("g3")
-textura = ExtResource("g5")
-canal = 1
-tamano = Vector2(1.7, 0.33)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="TelaR1a" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.565685, 0, 0.565685, 0, 0.8, 0, -0.565685, 0, 0.565685, -14.6, 1.95, -5.15)
-
-[node name="TelaR1b" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(-0.494975, 0, -0.494975, 0, 0.7, 0, 0.494975, 0, -0.494975, -8.35, 1.95, -0.45)
-
-[node name="PapelesR1" parent="Decorado" instance=ExtResource("g7")]
-transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -10.6, -0.4, -3.9)
-
-[node name="Tablero" parent="Elementos_piso1" instance=ExtResource("g8")]
-transform = Transform3D(-1.6, 0, 0, 0, 1.6, 0, 0, 0, -1.6, 3.1, 1.15, 3.42)
-puerta = NodePath("../Puerta")
-correcta = 2
-
-[node name="CablePuerta" type="Node3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("g9")
-puntos = PackedVector3Array(3.1, 1.55, 3.39, 3.1, 2.6, 3.39, 4.0, 2.6, 3.39, 4.0, 3.3, 3.39, 2.1, 3.3, 3.39, 2.1, 1.12, 3.39)
-grosor = 0.026
-
-[node name="CableCortado" type="Node3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("g9")
-puntos = PackedVector3Array(3.356, 1.55, 3.39, 3.356, 2.3, 3.39, 2.5, 2.3, 3.39, 2.5, 3.8, 3.39, 4.2, 3.8, 3.39, 4.2, 4.5, 3.39)
-grosor = 0.026
-
-[node name="CableTecho" type="Node3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("g9")
-puntos = PackedVector3Array(2.844, 1.55, 3.39, 2.844, 2.0, 3.39, 3.7, 2.0, 3.39, 3.7, 3.6, 3.39, 2.3, 3.6, 3.39, 2.3, 5.15, 3.39)
-grosor = 0.026
-
-[node name="CerrojoElectrico" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.1, 1, 3.37)
-mesh = SubResource("Mesh_cerrojo")
-material_override = ExtResource("g10")
-
-[node name="MesaTrampa" parent="Decorado" instance=ExtResource("4_bvt80")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, -0.4, 2.85)
-
-[node name="LlaveDorada" parent="Elementos_piso1" instance=ExtResource("17_g8vr4")]
-transform = Transform3D(0.173648, 0, 0.984808, 0, 1, 0, -0.984808, 0, 0.173648, -1.45, 0.43, 2.8)
-item_name = "Llave dorada"
-nombre_visible = "Llave dorada"
-only_visible_with_red_light = false
-icono = ExtResource("27_vb1ut")
-
-[node name="VelasTrampa1" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -2.1, 0.4, 2.95)
-
-[node name="VelasTrampa2" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, -0.8, 0.4, 2.9)
-
-[node name="LlaveNoBrilla" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -1.45, 1.75, 3.4)
-script = ExtResource("g3")
-textura = ExtResource("g11")
-canal = 1
-tamano = Vector2(1.4, 0.36)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="NoEstasSolo" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7.82, 1.55, -3.6)
-script = ExtResource("g3")
-textura = ExtResource("g12")
-canal = 1
-tamano = Vector2(1.8, 0.35)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="BancaHall" parent="Decorado" instance=ExtResource("g13")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7.5, -0.4, -1.2)
-
-[node name="PercheroHall" parent="Decorado" instance=ExtResource("g14")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.3, -0.4, 3)
-
-[node name="TapadoHall" parent="Decorado" instance=ExtResource("g15")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 8.95, -0.4, -6.3)
-
-[node name="EspejoHall" parent="Decorado" instance=ExtResource("g16")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 9.05, -0.4, 1)
-
-[node name="LamparaHall" parent="Decorado" instance=ExtResource("g17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35, -0.4, 2.95)
-
-[node name="CuadroHall" parent="Decorado" instance=ExtResource("g18")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7.82, 1.5, -6)
-
-[node name="PapelesHall" parent="Decorado" instance=ExtResource("g7")]
-transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, 3, -0.4, 0.2)
-
-[node name="MunecaHall" parent="Decorado" instance=ExtResource("g19")]
-transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, 2.2, -0.4, -3.3)
-
-[node name="SillonHall" parent="Decorado" instance=ExtResource("g20")]
-transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 6.8, -0.4, -6.9)
-
-[node name="SangreHall" type="Decal" parent="Decorado"]
-transform = Transform3D(-0.95557, 0, 0.294764, 0, 1, 0, -0.294764, 0, -0.95557, -4.5, -0.4, 0.8)
-size = Vector3(1.0, 0.4, 1.0)
-texture_albedo = ExtResource("g21")
-upper_fade = 0.2
-lower_fade = 0.2
-modulate = Color(0.55, 0.05, 0.04, 0.9)
-
-[node name="TelaHall1" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(-0.848528, 0, -0.848528, 0, 1.2, 0, 0.848528, 0, -0.848528, -7.55, 4.9, 3.12)
-
-[node name="TelaHall2" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(-0.848528, 0, 0.848528, 0, 1.2, 0, -0.848528, 0, -0.848528, 9, 4.9, 3.12)
-
-[node name="BarrilR2a" parent="Decorado" instance=ExtResource("g22")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4, -0.4, -7.35)
-
-[node name="BarrilR2b" parent="Decorado" instance=ExtResource("g22")]
-transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -13.75, -0.4, -7.4)
-
-[node name="PercheroR2" parent="Decorado" instance=ExtResource("g14")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, -0.4, -7.4)
-
-[node name="PilaR2" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(-0.186679, 0, 0.982421, 0, 1, 0, -0.982421, 0, -0.186679, -14.4, 0.5, -7.35)
-
-[node name="EllaTeVe" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -11.5, 1.4, -5.65)
-script = ExtResource("g3")
-textura = ExtResource("g23")
-canal = 1
-tamano = Vector2(1.7, 0.36)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="TelaR2" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.494975, 0, 0.494975, 0, 0.7, 0, -0.494975, 0, 0.494975, -14.6, 1.95, -7.55)
-
-[node name="EstanteBib0" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.95, -0.4, -13.58)
-
-[node name="EstanteBib1" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6, -0.4, -13.58)
-
-[node name="EstanteBib2" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.25, -0.4, -13.58)
-
-[node name="EstanteBib3" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.9, -0.4, -13.58)
-
-[node name="EstanteBib4" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.55, -0.4, -13.58)
-
-[node name="EstanteBibO0" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.64, -0.4, -12.2)
-
-[node name="EstanteBibO1" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.64, -0.4, -10.85)
-
-[node name="Escritorio" parent="Decorado" instance=ExtResource("4_bvt80")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7, -0.4, -11)
-
-[node name="SillaEscritorio" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -7.75, -0.4, -11.1)
-
-[node name="LibrosEscritorio" parent="Decorado" instance=ExtResource("g24")]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -7, 0.4, -11.4)
-
-[node name="LibrosPiso" parent="Decorado" instance=ExtResource("g24")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -12, -0.4, -12.6)
-
-[node name="PapelesBib" parent="Decorado" instance=ExtResource("g7")]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -10, -0.4, -10.2)
-
-[node name="LamparaBib" parent="Decorado" instance=ExtResource("g17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55, -0.4, -13.3)
-
-[node name="Codigo0417" type="MeshInstance3D" parent="Elementos_piso1"]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 1.3, -8.04)
-script = ExtResource("g3")
-textura = ExtResource("g25")
-canal = 0
-tamano = Vector2(1.9, 0.95)
-color = Color(0.55, 0.9, 1.9, 1)
-en_el_piso = false
-
-[node name="PilaBib" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(-0.971788, 0, 0.235856, 0, 1, 0, -0.235856, 0, -0.971788, -5.6, -0.4, -8.5)
-oculta = true
-
-[node name="TelaBib" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, 0.636396, -5.35, 1.95, -13.55)
-
-[node name="Retratos" type="Node3D" parent="Elementos_piso1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
-script = ExtResource("g26")
-premio = NodePath("../Alacena")
-
-[node name="Retrato1" parent="Elementos_piso1/Retratos" instance=ExtResource("g27")]
-transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 0.6, 1.35, -8.04)
-numero = 3
-pintura = 1
-inclinacion = 9.0
-
-[node name="Retrato2" parent="Elementos_piso1/Retratos" instance=ExtResource("g27")]
-transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 2, 1.35, -8.04)
-numero = 1
-pintura = 2
-inclinacion = -11.0
-
-[node name="Retrato3" parent="Elementos_piso1/Retratos" instance=ExtResource("g27")]
-transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 3.4, 1.35, -8.04)
-numero = 4
-pintura = 1
-inclinacion = 7.0
-
-[node name="Retrato4" parent="Elementos_piso1/Retratos" instance=ExtResource("g27")]
-transform = Transform3D(-1.25, 0, 0, 0, 1.25, 0, 0, 0, -1.25, 4.8, 1.35, -8.04)
-numero = 2
-pintura = 2
-inclinacion = -8.0
-
-[node name="Alacena" parent="Elementos_piso1" instance=ExtResource("g28")]
-transform = Transform3D(-1.5, 0, 0, 0, 1.5, 0, 0, 0, -1.5, 6.6, 0.75, -8.02)
-contenido = NodePath("../FiltroAzul")
-
-[node name="FiltroAzul" parent="Elementos_piso1" instance=ExtResource("20_x43ht")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.6, 0.80, -8.2)
-color_a_desbloquear = 1
-
-[node name="TapadoSalon1" parent="Decorado" instance=ExtResource("g20")]
-transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -3.4, -0.4, -12.6)
-
-[node name="TapadoSalon2" parent="Decorado" instance=ExtResource("g29")]
-transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, -2.6, -0.4, -9.6)
-
-[node name="CuadroSalon1" parent="Decorado" instance=ExtResource("g30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, -13.81)
-
-[node name="CuadroSalon2" parent="Decorado" instance=ExtResource("g31")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.5, -13.81)
-
-[node name="MunecaSalon" parent="Decorado" instance=ExtResource("g19")]
-transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, 3.35, -0.4, -13.1)
-
-[node name="LamparaSalon" parent="Decorado" instance=ExtResource("g17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.85, -0.4, -13.4)
-
-[node name="LibrosSalon" parent="Decorado" instance=ExtResource("g24")]
-transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.2, -0.4, -12.9)
-
-[node name="PilaSalon" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(0.107704, 0, 0.994183, 0, 1, 0, -0.994183, 0, 0.107704, 0.4, -0.4, -10.4)
-
-[node name="TelaSalon" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 9.05, 1.95, -13.55)
-
-[node name="MesaComedor" parent="Decorado" instance=ExtResource("g32")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, -0.4, -11.5)
-
-[node name="SillaComedor0" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -0.4, -12.4)
-
-[node name="SillaComedor1" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 12.3, -0.4, -12.45)
-
-[node name="SillaComedor2" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 13.6, -0.4, -12.4)
-
-[node name="SillaComedor3" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 11.1, -0.4, -10.55)
-
-[node name="SillaComedor4" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(-0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, -0.984808, 13.5, -0.4, -10.6)
-
-[node name="SillaComedorCaida" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(0.906308, 0.422618, 0, 0, 0, -1, -0.422618, 0.906308, 0, 12.4, -0.18, -10.1)
-
-[node name="VelasComedor1" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 0.43, -11.45)
-
-[node name="VelasComedor2" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.9, 0.43, -11.6)
-
-[node name="PilaComedor" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(-0.0246316, 0, 0.999697, 0, 1, 0, -0.999697, 0, -0.0246316, 13.55, 0.44, -11.75)
-script = ExtResource("s2_pila")
-
-[node name="CuadroComedor" parent="Decorado" instance=ExtResource("g18")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 1.5, -13.81)
-
-[node name="TelaComedor" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, 0.636396, 14.75, 1.95, -13.55)
-
-[node name="BarrilR7_0" parent="Decorado" instance=ExtResource("g22")]
-transform = Transform3D(0.6037, 0, 0.797211, 0, 1, 0, -0.797211, 0, 0.6037, 14.5, -0.4, -8.4)
-
-[node name="BarrilR7_1" parent="Decorado" instance=ExtResource("g22")]
-transform = Transform3D(0.958226, 0, 0.286013, 0, 1, 0, -0.286013, 0, 0.958226, 14.5, -0.4, -7.7)
-
-[node name="BarrilR7_2" parent="Decorado" instance=ExtResource("g22")]
-transform = Transform3D(0.693757, 0, 0.720209, 0, 1, 0, -0.720209, 0, 0.693757, 13.8, -0.4, -8.4)
-
-[node name="BarrilR7_3" parent="Decorado" instance=ExtResource("g22")]
-transform = Transform3D(0.549177, 0, 0.835706, 0, 1, 0, -0.835706, 0, 0.549177, 14.55, -0.4, -6.9)
-
-[node name="EstanteR7" parent="Decorado" instance=ExtResource("11_dvqag")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 14.79, -0.4, -4.6)
-
-[node name="TapadoR7" parent="Decorado" instance=ExtResource("g15")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 14.7, -0.4, -2.6)
-
-[node name="CuerpoTapado" parent="Decorado" instance=ExtResource("g29")]
-transform = Transform3D(0.990268, 0, 0.139173, 0, 1, 0, -0.139173, 0, 0.990268, 12.3, -0.4, 0.6)
-
-[node name="SangreR7" type="Decal" parent="Decorado"]
-transform = Transform3D(0.266762, 0, -0.963762, 0, 1, 0, 0.963762, 0, 0.266762, 12.6, -0.4, 1.4)
-size = Vector3(1.6, 0.4, 1.6)
-texture_albedo = ExtResource("g33")
-upper_fade = 0.2
-lower_fade = 0.2
-modulate = Color(0.55, 0.05, 0.04, 0.9)
-
-[node name="PilaR7" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(0.956599, 0, 0.291407, 0, 1, 0, -0.291407, 0, 0.956599, 10.2, -0.4, 2.9)
-oculta = true
-
-[node name="TelaR7" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(-0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, -0.636396, 14.75, 1.95, 3.15)
-
-[node name="Foto1" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.999152, -0.0411639, 0, -0.0411639, 0.999152, 0, 0, 0, -1, -13.4, 1.2, 3.4)
-script = ExtResource("g34")
-numero = 1
-
-[node name="Foto2" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.996327, -0.0856248, 0, -0.0856248, 0.996327, 0, 0, 0, -1, -12.65, 1.38, 3.4)
-script = ExtResource("g34")
-numero = 2
-
-[node name="Foto3" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.997898, 0.0648064, 0, 0.0648064, 0.997898, 0, 0, 0, -1, -11.9, 1.2, 3.4)
-script = ExtResource("g34")
-numero = 3
-
-[node name="Foto4" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.999179, 0.0405026, 0, 0.0405026, 0.999179, 0, 0, 0, -1, -11.15, 1.38, 3.4)
-script = ExtResource("g34")
-numero = 4
-
-[node name="Foto5" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.9954, -0.0958012, 0, -0.0958012, 0.9954, 0, 0, 0, -1, -10.4, 1.2, 3.4)
-script = ExtResource("g34")
-numero = 5
-
-[node name="Foto6" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.994905, 0.100819, 0, 0.100819, 0.994905, 0, 0, 0, -1, -9.65, 1.38, 3.4)
-script = ExtResource("g34")
-numero = 6
-
-[node name="VelasFotos0" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(0.975584, 0, -0.219628, 0, 1, 0, 0.219628, 0, 0.975584, -13, -0.4, 3)
-
-[node name="VelasFotos1" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(-0.56767, 0, -0.823256, 0, 1, 0, 0.823256, 0, -0.56767, -11.6, -0.4, 3)
-
-[node name="VelasFotos2" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(-0.747768, 0, -0.66396, 0, 1, 0, 0.66396, 0, -0.747768, -10.2, -0.4, 3)
-
-[node name="PilaSecreta" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(0.880072, 0, 0.47484, 0, 1, 0, -0.47484, 0, 0.880072, -9, -0.4, 2.7)
-
-[node name="SangreSecreta" type="Decal" parent="Decorado"]
-transform = Transform3D(0.995562, 0, 0.0941129, 0, 1, 0, -0.0941129, 0, 0.995562, -11.5, -0.4, 1.6)
-size = Vector3(1.8, 0.4, 1.8)
-texture_albedo = ExtResource("g33")
-upper_fade = 0.2
-lower_fade = 0.2
-modulate = Color(0.55, 0.05, 0.04, 0.9)
-
-[node name="BancaRellano" parent="Decorado" instance=ExtResource("g13")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.35, -13.55)
-
-[node name="MunecaRellano" parent="Decorado" instance=ExtResource("g19")]
-transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 4.4, 2.84, -13.5)
-
-[node name="CuadroRellano1" parent="Decorado" instance=ExtResource("g30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.95, -13.81)
-
-[node name="CuadroRellano2" parent="Decorado" instance=ExtResource("g31")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.95, -13.81)
-
-[node name="TapadoRellano1" parent="Decorado" instance=ExtResource("g15")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2.35, -13.3)
-
-[node name="TapadoRellano2" parent="Decorado" instance=ExtResource("g20")]
-transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 7.4, 2.35, -12.7)
-
-[node name="LamparaRellano" parent="Decorado" instance=ExtResource("g17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9, 2.35, -13.4)
-
-[node name="PilaRellano" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(-0.0890443, 0, 0.996028, 0, 1, 0, -0.996028, 0, -0.0890443, -3, 2.35, -12.9)
-
-[node name="LaParedMiente" type="MeshInstance3D" parent="Elementos_piso2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6, 3.9, -13.81)
-script = ExtResource("g3")
-textura = ExtResource("g35")
-canal = 1
-tamano = Vector2(1.5, 0.3)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="TelaRellano" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.777817, 0, 0.777817, 0, 1.1, 0, -0.777817, 0, 0.777817, -7.55, 5, -13.55)
-
-[node name="Cama" parent="Decorado" instance=ExtResource("g36")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -13.78, 2.35, -9)
-
-[node name="Cuna" parent="Decorado" instance=ExtResource("g37")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 2.35, -13.3)
-
-[node name="MunecaCuna" parent="Decorado" instance=ExtResource("g19")]
-transform = Transform3D(-0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939693, -10, 2.82, -13.3)
-
-[node name="Ropero" parent="Decorado" instance=ExtResource("g38")]
-transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -8.37, 2.35, -6.2)
-
-[node name="EspejoDorm" parent="Decorado" instance=ExtResource("g16")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.62, 2.35, -4.4)
-
-[node name="TapadoDorm1" parent="Decorado" instance=ExtResource("g29")]
-transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -11.2, 2.35, -1.4)
-
-[node name="TapadoDorm2" parent="Decorado" instance=ExtResource("g15")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.55, 2.35, 2.6)
-
-[node name="LamparaDorm" parent="Decorado" instance=ExtResource("g17")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 2.35, 2.95)
-
-[node name="PapelesDorm" parent="Decorado" instance=ExtResource("g7")]
-transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -11.4, 2.35, -5)
-
-[node name="CuadroDorm" parent="Decorado" instance=ExtResource("g30")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.9, -13.81)
-
-[node name="PilaDorm" parent="Decorado" instance=ExtResource("36_xcs2e")]
-transform = Transform3D(0.982551, 0, 0.185996, 0, 1, 0, -0.185996, 0, 0.982551, -14.5, 2.35, 0.6)
-oculta = true
-
-[node name="NoEstasSolo2" type="MeshInstance3D" parent="Elementos_piso2"]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.86, 4.15, -9)
-script = ExtResource("g3")
-textura = ExtResource("g12")
-canal = 1
-tamano = Vector2(1.8, 0.35)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = false
-
-[node name="TelaDorm" parent="Decorado" instance=ExtResource("g6")]
-transform = Transform3D(0.777817, 0, 0.777817, 0, 1.1, 0, -0.777817, 0, 0.777817, -14.6, 5, -13.55)
-
-[node name="FiltroVioleta" parent="Elementos_piso2/Cofre" instance=ExtResource("20_x43ht")]
+[node name="FiltroVioleta" parent="Elementos_piso2/Cofre" unique_id=461544036 instance=ExtResource("20_x43ht")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.05, -0.09)
 color_a_desbloquear = 2
 
-[node name="Altar" parent="Decorado" instance=ExtResource("g39")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 12.3, 2.35, 2.85)
+[node name="LaParedMiente" type="MeshInstance3D" parent="Elementos_piso2" unique_id=1246033562]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6, 3.9, -13.81)
+material_override = SubResource("ShaderMaterial_hkcm1")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_sg8e2")
+script = ExtResource("g3")
+textura = ExtResource("g35")
+tamano = Vector2(1.5, 0.3)
 
-[node name="LlaveReal" parent="Elementos_piso2" instance=ExtResource("17_g8vr4")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 12.3, 3.31, 2.7)
+[node name="NoEstasSolo2" type="MeshInstance3D" parent="Elementos_piso2" unique_id=1556183760]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.86, 4.15, -9)
+material_override = SubResource("ShaderMaterial_hgiv5")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_btfcc")
+script = ExtResource("g3")
+textura = ExtResource("g12")
+tamano = Vector2(1.8, 0.35)
+
+[node name="CirculoRitual" type="MeshInstance3D" parent="Elementos_piso2" unique_id=986017096]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 12.3, 2.362, -3)
+material_override = SubResource("ShaderMaterial_atusi")
+cast_shadow = 0
+instance_shader_parameters/force_visible = 0.0
+mesh = SubResource("QuadMesh_xo52o")
+script = ExtResource("g3")
+textura = ExtResource("g40")
+tamano = Vector2(3.1, 3.1)
+en_el_piso = true
+
+[node name="Vela12" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=667616147]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.0021664351, 0.055083632, -1.2889261)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela12" unique_id=1257139986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela13" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=651861277]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -1.2385806, 0.055083632, -0.41138822)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela13" unique_id=1713314898]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela14" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=286530357]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 1.2024416, 0.055083632, -0.41138822)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela14" unique_id=1422949498]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela15" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=1560720898]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.75775915, 0.055083632, 1.0290986)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela15" unique_id=1390173072]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela16" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=425255221]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.7436349, 0.055083632, 1.0290986)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela16" unique_id=188549977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela17" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=2019001253]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.243867, 0.055083632, 0.23367393)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela17" unique_id=764343288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela24" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=1933884411]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.20419143, 0.055083632, 0.23367393)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela24" unique_id=651307625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela19" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=1152166908]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.16211963, 0.055083632, 0.27549812)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela19" unique_id=1069954066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela23" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=1197763399]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.1344524, 0.055083632, 0.27549812)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela23" unique_id=1992986745]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela20" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=2133554271]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.087976225, 0.055083632, 0.30401456)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela20" unique_id=1058744161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela22" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=543440553]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.058408804, 0.055083632, 0.30401456)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela22" unique_id=874279439]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela21" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=799887394]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.017634802, 0.055083632, 0.3154213)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela21" unique_id=2096735172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela18" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=424404040]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, 0.31251648, 0.055083632, 0.1730072)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela18" unique_id=1867819169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Vela25" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual" unique_id=1445591244]
+transform = Transform3D(0.99999994, 0, 0, 0, 0.99999994, 0, 0, 0, 0.99999994, -0.2876903, 0.055083632, 0.1730072)
+material_override = ExtResource("69_8xr2o")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_xcp8j")
+
+[node name="Llama5" type="MeshInstance3D" parent="Elementos_piso2/CirculoRitual/Vela25" unique_id=1019256981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07999998, 0)
+material_override = ExtResource("70_l34ah")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_mqwxt")
+
+[node name="Sprite3D" type="Sprite3D" parent="Elementos_piso2/CirculoRitual" unique_id=1429974113]
+transform = Transform3D(-0.1, -8.742278e-09, 3.821371e-16, 0, -4.371139e-09, -0.1, 8.742278e-09, -0.1, 4.371139e-09, 0, 0, 0)
+texture = ExtResource("71_7njs1")
+
+[node name="Presencia" type="Node3D" parent="Elementos_piso2" unique_id=62653085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.35, -11.6)
+script = ExtResource("g41")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="Elementos_piso2" unique_id=1558344712]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4235, 3.610631, 1.5618565)
+instance_shader_parameters/force_visible = 1.0
+operation = 2
+use_collision = true
+size = Vector3(0.207, 2.5196137, 1.698328)
+material = SubResource("ShaderMaterial_o5icc")
+script = ExtResource("18_virw0")
+
+[node name="Decorado" type="Node3D" parent="." unique_id=1956129753]
+
+[node name="TelaR1a" parent="Decorado" unique_id=644745630 instance=ExtResource("g6")]
+transform = Transform3D(0.565685, 0, 0.565685, 0, 0.8, 0, -0.565685, 0, 0.565685, -14.6, 1.95, -5.15)
+
+[node name="TelaR1b" parent="Decorado" unique_id=483716319 instance=ExtResource("g6")]
+transform = Transform3D(-0.494975, 0, -0.494975, 0, 0.7, 0, 0.494975, 0, -0.494975, -8.35, 1.95, -0.45)
+
+[node name="PapelesR1" parent="Decorado" unique_id=464853071 instance=ExtResource("g7")]
+transform = Transform3D(0.866025, 0, 0.5, 0, 1, 0, -0.5, 0, 0.866025, -10.6, -0.4, -3.9)
+
+[node name="MesaTrampa" parent="Decorado" unique_id=6264153 instance=ExtResource("4_bvt80")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.45, -0.4, 2.85)
+
+[node name="VelasTrampa1" parent="Decorado" unique_id=71934781 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -2.1, 0.4, 2.95)
+
+[node name="VelasTrampa2" parent="Decorado" unique_id=2049030439 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(0.766044, 0, -0.642788, 0, 1, 0, 0.642788, 0, 0.766044, -0.8, 0.4, 2.9)
+
+[node name="BancaHall" parent="Decorado" unique_id=78163142 instance=ExtResource("g13")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7.5, -0.4, -1.2)
+
+[node name="PercheroHall" parent="Decorado" unique_id=1882220038 instance=ExtResource("g14")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -6.3, -0.4, 3)
+
+[node name="TapadoHall" parent="Decorado" unique_id=1748881252 instance=ExtResource("g15")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 8.95, -0.4, -6.3)
+
+[node name="EspejoHall" parent="Decorado" unique_id=1865266484 instance=ExtResource("g16")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 9.05, -0.4, 0.0038452148)
+
+[node name="LamparaHall" parent="Decorado" unique_id=359480781 instance=ExtResource("g17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.35, -0.4, 2.95)
+
+[node name="CuadroHall" parent="Decorado" unique_id=1290782253 instance=ExtResource("g18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9911427, 1.5, -7.738369)
+
+[node name="PapelesHall" parent="Decorado" unique_id=1829289540 instance=ExtResource("g7")]
+transform = Transform3D(0.34202, 0, 0.939693, 0, 1, 0, -0.939693, 0, 0.34202, 3, -0.4, 0.2)
+
+[node name="MunecaHall" parent="Decorado" unique_id=166780580 instance=ExtResource("g19")]
+transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, 2.2, -0.4, -3.3)
+
+[node name="SillonHall" parent="Decorado" unique_id=678458095 instance=ExtResource("g20")]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 6.8, -0.4, -6.9)
+
+[node name="SangreHall" type="Decal" parent="Decorado" unique_id=1652922571]
+transform = Transform3D(-0.95557, 0, 0.294764, 0, 1, 0, -0.294764, 0, -0.95557, -4.5, -0.4, 0.8)
+size = Vector3(1, 0.4, 1)
+texture_albedo = ExtResource("g21")
+modulate = Color(0.55, 0.05, 0.04, 0.9)
+upper_fade = 0.2
+lower_fade = 0.2
+
+[node name="TelaHall1" parent="Decorado" unique_id=1192998801 instance=ExtResource("g6")]
+transform = Transform3D(-0.848528, 0, -0.848528, 0, 1.2, 0, 0.848528, 0, -0.848528, -7.55, 4.9, 3.12)
+
+[node name="TelaHall2" parent="Decorado" unique_id=1054146412 instance=ExtResource("g6")]
+transform = Transform3D(-0.848528, 0, 0.848528, 0, 1.2, 0, -0.848528, 0, -0.848528, 9, 4.9, 3.12)
+
+[node name="BarrilR2a" parent="Decorado" unique_id=64526208 instance=ExtResource("g22")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.4, -0.4, -7.35)
+
+[node name="BarrilR2b" parent="Decorado" unique_id=286388530 instance=ExtResource("g22")]
+transform = Transform3D(0.766044, 0, 0.642788, 0, 1, 0, -0.642788, 0, 0.766044, -13.75, -0.4, -7.4)
+
+[node name="PercheroR2" parent="Decorado" unique_id=743501687 instance=ExtResource("g14")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, -0.4, -7.4)
+
+[node name="PilaR2" parent="Decorado" unique_id=1767734988 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(-0.186679, 0, 0.982421, 0, 1, 0, -0.982421, 0, -0.186679, -14.4, 0.5, -7.35)
+
+[node name="TelaR2" parent="Decorado" unique_id=463964334 instance=ExtResource("g6")]
+transform = Transform3D(0.494975, 0, 0.494975, 0, 0.7, 0, -0.494975, 0, 0.494975, -14.6, 1.95, -7.55)
+
+[node name="EstanteBib0" parent="Decorado" unique_id=1729207719 instance=ExtResource("11_dvqag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.569224, -0.4, -13.58)
+
+[node name="EstanteBib1" parent="Decorado" unique_id=1774692229 instance=ExtResource("11_dvqag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.370996, -0.4, -13.58)
+
+[node name="EstanteBib2" parent="Decorado" unique_id=972244969 instance=ExtResource("11_dvqag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.172218, -0.4, -13.58)
+
+[node name="EstanteBib3" parent="Decorado" unique_id=1138629928 instance=ExtResource("11_dvqag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.980352, -0.4, -13.58)
+
+[node name="EstanteBib4" parent="Decorado" unique_id=521239583 instance=ExtResource("11_dvqag")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.791787, -0.4, -13.58)
+
+[node name="EstanteBibO0" parent="Decorado" unique_id=1524593096 instance=ExtResource("11_dvqag")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.64, -0.4, -12.2)
+
+[node name="EstanteBibO1" parent="Decorado" unique_id=1783010824 instance=ExtResource("11_dvqag")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.64, -0.4, -9.547281)
+
+[node name="Escritorio" parent="Decorado" unique_id=905441309 instance=ExtResource("4_bvt80")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7, -0.4, -11)
+
+[node name="SillaEscritorio" parent="Decorado" unique_id=1728823732 instance=ExtResource("4_q6oka")]
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -7.75, -0.4, -11.1)
+
+[node name="LibrosEscritorio" parent="Decorado" unique_id=2105220963 instance=ExtResource("g24")]
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -7, 0.4, -11.4)
+
+[node name="LibrosPiso" parent="Decorado" unique_id=1210838209 instance=ExtResource("g24")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, -12, -0.4, -12.6)
+
+[node name="PapelesBib" parent="Decorado" unique_id=464885366 instance=ExtResource("g7")]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, -10, -0.4, -10.2)
+
+[node name="LamparaBib" parent="Decorado" unique_id=1353484166 instance=ExtResource("g17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.55, -0.4, -13.3)
+
+[node name="PilaBib" parent="Decorado" unique_id=20455957 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(-0.971788, 0, 0.235856, 0, 1, 0, -0.235856, 0, -0.971788, -5.6, -0.4, -8.5)
+oculta = true
+
+[node name="TelaBib" parent="Decorado" unique_id=1903232485 instance=ExtResource("g6")]
+transform = Transform3D(0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, 0.636396, -5.35, 1.95, -13.55)
+
+[node name="TapadoSalon1" parent="Decorado" unique_id=533487068 instance=ExtResource("g20")]
+transform = Transform3D(0.819152, 0, 0.573576, 0, 1, 0, -0.573576, 0, 0.819152, -3.4, -0.4, -12.6)
+
+[node name="TapadoSalon2" parent="Decorado" unique_id=374971336 instance=ExtResource("g29")]
+transform = Transform3D(0.984808, 0, -0.173648, 0, 1, 0, 0.173648, 0, 0.984808, -2.6, -0.4, -9.6)
+
+[node name="CuadroSalon1" parent="Decorado" unique_id=1628681693 instance=ExtResource("g30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 1.5, -13.81)
+
+[node name="CuadroSalon2" parent="Decorado" unique_id=2045477053 instance=ExtResource("g31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.5, -13.81)
+
+[node name="MunecaSalon" parent="Decorado" unique_id=2059131140 instance=ExtResource("g19")]
+transform = Transform3D(-0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, -0.939693, 3.35, -0.4, -13.1)
+
+[node name="LamparaSalon" parent="Decorado" unique_id=174755615 instance=ExtResource("g17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.85, -0.4, -13.4)
+
+[node name="LibrosSalon" parent="Decorado" unique_id=34151574 instance=ExtResource("g24")]
+transform = Transform3D(0.866025, 0, -0.5, 0, 1, 0, 0.5, 0, 0.866025, 0.2, -0.4, -12.9)
+
+[node name="PilaSalon" parent="Decorado" unique_id=221379043 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(0.107704, 0, 0.994183, 0, 1, 0, -0.994183, 0, 0.107704, 0.4, -0.4, -10.4)
+
+[node name="TelaSalon" parent="Decorado" unique_id=1379521151 instance=ExtResource("g6")]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 9.05, 1.95, -13.55)
+
+[node name="MesaComedor" parent="Decorado" unique_id=1788975863 instance=ExtResource("g32")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, -0.4, -11.5)
+
+[node name="SillaComedor0" parent="Decorado" unique_id=1318820601 instance=ExtResource("4_q6oka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, -0.4, -12.4)
+
+[node name="SillaComedor1" parent="Decorado" unique_id=1705207600 instance=ExtResource("4_q6oka")]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 12.3, -0.4, -12.45)
+
+[node name="SillaComedor2" parent="Decorado" unique_id=828475710 instance=ExtResource("4_q6oka")]
+transform = Transform3D(0.996195, 0, -0.0871557, 0, 1, 0, 0.0871557, 0, 0.996195, 13.6, -0.4, -12.4)
+
+[node name="SillaComedor3" parent="Decorado" unique_id=1226040487 instance=ExtResource("4_q6oka")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 11.1, -0.4, -10.55)
+
+[node name="SillaComedor4" parent="Decorado" unique_id=650789926 instance=ExtResource("4_q6oka")]
+transform = Transform3D(-0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, -0.984808, 13.5, -0.4, -10.6)
+
+[node name="SillaComedorCaida" parent="Decorado" unique_id=1770217107 instance=ExtResource("4_q6oka")]
+transform = Transform3D(0.906308, 0.422618, 0, 0, 0, -1, -0.422618, 0.906308, 0, 12.4, -0.18, -10.1)
+
+[node name="VelasComedor1" parent="Decorado" unique_id=30805800 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 0.43, -11.45)
+
+[node name="VelasComedor2" parent="Decorado" unique_id=1041566770 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.9, 0.43, -11.6)
+
+[node name="PilaComedor" parent="Decorado" unique_id=1090035288 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(-0.0246316, 0, 0.999697, 0, 1, 0, -0.999697, 0, -0.0246316, 13.55, 0.44, -11.75)
+script = ExtResource("s2_pila")
+robo = 35.0
+
+[node name="CuadroComedor" parent="Decorado" unique_id=367127235 instance=ExtResource("g18")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 1.5, -13.81)
+
+[node name="TelaComedor" parent="Decorado" unique_id=758718918 instance=ExtResource("g6")]
+transform = Transform3D(0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, 0.636396, 14.75, 1.95, -13.55)
+
+[node name="BarrilR7_0" parent="Decorado" unique_id=594085238 instance=ExtResource("g22")]
+transform = Transform3D(0.6037, 0, 0.797211, 0, 1, 0, -0.797211, 0, 0.6037, 14.5, -0.4, -8.4)
+
+[node name="BarrilR7_1" parent="Decorado" unique_id=320174570 instance=ExtResource("g22")]
+transform = Transform3D(0.958226, 0, 0.286013, 0, 1, 0, -0.286013, 0, 0.958226, 14.5, -0.4, -7.7)
+
+[node name="BarrilR7_2" parent="Decorado" unique_id=1721760412 instance=ExtResource("g22")]
+transform = Transform3D(0.693757, 0, 0.720209, 0, 1, 0, -0.720209, 0, 0.693757, 13.8, -0.4, -8.4)
+
+[node name="BarrilR7_3" parent="Decorado" unique_id=1964065512 instance=ExtResource("g22")]
+transform = Transform3D(0.549177, 0, 0.835706, 0, 1, 0, -0.835706, 0, 0.549177, 14.55, -0.4, -6.9)
+
+[node name="EstanteR7" parent="Decorado" unique_id=1685683843 instance=ExtResource("11_dvqag")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 14.79, -0.4, -4.6)
+
+[node name="TapadoR7" parent="Decorado" unique_id=982480955 instance=ExtResource("g15")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 14.7, -0.4, -2.6)
+
+[node name="CuerpoTapado" parent="Decorado" unique_id=1781422615 instance=ExtResource("g29")]
+transform = Transform3D(0.990268, 0, 0.139173, 0, 1, 0, -0.139173, 0, 0.990268, 12.3, -0.4, 0.6)
+
+[node name="SangreR7" type="Decal" parent="Decorado" unique_id=80143372]
+transform = Transform3D(0.266762, 0, -0.963762, 0, 1, 0, 0.963762, 0, 0.266762, 12.6, -0.4, 1.4)
+size = Vector3(1.6, 0.4, 1.6)
+texture_albedo = ExtResource("g33")
+modulate = Color(0.55, 0.05, 0.04, 0.9)
+upper_fade = 0.2
+lower_fade = 0.2
+
+[node name="PilaR7" parent="Decorado" unique_id=29574288 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(0.956599, 0, 0.291407, 0, 1, 0, -0.291407, 0, 0.956599, 10.2, -0.4, 2.9)
+oculta = true
+
+[node name="TelaR7" parent="Decorado" unique_id=1480416612 instance=ExtResource("g6")]
+transform = Transform3D(-0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, -0.636396, 14.75, 1.95, 3.15)
+
+[node name="Foto1" type="MeshInstance3D" parent="Decorado" unique_id=1759031411]
+transform = Transform3D(-0.999152, -0.0411639, 0, -0.0411639, 0.999152, 0, 0, 0, -1, -13.4, 1.2, 3.4)
+material_override = SubResource("StandardMaterial3D_3ta7w")
+mesh = SubResource("QuadMesh_cd2ke")
+script = ExtResource("g34")
+
+[node name="Foto2" type="MeshInstance3D" parent="Decorado" unique_id=242180815]
+transform = Transform3D(-0.996327, -0.0856248, 0, -0.0856248, 0.996327, 0, 0, 0, -1, -12.65, 1.38, 3.4)
+material_override = SubResource("StandardMaterial3D_gi1i4")
+mesh = SubResource("QuadMesh_lgsqm")
+script = ExtResource("g34")
+numero = 2
+
+[node name="Foto3" type="MeshInstance3D" parent="Decorado" unique_id=583378419]
+transform = Transform3D(-0.997898, 0.0648064, 0, 0.0648064, 0.997898, 0, 0, 0, -1, -11.9, 1.2, 3.4)
+material_override = SubResource("StandardMaterial3D_562g4")
+mesh = SubResource("QuadMesh_r8myn")
+script = ExtResource("g34")
+numero = 3
+
+[node name="Foto4" type="MeshInstance3D" parent="Decorado" unique_id=1458927698]
+transform = Transform3D(-0.999179, 0.0405026, 0, 0.0405026, 0.999179, 0, 0, 0, -1, -11.15, 1.38, 3.4)
+material_override = SubResource("StandardMaterial3D_fxgf4")
+mesh = SubResource("QuadMesh_hckq7")
+script = ExtResource("g34")
+numero = 4
+
+[node name="Foto5" type="MeshInstance3D" parent="Decorado" unique_id=1533179668]
+transform = Transform3D(-0.9954, -0.0958012, 0, -0.0958012, 0.9954, 0, 0, 0, -1, -10.4, 1.2, 3.4)
+material_override = SubResource("StandardMaterial3D_pwbw1")
+mesh = SubResource("QuadMesh_hivuw")
+script = ExtResource("g34")
+numero = 5
+
+[node name="Foto6" type="MeshInstance3D" parent="Decorado" unique_id=1040956519]
+transform = Transform3D(-0.994905, 0.100819, 0, 0.100819, 0.994905, 0, 0, 0, -1, -9.65, 1.38, 3.4)
+material_override = SubResource("StandardMaterial3D_unslo")
+mesh = SubResource("QuadMesh_5isam")
+script = ExtResource("g34")
+numero = 6
+
+[node name="VelasFotos0" parent="Decorado" unique_id=501471617 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(0.975584, 0, -0.219628, 0, 1, 0, 0.219628, 0, 0.975584, -13, -0.4, 3)
+
+[node name="VelasFotos1" parent="Decorado" unique_id=686271867 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(-0.56767, 0, -0.823256, 0, 1, 0, 0.823256, 0, -0.56767, -11.6, -0.4, 3)
+
+[node name="VelasFotos2" parent="Decorado" unique_id=1019942090 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(-0.747768, 0, -0.66396, 0, 1, 0, 0.66396, 0, -0.747768, -10.2, -0.4, 3)
+
+[node name="PilaSecreta" parent="Decorado" unique_id=167204010 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(0.880072, 0, 0.47484, 0, 1, 0, -0.47484, 0, 0.880072, -9, -0.4, 2.7)
+
+[node name="SangreSecreta" type="Decal" parent="Decorado" unique_id=412759304]
+transform = Transform3D(0.995562, 0, 0.0941129, 0, 1, 0, -0.0941129, 0, 0.995562, -11.5, -0.4, 1.6)
+size = Vector3(1.8, 0.4, 1.8)
+texture_albedo = ExtResource("g33")
+modulate = Color(0.55, 0.05, 0.04, 0.9)
+upper_fade = 0.2
+lower_fade = 0.2
+
+[node name="BancaRellano" parent="Decorado" unique_id=1228926055 instance=ExtResource("g13")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 2.35, -13.55)
+
+[node name="MunecaRellano" parent="Decorado" unique_id=373917897 instance=ExtResource("g19")]
+transform = Transform3D(0.984808, 0, 0.173648, 0, 1, 0, -0.173648, 0, 0.984808, 4.4, 2.84, -13.5)
+
+[node name="CuadroRellano1" parent="Decorado" unique_id=877568087 instance=ExtResource("g30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3.95, -13.81)
+
+[node name="CuadroRellano2" parent="Decorado" unique_id=1719748815 instance=ExtResource("g31")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 3.95, -13.81)
+
+[node name="TapadoRellano1" parent="Decorado" unique_id=1462167692 instance=ExtResource("g15")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.9, 2.35, -13.3)
+
+[node name="TapadoRellano2" parent="Decorado" unique_id=1386005629 instance=ExtResource("g20")]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, 7.4, 2.35, -12.7)
+
+[node name="LamparaRellano" parent="Decorado" unique_id=1658486371 instance=ExtResource("g17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.9, 2.35, -13.4)
+
+[node name="PilaRellano" parent="Decorado" unique_id=1759367996 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(-0.0890443, 0, 0.996028, 0, 1, 0, -0.996028, 0, -0.0890443, -3, 2.35, -12.9)
+
+[node name="TelaRellano" parent="Decorado" unique_id=994025812 instance=ExtResource("g6")]
+transform = Transform3D(0.777817, 0, 0.777817, 0, 1.1, 0, -0.777817, 0, 0.777817, -7.55, 5, -13.55)
+
+[node name="Cama" parent="Decorado" unique_id=1494174336 instance=ExtResource("g36")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -13.78, 2.35, -9)
+
+[node name="Cuna" parent="Decorado" unique_id=607025123 instance=ExtResource("g37")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 2.35, -13.3)
+
+[node name="MunecaCuna" parent="Decorado" unique_id=421863041 instance=ExtResource("g19")]
+transform = Transform3D(-0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, -0.939693, -10, 2.82, -13.3)
+
+[node name="Ropero" parent="Decorado" unique_id=733833797 instance=ExtResource("g38")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -8.37, 2.35, -6.2)
+
+[node name="EspejoDorm" parent="Decorado" unique_id=901945869 instance=ExtResource("g16")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.62, 2.35, -4.4)
+
+[node name="TapadoDorm1" parent="Decorado" unique_id=1134436505 instance=ExtResource("g29")]
+transform = Transform3D(0.939693, 0, 0.34202, 0, 1, 0, -0.34202, 0, 0.939693, -11.2, 2.35, -1.4)
+
+[node name="TapadoDorm2" parent="Decorado" unique_id=263892637 instance=ExtResource("g15")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.55, 2.35, 2.6)
+
+[node name="LamparaDorm" parent="Decorado" unique_id=199379556 instance=ExtResource("g17")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.6, 2.35, 2.95)
+
+[node name="PapelesDorm" parent="Decorado" unique_id=1185584307 instance=ExtResource("g7")]
+transform = Transform3D(0.939693, 0, -0.34202, 0, 1, 0, 0.34202, 0, 0.939693, -11.4, 2.35, -5)
+
+[node name="CuadroDorm" parent="Decorado" unique_id=1148889515 instance=ExtResource("g30")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 3.9, -13.81)
+
+[node name="PilaDorm" parent="Decorado" unique_id=238863239 instance=ExtResource("36_xcs2e")]
+transform = Transform3D(0.982551, 0, 0.185996, 0, 1, 0, -0.185996, 0, 0.982551, -14.5, 2.35, 0.6)
+oculta = true
+
+[node name="TelaDorm" parent="Decorado" unique_id=1123551385 instance=ExtResource("g6")]
+transform = Transform3D(0.777817, 0, 0.777817, 0, 1.1, 0, -0.777817, 0, 0.777817, -14.6, 5, -13.55)
+
+[node name="Altar" parent="Decorado" unique_id=1677905246 instance=ExtResource("g39")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 2.35, -13.265396)
+
+[node name="LlaveReal" parent="Decorado/Altar" unique_id=752737550 instance=ExtResource("17_g8vr4")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0, 0.96000004, 0.14999986)
 item_name = "Llave antigua"
 nombre_visible = "Llave antigua"
 only_visible_with_red_light = false
 abre = "salida"
 icono = ExtResource("27_vb1ut")
 
-[node name="VelasAltar1" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.7, 3.28, 2.9)
+[node name="VelasAltar1" parent="Decorado/Altar" unique_id=106122678 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0.6000004, 0.93000007, -0.05000019)
 
-[node name="VelasAltar2" parent="Decorado" instance=ExtResource("12_oxy0g")]
-transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 12.9, 3.28, 2.9)
+[node name="VelasAltar2" parent="Decorado/Altar" unique_id=1121430483 instance=ExtResource("12_oxy0g")]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.5999994, 0.93000007, -0.05000019)
 
-[node name="SillaRitual0" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 12.3, 2.35, -1.3)
-
-[node name="SillaRitual1" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 13.7722, 2.35, -2.15)
-
-[node name="SillaRitual2" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 13.7722, 2.35, -3.85)
-
-[node name="SillaRitual3" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 2.35, -4.7)
-
-[node name="SillaRitual4" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.8278, 2.35, -3.85)
-
-[node name="SillaRitual5" parent="Decorado" instance=ExtResource("4_q6oka")]
-transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 10.8278, 2.35, -2.15)
-
-[node name="CirculoRitual" type="MeshInstance3D" parent="Elementos_piso2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 2.362, -3)
-script = ExtResource("g3")
-textura = ExtResource("g40")
-canal = 1
-tamano = Vector2(3.1, 3.1)
-color = Color(1.6, 0.22, 0.18, 1)
-en_el_piso = true
-
-[node name="FotoAltar1" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.99626, -0.0864023, 0, -0.0864023, 0.99626, 0, 0, 0, -1, 10.6, 4.1, 3.4)
+[node name="FotoAltar1" type="MeshInstance3D" parent="Decorado/Altar" unique_id=1479185762]
+transform = Transform3D(0.99626, 0.0864023, 0, -0.0864023, 0.99626, 0, 0, 0, 1, 1.6999998, 1.75, -0.5500002)
+material_override = SubResource("StandardMaterial3D_kcjuk")
+mesh = SubResource("QuadMesh_2vdut")
 script = ExtResource("g34")
-numero = 1
 
-[node name="FotoAltar2" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.997405, -0.0720007, 0, -0.0720007, 0.997405, 0, 0, 0, -1, 11.28, 4.25, 3.4)
+[node name="FotoAltar2" type="MeshInstance3D" parent="Decorado/Altar" unique_id=2023023906]
+transform = Transform3D(0.99740505, 0.072000705, 0, -0.072000705, 0.99740505, 0, 0, 0, 1, 1.0200005, 1.9000001, -0.5500002)
+material_override = SubResource("StandardMaterial3D_qhb4w")
+mesh = SubResource("QuadMesh_j0bsx")
 script = ExtResource("g34")
 numero = 2
 
-[node name="FotoAltar3" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.991402, -0.130849, 0, -0.130849, 0.991402, 0, 0, 0, -1, 11.96, 4.1, 3.4)
+[node name="FotoAltar3" type="MeshInstance3D" parent="Decorado/Altar" unique_id=272777806]
+transform = Transform3D(0.991402, 0.130849, 0, -0.130849, 0.991402, 0, 0, 0, 1, 0.34000015, 1.75, -0.5500002)
+material_override = SubResource("StandardMaterial3D_0t1xl")
+mesh = SubResource("QuadMesh_sh3uo")
 script = ExtResource("g34")
 numero = 3
 
-[node name="FotoAltar4" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.999949, -0.0100712, 0, -0.0100712, 0.999949, 0, 0, 0, -1, 12.64, 4.25, 3.4)
+[node name="FotoAltar4" type="MeshInstance3D" parent="Decorado/Altar" unique_id=338030307]
+transform = Transform3D(0.999949, 0.0100712, 0, -0.0100712, 0.999949, 0, 0, 0, 1, -0.34000015, 1.9000001, -0.5500002)
+material_override = SubResource("StandardMaterial3D_4ybst")
+mesh = SubResource("QuadMesh_qrsco")
 script = ExtResource("g34")
 numero = 4
 
-[node name="FotoAltar5" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.999862, -0.0166061, 0, -0.0166061, 0.999862, 0, 0, 0, -1, 13.32, 4.1, 3.4)
+[node name="FotoAltar5" type="MeshInstance3D" parent="Decorado/Altar" unique_id=753748192]
+transform = Transform3D(0.999862, 0.0166061, 0, -0.0166061, 0.999862, 0, 0, 0, 1, -1.0199995, 1.75, -0.5500002)
+material_override = SubResource("StandardMaterial3D_4tdfn")
+mesh = SubResource("QuadMesh_f4be3")
 script = ExtResource("g34")
 numero = 5
 
-[node name="FotoAltar6" type="MeshInstance3D" parent="Decorado"]
-transform = Transform3D(-0.995432, 0.095478, 0, 0.095478, 0.995432, 0, 0, 0, -1, 14, 4.25, 3.4)
+[node name="FotoAltar6" type="MeshInstance3D" parent="Decorado/Altar" unique_id=1361501311]
+transform = Transform3D(0.995432, -0.095478, 0, 0.095478, 0.995432, 0, 0, 0, 1, -1.6999998, 1.9000001, -0.5500002)
+material_override = SubResource("StandardMaterial3D_s1iws")
+mesh = SubResource("QuadMesh_ma5d2")
 script = ExtResource("g34")
 numero = 6
 
-[node name="SangreAltar" type="Decal" parent="Decorado"]
-transform = Transform3D(-0.992789, 0, -0.119871, 0, 1, 0, 0.119871, 0, -0.992789, 12, 2.35, 1.6)
+[node name="SangreAltar" type="Decal" parent="Decorado/Altar" unique_id=2091543885]
+transform = Transform3D(0.992789, 0, 0.11987099, 0, 1, -9.313226e-10, -0.119871, 0, 0.992789, 0.3000002, -4.7683716e-07, 1.2499999)
 size = Vector3(1.6, 0.4, 1.6)
 texture_albedo = ExtResource("g33")
+modulate = Color(0.55, 0.05, 0.04, 0.9)
 upper_fade = 0.2
 lower_fade = 0.2
-modulate = Color(0.55, 0.05, 0.04, 0.9)
 
-[node name="SangreSellado" type="Decal" parent="Decorado"]
+[node name="SillaRitual0" parent="Decorado" unique_id=922889498 instance=ExtResource("4_q6oka")]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 12.465506, 2.35, -0.8218894)
+
+[node name="SillaRitual1" parent="Decorado" unique_id=65651763 instance=ExtResource("4_q6oka")]
+transform = Transform3D(-0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, -0.5, 14.215773, 2.35, -1.8939029)
+
+[node name="SillaRitual2" parent="Decorado" unique_id=1316665941 instance=ExtResource("4_q6oka")]
+transform = Transform3D(0.5, 0, -0.866025, 0, 1, 0, 0.866025, 0, 0.5, 14.193432, 2.35, -3.9750886)
+
+[node name="SillaRitual3" parent="Decorado" unique_id=426541929 instance=ExtResource("4_q6oka")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.3, 2.35, -5.127356)
+
+[node name="SillaRitual4" parent="Decorado" unique_id=732769932 instance=ExtResource("4_q6oka")]
+transform = Transform3D(0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, 0.5, 10.489144, 2.35, -4.135617)
+
+[node name="SillaRitual5" parent="Decorado" unique_id=1706282410 instance=ExtResource("4_q6oka")]
+transform = Transform3D(-0.5, 0, 0.866025, 0, 1, 0, -0.866025, 0, -0.5, 10.375602, 2.35, -1.8889227)
+
+[node name="SangreSellado" type="Decal" parent="Decorado" unique_id=1270894704]
 transform = Transform3D(-0.636011, 0, -0.77168, 0, 1, 0, 0.77168, 0, -0.636011, 11, 2.35, -8)
 size = Vector3(1.2, 0.4, 1.2)
 texture_albedo = ExtResource("g21")
+modulate = Color(0.55, 0.05, 0.04, 0.9)
 upper_fade = 0.2
 lower_fade = 0.2
-modulate = Color(0.55, 0.05, 0.04, 0.9)
 
-[node name="Presencia" type="Node3D" parent="Elementos_piso2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.35, -11.6)
-script = ExtResource("g41")
-
-[node name="TelaSellado1" parent="Decorado" instance=ExtResource("g6")]
+[node name="TelaSellado1" parent="Decorado" unique_id=1505927569 instance=ExtResource("g6")]
 transform = Transform3D(0.848528, 0, -0.848528, 0, 1.2, 0, 0.848528, 0, 0.848528, 14.75, 5, -13.55)
 
-[node name="TelaSellado2" parent="Decorado" instance=ExtResource("g6")]
+[node name="TelaSellado2" parent="Decorado" unique_id=156026645 instance=ExtResource("g6")]
 transform = Transform3D(-0.848528, 0, 0.848528, 0, 1.2, 0, -0.848528, 0, -0.848528, 9.8, 5, 3.15)
 
-[node name="MunecaMusical" type="Node3D" parent="Decorado"]
+[node name="MunecaMusical" type="Node3D" parent="Decorado" unique_id=1384393337]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.35, -0.4, -13.1)
 script = ExtResource("s1_muneca")
 muneca_path = NodePath("../MunecaSalon")
 
-[node name="PresenciaRopero" type="Node3D" parent="Decorado"]
+[node name="PresenciaRopero" type="Node3D" parent="Decorado" unique_id=719654053]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11, 2.35, -6)
 script = ExtResource("g41")
 
-[node name="PuertaRopero" type="StaticBody3D" parent="Decorado"]
+[node name="PuertaRopero" type="StaticBody3D" parent="Decorado" unique_id=487534459]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -8.74, 3.45, -6.2)
 script = ExtResource("s3_ropero")
 puerta_path = NodePath("../Ropero/PuertaIzq")
 presencia_path = NodePath("../PresenciaRopero")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorado/PuertaRopero"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Decorado/PuertaRopero" unique_id=820019812]
 shape = SubResource("Shape_ropero")
