@@ -126,6 +126,8 @@ func _cambiar_slot(indice: int) -> void:
 	var item = inventario[indice]
 	if item != null:
 		hud.mostrar_nombre_slot(indice, item.nombre_visible)
+		if item.has_method("animar_equipar"):
+			item.animar_equipar(item.posicion_en_mano)
 
 func _actualizar_visibilidad_mano() -> void:
 	for i in inventario.size():
@@ -169,7 +171,18 @@ func _update_prompt() -> void:
 			hud.show_prompt("", "Inventario lleno", false)
 		else:
 			hud.show_prompt("E", "Tomar " + (target as Item).item_name.to_lower())
-
+	elif target is Item:
+		if _is_inventory_full():
+			hud.show_prompt("", "Inventario lleno", false)
+		else:
+			hud.show_prompt("E", "Tomar " + (target as Item).item_name.to_lower())
+	elif target is VidrioRompible:
+		var en_mano := inventario[slot_activo]
+		if en_mano != null and en_mano.has_method("animar_golpe"):
+			hud.show_prompt("E", "Golpear vidrio")
+		else:
+			hud.show_prompt("", "Necesitas un martillo", false)
+	
 func _get_target() -> Node:
 	if not interact_ray.is_colliding():
 		return null
@@ -189,6 +202,10 @@ func _get_target() -> Node:
 	if hit is Leible:
 		return hit
 	if hit is Interactuable and (hit as Interactuable).disponible():
+		return hit
+	if hit is Interactuable and (hit as Interactuable).disponible():
+		return hit
+	if hit is VidrioRompible:
 		return hit
 	return null
 
@@ -231,6 +248,12 @@ func _interact() -> void:
 			evento.emit("puerta_abierta")
 	elif target is Interactuable:
 		(target as Interactuable).interactuar(self)
+	elif target is VidrioRompible:
+		var en_mano := inventario[slot_activo]
+		if en_mano != null and en_mano.has_method("animar_golpe"):
+			en_mano.animar_golpe(target, en_mano.posicion_en_mano)
+		else:
+			hud.toast("Está muy firme para romperlo con las manos")
 	elif target is Leible:
 		var doc := target as Leible
 		bloqueado = true
@@ -256,6 +279,8 @@ func _interact() -> void:
 				hud.mostrar_nombre_slot(empty_slot, nuevo_item.nombre_visible)
 				
 				_actualizar_visibilidad_mano()
+				if nuevo_item.has_method("animar_equipar") and empty_slot == slot_activo:
+					nuevo_item.animar_equipar(nuevo_item.posicion_en_mano)
 				hud.toast(nuevo_item.item_name, "OBJETO OBTENIDO")
 				evento.emit("objeto_tomado")
 

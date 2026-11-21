@@ -19,7 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://bigt8nsjv7emj" path="res://assets varios/rough_wood_nor_gl_2k.png" id="14_oxy0g"]
 [ext_resource type="PackedScene" uid="uid://tjhobmfgyvok" path="res://mapa/deco/candelabro.tscn" id="15_mbg8w"]
 [ext_resource type="Texture2D" uid="uid://bltdx28l6e3mm" path="res://mapa/texturas/madera_normal.png" id="15_umku1"]
-[ext_resource type="PackedScene" path="res://door.tscn" id="16_0km02"]
+[ext_resource type="PackedScene" uid="uid://dlj7h45taeahu" path="res://door.tscn" id="16_0km02"]
 [ext_resource type="PackedScene" path="res://mapa/deco/periodico.tscn" id="16_am2ja"]
 [ext_resource type="Texture2D" uid="uid://c4oxb2cxfjmxn" path="res://mapa/texturas/yeso.png" id="17_ct7ju"]
 [ext_resource type="PackedScene" uid="uid://iihp4te6xesy" path="res://item.tscn" id="17_g8vr4"]
@@ -35,6 +35,7 @@
 [ext_resource type="PackedScene" uid="uid://2kv5rqxd835d" path="res://mapa/deco/candelabro2.tscn" id="27_2f1t2"]
 [ext_resource type="Texture2D" uid="uid://tgm5q1ld8dx0" path="res://assets varios/key.png" id="27_vb1ut"]
 [ext_resource type="Texture2D" uid="uid://dsfcgrwj1135m" path="res://mapa/texturas/paneles_madera.png" id="30_wri13"]
+[ext_resource type="PackedScene" uid="uid://d1ulcd6pm885k" path="res://martillo.tscn" id="31_7njs1"]
 [ext_resource type="Texture2D" uid="uid://dei3j7vc21f7v" path="res://mapa/texturas/vetas_madera.png" id="31_8owvv"]
 [ext_resource type="PackedScene" path="res://mapa/deco/retrato_1.tscn" id="33_xocfh"]
 [ext_resource type="PackedScene" path="res://puzzles/cofre.tscn" id="34_5lrdd"]
@@ -54,6 +55,11 @@
 [ext_resource type="Material" path="res://mapa/materiales/cera.tres" id="69_8xr2o"]
 [ext_resource type="Material" path="res://mapa/materiales/llama.tres" id="70_l34ah"]
 [ext_resource type="Texture2D" uid="uid://eqwb3tmbmdjr" path="res://assets varios/simbolo png.png" id="71_7njs1"]
+[ext_resource type="Shader" uid="uid://cjibphki7vdpt" path="res://vidrio_cristal.gdshader" id="74_f6xeo"]
+[ext_resource type="Script" uid="uid://b2nqibnwt5ajs" path="res://vidrio_rompible.gd" id="74_u6nu0"]
+[ext_resource type="AudioStream" uid="uid://ba8p1cclnx6a5" path="res://sonidos/golpe_vidrio.wav" id="76_mqwxt"]
+[ext_resource type="Texture2D" uid="uid://c15s1ki4iovgi" path="res://assets varios/Planks037A_1K-JPG_Color.jpg" id="76_xcp8j"]
+[ext_resource type="AudioStream" uid="uid://v7rhcu4xgoc4" path="res://sonidos/rotura_vidrio.wav" id="77_qh1jn"]
 [ext_resource type="Texture2D" uid="uid://cwsyoe47qvubu" path="res://mapa/texturas/foto_desaparecido_1.png" id="86_pv3a1"]
 [ext_resource type="Texture2D" uid="uid://bsuluk8pgosqn" path="res://mapa/texturas/foto_desaparecido_2.png" id="88_p370k"]
 [ext_resource type="Texture2D" uid="uid://bqig52gnhkl3k" path="res://mapa/texturas/foto_desaparecido_3.png" id="89_f7qk2"]
@@ -156,6 +162,42 @@ shader_parameter/niveles_techo = Vector2(2.25, 5.19)
 shader_parameter/tinte = Color(1, 1, 1, 1)
 shader_parameter/textura = ExtResource("14_3k0nc")
 shader_parameter/textura_normal = ExtResource("18_uavjm")
+shader_parameter/normal_fuerza = 0.5
+shader_parameter/rugosidad = 0.9
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(0.5, 0.5, 0.5)
+shader_parameter/desfase_uv = Vector3(0, 0, 0)
+shader_parameter/nitidez = 6.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mqwxt"]
+load_path = "res://.godot/imported/mugre_chorreos.png-57f5784abfbb6442b83fc56ce99a13c6.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qh1jn"]
+load_path = "res://.godot/imported/mugre_ruido.png-3ad4548d3b045087bf3135398f28d019.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_k62hi"]
+load_path = "res://.godot/imported/papel_tapiz.png-74089aac9563f9c8d1072b409d1a5f29.s3tc.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_78jkd"]
+load_path = "res://.godot/imported/piedra_normal.png-2a73c21acb92e4096d8284fa1343b16d.s3tc.ctex"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ust70"]
+resource_name = "papel_tapiz"
+render_priority = 0
+shader = ExtResource("50_sucia")
+shader_parameter/mugre_ruido = SubResource("CompressedTexture2D_qh1jn")
+shader_parameter/mugre_chorreos = SubResource("CompressedTexture2D_mqwxt")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.6
+shader_parameter/grietas = 0.55
+shader_parameter/desaturar = 0.25
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
+shader_parameter/tinte = Color(1, 1, 1, 1)
+shader_parameter/textura = SubResource("CompressedTexture2D_k62hi")
+shader_parameter/textura_normal = SubResource("CompressedTexture2D_78jkd")
 shader_parameter/normal_fuerza = 0.5
 shader_parameter/rugosidad = 0.9
 shader_parameter/metalico = 0.0
@@ -481,7 +523,7 @@ shader_parameter/triplanar_sharpness = 6.0
 [sub_resource type="BoxMesh" id="BoxMesh_0ek4k"]
 size = Vector3(1.3033488, 0.07999992, 0.3250488)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_8xr2o"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqwxt"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -497,10 +539,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_l34ah"]
+[sub_resource type="QuadMesh" id="QuadMesh_qh1jn"]
 size = Vector2(0.36, 0.45)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_7njs1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k62hi"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -516,13 +558,13 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_u6nu0"]
+[sub_resource type="QuadMesh" id="QuadMesh_78jkd"]
 size = Vector2(1.7, 0.33)
 
 [sub_resource type="BoxMesh" id="Mesh_cerrojo"]
 size = Vector3(0.22, 0.3, 0.08)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_f6xeo"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8abi"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -538,10 +580,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_xcp8j"]
+[sub_resource type="QuadMesh" id="QuadMesh_ust70"]
 size = Vector2(1.4, 0.36)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqwxt"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkcm1"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -557,10 +599,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_qh1jn"]
+[sub_resource type="QuadMesh" id="QuadMesh_sg8e2"]
 size = Vector2(1.8, 0.35)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_k62hi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgiv5"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -576,10 +618,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_78jkd"]
+[sub_resource type="QuadMesh" id="QuadMesh_btfcc"]
 size = Vector2(1.7, 0.36)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_v8abi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_atusi"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(0.55, 0.9, 1.9, 1)
@@ -595,10 +637,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_ust70"]
+[sub_resource type="QuadMesh" id="QuadMesh_xo52o"]
 size = Vector2(1.9, 0.95)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hkcm1"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_3ta7w"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -614,10 +656,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_sg8e2"]
+[sub_resource type="QuadMesh" id="QuadMesh_cd2ke"]
 size = Vector2(1.5, 0.3)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_hgiv5"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gi1i4"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -633,10 +675,10 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_btfcc"]
+[sub_resource type="QuadMesh" id="QuadMesh_lgsqm"]
 size = Vector2(1.8, 0.35)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_atusi"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_562g4"]
 render_priority = 0
 shader = ExtResource("46_dv7vu")
 shader_parameter/albedo = Color(1.6, 0.22, 0.18, 1)
@@ -652,7 +694,7 @@ shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 
 shader_parameter/mask_min = Vector2(-0.5, 0)
 shader_parameter/mask_size = Vector2(1, 1)
 
-[sub_resource type="QuadMesh" id="QuadMesh_xo52o"]
+[sub_resource type="QuadMesh" id="QuadMesh_r8myn"]
 size = Vector2(3.1, 3.1)
 orientation = 1
 
@@ -670,88 +712,149 @@ height = 0.035
 radial_segments = 6
 rings = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3ta7w"]
-albedo_texture = ExtResource("86_pv3a1")
-roughness = 0.7
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sg8e2"]
+render_priority = 0
+shader = ExtResource("41_002e6")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.85
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.6
+shader_parameter/grietas = 0.55
+shader_parameter/desaturar = 0.25
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
+shader_parameter/fade_degrees = 6.0
+shader_parameter/light_channel = 2
+shader_parameter/use_reveal_mask = false
+shader_parameter/world_to_mask = Projection(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1)
+shader_parameter/mask_min = Vector2(-0.5, 0)
+shader_parameter/mask_size = Vector2(1, 1)
+shader_parameter/albedo = Color(1, 1, 1, 1)
+shader_parameter/texture_albedo = ExtResource("14_3k0nc")
+shader_parameter/roughness = 0.9
+shader_parameter/metallic = 0.0
+shader_parameter/texture_normal = ExtResource("18_uavjm")
+shader_parameter/normal_scale = 0.5
+shader_parameter/uv1_scale = Vector3(0.5, 0.5, 0.5)
+shader_parameter/uv1_offset = Vector3(0, 0, 0)
+shader_parameter/triplanar_sharpness = 6.0
 
-[sub_resource type="QuadMesh" id="QuadMesh_cd2ke"]
-size = Vector2(0.24, 0.3)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qh1jn"]
+render_priority = 0
+shader = ExtResource("74_f6xeo")
+shader_parameter/color_vidrio = Color(0.7490196, 0.91764706, 1, 0.15686275)
+shader_parameter/color_grieta = Color(0.9490196, 0.9882353, 1, 0.84313726)
+shader_parameter/cristalizacion = 0.0
+shader_parameter/escala_cristales = 14.0
+shader_parameter/brillo_fresnel = 0.350000016625
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gi1i4"]
-albedo_texture = ExtResource("88_p370k")
-roughness = 0.7
-
-[sub_resource type="QuadMesh" id="QuadMesh_lgsqm"]
-size = Vector2(0.24, 0.3)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_562g4"]
-albedo_texture = ExtResource("89_f7qk2")
-roughness = 0.7
-
-[sub_resource type="QuadMesh" id="QuadMesh_r8myn"]
-size = Vector2(0.24, 0.3)
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_78jkd"]
+render_priority = 0
+shader = ExtResource("50_sucia")
+shader_parameter/mugre_ruido = ExtResource("51_ruido")
+shader_parameter/mugre_chorreos = ExtResource("52_chorreo")
+shader_parameter/mugre = 1.0
+shader_parameter/descascarado = 0.0
+shader_parameter/color_debajo = Color(0.52, 0.48, 0.41, 1)
+shader_parameter/humedad_altura = 0.0
+shader_parameter/grietas = 0.15
+shader_parameter/desaturar = 0.2
+shader_parameter/niveles_piso = Vector2(-0.4, 2.35)
+shader_parameter/niveles_techo = Vector2(2.25, 5.19)
+shader_parameter/tinte = Color(0.4117647, 0.36078432, 0.10980392, 1)
+shader_parameter/textura = ExtResource("76_xcp8j")
+shader_parameter/textura_normal = ExtResource("14_oxy0g")
+shader_parameter/normal_fuerza = 1.5
+shader_parameter/rugosidad = 1.0
+shader_parameter/metalico = 0.0
+shader_parameter/escala_uv = Vector3(3, 3, 3)
+shader_parameter/desfase_uv = Vector3(0, 0, 0)
+shader_parameter/nitidez = 6.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fxgf4"]
-albedo_texture = ExtResource("90_0dnt3")
+albedo_texture = ExtResource("86_pv3a1")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_hckq7"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pwbw1"]
-albedo_texture = ExtResource("91_ggwk8")
+albedo_texture = ExtResource("88_p370k")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_hivuw"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_unslo"]
-albedo_texture = ExtResource("92_8xr2o")
+albedo_texture = ExtResource("89_f7qk2")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_5isam"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kcjuk"]
-albedo_texture = ExtResource("86_pv3a1")
+albedo_texture = ExtResource("90_0dnt3")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_2vdut"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qhb4w"]
-albedo_texture = ExtResource("88_p370k")
+albedo_texture = ExtResource("91_ggwk8")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_j0bsx"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0t1xl"]
-albedo_texture = ExtResource("89_f7qk2")
+albedo_texture = ExtResource("92_8xr2o")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_sh3uo"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ybst"]
-albedo_texture = ExtResource("90_0dnt3")
+albedo_texture = ExtResource("86_pv3a1")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_qrsco"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tdfn"]
-albedo_texture = ExtResource("91_ggwk8")
+albedo_texture = ExtResource("88_p370k")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_f4be3"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s1iws"]
-albedo_texture = ExtResource("92_8xr2o")
+albedo_texture = ExtResource("89_f7qk2")
 roughness = 0.7
 
 [sub_resource type="QuadMesh" id="QuadMesh_ma5d2"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1b142"]
+albedo_texture = ExtResource("90_0dnt3")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_3ijyi"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1ahy7"]
+albedo_texture = ExtResource("91_ggwk8")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_2u6ly"]
+size = Vector2(0.24, 0.3)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wx137"]
+albedo_texture = ExtResource("92_8xr2o")
+roughness = 0.7
+
+[sub_resource type="QuadMesh" id="QuadMesh_ck8rl"]
 size = Vector2(0.24, 0.3)
 
 [sub_resource type="BoxShape3D" id="Shape_ropero"]
@@ -2072,6 +2175,10 @@ transform = Transform3D(-3.580627e-08, 0.92731726, 0.37427628, 1, 2.3819991e-08,
 [node name="MesaC" parent="Decoraciones" unique_id=1852471207 instance=ExtResource("4_bvt80")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.6475, -0.4, -4.883026)
 
+[node name="FiltroVioleta" parent="Decoraciones/MesaC" unique_id=983366401 instance=ExtResource("20_x43ht")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12, 0.87995607, 0.18844238)
+color_a_desbloquear = 2
+
 [node name="VentanaB" parent="Decoraciones" unique_id=1030666818 instance=ExtResource("5_2b8qf")]
 transform = Transform3D(-1.9, 0, -2.8689203e-07, 0, 1.9, 0, 2.8689203e-07, 0, -1.9, -4.003, -0.6, 3.383)
 
@@ -2236,9 +2343,10 @@ size = Vector3(0.207, 3.3263183, 17.645205)
 material = SubResource("StandardMaterial3D_2am08")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="Infraestructura2/Interiores_piso2/CSGBox3D7" unique_id=1581914142]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011817932, 0.029416084, 6.603339)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.011817932, 0.029416084, 6.6086416)
 operation = 2
-size = Vector3(0.31336975, 2.446043, 1.6985168)
+size = Vector3(0.31336975, 2.446043, 1.7091217)
+material = SubResource("ShaderMaterial_ust70")
 
 [node name="Paredes_generales_piso2" type="CSGBox3D" parent="Infraestructura2" unique_id=513622414]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.4914918, 3.8183303, 3.5190053)
@@ -2273,6 +2381,7 @@ material = SubResource("StandardMaterial3D_2am08")
 
 [node name="Techo2" type="CSGBox3D" parent="Infraestructura2" unique_id=1037861608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.2744117, -5.173706)
+visible = false
 material_override = SubResource("StandardMaterial3D_1v7kk")
 use_collision = true
 size = Vector3(30, 0.17492676, 17.602783)
@@ -3050,6 +3159,10 @@ transform = Transform3D(1.25, 0, 0, 0, 1.25, 0, 0, 0, 1.25, 14.833075, 0.4971876
 
 [node name="Elementos_piso1" type="Node3D" parent="." unique_id=242225800]
 
+[node name="Martillo" parent="Elementos_piso1" unique_id=1707725605 instance=ExtResource("31_7njs1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.059609, -0.3106445, -4.883026)
+posicion_en_mano = Vector3(0.1, -0.15, 0)
+
 [node name="CSGBox3D7" type="CSGBox3D" parent="Elementos_piso1" unique_id=1053949036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.951228, 0.6659987, 1.768384)
 instance_shader_parameters/force_visible = 1.0
@@ -3133,20 +3246,20 @@ puntos = PackedVector3Array(-12.3, -0.35, -4.15, -11.2, -0.35, -3, -11.8, -0.35,
 
 [node name="ManoSangre" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1885057310]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.86, 1.1, -0.75)
-material_override = SubResource("ShaderMaterial_8xr2o")
+material_override = SubResource("ShaderMaterial_mqwxt")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_l34ah")
+mesh = SubResource("QuadMesh_qh1jn")
 script = ExtResource("g3")
 textura = ExtResource("g4")
 tamano = Vector2(0.36, 0.45)
 
 [node name="SigueLaLuz" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1876799958]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.6, 1.45, -5.4)
-material_override = SubResource("ShaderMaterial_7njs1")
+material_override = SubResource("ShaderMaterial_k62hi")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_u6nu0")
+mesh = SubResource("QuadMesh_78jkd")
 script = ExtResource("g3")
 textura = ExtResource("g5")
 tamano = Vector2(1.7, 0.33)
@@ -3184,40 +3297,40 @@ icono = ExtResource("27_vb1ut")
 
 [node name="LlaveNoBrilla" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1557274618]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -1.45, 1.75, 3.4)
-material_override = SubResource("ShaderMaterial_f6xeo")
+material_override = SubResource("ShaderMaterial_v8abi")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_xcp8j")
+mesh = SubResource("QuadMesh_ust70")
 script = ExtResource("g3")
 textura = ExtResource("g11")
 tamano = Vector2(1.4, 0.36)
 
 [node name="NoEstasSolo" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1605601708]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -7.82, 1.55, -3.6)
-material_override = SubResource("ShaderMaterial_mqwxt")
+material_override = SubResource("ShaderMaterial_hkcm1")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_qh1jn")
+mesh = SubResource("QuadMesh_sg8e2")
 script = ExtResource("g3")
 textura = ExtResource("g12")
 tamano = Vector2(1.8, 0.35)
 
 [node name="EllaTeVe" type="MeshInstance3D" parent="Elementos_piso1" unique_id=69386335]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -11.5, 1.4, -5.65)
-material_override = SubResource("ShaderMaterial_k62hi")
+material_override = SubResource("ShaderMaterial_hgiv5")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_78jkd")
+mesh = SubResource("QuadMesh_btfcc")
 script = ExtResource("g3")
 textura = ExtResource("g23")
 tamano = Vector2(1.7, 0.36)
 
 [node name="Codigo0417" type="MeshInstance3D" parent="Elementos_piso1" unique_id=1933421879]
 transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, -8, 1.3, -8.04)
-material_override = SubResource("ShaderMaterial_v8abi")
+material_override = SubResource("ShaderMaterial_atusi")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_ust70")
+mesh = SubResource("QuadMesh_xo52o")
 script = ExtResource("g3")
 textura = ExtResource("g25")
 canal = 0
@@ -3277,30 +3390,30 @@ color_a_desbloquear = 2
 
 [node name="LaParedMiente" type="MeshInstance3D" parent="Elementos_piso2" unique_id=1246033562]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.6, 3.9, -13.81)
-material_override = SubResource("ShaderMaterial_hkcm1")
+material_override = SubResource("ShaderMaterial_3ta7w")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_sg8e2")
+mesh = SubResource("QuadMesh_cd2ke")
 script = ExtResource("g3")
 textura = ExtResource("g35")
 tamano = Vector2(1.5, 0.3)
 
 [node name="NoEstasSolo2" type="MeshInstance3D" parent="Elementos_piso2" unique_id=1556183760]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -14.86, 4.15, -9)
-material_override = SubResource("ShaderMaterial_hgiv5")
+material_override = SubResource("ShaderMaterial_gi1i4")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_btfcc")
+mesh = SubResource("QuadMesh_lgsqm")
 script = ExtResource("g3")
 textura = ExtResource("g12")
 tamano = Vector2(1.8, 0.35)
 
 [node name="CirculoRitual" type="MeshInstance3D" parent="Elementos_piso2" unique_id=986017096]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 12.3, 2.362, -3)
-material_override = SubResource("ShaderMaterial_atusi")
+material_override = SubResource("ShaderMaterial_562g4")
 cast_shadow = 0
 instance_shader_parameters/force_visible = 0.0
-mesh = SubResource("QuadMesh_xo52o")
+mesh = SubResource("QuadMesh_r8myn")
 script = ExtResource("g3")
 textura = ExtResource("g40")
 tamano = Vector2(3.1, 3.1)
@@ -3483,13 +3596,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 2.35, -11.6)
 script = ExtResource("g41")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="Elementos_piso2" unique_id=1558344712]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4235, 3.610631, 1.5618565)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.4235, 3.610631, 1.5756541)
 instance_shader_parameters/force_visible = 1.0
 operation = 2
 use_collision = true
-size = Vector3(0.207, 2.5196137, 1.698328)
-material = SubResource("ShaderMaterial_o5icc")
+size = Vector3(0.207, 2.5196137, 1.781688)
+material = SubResource("ShaderMaterial_sg8e2")
 script = ExtResource("18_virw0")
+
+[node name="barrera vidrio" type="Node3D" parent="Elementos_piso2" unique_id=2051575593]
+
+[node name="ParedVidrio" type="CSGBox3D" parent="Elementos_piso2/barrera vidrio" unique_id=126927628]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 0.04, 12.318457, 4.1898503, -9.825578)
+use_collision = true
+size = Vector3(4.647461, 3.0868225, 0.20861816)
+material = SubResource("ShaderMaterial_qh1jn")
+script = ExtResource("74_u6nu0")
+sonido_golpe = ExtResource("76_mqwxt")
+sonido_rotura = ExtResource("77_qh1jn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Elementos_piso2/barrera vidrio" unique_id=206502259]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 0.04, 9.620202, 4.228632, -9.825578)
+size = Vector3(0.15332031, 3.1281128, 1)
+material = ExtResource("3_2rjda")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Elementos_piso2/barrera vidrio" unique_id=670422092]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 0.04, 14.956597, 4.228632, -9.825578)
+size = Vector3(0.15332031, 3.1281128, 1)
+material = ExtResource("3_2rjda")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Elementos_piso2/barrera vidrio" unique_id=1788533296]
+transform = Transform3D(-5.2453668e-08, -1.2, 0, 1.2, -5.2453668e-08, 0, 0, 0, 0.04, 12.330681, 5.218622, -9.825578)
+size = Vector3(0.15332031, 4.662136, 1)
+material = SubResource("ShaderMaterial_78jkd")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Elementos_piso2/barrera vidrio" unique_id=870408888]
+transform = Transform3D(-5.2453668e-08, -1.2, 0, 1.2, -5.2453668e-08, 0, 0, 0, 0.04, 12.330681, 2.4034367, -9.825578)
+size = Vector3(0.15332031, 4.662136, 1)
+material = SubResource("ShaderMaterial_78jkd")
 
 [node name="Decorado" type="Node3D" parent="." unique_id=1956129753]
 
@@ -3716,42 +3860,42 @@ transform = Transform3D(-0.636396, 0, -0.636396, 0, 0.9, 0, 0.636396, 0, -0.6363
 
 [node name="Foto1" type="MeshInstance3D" parent="Decorado" unique_id=1759031411]
 transform = Transform3D(-0.999152, -0.0411639, 0, -0.0411639, 0.999152, 0, 0, 0, -1, -13.4, 1.2, 3.4)
-material_override = SubResource("StandardMaterial3D_3ta7w")
-mesh = SubResource("QuadMesh_cd2ke")
+material_override = SubResource("StandardMaterial3D_fxgf4")
+mesh = SubResource("QuadMesh_hckq7")
 script = ExtResource("g34")
 
 [node name="Foto2" type="MeshInstance3D" parent="Decorado" unique_id=242180815]
 transform = Transform3D(-0.996327, -0.0856248, 0, -0.0856248, 0.996327, 0, 0, 0, -1, -12.65, 1.38, 3.4)
-material_override = SubResource("StandardMaterial3D_gi1i4")
-mesh = SubResource("QuadMesh_lgsqm")
+material_override = SubResource("StandardMaterial3D_pwbw1")
+mesh = SubResource("QuadMesh_hivuw")
 script = ExtResource("g34")
 numero = 2
 
 [node name="Foto3" type="MeshInstance3D" parent="Decorado" unique_id=583378419]
 transform = Transform3D(-0.997898, 0.0648064, 0, 0.0648064, 0.997898, 0, 0, 0, -1, -11.9, 1.2, 3.4)
-material_override = SubResource("StandardMaterial3D_562g4")
-mesh = SubResource("QuadMesh_r8myn")
+material_override = SubResource("StandardMaterial3D_unslo")
+mesh = SubResource("QuadMesh_5isam")
 script = ExtResource("g34")
 numero = 3
 
 [node name="Foto4" type="MeshInstance3D" parent="Decorado" unique_id=1458927698]
 transform = Transform3D(-0.999179, 0.0405026, 0, 0.0405026, 0.999179, 0, 0, 0, -1, -11.15, 1.38, 3.4)
-material_override = SubResource("StandardMaterial3D_fxgf4")
-mesh = SubResource("QuadMesh_hckq7")
+material_override = SubResource("StandardMaterial3D_kcjuk")
+mesh = SubResource("QuadMesh_2vdut")
 script = ExtResource("g34")
 numero = 4
 
 [node name="Foto5" type="MeshInstance3D" parent="Decorado" unique_id=1533179668]
 transform = Transform3D(-0.9954, -0.0958012, 0, -0.0958012, 0.9954, 0, 0, 0, -1, -10.4, 1.2, 3.4)
-material_override = SubResource("StandardMaterial3D_pwbw1")
-mesh = SubResource("QuadMesh_hivuw")
+material_override = SubResource("StandardMaterial3D_qhb4w")
+mesh = SubResource("QuadMesh_j0bsx")
 script = ExtResource("g34")
 numero = 5
 
 [node name="Foto6" type="MeshInstance3D" parent="Decorado" unique_id=1040956519]
 transform = Transform3D(-0.994905, 0.100819, 0, 0.100819, 0.994905, 0, 0, 0, -1, -9.65, 1.38, 3.4)
-material_override = SubResource("StandardMaterial3D_unslo")
-mesh = SubResource("QuadMesh_5isam")
+material_override = SubResource("StandardMaterial3D_0t1xl")
+mesh = SubResource("QuadMesh_sh3uo")
 script = ExtResource("g34")
 numero = 6
 
@@ -3858,42 +4002,42 @@ transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.5999994, 0.93000007, -0.0
 
 [node name="FotoAltar1" type="MeshInstance3D" parent="Decorado/Altar" unique_id=1479185762]
 transform = Transform3D(0.99626, 0.0864023, 0, -0.0864023, 0.99626, 0, 0, 0, 1, 1.6999998, 1.75, -0.5500002)
-material_override = SubResource("StandardMaterial3D_kcjuk")
-mesh = SubResource("QuadMesh_2vdut")
+material_override = SubResource("StandardMaterial3D_4ybst")
+mesh = SubResource("QuadMesh_qrsco")
 script = ExtResource("g34")
 
 [node name="FotoAltar2" type="MeshInstance3D" parent="Decorado/Altar" unique_id=2023023906]
 transform = Transform3D(0.99740505, 0.072000705, 0, -0.072000705, 0.99740505, 0, 0, 0, 1, 1.0200005, 1.9000001, -0.5500002)
-material_override = SubResource("StandardMaterial3D_qhb4w")
-mesh = SubResource("QuadMesh_j0bsx")
+material_override = SubResource("StandardMaterial3D_4tdfn")
+mesh = SubResource("QuadMesh_f4be3")
 script = ExtResource("g34")
 numero = 2
 
 [node name="FotoAltar3" type="MeshInstance3D" parent="Decorado/Altar" unique_id=272777806]
 transform = Transform3D(0.991402, 0.130849, 0, -0.130849, 0.991402, 0, 0, 0, 1, 0.34000015, 1.75, -0.5500002)
-material_override = SubResource("StandardMaterial3D_0t1xl")
-mesh = SubResource("QuadMesh_sh3uo")
+material_override = SubResource("StandardMaterial3D_s1iws")
+mesh = SubResource("QuadMesh_ma5d2")
 script = ExtResource("g34")
 numero = 3
 
 [node name="FotoAltar4" type="MeshInstance3D" parent="Decorado/Altar" unique_id=338030307]
 transform = Transform3D(0.999949, 0.0100712, 0, -0.0100712, 0.999949, 0, 0, 0, 1, -0.34000015, 1.9000001, -0.5500002)
-material_override = SubResource("StandardMaterial3D_4ybst")
-mesh = SubResource("QuadMesh_qrsco")
+material_override = SubResource("StandardMaterial3D_1b142")
+mesh = SubResource("QuadMesh_3ijyi")
 script = ExtResource("g34")
 numero = 4
 
 [node name="FotoAltar5" type="MeshInstance3D" parent="Decorado/Altar" unique_id=753748192]
 transform = Transform3D(0.999862, 0.0166061, 0, -0.0166061, 0.999862, 0, 0, 0, 1, -1.0199995, 1.75, -0.5500002)
-material_override = SubResource("StandardMaterial3D_4tdfn")
-mesh = SubResource("QuadMesh_f4be3")
+material_override = SubResource("StandardMaterial3D_1ahy7")
+mesh = SubResource("QuadMesh_2u6ly")
 script = ExtResource("g34")
 numero = 5
 
 [node name="FotoAltar6" type="MeshInstance3D" parent="Decorado/Altar" unique_id=1361501311]
 transform = Transform3D(0.995432, -0.095478, 0, 0.095478, 0.995432, 0, 0, 0, 1, -1.6999998, 1.9000001, -0.5500002)
-material_override = SubResource("StandardMaterial3D_s1iws")
-mesh = SubResource("QuadMesh_ma5d2")
+material_override = SubResource("StandardMaterial3D_wx137")
+mesh = SubResource("QuadMesh_ck8rl")
 script = ExtResource("g34")
 numero = 6
 

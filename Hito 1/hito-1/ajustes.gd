@@ -7,6 +7,7 @@ const RUTA := "user://ajustes.cfg"
 const MANSION := "res://diseño_pruebafinal.tscn"
 const MENU_PRINCIPAL := MANSION
 const NIVEL_1 := MANSION
+const CURSOR_IMG := "res://assets varios/sunken-eye.png"
 
 var sensibilidad := 1.0
 var volumen := 0.8
@@ -22,7 +23,8 @@ var saltar_menu := false
 
 var _hover: AudioStreamPlayer
 var _click: AudioStreamPlayer
-
+var _cursor_normal: ImageTexture
+var _cursor_presionado: ImageTexture
 ## Luces que pueden proyectar sombra. Solo las mas cercanas a la camara la proyectan de verdad:
 ## cada luz omni con sombra vuelve a dibujar la escena, y eso es lo que mas cuesta.
 const SOMBRAS_ALTA := 3
@@ -37,6 +39,7 @@ func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	_hover = _crear_sonido("res://sonidos/ui_hover.wav", -18.0)
 	_click = _crear_sonido("res://sonidos/ui_click.wav", -6.0)
+	_configurar_cursor()
 	cargar()
 	aplicar()
 	# los nodos de cada nivel se ajustan a la calidad elegida apenas aparecen
@@ -52,6 +55,33 @@ func _crear_sonido(ruta: String, db: float) -> AudioStreamPlayer:
 	add_child(p)
 	return p
 
+func _configurar_cursor() -> void:
+	var tex := load(CURSOR_IMG) as Texture2D
+	if tex == null:
+		return
+	
+	var img_normal := tex.get_image()
+	img_normal.resize(36, 36, Image.INTERPOLATE_LANCZOS)
+	_cursor_normal = ImageTexture.create_from_image(img_normal)
+	
+	var img_press := tex.get_image()
+	img_press.resize(28, 28, Image.INTERPOLATE_LANCZOS)
+	_cursor_presionado = ImageTexture.create_from_image(img_press)
+	
+	_aplicar_cursor(false)
+
+func _aplicar_cursor(presionado: bool) -> void:
+	var tex := _cursor_presionado if presionado else _cursor_normal
+	var centro := Vector2(14, 14) if presionado else Vector2(18, 18)
+	if tex != null:
+		Input.set_custom_mouse_cursor(tex, Input.CURSOR_ARROW, centro)
+		Input.set_custom_mouse_cursor(tex, Input.CURSOR_POINTING_HAND, centro)
+		
+func _input(event: InputEvent) -> void:
+	if Input.get_mouse_mode() != Input.MOUSE_MODE_VISIBLE:
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		_aplicar_cursor(event.pressed)
 
 func sonar_hover() -> void:
 	_hover.pitch_scale = randf_range(0.9, 1.1)
@@ -152,7 +182,50 @@ func _ajustar_nodo(nodo: Node) -> void:
 		if luz.shadow_enabled:
 			luz.shadow_enabled = false
 			_luces_sombra.append(luz)
+	elif nodo is BaseButton:
+		_conectar_efecto_boton(nodo as BaseButton)
 
+func _conectar_efecto_boton(btn: BaseButton) -> void:
+	if btn.has_meta("efecto_presion"):
+		return
+	btn.set_meta("efecto_presion", true)
+	
+	# Mantiene el pivote en el centro exacto aunque el contenedor cambie el tamaño del botón
+	var centrar_pivote := func():
+		btn.pivot_offset = btn.size * 0.5
+	centrar_pivote.call_deferred()
+	btn.resized.connect(centrar_pivote)
+	
+	# Al pasar el cursor por encima (leve aumento)
+	btn.mouse_entered.connect(func():
+		if btn.disabled:
+			return
+		centrar_pivote.call()
+		var t := btn.create_tween()
+		t.tween_property(btn, "scale", Vector2(1.03, 1.03), 0.08).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	)
+	
+	# Al sacar el cursor
+	btn.mouse_exited.connect(func():
+		var t := btn.create_tween()
+		t.tween_property(btn, "scale", Vector2.ONE, 0.08)
+	)
+	
+	# Al presionar el clic (efecto de hundimiento)
+	btn.button_down.connect(func():
+		if btn.disabled:
+			return
+		centrar_pivote.call()
+		var t := btn.create_tween()
+		t.tween_property(btn, "scale", Vector2(0.92, 0.92), 0.06).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+	)
+	
+	# Al soltar el clic (rebote táctil de vuelta)
+	btn.button_up.connect(func():
+		var destino := Vector2(1.03, 1.03) if btn.is_hovered() and not btn.disabled else Vector2.ONE
+		var t := btn.create_tween()
+		t.tween_property(btn, "scale", destino, 0.12).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	)
 
 func cargar() -> void:
 	var cfg := ConfigFile.new()
