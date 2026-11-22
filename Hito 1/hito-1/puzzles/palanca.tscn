@@ -1,15 +1,10 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cvvdkcyhp026g"]
 
-[ext_resource type="Script" path="res://puzzles/palanca.gd" id="1_palanca"]
-[ext_resource type="Material" path="res://mapa/materiales/hierro.tres" id="2_hierro"]
+[ext_resource type="Script" uid="uid://basfv6hhhiesr" path="res://puzzles/palanca.gd" id="1_palanca"]
 [ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="3_laton"]
 
-[sub_resource type="StandardMaterial3D" id="Mat_pomo"]
-albedo_color = Color(0.35, 0.05, 0.04, 1)
-roughness = 0.5
-
-[sub_resource type="BoxMesh" id="Mesh_base"]
-size = Vector3(0.07, 0.12, 0.035)
+[sub_resource type="BoxShape3D" id="Shape_palanca"]
+size = Vector3(0.14, 0.34, 0.2)
 
 [sub_resource type="CylinderMesh" id="Mesh_brazo"]
 top_radius = 0.009
@@ -18,38 +13,75 @@ height = 0.13
 radial_segments = 8
 rings = 1
 
+[sub_resource type="StandardMaterial3D" id="Mat_pomo"]
+albedo_color = Color(0.35, 0.05, 0.04, 1)
+roughness = 0.5
+
 [sub_resource type="SphereMesh" id="Mesh_pomo"]
 radius = 0.02
 height = 0.04
 radial_segments = 12
 rings = 6
 
-[sub_resource type="BoxShape3D" id="Shape_palanca"]
-size = Vector3(0.14, 0.34, 0.2)
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_iopye"]
+load_path = "res://.godot/imported/mugre_piedra.png-e563d92dbd43c3bc45cb6c9ea56defe5.s3tc.ctex"
 
-[node name="Palanca" type="StaticBody3D"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eijv6"]
+resource_name = "hierro"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.2, 0.2, 0.21, 1)
+albedo_texture = SubResource("CompressedTexture2D_iopye")
+metallic = 0.6
+roughness = 0.55
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 4.0
+uv1_world_triplanar = true
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_ykqln"]
+load_path = "res://.godot/imported/mugre_piedra.png-e563d92dbd43c3bc45cb6c9ea56defe5.s3tc.ctex"
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_glf3e"]
+resource_name = "hierro"
+vertex_color_use_as_albedo = true
+albedo_color = Color(0.2, 0.2, 0.21, 1)
+albedo_texture = SubResource("CompressedTexture2D_ykqln")
+metallic = 0.6
+roughness = 0.55
+uv1_scale = Vector3(1.5, 1.5, 1.5)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 4.0
+uv1_world_triplanar = true
+
+[node name="Palanca" type="StaticBody3D" unique_id=2111029992]
 script = ExtResource("1_palanca")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1462567590]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0.06)
 shape = SubResource("Shape_palanca")
 
-[node name="Base" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.0175)
-material_override = ExtResource("2_hierro")
-mesh = SubResource("Mesh_base")
-
-[node name="Brazo" type="Node3D" parent="."]
+[node name="Brazo" type="Node3D" parent="." unique_id=1386367842]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.04)
 
-[node name="Vara" type="MeshInstance3D" parent="Brazo"]
+[node name="Vara" type="MeshInstance3D" parent="Brazo" unique_id=926739272]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
 material_override = ExtResource("3_laton")
 cast_shadow = 0
 mesh = SubResource("Mesh_brazo")
 
-[node name="Pomo" type="MeshInstance3D" parent="Brazo"]
+[node name="Pomo" type="MeshInstance3D" parent="Brazo" unique_id=1363964316]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135, 0)
 material_override = SubResource("Mat_pomo")
 cast_shadow = 0
 mesh = SubResource("Mesh_pomo")
+
+[node name="Base" type="CSGBox3D" parent="." unique_id=1210435876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00030231476, 1.5258789e-05, 0.017530799)
+size = Vector3(0.069021225, 0.11972046, 0.034233093)
+material = SubResource("StandardMaterial3D_eijv6")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Base" unique_id=1824187803]
+transform = Transform3D(0.02, 0, 0, 0, 0.02, 0, 0, 0, 0.02, -0.0003289795, 0.0097794905, 0.010452943)
+operation = 2
+size = Vector3(0.8685913, 1, 0.75146484)
+material = SubResource("StandardMaterial3D_glf3e")

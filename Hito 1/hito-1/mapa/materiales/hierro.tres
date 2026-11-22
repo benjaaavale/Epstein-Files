@@ -1,6 +1,6 @@
-[gd_resource type="StandardMaterial3D" format=3]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtuoc4puuu7nd"]
 
-[ext_resource type="Texture2D" path="res://mapa/texturas/mugre_piedra.png" id="1_qv5fd"]
+[ext_resource type="Texture2D" uid="uid://cpynrmtkn3sh4" path="res://mapa/texturas/mugre_piedra.png" id="1_qv5fd"]
 
 [resource]
 resource_name = "hierro"

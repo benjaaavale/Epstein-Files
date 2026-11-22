@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cqx8p1mgwedsm"]
+
+[ext_resource type="Script" uid="uid://civeyma2thpux" path="res://item.gd" id="1_wl6ue"]
+[ext_resource type="Texture2D" uid="uid://clcejlibrbji7" path="res://lever.png" id="2_euw0g"]
+[ext_resource type="Material" path="res://mapa/materiales/laton.tres" id="2_gny8k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_item"]
+size = Vector3(0.033530273, 0.2997107, 0.03648193)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_zone"]
+radius = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_euw0g"]
+top_radius = 0.009
+bottom_radius = 0.009
+height = 0.13
+radial_segments = 8
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xvy0"]
+albedo_color = Color(0.35, 0.05, 0.04, 1)
+roughness = 0.5
+
+[sub_resource type="SphereMesh" id="SphereMesh_np8y8"]
+radius = 0.02
+height = 0.04
+radial_segments = 12
+rings = 6
+
+[node name="Item" type="RigidBody3D" unique_id=1707725605]
+script = ExtResource("1_wl6ue")
+item_name = "Palanca"
+nombre_visible = "Palanca de mando"
+only_visible_with_red_light = false
+icono = ExtResource("2_euw0g")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=624873694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00015869131, 0.15024963, 0.0020032749)
+shape = SubResource("BoxShape3D_item")
+
+[node name="InteractZone" type="Area3D" parent="." unique_id=1515816957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.09760466, 0)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractZone" unique_id=103415226]
+shape = SubResource("SphereShape3D_zone")
+
+[node name="Brazo" type="Node3D" parent="." unique_id=385530756]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0.0017385855)
+
+[node name="Vara" type="MeshInstance3D" parent="Brazo" unique_id=665237773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.065, 0)
+material_override = ExtResource("2_gny8k")
+cast_shadow = 0
+mesh = SubResource("CylinderMesh_euw0g")
+
+[node name="Pomo" type="MeshInstance3D" parent="Brazo" unique_id=1889416017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135, 0)
+material_override = SubResource("StandardMaterial3D_6xvy0")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_np8y8")
