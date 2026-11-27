@@ -225,7 +225,7 @@ func _construir() -> void:
 	aviso.anchor_bottom = 1.0
 	aviso.offset_top = -64.0
 	raiz.add_child(aviso)
-	var estudio := UIEstilo.label("DIDDY GAMES  ·  CC5408", 10, Color(UIEstilo.HUESO, 0.3), true)
+	var estudio := UIEstilo.label("MATIAS JOFRÉ  ·  CC5408", 10, Color(UIEstilo.HUESO, 0.3), true)
 	estudio.anchor_left = 0.09
 	estudio.anchor_top = 1.0
 	estudio.anchor_bottom = 1.0
